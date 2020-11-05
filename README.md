@@ -2,13 +2,15 @@
 
 ## Introduction
 
-Thank you for participating in the React Certification 2020 course! Here you'll find instructions for completing your certification.
+Thank you for participating in the React Certification 2020! Here, you'll find instructions to complete your certification.
 
 ## The challenge
 
-The purpose of the challenge is for you to demonstrate your React skills. This is your chance to show off everything you've learned during the course and to earn your certification!!
+The purpose of the challenge is for you to demonstrate your React skills. This is your chance to show off everything you've learned during the course and to earn your certification!
 
-The idea is that you build and deliver a **whole** React application on your own. We don't want to limit you by providing some "fill in the blanks" exercises, but instead request you to build it from scratch! We hope you find this exercise challenging and engaging.
+You will build and deliver a **whole** React application on your own. We don't want to limit you by providing some fill-in-the-blanks exercises. Instead, we want you to build it from scratch. 
+
+We hope you find this exercise challenging and engaging.
 
 The goal is to build a YouTube client app.
 
@@ -18,11 +20,11 @@ We've created a demo application: // TODO
 
 We won't share its source-code until after the certification is complete and all the participants deliver their own implementations (we don't want to bias your solution).
 
-You should use this application just as a guide and as a trigger for your own ideas. It's not mandatory to reproduce the exact functionalities nor the same styling; this is **YOUR** project and you can be creative in the way you build it.
+You should use this application just as a guide and as a trigger for your own ideas. It's not mandatory to reproduce the exact functionalities nor the same styling. It is **YOUR** project and you can be creative in the way you build it.
 
 ### Requirements
 
-These are the main requirements we will evaluate from your deliverable:
+These are the main requirements for your deliverable evaluation:
 
 - Use all that you've learned in the course:
   - Functional Components
@@ -34,12 +36,12 @@ These are the main requirements we will evaluate from your deliverable:
     - Public and private routes
 - Fetch results from YouTube API (keep reading for more details)
   - Search videos by name
-- User Authentication (keep reading for more details)
-- Unit Tests Coverage (~70%)
+- Apply user authentication (keep reading for more details)
+- Implement Unit Tests Coverage (~70%)
 
 Try to keep the use of 3rd party libraries to the minimum, especially the ones related to the topics covered in the course.
 
-E.g., you can use some CSS framework (such as Bootstrap) if that makes you feel more comfortable and move faster, but we will still want you to develop and deliver meaningful styled-components.
+For example, you can use some CSS framework (such as Bootstrap) if that makes you feel more comfortable and move faster. However, we will still want you to develop and deliver meaningful styled-components.
 
 ## Getting Started
 
@@ -49,28 +51,26 @@ The provided codebase is not directly related to the challenge topic, but you ca
 
 To get started, follow these steps:
 
-- Fork this project.
-- Create the YouTube API credential and configure the client SDK (more details below).
-- Commit periodically.
-- Have fun!
+1. Fork this project.
+1. Create the YouTube API credential and configure the client SDK (more details below).
+1. Commit periodically.
+1. Have fun!
 
 ### YouTube API
 
-In order to fetch videos from YouTube you need to create a new project using the Google console, and then create an API key for consuming the API.
+In order to fetch videos from YouTube, you need to create a new project using the Google console, and then create an API key for consuming the API.
 
 **Step 1:** Follow the [YouTube API v3 getting-started guide](https://developers.google.com/youtube/v3/getting-started) to get your API credentials.
 
-> \*_NOTE:_ You only need to complete the steps 1, 2 and 3 in the guide to get your API_KEY\*
+> \*_NOTE:_ You only need to complete the steps 1, 2, and 3 in the YouTube guide to get your API_KEY\*
 
 **Step 2:** After configuring the API key, you can read the [YouTube JavaScript client getting-started documentation](https://github.com/google/google-api-javascript-client/blob/master/docs/start.md) to get examples about how to consume the API.
 
 ### Authentication with Mocked Login
 
-Authentication is not directly covered on this course's topics; that's why we are not requesting you to integrate with a real authentication provider (such as Auth0, OAuth, etc.).
+Authentication is not directly covered in this course. Therefore, we are not requesting you to integrate with a real authentication provider (such as Auth0, OAuth, etc.) Instead, we want you to explore how to set up your application to handle this kind of requirement: sharing the logged-in user state, define public and private routes, display content based on the authenticated user, etc.
 
-Instead, we want you to explore how to set up your application to handle this kind of requirement: sharing the logged-in user state, define public and private routes, display content based on the authenticated user, etc.
-
-You can use this mocked-login function in your application; just provide in the UI a way to capture the username and password values, and then handle the success and error cases (e.g. create a React Context to provide your logged-in user to the rest of the application).
+You can use this mocked-login function in your application. Provide in the UI a way to capture the username and password values, and then handle the success and error cases (for example, create a React Context to provide your logged-in user to the rest of the application).
 
 ```javascript
 // login.api.js
@@ -96,11 +96,11 @@ export default async function loginApi(username, password) {
 
 ## Deliverables
 
-We provide the delivery dates so you can plan accordingly; please take this challenge seriously and try to make progress constantly.
+We provide the delivery dates so you can plan accordingly. Please, take this challenge seriously and try to make progress constantly.
 
 It’s worth mentioning that you’ll ONLY get feedback from the review team for your first deliverable, so you will have a chance to fix or improve the code based on our suggestions.
 
-For the final deliverable, we will provide some feedback to but there is no extra review date, so if you are struggling with something try to get some help beforehand with your peers or by using the academy-reactcert2020 slack channel.
+For the final deliverable, we will provide some feedback, but there is no extra review date. If you are struggling with something, we will be happy ti'o help via the academy-reactcert2020 slack channel.
 
 ### First Deliverable (due December 7th 23:59PM)
 
@@ -138,8 +138,8 @@ For the final deliverable, we will provide some feedback to but there is no extr
 
 For submitting your work, you should follow these steps:
 
-1. Create a pull request with your code, targeting the master branch of the repository [react-bootcamp-2020](https://github.com/wizelineacademy/react-bootcamp-2020).
+1. Create a pull request with your code. Target the master branch of the repository [react-bootcamp-2020](https://github.com/wizelineacademy/react-bootcamp-2020).
 2. Deploy your application code to any hosting service (we suggest you use Netlify or any other free hosting provider you want to use like Firebase, etc.).
 3. Fill out this form and provide the requested information: https://forms.gle/ePnLR2xNVc3M1HLu8
 
-> \*_Important:_ Don't forget to include any additional information that might be necessary for running your code (e.g. test user credentials, etc).
+> \*_Important:_ Don't forget to include any additional information that might be necessary for running your code (for example, test user credentials, etc).
