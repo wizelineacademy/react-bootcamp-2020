@@ -14,7 +14,7 @@ We hope you find this exercise challenging and engaging.
 
 The goal is to build a YouTube client app.
 
-We've created a demo application: // TODO
+We've created this [demo application](https://react-bootcamp-wizeline.netlify.app/)
 
 > \*_NOTE:_ Use `wizeline` as the username and `Rocks!` as the password to log in\*
 
@@ -140,6 +140,6 @@ For submitting your work, you should follow these steps:
 
 1. Create a pull request with your code. Target the master branch of the repository [react-bootcamp-2020](https://github.com/wizelineacademy/react-bootcamp-2020).
 2. Deploy your application code to any hosting service (we suggest you use Netlify or any other free hosting provider you want to use like Firebase, etc.).
-3. Fill out this form and provide the requested information: https://forms.gle/ePnLR2xNVc3M1HLu8
+3. Fill out this form and provide the requested information: https://forms.gle/mKnwdbxwzhFDUKJf6
 
 > \*_Important:_ Don't forget to include any additional information that might be necessary for running your code (for example, test user credentials, etc).
