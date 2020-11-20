@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AuthProvider from '../../providers/Auth';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
+import FavoritesPage from '../../pages/Favorites';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
 import Private from '../Private';
@@ -43,6 +44,9 @@ function App() {
             </Route>
             <Private exact path="/secret">
               <SecretPage />
+            </Private>
+            <Private exact path="/favorites">
+              <FavoritesPage />
             </Private>
             <Route path="*">
               <NotFound />
