@@ -1,8 +1,8 @@
 import React from 'react';
-import Card from '../Card/Card.component';
-import './CardList.styles.css';
+import Row from '../Row/Row.component';
+import './RowList.styles.css';
 
-function CardList() {
+function RowList() {
   const videos = [
     {
       videoId: '33445',
@@ -18,17 +18,12 @@ function CardList() {
     },
   ];
   return (
-    <div className="card-list">
+    <div className="row-list">
       {videos.map((video) => (
-        <Card
-          videoId={video.videoId}
-          title={video.title}
-          description={video.description}
-          imageUrl={video.imageUrl}
-        />
+        <Row videoId={video.videoId} title={video.title} imageUrl={video.imageUrl} />
       ))}
     </div>
   );
 }
 
-export default CardList;
+export default RowList;

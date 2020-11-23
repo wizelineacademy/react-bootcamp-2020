@@ -5,6 +5,7 @@ import AuthProvider from '../../providers/Auth';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import FavoritesPage from '../../pages/Favorites';
+import PlayerPage from '../../pages/Player';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
 import Private from '../Private';
@@ -50,11 +51,15 @@ function App() {
             <Private exact path="/favorites">
               <FavoritesPage />
             </Private>
+            <Route
+              exact
+              path="/player/:id"
+              render={({ match }) => <PlayerPage id={match} />}
+            />
             <Route path="*">
               <NotFound />
             </Route>
           </Switch>
-
           <Fortune />
         </Layout>
       </AuthProvider>

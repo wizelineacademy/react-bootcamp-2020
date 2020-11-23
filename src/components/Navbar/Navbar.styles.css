@@ -86,19 +86,18 @@ button {
   position: relative;
   display: block;
   width: 84px;
-  height: 66px;
+  height: 55px;
   cursor: pointer;
 }
 
 #s-circle {
   position: relative;
-  top: -17px;
+  top: -9px;
   left: -18;
-  width: 40px;
-  height: 40px;
-  margin-top: 3;
+  width: 30px;
+  height: 30px;
   border-width: 15px;
-  border: 10px solid #fff;
+  border: 6px solid #fff;
   background-color: transparent;
   border-radius: 50%;
   transition: 0.5s ease all;
@@ -106,10 +105,10 @@ button {
 
 button span {
   position: absolute;
-  top: 42px;
-  left: 16px;
+  top: 24px;
+  left: 19px;
   display: block;
-  width: 44px;
+  width: 10px;
   height: 8px;
   background-color: transparent;
   border-radius: 10px;
@@ -121,10 +120,10 @@ button span:before,
 button span:after {
   content: '';
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 45px;
-  height: 15px;
+  bottom: -5;
+  right: 11;
+  width: 28px;
+  height: 8px;
   background-color: #fff;
   border-radius: 10px;
   transform: rotateZ(0);
@@ -132,9 +131,9 @@ button span:after {
 }
 
 #s-cover:hover #s-circle {
-  top: -1px;
-  width: 67px;
-  height: 15px;
+  top: 2px;
+  width: 50px;
+  height: 7px;
   border-width: 0;
   background-color: #fff;
   border-radius: 20px;
@@ -142,20 +141,20 @@ button span:after {
 
 #s-cover:hover span {
   top: 50%;
-  left: 56px;
-  width: 25px;
+  left: 50px;
+  width: 20px;
   margin-top: -1px;
   transform: rotateZ(0);
 }
 
 #s-cover:hover button span:before {
   bottom: 11px;
-  transform: rotateZ(52deg);
+  transform: rotateZ(40deg);
 }
 
 #s-cover:hover button span:after {
   bottom: -11px;
-  transform: rotateZ(-52deg);
+  transform: rotateZ(-40deg);
 }
 #s-cover:hover button span:before,
 #s-cover:hover button span:after {
