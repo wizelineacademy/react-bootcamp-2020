@@ -9,12 +9,15 @@ import SecretPage from '../../pages/Secret';
 import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
+import SearchBar from '../SearchBar';
 
 function App() {
+  // const API_KEY = process.env.REACT_APP_API_KEY;
 
   return (
     <BrowserRouter>
       <AuthProvider>
+        <SearchBar />
         <Layout>
           <Switch>
             <Route exact path="/">
