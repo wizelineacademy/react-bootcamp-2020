@@ -47,7 +47,7 @@
     ]
   },
   "lint-staged": {
-    "*.{js,jsx,css,json}": [
+    "*.{js,jsx,css}": [
       "yarn run lint:fix",
       "pretty-quick --staged" 
     ]
