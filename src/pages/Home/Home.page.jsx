@@ -30,7 +30,7 @@ function HomePage() {
           </span>
         </>
       ) : (
-        <Link to="/login">let me in →</Link>
+        <Link to="/login">let me in → :D</Link>
       )}
     </section>
   );
