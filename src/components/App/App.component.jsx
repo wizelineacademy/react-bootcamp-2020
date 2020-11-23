@@ -11,6 +11,8 @@ import Fortune from '../Fortune';
 import Layout from '../Layout';
 import { random } from '../../utils/fns';
 
+import YoutubeList from '../YoutubeList/YoutubeList';
+
 function App() {
   useLayoutEffect(() => {
     const { body } = document;
@@ -34,6 +36,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Layout>
+          <YoutubeList />
           <Switch>
             <Route exact path="/">
               <HomePage />
