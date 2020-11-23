@@ -10,6 +10,7 @@ import SecretPage from '../../pages/Secret';
 import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
+import Navbar from '../Navbar';
 import { random } from '../../utils/fns';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <Navbar />
         <Layout>
           <Switch>
             <Route exact path="/">
@@ -52,6 +54,7 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
+
           <Fortune />
         </Layout>
       </AuthProvider>
