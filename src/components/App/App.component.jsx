@@ -13,6 +13,7 @@ import Fortune from '../Fortune';
 import YoutubeList from '../YoutubeList/YoutubeList';
 import AppNavbar from '../Navbar';
 
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
           <Fortune />
         </AuthProvider>
       </Container>
-      <YoutubeList />
+      {/* <YoutubeList /> */}
     </BrowserRouter>
   );
 }
