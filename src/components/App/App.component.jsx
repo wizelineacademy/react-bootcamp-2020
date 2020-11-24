@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { Container, Row, Col } from 'react-bootstrap';
@@ -13,19 +13,36 @@ import Fortune from '../Fortune';
 import YoutubeList from '../YoutubeList/YoutubeList';
 import AppNavbar from '../Navbar';
 
-
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginContext from '../../state/LoginContext';
+import AuthContext from '../../state/AuthContext';
 
 function App() {
+  const [showLogin, setShowLogin] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
   return (
     <BrowserRouter>
       <Container fluid>
-        <AppNavbar />
-        <Row>
-          <Col>1 of 1</Col>
-        </Row>
+        <AuthContext.Provider>
+          <LoginContext.Provider
+            value={{
+              showLogin,
+              setShowLogin,
+              isAuthenticated,
+              setIsAuthenticated,
+              user,
+              setUser,
+            }}
+          >
+            <AppNavbar />
+          </LoginContext.Provider>
+          <Row>
+            <Col>1 of 1</Col>
+          </Row>
+        </AuthContext.Provider>
         <AuthProvider>
-          <Switch>
+          {/* <Switch>
             <Route exact path="/">
               <HomePage />
             </Route>
@@ -39,7 +56,7 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
-          <Fortune />
+          <Fortune /> */}
         </AuthProvider>
       </Container>
       {/* <YoutubeList /> */}
