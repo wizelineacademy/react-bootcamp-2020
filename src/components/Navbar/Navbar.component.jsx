@@ -1,7 +1,19 @@
 import React from 'react';
 import './Navbar.styles.css';
+import { Link, useHistory } from 'react-router-dom';
+import { useAuth } from '../../providers/Auth';
 
 function NavBar() {
+  const history = useHistory();
+
+  const { authenticated, logout } = useAuth();
+
+  function deAuthenticate(event) {
+    event.preventDefault();
+    logout();
+    history.push('/');
+  }
+
   return (
     <header className="navbar">
       <div className="navbar_title navbar_item">Hotdog</div>
@@ -27,7 +39,17 @@ function NavBar() {
       </div>
       <div className="navbar_item">About Us</div>
       <div className="navbar_item">Darkmode</div>
-      <div className="navbar_item">Login</div>
+      {authenticated ? (
+        <span>
+          <Link to="/" onClick={deAuthenticate}>
+            logout
+          </Link>
+        </span>
+      ) : (
+        <Link className="navbar_item" to="/login">
+          Login
+        </Link>
+      )}
     </header>
   );
 }

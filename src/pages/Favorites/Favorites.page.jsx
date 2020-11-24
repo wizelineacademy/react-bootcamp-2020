@@ -6,7 +6,7 @@ function FavoritesPage() {
   return (
     <section>
       <pre>
-        welcome, voyager...
+        welcome, to your favorites
         <Link to="/"> ← go back</Link>
       </pre>
       <CardList />
