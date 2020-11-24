@@ -30,6 +30,7 @@ const YoutubeList = () => {
           key={data.id.videoId}
           title={data.snippet.title}
           description={data.snippet.description}
+          imageUrl={data.snippet.thumbnails.medium.url}
         />
       ))}
     </>

@@ -9,3 +9,8 @@
 .modal-footer {
   border-top: 0 none;
 }
+
+.card {
+  display: inline-flex;
+  margin: 1.5rem;
+}

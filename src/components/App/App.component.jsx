@@ -35,14 +35,17 @@ function App() {
               setUser,
             }}
           >
-            <AppNavbar />
+            <Row className="text-center">
+              <Col sm={12}>
+                <AppNavbar />
+              </Col>
+            </Row>
+            <Row className="text-center">
+              <Col sm={12}>
+                <YoutubeList />
+              </Col>
+            </Row>
           </LoginContext.Provider>
-          <Row>
-            <Col>
-              Lista:
-              <YoutubeList />
-            </Col>
-          </Row>
         </AuthContext.Provider>
         <AuthProvider>
           {/* <Switch>
@@ -62,7 +65,6 @@ function App() {
           <Fortune /> */}
         </AuthProvider>
       </Container>
-  
     </BrowserRouter>
   );
 }
