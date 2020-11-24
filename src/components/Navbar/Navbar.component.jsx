@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import LoginPage from '../../pages/Login';
 import LoginContext from '../../state/LoginContext';
@@ -6,6 +6,8 @@ import LoginContext from '../../state/LoginContext';
 function AppNavbar() {
   const { setShowLogin } = useContext(LoginContext);
   const { user } = useContext(LoginContext);
+  const [searchInput, setSearchInput] = useState('');
+  const { searchG, setSearchG } = useContext(LoginContext);
   let login;
   let logout;
   let favorites;
@@ -17,6 +19,22 @@ function AppNavbar() {
   } else {
     login = <Nav.Link eventKey="test">Login</Nav.Link>;
   }
+
+  // Event handlers
+  const handleInputChange = (event) => {
+    console.log('searchInputChanged: ');
+    console.log(event.target.value);
+    setSearchInput(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('submit');
+    console.log(searchG);
+
+    // llama a youtube
+    setSearchG(searchInput);
+  };
 
   return (
     <>
@@ -36,9 +54,16 @@ function AppNavbar() {
             {favorites}
             {logout}
           </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
+          <Form inline onSubmit={handleSubmit}>
+            <FormControl
+              type="text"
+              placeholder="Search"
+              className="mr-sm-2"
+              name="searchInput"
+              onChange={handleInputChange}
+              value={searchInput}
+            />
+            <Button variant="outline-info" type="submit">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Navbar>

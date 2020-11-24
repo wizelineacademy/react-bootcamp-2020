@@ -21,6 +21,8 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [searchG, setSearchG] = useState('');
+
   return (
     <BrowserRouter>
       <Container fluid>
@@ -33,6 +35,8 @@ function App() {
               setIsAuthenticated,
               user,
               setUser,
+              searchG,
+              setSearchG,
             }}
           >
             <Row className="text-center">
