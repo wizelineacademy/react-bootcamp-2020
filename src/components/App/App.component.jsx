@@ -38,7 +38,10 @@ function App() {
             <AppNavbar />
           </LoginContext.Provider>
           <Row>
-            <Col>1 of 1</Col>
+            <Col>
+              Lista:
+              <YoutubeList />
+            </Col>
           </Row>
         </AuthContext.Provider>
         <AuthProvider>
@@ -59,7 +62,7 @@ function App() {
           <Fortune /> */}
         </AuthProvider>
       </Container>
-      {/* <YoutubeList /> */}
+  
     </BrowserRouter>
   );
 }
