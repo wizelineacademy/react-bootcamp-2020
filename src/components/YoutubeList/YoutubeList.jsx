@@ -23,7 +23,7 @@ const YoutubeList = () => {
       <p>pokelist</p>
 
       {listyt.map((poke) => {
-        return <p>{poke.snippet.title}</p>;
+        return <p key={poke.snippet.title}>{poke.snippet.title}</p>;
       })}
     </>
   );

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+// import './Home.styles.css';
 
 function HomePage() {
   const history = useHistory();

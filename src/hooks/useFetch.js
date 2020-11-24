@@ -9,7 +9,6 @@ const useFetch = (uri) => {
       try {
         setLoading(true);
         const response = await fetch(uri);
-        // const data = await response.json();
         const data = await response.json();
         console.log('data from useFetch.js');
         console.log(data);
