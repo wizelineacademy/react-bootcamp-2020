@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function SecretPage() {
+function FavoritePage() {
   return (
     <section>
       <pre>
@@ -21,4 +21,4 @@ function SecretPage() {
   );
 }
 
-export default SecretPage;
+export default FavoritePage;
