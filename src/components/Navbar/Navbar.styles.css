@@ -1,0 +1,29 @@
+.nav-bar {
+    padding: 15px;
+    background-color: #003a8c;
+    color: #fff;
+}
+
+.search-container {
+    width: 50%;
+    text-align: left;
+}
+
+.search-input {
+    width: 200px;
+}
+
+.login-container {
+    width: 50%;
+    text-align: right;
+}
+
+.login-container .switch-theme {
+    margin: 0 10px;
+}
+
+.login-container .label-switcher{
+    font-size: 17px;
+    position: relative;
+    top: 3px;
+}

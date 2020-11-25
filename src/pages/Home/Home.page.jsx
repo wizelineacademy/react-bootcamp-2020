@@ -16,7 +16,7 @@ function HomePage() {
   }
 
   return (
-    <section className="homepage" ref={sectionRef}>
+    <section className="homepage full-width" ref={sectionRef}>
       <h1>Hello stranger!</h1>
       {authenticated ? (
         <>
