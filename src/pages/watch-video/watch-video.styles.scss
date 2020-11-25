@@ -1,0 +1,78 @@
+.watch-video-container {
+  flex: 1;
+  display: flex;
+  margin-top: 24px;
+  padding-bottom: 24px;
+
+  .principal {
+    flex: 0.7;
+    padding: 0px 24px;
+
+    .video {
+      width: 100%;
+      height: 450px;
+    }
+
+    .video-info {
+      padding: 20px 0 8px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      h3 {
+        color: var(--text-primary-color);
+        font-weight: var(--primary-title-weight);
+      }
+
+      p {
+        color: var(--text-secondary-color);
+        font-size: var(--info-font-size);
+        font-weight: var(--info-font-weight);
+        padding: 5px 0px;
+      }
+    }
+
+    .channel-info {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      .header {
+        display: flex;
+        padding-top: 16px;
+        margin-bottom: 12px;
+
+        .avatar {
+          height: 48px !important;
+          width: 48px !important;
+          margin-right: 16px !important;
+        }
+
+        .info {
+          h4 {
+            font-size: var(--primary-text-size);
+            color: var(--text-primary-color);
+            font-weight: var(--primary-title-weight);
+          }
+          p {
+            color: var(--text-secondary-color);
+            font-size: var(--info-font-size);
+            font-weight: var(--info-font-weight);
+          }
+        }
+      }
+
+      .channel-description {
+        margin-left: 64px;
+        max-width: 615px;
+        padding-bottom: 16px;
+
+        p {
+          color: var(--text-primary-color);
+          font-size: var(--info-font-size);
+          font-weight: var(--info-font-weight);
+        }
+      }
+    }
+  }
+
+  .secondary {
+    flex: 0.3;
+  }
+}

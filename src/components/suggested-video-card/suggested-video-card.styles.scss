@@ -1,0 +1,32 @@
+.suggested-video-card-container {
+  display: flex;
+  margin-bottom: 8px;
+
+  .thumbnail {
+    width: 170px;
+    height: 95px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .info {
+    h4 {
+      font-size: var(--primary-text-size);
+      margin-bottom: 5px;
+      color: var(--text-primary-color);
+      font-weight: var(--primary-title-weight);
+      cursor: pointer;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    p {
+      color: var(--text-primary-color);
+      font-size: var(--info-font-size);
+      font-weight: var(--info-font-weight);
+    }
+  }
+}

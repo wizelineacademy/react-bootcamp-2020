@@ -1,0 +1,13 @@
+.app {
+  display: block;
+  min-height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: var(--general-background);
+}
+
+.app-main-content {
+  display: flex;
+}
