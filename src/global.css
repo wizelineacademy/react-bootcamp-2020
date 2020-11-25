@@ -2,9 +2,13 @@
 @import '~antd/dist/antd.compact.css';
 
 .flex {
-    display: flex;
+  display: flex;
 }
 
 .full-width {
-    width: 100vw;
+  width: 100vw;
+}
+
+.textRight {
+  text-align: right;
 }
