@@ -5,8 +5,8 @@ function useYouTubeDataAPI(resource, method, parameters) {
   const [error, setError] = useState(null);
   const [videos, setVideos] = useState([]);
 
-  // const API_KEY = 'AIzaSyAcgmsZB2M27kvgZju-qtHhKiziG5dzYf8'; // benoit.borrel@gmail.com
-  const API_KEY = 'AIzaSyBfCTxfs9EgNkuHKRjful5zvSVVNymV34g'; // benoit@borrel.com
+  const API_KEY = 'AIzaSyAcgmsZB2M27kvgZju-qtHhKiziG5dzYf8'; // benoit.borrel@gmail.com
+  // const API_KEY = 'AIzaSyBfCTxfs9EgNkuHKRjful5zvSVVNymV34g'; // benoit@borrel.com
   const API_URL = 'https://www.googleapis.com/youtube/v3/';
 
   function getFetchUrl(aResource, aMethod, aParameters) {
@@ -23,8 +23,15 @@ function useYouTubeDataAPI(resource, method, parameters) {
       case 'search':
         switch (aMethod) {
           case 'list':
-            urlSearchParams.append('q', params.q);
-            urlSearchParams.append('maxResults', 5);
+            // by keyword
+            if (params.q) {
+              urlSearchParams.append('q', params.q);
+            }
+            // by related videos
+            else if (params.relatedToVideoId) {
+              urlSearchParams.append('relatedToVideoId', params.relatedToVideoId);
+            }
+            urlSearchParams.append('maxResults', 2);
             break;
           default: // do nothing
         }
@@ -33,6 +40,7 @@ function useYouTubeDataAPI(resource, method, parameters) {
       case 'videos':
         switch (aMethod) {
           case 'list':
+            // by video ID
             urlSearchParams.append('id', params.id);
             if (!urlSearchParams.get('part').includes('player')) {
               urlSearchParams.set('part', `${urlSearchParams.get('part')},player`);

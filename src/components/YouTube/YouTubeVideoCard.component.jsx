@@ -8,13 +8,9 @@ function YouTubeVideoCard(item) {
     <div>
       <Link to={`/video/${video.id.videoId}`}>
         <img src={video.snippet.thumbnails.medium.url} alt={video.snippet.title} />
+        <h2>{video.snippet.title}</h2>
+        <p>{video.snippet.description}</p>
       </Link>
-      <div>
-        <article>
-          <h4>{video.snippet.title}</h4>
-          <p>{video.snippet.description}</p>
-        </article>
-      </div>
     </div>
   );
 }
