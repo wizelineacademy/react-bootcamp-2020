@@ -1,37 +1,30 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-
-import { useAuth } from '../../providers/Auth';
+import React, { useState, useEffect } from 'react';
+import { triggerSearch } from '../../utils/services/youtube';
 import './Home.styles.css';
+import VideoCard from '../../components/VideoCard/VideoCard.component';
 
 function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+  const [videos, setVideos] = useState([]);
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+  useEffect(() => {
+    triggerSearch('wizeline').then((data) => {
+      const finalData = data.items.filter((item) => {
+        const { id } = item;
+        return id.kind !== 'youtube#channel';
+      });
+      setVideos(finalData);
+    });
+  }, []);
 
   return (
-    <section className="homepage full-width" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
+    <section className="homepage full-width">
+      <h1>Challenge</h1>
+      <div className="grid-layout">
+        {videos.map((item) => {
+          const { snippet, id } = item;
+          return <VideoCard data={snippet} id={id.videoId} key={id.videoId} />;
+        })}
+      </div>
     </section>
   );
 }
