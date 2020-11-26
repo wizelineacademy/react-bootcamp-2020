@@ -17,9 +17,9 @@ function App() {
       <div className='app-main-content'>
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route path='/wv/:videoId' component={WatchVideoPage} />
           <Route path='/settings' component={SettingsPage} />
           <Route path='/favorites' component={FavoritesPage} />
+          <Route path='/wv/:videoId' component={WatchVideoPage} />
         </Switch>
       </div>
     </div>
