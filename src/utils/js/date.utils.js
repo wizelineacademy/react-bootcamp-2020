@@ -13,13 +13,13 @@ export const getMonthDiff = (d1, d2 = new Date()) => {
 };
 
 export const getDateDiff = (d1, d2 = new Date()) => {
-  let diff = Math.floor(d2.getTime() - d1.getTime());
-  let day = 1000 * 60 * 60 * 24;
+  const diff = Math.floor(d2.getTime() - d1.getTime());
+  const day = 1000 * 60 * 60 * 24;
 
-  let days = Math.floor(diff / day);
-  let months = Math.floor(days / 31);
+  const days = Math.floor(diff / day);
+  const months = Math.floor(days / 31);
 
-  let dateDiff = {
+  const dateDiff = {
     Days: days,
     Months: months,
     Years: Math.floor(months / 12),

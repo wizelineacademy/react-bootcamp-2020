@@ -26,9 +26,7 @@ function VideoHomeCard({
       <div className='info'>
         <Avatar className='avatar' alt={channelTitle} src={channelImage} />
         <div className='text'>
-          <h4 onClick={() => history.push(`${match.url}wv/${videoId}`)}>
-            {title}
-          </h4>
+          <h4 onClick={() => history.push(`${match.url}wv/${videoId}`)}>{title}</h4>
           <p>{channelTitle}</p>
           <p>
             {views} views • {timestamp}

@@ -3,7 +3,7 @@ import VideoHomeCard from '../../components/video-home-card';
 
 import './home.styles.scss';
 
-import { SummaryResult } from './../../assets/searchresult';
+import { SummaryResult } from '../../utils/searchresult';
 
 function HomePage() {
   return (

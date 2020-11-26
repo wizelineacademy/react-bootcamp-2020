@@ -1,4 +1,4 @@
-import { createSnippetDataSummary } from './utils/js/youtube.api';
+import { createSnippetDataSummary } from './js/youtube.api';
 
 const SearchResult = {
   url:

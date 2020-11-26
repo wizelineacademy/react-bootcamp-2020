@@ -1,9 +1,9 @@
 import React from 'react';
 
 import SearchIcon from '@material-ui/icons/Search';
-import Avatar from '@material-ui/core/Avatar';
 
-import MainMenu from '../main-menu/main-menu.component';
+import MainMenu from '../main-menu';
+import AvatarMenu from '../avatar-menu';
 
 import './header.styles.scss';
 
@@ -20,7 +20,7 @@ function Header() {
       </div>
 
       <div className='icons'>
-        <Avatar />
+        <AvatarMenu />
       </div>
     </div>
   );

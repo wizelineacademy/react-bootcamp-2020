@@ -1,0 +1,20 @@
+.avatar-menu-component {
+  .MuiMenu-paper {
+    top: 30px !important;
+    left: calc(100vw - 185px) !important;
+    border: 0.5px solid #909090;
+    border-radius: 2px;
+    color: var(--text-secondary-color);
+  }
+  .menu-item {
+    font-size: var(--primary-text-size);
+    font-weight: var(--primary-title-weight);
+    a {
+      color: var(--text-secondary-color);
+    }
+  }
+
+  .menu-icon {
+    margin-right: 20px;
+  }
+}

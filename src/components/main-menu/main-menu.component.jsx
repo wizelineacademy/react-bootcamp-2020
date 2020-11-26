@@ -18,10 +18,7 @@ const MainMenu = ({ history }) => {
   const [mainMenuState, setMainMenuState] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
@@ -36,17 +33,13 @@ const MainMenu = ({ history }) => {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        <ListItem button key={'Home'} onClick={() => history.push(`/`)}>
+        <ListItem button key='Home' onClick={() => history.push(`/`)}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary='Home' />
         </ListItem>
-        <ListItem
-          button
-          key={'Favorites'}
-          onClick={() => history.push(`/favorites`)}
-        >
+        <ListItem button key='Favorites' onClick={() => history.push(`/favorites`)}>
           <ListItemIcon>
             <GradeIcon />
           </ListItemIcon>
@@ -56,15 +49,11 @@ const MainMenu = ({ history }) => {
       <div className='bottom'>
         <Divider />
         <List>
-          <ListItem
-            button
-            key={'Settings'}
-            onClick={() => history.push(`/settings`)}
-          >
+          <ListItem button key='Settings' onClick={() => history.push(`/settings`)}>
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
-            <ListItemText primary={'Settings'} />
+            <ListItemText primary='Settings' />
           </ListItem>
         </List>
       </div>
@@ -73,13 +62,9 @@ const MainMenu = ({ history }) => {
 
   return (
     <div>
-      <React.Fragment key={'left'}>
+      <React.Fragment key='left'>
         <MenuIcon onClick={toggleDrawer(true)} />
-        <Drawer
-          anchor='left'
-          open={mainMenuState}
-          onClose={toggleDrawer(false)}
-        >
+        <Drawer anchor='left' open={mainMenuState} onClose={toggleDrawer(false)}>
           {list}
         </Drawer>
       </React.Fragment>

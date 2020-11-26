@@ -4,7 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import SuggestedVideoCard from '../../components/suggested-video-card';
 
 import './watch-video.styles.scss';
-import { SummaryResult } from './../../assets/searchresult';
+import { SummaryResult } from '../../utils/searchresult';
 
 function WatchVideoPage(
   {
@@ -18,14 +18,7 @@ function WatchVideoPage(
   selectedVideo = SummaryResult.find((v) => v.videoId === videoId);
   videos = SummaryResult;
 
-  const {
-    title,
-    channelTitle,
-    channelImage,
-    views,
-    timestamp,
-    channel,
-  } = selectedVideo;
+  const { title, channelTitle, channelImage, views, timestamp, channel } = selectedVideo;
 
   return (
     <div className='watch-video-container'>
