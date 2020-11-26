@@ -1,0 +1,15 @@
+.vi__container {
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+  cursor: pointer;
+}
+
+.vi__img {
+  display: block;
+  margin-right: 10px;
+}
+
+.vi__title {
+  font-size: 14px;
+}
