@@ -2,10 +2,12 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
+
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
+import VideoPage from '../../pages/Video';
 import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
@@ -25,6 +27,9 @@ function App() {
             <Private exact path="/secret">
               <SecretPage />
             </Private>
+            <Route path="/video/:id">
+              <VideoPage />
+            </Route>
             <Route path="*">
               <NotFound />
             </Route>
