@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import AuthProvider from '../../providers/Auth';
@@ -25,6 +25,17 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [searchG, setSearchG] = useState('');
+
+  const PrivateRoute = (isAuthorized) => {
+    if (isAuthorized) {
+      return (
+        <Route exact path="/favorites">
+          <FavoritesPage />
+        </Route>
+      );
+    }
+    return <Redirect to="/" />;
+  };
 
   return (
     <BrowserRouter>
@@ -52,9 +63,10 @@ function App() {
                 <Route exact path="/">
                   <YoutubeList />
                 </Route>
-                <Route exact path="/favorites">
+                {PrivateRoute(user)}
+                {/* <Route exact path="/favorites">
                   <FavoritesPage />
-                </Route>
+                </Route> */}
                 <Route exact path="*">
                   <NotFound />
                 </Route>

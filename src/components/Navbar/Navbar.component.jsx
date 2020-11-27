@@ -19,7 +19,6 @@ function AppNavbar() {
   let logout;
   let avatar;
   let favorites;
-  let name;
 
   // Event handlers
   const handleInputChange = (event) => {
