@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
 import { Container, Row, Col } from 'react-bootstrap';
+
 import AuthProvider from '../../providers/Auth';
 import NotFound from '../../pages/NotFound';
-
 import AppNavbar from '../Navbar';
 import FavoritesPage from '../../pages/Favorites';
 import UserContext from '../../state/UserContext';
 import YoutubeList from '../YoutubeList/YoutubeList';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Handle expiration time
+const expiration = JSON.parse(localStorage.getItem('expiration'));
+if (expiration) {
+  if (expiration.timestamp < new Date().getTime()) {
+    localStorage.removeItem('appUser');
+    localStorage.removeItem('expiration');
+  }
+}
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);

@@ -14,3 +14,8 @@
   display: inline-flex;
   margin: 1.5rem;
 }
+
+.avatar {
+  height: 35px;
+  width: 35px;
+}

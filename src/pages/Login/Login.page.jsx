@@ -1,16 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router';
 import { Modal, Form, Button, Alert } from 'react-bootstrap';
-
-import { useAuth } from '../../providers/Auth';
 import loginApi from '../../utils/login';
 import LoginContext from '../../state/UserContext';
 
 function LoginPage() {
   let ErrorMessage;
   const { showLogin, setShowLogin } = useContext(LoginContext);
-  const { isAuthenticated, setIsAuthenticated } = useContext(LoginContext);
-  const { user, setUser } = useContext(LoginContext);
+  const { setIsAuthenticated } = useContext(LoginContext);
+  const { setUser } = useContext(LoginContext);
   const [error, setError] = useState(null);
 
   const handleClose = () => {
@@ -37,6 +34,11 @@ function LoginPage() {
       .then((response) => {
         setIsAuthenticated(true);
         setUser(response);
+        localStorage.setItem('appUser', JSON.stringify(response));
+        localStorage.setItem(
+          'expiration',
+          JSON.stringify({ timestamp: new Date().getTime() + 60 * 60000 })
+        );
         setShowLogin(false);
       })
       .catch((err) => {
@@ -51,7 +53,7 @@ function LoginPage() {
   }
 
   return (
-    <Modal show={showLogin} onHide={handleClose} centered>
+    <Modal show={showLogin} onHide={handleClose} centered animation={false}>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>

@@ -1,16 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import LoginPage from '../../pages/Login';
-import LoginContext from '../../state/UserContext';
+import UserContext from '../../state/UserContext';
 
 function AppNavbar() {
-  const { setShowLogin } = useContext(LoginContext);
-  const { user } = useContext(LoginContext);
+  const { setShowLogin } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState('');
-  const { searchG, setSearchG } = useContext(LoginContext);
+  const { searchG, setSearchG } = useContext(UserContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('appUser')));
+  }, [setUser]);
+
   let login;
   let logout;
+  let avatar;
   let favorites;
+  let name;
 
   // Event handlers
   const handleInputChange = (event) => {
@@ -27,11 +36,19 @@ function AppNavbar() {
     setSearchG(searchInput);
   };
 
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('appUser');
+    localStorage.removeItem('expiration');
+    history.push('/');
+  };
 
-  // Display if user is authenticated
+  // Display links depending if user is authenticated
   if (user) {
-    logout = <Nav.Link>Logout</Nav.Link>;
-    favorites = <Nav.Link>Favorites</Nav.Link>;
+    logout = <Nav.Link onClick={handleLogout}>Logout</Nav.Link>;
+    favorites = <Nav.Link onClick={() => history.push('favorites')}>Favorites</Nav.Link>;
+    avatar = <img className="avatar" src={user.avatarUrl} alt={user.name} />;
+    // name = {user.name}
   } else {
     login = <Nav.Link onClick={() => setShowLogin(true)}>Login</Nav.Link>;
   }
@@ -40,20 +57,16 @@ function AppNavbar() {
     <>
       <LoginPage />
       <Navbar bg="dark" expand="md" variant="dark">
-        <Navbar.Brand href="#home">React-Challenge</Navbar.Brand>
+        <Navbar.Brand>React-Challenge</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav
-            // onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-            // onSelect={() => setShowLogin(true)}
-            className="mr-auto"
-          >
-            <Nav.Link href="#home">Home</Nav.Link>
-            {/* <Nav.Link onLoginClick={() => setShow(true)}>Login</Nav.Link> */}
-            {login}
+          <Nav className="mr-auto">
+            <Nav.Link onClick={() => history.push('/')}>Home</Nav.Link>
             {favorites}
-            {logout}
           </Nav>
+          <Nav>{avatar}</Nav>
+          <Nav>{login}</Nav>
+          <Nav>{logout}</Nav>
           <Form inline onSubmit={handleSubmit}>
             <FormControl
               type="text"
