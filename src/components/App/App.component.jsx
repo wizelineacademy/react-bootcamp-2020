@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 import HomePage from '../../pages/home';
 import WatchVideoPage from '../../pages/watch-video';
@@ -13,9 +14,11 @@ import Header from '../header';
 import './app.styles.scss';
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className='app'>
-      <Header />
+      {location.pathname !== '/login' ? <Header /> : null}
       <div className='app-main-content'>
         <Switch>
           <Route exact path='/' component={HomePage} />

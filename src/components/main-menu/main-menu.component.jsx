@@ -22,7 +22,7 @@ const MainMenu = ({ history }) => {
       return;
     }
 
-    setMainMenuState((prev) => open);
+    setMainMenuState(() => open);
   };
 
   const list = (

@@ -6,7 +6,6 @@
     width: 170px;
     height: 95px;
     margin-right: 5px;
-    cursor: pointer;
   }
 
   .info {
@@ -15,8 +14,6 @@
       margin-bottom: 5px;
       color: var(--text-primary-color);
       font-weight: var(--primary-title-weight);
-      cursor: pointer;
-
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;

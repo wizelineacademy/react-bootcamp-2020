@@ -1,14 +1,35 @@
 .sign-in-container {
-  width: 380px;
   display: flex;
-  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vw;
+  background: #fff;
 
-  h2 {
-    margin: 10px 0;
+  .main {
+    width: 340px;
+    margin: 15vh auto auto auto;
+    top: 20vh;
+  }
+  .header {
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: none;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+    }
+  }
+
+  .body {
+    border: 1px solid #eaecef;
+    border-radius: 5px;
+    background-color: var(--general-background);
+    padding: 20px;
   }
 
   .buttons-bar-contianer {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
   }
 }

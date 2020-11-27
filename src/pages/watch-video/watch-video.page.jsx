@@ -6,17 +6,13 @@ import SuggestedVideoCard from '../../components/suggested-video-card';
 import './watch-video.styles.scss';
 import { SummaryResult } from '../../utils/searchresult';
 
-function WatchVideoPage(
-  {
-    match: {
-      params: { videoId },
-    },
+const WatchVideoPage = ({
+  match: {
+    params: { videoId },
   },
-  selectedVideo,
-  videos
-) {
-  selectedVideo = SummaryResult.find((v) => v.videoId === videoId);
-  videos = SummaryResult;
+}) => {
+  const videos = SummaryResult;
+  const selectedVideo = videos.find((v) => v.videoId === videoId);
 
   const { title, channelTitle, channelImage, views, timestamp, channel } = selectedVideo;
 
@@ -54,13 +50,13 @@ function WatchVideoPage(
       </div>
       <div className='secondary'>
         <div className='path-video-container'>
-          {SummaryResult.map(({ etag, ...otherItemProps }) => (
+          {videos.map(({ etag, ...otherItemProps }) => (
             <SuggestedVideoCard key={etag} {...otherItemProps} />
           ))}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default WatchVideoPage;
