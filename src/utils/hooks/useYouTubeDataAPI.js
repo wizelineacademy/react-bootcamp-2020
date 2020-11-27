@@ -1,20 +1,23 @@
 import { useState, useEffect, useMemo } from 'react';
 
-function useYouTubeDataAPI(resource, method, parameters) {
+export default function useYouTubeDataAPI(resource, method, parameters) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [videos, setVideos] = useState([]);
 
-  const API_KEY = 'AIzaSyAcgmsZB2M27kvgZju-qtHhKiziG5dzYf8'; // benoit.borrel@gmail.com
-  // const API_KEY = 'AIzaSyBfCTxfs9EgNkuHKRjful5zvSVVNymV34g'; // benoit@borrel.com
+  // const API_KEY = 'AIzaSyAcgmsZB2M27kvgZju-qtHhKiziG5dzYf8'; // benoit.borrel@gmail.com
+  const API_KEY = 'AIzaSyBfCTxfs9EgNkuHKRjful5zvSVVNymV34g'; // benoit@borrel.com
   const API_URL = 'https://www.googleapis.com/youtube/v3/';
+  const API_PARAM_PART = 'snippet';
+  const API_PARAM_TYPE = 'video';
+  const API_PARAM_MAX_RESULTS = 2;
 
   function getFetchUrl(aResource, aMethod, aParameters) {
     const url = new URL(API_URL + aResource);
     const urlSearchParams = new URLSearchParams({
       key: API_KEY,
-      part: 'snippet',
-      type: 'video',
+      part: API_PARAM_PART,
+      type: API_PARAM_TYPE,
     });
 
     const { ...params } = aParameters;
@@ -31,7 +34,7 @@ function useYouTubeDataAPI(resource, method, parameters) {
             else if (params.relatedToVideoId) {
               urlSearchParams.append('relatedToVideoId', params.relatedToVideoId);
             }
-            urlSearchParams.append('maxResults', 2);
+            urlSearchParams.append('maxResults', API_PARAM_MAX_RESULTS);
             break;
           default: // do nothing
         }
@@ -82,5 +85,3 @@ function useYouTubeDataAPI(resource, method, parameters) {
 
   return { videos, isLoaded, error };
 }
-
-export default useYouTubeDataAPI;
