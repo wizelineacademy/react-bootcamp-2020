@@ -4,18 +4,15 @@ import { Link } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 
 import VideoCard from '../../components/VideoCard/VideoCard';
-import VideosContext from '../../context/VideosContext';
 
-import './HomePage.styles.css';
-
-function HomePage() {
-  const { videos } = useContext(VideosContext);
+const FavoritesPage = () => {
+  const favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
 
   return (
     <Grid>
+      <h1>My Favorites</h1>
       <Grid.Row fluid columns={3}>
-        {videos.map((video, id) => (
-          // eslint-disable-line
+        {favoritesList.map((video, id) => (
           <Link to="/videoplayer">
             <VideoCard video={video} key={id} />
           </Link>
@@ -23,6 +20,6 @@ function HomePage() {
       </Grid.Row>
     </Grid>
   );
-}
+};
 
-export default HomePage;
+export default FavoritesPage;

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Card, Image } from 'semantic-ui-react';
 import moment from 'moment';
 
-import VideosContext from '../../state/VideosContext';
+import VideosContext from '../../context/VideosContext';
 
 const VideoCard = ({ video }) => {
   const { onVideoSelect } = useContext(VideosContext);

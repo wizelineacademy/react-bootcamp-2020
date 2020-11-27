@@ -19,8 +19,10 @@ const MenuBar = ({ handleHitEnter, handleOnChange }) => {
       />
 
       <Menu.Item
+        as={Link}
+        to="/favorites"
         name="favorites"
-        active={activeItem === 'messages'}
+        active={activeItem === 'favorites'}
         onClick={handleItemClick}
       />
       <Menu.Menu position="right">

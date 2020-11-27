@@ -3,7 +3,6 @@
 const mockedUser = {
   id: '123',
   name: 'Wizeline',
-  favorites: [],
   avatarUrl:
     'https://media.glassdoor.com/sqll/868055/wizeline-squarelogo-1473976610815.png',
 };
@@ -12,7 +11,7 @@ export default async function loginApi(username, password) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (username === 'wizeline' && password === 'Rocks!') {
-        localStorage.setItem('user', JSON.stringify(mockedUser));
+        // localStorage.setItem('user', JSON.stringify(mockedUser));
 
         return resolve(mockedUser);
       }

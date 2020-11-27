@@ -7,27 +7,17 @@ import VideoPlayer from './pages/VideoPlayer/VideoPlayer';
 import MenuBar from './components/MenuBar/MenuBar';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import FavoritesPage from './pages/Favorites/FavoritesPage';
 
+import { fetchYouTubeApi } from './api/utils/fetchYoutubeApi';
 import 'semantic-ui-css/semantic.min.css';
-import youtube from './api/youtube';
-import VideosContext from './state/VideosContext';
+
+import VideosContext from './context/VideosContext';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-
-  const fetchYouTubeApi = async (searchParam) => {
-    const res = await youtube.get('search', {
-      params: {
-        part: 'snippet',
-        maxResults: 15,
-        key: 'AIzaSyDhq3WUDZYl7SHpmy3BS0lQu7yWCmY6qvI',
-        q: searchParam,
-      },
-    });
-    return res;
-  };
 
   const handleHitEnter = async (event) => {
     if (event.key === 'Enter') {
@@ -47,6 +37,8 @@ function App() {
     const res = await fetchYouTubeApi('Favorites');
     setVideos(res.data.items);
     setSelectedVideo(res.data.items[1]);
+    localStorage.setItem('favoritesList', JSON.stringify([]));
+    localStorage.setItem('favoritesId', JSON.stringify({}));
   }, []);
 
   return (
@@ -58,6 +50,7 @@ function App() {
             setSearchTerm,
             videos,
             setVideos,
+
             selectedVideo,
             setSelectedVideo,
             onVideoSelect,
@@ -70,14 +63,13 @@ function App() {
                 <HomePage videos={videos} onVideoSelect={onVideoSelect} />
               </Route>
               <Route exact path="/videoplayer">
-                <VideoPlayer
-                  videos={videos}
-                  selectedVideo={selectedVideo}
-                  onVideoSelect={onVideoSelect}
-                />
+                <VideoPlayer />
               </Route>
               <Route exact path="/login">
                 <LoginPage />
+              </Route>
+              <Route exact path="/favorites">
+                <FavoritesPage />
               </Route>
             </Switch>
           </Container>
