@@ -1,9 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import YouTubeVideoArticle from '../../components/YouTube/YouTubeVideoArticle.component';
-import YouTubeRelatedVideos from '../../components/YouTube/YouTubeRelatedVideos.component';
+import YouTubeRelatedList from '../../components/YouTube/YouTubeRelatedList.component';
 
-function VideoPage() {
+export default function VideoPage() {
   const { id } = useParams();
 
   return (
@@ -11,9 +11,9 @@ function VideoPage() {
       <article>
         <YouTubeVideoArticle id={id} />
       </article>
-      <aside><YouTubeRelatedVideos id={id} /></aside>
+      <aside>
+        <YouTubeRelatedList id={id} />
+      </aside>
     </section>
   );
 }
-
-export default VideoPage;
