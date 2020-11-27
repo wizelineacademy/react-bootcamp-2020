@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../providers/Auth';
+import SearchForm from '../Search/SearchForm.component';
+
 import './Layout.styles.css';
 
-function Layout({ children }) {
+export default function Layout({ children }) {
   const history = useHistory();
   const { authenticated, logout } = useAuth();
 
@@ -26,10 +28,7 @@ function Layout({ children }) {
                 <Link to="/favorites">Favorites</Link>
               </li>
             </ul>
-            <form>
-              <input type="search" placeholder="Search" aria-label="Search" />
-              <button type="submit">Search</button>
-            </form>
+            <SearchForm />
             {authenticated ? (
               <>
                 <Link to="/" onClick={deAuthenticate}>
@@ -46,5 +45,3 @@ function Layout({ children }) {
     </>
   );
 }
-
-export default Layout;

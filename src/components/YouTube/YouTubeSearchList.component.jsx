@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import SearchContext from '../../state/SearchContext';
 import useYouTubeDataAPI from '../../utils/hooks/useYouTubeDataAPI';
 import YouTubeVideoCard from './YouTubeVideoCard.component';
 
 function YouTubeSearchList() {
-  // @todo refactor to have the search keywords coming either from props or context
+  const { search } = useContext(SearchContext);
   const { videos, isLoaded, error } = useYouTubeDataAPI('search', 'list', {
-    q: 'wizeline academy',
+    q: search,
   });
 
   if (error) {
