@@ -4,7 +4,7 @@ import { Modal, Form, Button, Alert } from 'react-bootstrap';
 
 import { useAuth } from '../../providers/Auth';
 import loginApi from '../../utils/login';
-import LoginContext from '../../state/LoginContext';
+import LoginContext from '../../state/UserContext';
 
 function LoginPage() {
   let ErrorMessage;

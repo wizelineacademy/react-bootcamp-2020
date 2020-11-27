@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import LoginPage from '../../pages/Login';
-import LoginContext from '../../state/LoginContext';
+import LoginContext from '../../state/UserContext';
 
 function AppNavbar() {
   const { setShowLogin } = useContext(LoginContext);
@@ -11,14 +11,6 @@ function AppNavbar() {
   let login;
   let logout;
   let favorites;
-
-  // Display if user is authenticated
-  if (user) {
-    logout = <Nav.Link>Logout</Nav.Link>;
-    favorites = <Nav.Link>Favorites</Nav.Link>;
-  } else {
-    login = <Nav.Link eventKey="test">Login</Nav.Link>;
-  }
 
   // Event handlers
   const handleInputChange = (event) => {
@@ -31,10 +23,18 @@ function AppNavbar() {
     event.preventDefault();
     console.log('submit');
     console.log(searchG);
-
     // llama a youtube
     setSearchG(searchInput);
   };
+
+
+  // Display if user is authenticated
+  if (user) {
+    logout = <Nav.Link>Logout</Nav.Link>;
+    favorites = <Nav.Link>Favorites</Nav.Link>;
+  } else {
+    login = <Nav.Link onClick={() => setShowLogin(true)}>Login</Nav.Link>;
+  }
 
   return (
     <>
@@ -45,7 +45,7 @@ function AppNavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav
             // onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-            onSelect={() => setShowLogin(true)}
+            // onSelect={() => setShowLogin(true)}
             className="mr-auto"
           >
             <Nav.Link href="#home">Home</Nav.Link>
@@ -63,7 +63,9 @@ function AppNavbar() {
               onChange={handleInputChange}
               value={searchInput}
             />
-            <Button variant="outline-info" type="submit">Search</Button>
+            <Button variant="outline-info" type="submit">
+              Search
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Navbar>

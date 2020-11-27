@@ -2,12 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import useFetch from '../../hooks/useFetch';
 import demoData from '../../utils/response.json';
 import YoutubeListItem from './YoutubeListItem';
-import LoginContext from '../../state/LoginContext';
+import UserContext from '../../state/UserContext';
 
 // const uri = 'https://pokeapi.co/api/v2/pokemon?limit=0';
 
 const YoutubeList = () => {
-  const { searchG } = useContext(LoginContext);
+  const { searchG } = useContext(UserContext);
   const params = {
     part: 'snippet',
     q: searchG,
@@ -23,11 +23,15 @@ const YoutubeList = () => {
   } else {
     uri = '';
   }
-  const { listyt, loading } = useFetch(uri);
-  console.log(listyt);
-  const ytData = listyt;
 
-  if (loading) return <div>Loading...</div>;
+  // Comment this block to not call the YT API
+  // const { listyt, loading } = useFetch(uri);
+  // console.log(listyt);
+  // const ytData = listyt;
+  // if (loading) return <div>Loading...</div>;
+
+  // Uncomment to fake API
+  const ytData = demoData.items;
 
   return (
     <>

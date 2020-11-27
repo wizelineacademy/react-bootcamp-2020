@@ -3,19 +3,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import AuthProvider from '../../providers/Auth';
-import HomePage from '../../pages/Home';
-import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
-import Private from '../Private';
-import Fortune from '../Fortune';
 
-import YoutubeList from '../YoutubeList/YoutubeList';
 import AppNavbar from '../Navbar';
+import FavoritesPage from '../../pages/Favorites';
+import UserContext from '../../state/UserContext';
+import YoutubeList from '../YoutubeList/YoutubeList';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LoginContext from '../../state/LoginContext';
-import AuthContext from '../../state/AuthContext';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -26,31 +21,39 @@ function App() {
   return (
     <BrowserRouter>
       <Container fluid>
-        <AuthContext.Provider>
-          <LoginContext.Provider
-            value={{
-              showLogin,
-              setShowLogin,
-              isAuthenticated,
-              setIsAuthenticated,
-              user,
-              setUser,
-              searchG,
-              setSearchG,
-            }}
-          >
-            <Row className="text-center">
-              <Col sm={12}>
-                <AppNavbar />
-              </Col>
-            </Row>
-            <Row className="text-center">
-              <Col sm={12}>
-                <YoutubeList />
-              </Col>
-            </Row>
-          </LoginContext.Provider>
-        </AuthContext.Provider>
+        <UserContext.Provider
+          value={{
+            showLogin,
+            setShowLogin,
+            isAuthenticated,
+            setIsAuthenticated,
+            user,
+            setUser,
+            searchG,
+            setSearchG,
+          }}
+        >
+          <Row className="text-center">
+            <Col sm={12}>
+              <AppNavbar />
+            </Col>
+          </Row>
+          <Row className="text-center">
+            <Col sm={12}>
+              <Switch>
+                <Route exact path="/">
+                  <YoutubeList />
+                </Route>
+                <Route exact path="/favorites">
+                  <FavoritesPage />
+                </Route>
+                <Route exact path="*">
+                  <NotFound />
+                </Route>
+              </Switch>
+            </Col>
+          </Row>
+        </UserContext.Provider>
         <AuthProvider>
           {/* <Switch>
             <Route exact path="/">
