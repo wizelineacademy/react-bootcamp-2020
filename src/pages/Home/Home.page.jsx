@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { triggerSearch } from '../../utils/services/youtube';
-import './Home.styles.css';
 import VideoCard from '../../components/VideoCard/VideoCard.component';
+import { useSearch } from '../../providers/Search/Search.provider';
+import './Home.styles.css';
 
 function HomePage() {
+  const { searchTerm } = useSearch();
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    triggerSearch('wizeline').then((data) => {
-      const finalData = data.items.filter((item) => {
-        const { id } = item;
-        return id.kind !== 'youtube#channel';
+    if (searchTerm) {
+      triggerSearch(searchTerm).then((data) => {
+        const finalData = data.items.filter((item) => {
+          const { id } = item;
+          return id.kind !== 'youtube#channel';
+        });
+        setVideos(finalData);
       });
-      setVideos(finalData);
-    });
-  }, []);
+    }
+  }, [searchTerm]);
 
   return (
     <section className="homepage full-width">
