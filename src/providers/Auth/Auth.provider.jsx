@@ -21,17 +21,22 @@ function AuthProvider({ children }) {
     const isAuthenticated = Boolean(lastAuthState);
 
     setAuthenticated(isAuthenticated);
+    // localStorage.setItem('favoritesList', JSON.stringify([]));
+    // localStorage.setItem('favoritesId', JSON.stringify({}));
   }, []);
 
   const login = useCallback(() => {
     // handleLogin();
     setAuthenticated(true);
     storage.set(AUTH_STORAGE_KEY, true);
+    storage.set('favoritesList', []);
+    storage.set('favoritesId', {});
   }, []);
 
   const logout = useCallback(() => {
     setAuthenticated(false);
     storage.set(AUTH_STORAGE_KEY, false);
+    storage.clear();
   }, []);
 
   return (

@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 
 import AuthProvider from './providers/Auth/Auth.provider';
-import VideoPlayer from './pages/VideoPlayer/VideoPlayer';
+import PlayerPage from './pages/PlayerPage/PlayerPage';
 import MenuBar from './components/MenuBar/MenuBar';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -43,8 +43,8 @@ function App() {
     const res = await fetchYouTubeApi('Favorites');
     setVideos(res.data.items);
     setSelectedVideo(res.data.items[1]);
-    localStorage.setItem('favoritesList', JSON.stringify([]));
-    localStorage.setItem('favoritesId', JSON.stringify({}));
+    // localStorage.setItem('favoritesList', JSON.stringify([]));
+    // localStorage.setItem('favoritesId', JSON.stringify({}));
   }, []);
 
   return (
@@ -75,8 +75,8 @@ function App() {
                 <Route exact path="/">
                   <HomePage videos={videos} onVideoSelect={onVideoSelect} />
                 </Route>
-                <Route exact path="/videoplayer">
-                  <VideoPlayer />
+                <Route exact path="/player">
+                  <PlayerPage />
                 </Route>
                 <Route exact path="/login">
                   <LoginPage />

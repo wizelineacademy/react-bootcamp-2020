@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 
@@ -11,11 +11,13 @@ const FavoritesPage = () => {
   return (
     <Grid>
       <h1>My Favorites</h1>
-      <Grid.Row fluid columns={3}>
+      <Grid.Row columns={3}>
         {favoritesList.map((video, id) => (
-          <Link to="/videoplayer">
-            <VideoCard video={video} key={id} />
-          </Link>
+          <Grid.Column>
+            <Link to="/player">
+              <VideoCard video={video} key={id} />
+            </Link>
+          </Grid.Column>
         ))}
       </Grid.Row>
     </Grid>

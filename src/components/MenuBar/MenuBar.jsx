@@ -17,7 +17,7 @@ const MenuBar = ({ handleHitEnter, handleOnChange }) => {
     history.push('/login');
   }
 
-  return (
+  const menuBar = authenticated ? (
     <Menu secondary>
       <Menu.Item
         as={Link}
@@ -34,6 +34,7 @@ const MenuBar = ({ handleHitEnter, handleOnChange }) => {
         active={activeItem === 'favorites'}
         onClick={handleItemClick}
       />
+
       <Menu.Menu position="right">
         <Menu.Item>
           <Input
@@ -46,13 +47,42 @@ const MenuBar = ({ handleHitEnter, handleOnChange }) => {
         <Menu.Item
           as={Link}
           to="/login"
-          name={authenticated ? 'Logout' : 'Login'}
-          active={activeItem === 'logout'}
-          onClick={authenticated ? deAuthenticate : () => history.push('/')}
+          name="Logout"
+          active={activeItem === 'login'}
+          onClick={deAuthenticate}
+        />
+      </Menu.Menu>
+    </Menu>
+  ) : (
+    <Menu secondary>
+      <Menu.Item
+        as={Link}
+        to="/"
+        name="home"
+        active={activeItem === 'home'}
+        onClick={handleItemClick}
+      />
+      <Menu.Menu position="right">
+        <Menu.Item>
+          <Input
+            icon="search"
+            placeholder="Search..."
+            onChange={handleOnChange}
+            onKeyPress={handleHitEnter}
+          />
+        </Menu.Item>
+        <Menu.Item
+          as={Link}
+          to="/login"
+          name={'login'}
+          active={activeItem === 'login'}
+          onClick={handleItemClick}
         />
       </Menu.Menu>
     </Menu>
   );
+
+  return menuBar;
 };
 
 export default MenuBar;

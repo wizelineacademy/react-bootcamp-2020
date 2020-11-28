@@ -4,9 +4,7 @@ import { Image } from 'semantic-ui-react';
 
 import './VideoItem.styles.css';
 
-const VideoItem = ({ video, onVideoSelect }) => {
-  if (!video) return <div>L oading...</div>;
-
+const VideoCardList = ({ video, onVideoSelect }) => {
   const handlClick = () => {
     onVideoSelect(video);
   };
@@ -15,7 +13,7 @@ const VideoItem = ({ video, onVideoSelect }) => {
     <section onClick={handlClick} className="vi__container">
       <Image
         size="small"
-        src={video.snippet.thumbnails.high.url}
+        src={video.snippet.thumbnails.medium.url}
         className="vi__img"
         alt="thumbnail"
       />
@@ -24,4 +22,4 @@ const VideoItem = ({ video, onVideoSelect }) => {
   );
 };
 
-export default VideoItem;
+export default VideoCardList;

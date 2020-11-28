@@ -4,12 +4,12 @@ import moment from 'moment';
 
 import VideosContext from '../../context/VideosContext';
 
-const VideoCard = ({ video }) => {
+const VideoCardHome = ({ video }) => {
   const { onVideoSelect } = useContext(VideosContext);
 
   return (
-    <Card onClick={() => onVideoSelect(video)}>
-      <Image src={video.snippet.thumbnails.high.url} fluid />
+    <Card onClick={() => onVideoSelect(video)} centered fluid>
+      <Image src={video.snippet.thumbnails.medium.url} />
       <Card.Content>
         <Card.Header>{video.snippet.title}</Card.Header>
         <Card.Meta>
@@ -21,4 +21,4 @@ const VideoCard = ({ video }) => {
   );
 };
 
-export default VideoCard;
+export default VideoCardHome;

@@ -23,9 +23,10 @@ const LoginPage = () => {
   };
 
   return (
-    <Form onSubmit={authenticate}>
+    <Form onSubmit={authenticate} width={6}>
       <h1>Login</h1>
       <Form.Input
+        width={6}
         label="Username"
         placeholder="Username"
         type="text"
@@ -35,6 +36,7 @@ const LoginPage = () => {
       />
 
       <Form.Input
+        width={6}
         label="Password"
         placeholder="Password"
         name="password"

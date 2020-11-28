@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 
-import VideoCard from '../../components/VideoCard/VideoCard';
+import VideoCardHome from '../../components/VideoCardHome/VideoCardHome';
 import VideosContext from '../../context/VideosContext';
 
 import './HomePage.styles.css';
@@ -13,12 +13,13 @@ function HomePage() {
 
   return (
     <Grid>
-      <Grid.Row fluid columns={3}>
+      <Grid.Row columns={3}>
         {videos.map((video, id) => (
-          // eslint-disable-line
-          <Link to="/videoplayer">
-            <VideoCard video={video} key={id} />
-          </Link>
+          <Grid.Column>
+            <Link to="/player">
+              <VideoCardHome video={video} key={id} />
+            </Link>
+          </Grid.Column>
         ))}
       </Grid.Row>
     </Grid>
