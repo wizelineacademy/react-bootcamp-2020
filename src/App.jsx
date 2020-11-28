@@ -42,13 +42,10 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       const res = await fetchYouTubeApi('Favorites');
-      return res;
+      setVideos(res.data.items);
+      setSelectedVideo(res.data.items[1]);
     }
-    const res = fetchData();
-    setVideos(res.data.items);
-    setSelectedVideo(res.data.items[1]);
-    // localStorage.setItem('favoritesList', JSON.stringify([]));
-    // localStorage.setItem('favoritesId', JSON.stringify({}));
+    fetchData();
   }, []);
 
   return (
