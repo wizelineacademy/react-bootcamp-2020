@@ -39,8 +39,12 @@ function App() {
     setSelectedVideo(video);
   };
 
-  useEffect(async () => {
-    const res = await fetchYouTubeApi('Favorites');
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetchYouTubeApi('Favorites');
+      return res;
+    }
+    const res = fetchData();
     setVideos(res.data.items);
     setSelectedVideo(res.data.items[1]);
     // localStorage.setItem('favoritesList', JSON.stringify([]));
