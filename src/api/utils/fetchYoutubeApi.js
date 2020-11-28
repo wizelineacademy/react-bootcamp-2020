@@ -5,7 +5,7 @@ export const fetchYouTubeApi = async (searchParam) => {
     params: {
       part: 'snippet',
       maxResults: 15,
-      key: 'AIzaSyC_DSdvqO86EJQrxVnaBo05u4iGHIe9BFg',
+      key: 'AIzaSyAfOS1Tb_1twFmVrtwQqaa5I7nWggs9v50',
       q: searchParam,
     },
   });

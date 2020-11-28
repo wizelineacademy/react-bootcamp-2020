@@ -74,7 +74,7 @@ const MenuBar = ({ handleHitEnter, handleOnChange }) => {
         <Menu.Item
           as={Link}
           to="/login"
-          name={'login'}
+          name="login"
           active={activeItem === 'login'}
           onClick={handleItemClick}
         />

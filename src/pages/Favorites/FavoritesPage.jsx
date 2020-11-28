@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 
-import VideoCard from '../../components/VideoCard/VideoCard';
+import VideoCardHome from '../../components/VideoCardHome/VideoCardHome';
 
 const FavoritesPage = () => {
   const favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
@@ -15,7 +15,7 @@ const FavoritesPage = () => {
         {favoritesList.map((video, id) => (
           <Grid.Column>
             <Link to="/player">
-              <VideoCard video={video} key={id} />
+              <VideoCardHome video={video} key={id} />
             </Link>
           </Grid.Column>
         ))}
