@@ -30,7 +30,7 @@ const LoginPage = () => {
         placeholder="Username"
         type="text"
         name="username"
-        //value={values.username}
+        // value={values.username}
         onChange={handleUsername}
       />
 
@@ -39,7 +39,7 @@ const LoginPage = () => {
         placeholder="Password"
         name="password"
         type="text"
-        //value={values.password}
+        // value={values.password}
         onChange={handlePassword}
       />
 

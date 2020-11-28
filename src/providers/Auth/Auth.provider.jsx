@@ -24,7 +24,7 @@ function AuthProvider({ children }) {
   }, []);
 
   const login = useCallback(() => {
-    //handleLogin();
+    // handleLogin();
     setAuthenticated(true);
     storage.set(AUTH_STORAGE_KEY, true);
   }, []);

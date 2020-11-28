@@ -17,11 +17,11 @@ import VideosContext from './context/VideosContext';
 import LoginContext from './context/LoginContext';
 
 function App() {
-  //Video Context States
+  // Video Context States
   const [searchTerm, setSearchTerm] = useState('');
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  //Login Context States
+  // Login Context States
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
