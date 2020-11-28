@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import FormInput from '../../components/form-input';
 import CustomButton from '../../components/custom-button';
@@ -46,7 +47,7 @@ function LogInPage() {
               type='email'
               handleChange={handleChange}
               value={state.email}
-              label='email'
+              label='Email'
               required
             />
             <FormInput
@@ -54,7 +55,7 @@ function LogInPage() {
               type='password'
               value={state.password}
               handleChange={handleChange}
-              label='password'
+              label='Password'
               required
             />
             <div className='buttons-bar-contianer'>
@@ -64,6 +65,12 @@ function LogInPage() {
               </CustomButton>
             </div>
           </form>
+        </div>
+
+        <div className='new-user-container'>
+          <p>
+            New? <Link to='/signup'>Create an account.</Link>
+          </p>
         </div>
       </div>
     </div>

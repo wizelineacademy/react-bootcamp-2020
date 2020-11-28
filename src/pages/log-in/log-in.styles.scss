@@ -2,7 +2,7 @@
   display: flex;
   min-height: 100vh;
   min-width: 100vw;
-  background: #fff;
+  background: var(--secondary-background);
 
   .main {
     width: 340px;
@@ -31,5 +31,14 @@
   .buttons-bar-contianer {
     display: flex;
     flex-direction: column;
+    margin-top: 30px;
+  }
+
+  .new-user-container {
+    text-align: center;
+    margin-top: 25px;
+    border: 1px solid #eaecef;
+    border-radius: 5px;
+    padding: 10px 20px;
   }
 }

@@ -3,10 +3,10 @@ import React from 'react';
 
 import './form-input.styles.scss';
 
-const FormInput = ({ handleChange, label }) => (
+const FormInput = ({ handleChange, label, type }) => (
   <div className='form-input-container'>
-    <label>{label}</label>
-    <input onChange={handleChange} />
+    <label htmlFor={type}>{label}</label>
+    <input required type={type} onChange={handleChange} />
   </div>
 );
 
