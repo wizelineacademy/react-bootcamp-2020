@@ -11,8 +11,6 @@ export default async function loginApi(username, password) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (username === 'wizeline' && password === 'Rocks!') {
-        // localStorage.setItem('user', JSON.stringify(mockedUser));
-
         return resolve(mockedUser);
       }
       return reject(new Error('Username or password invalid'));

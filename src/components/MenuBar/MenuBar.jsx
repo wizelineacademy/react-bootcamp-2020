@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import { Input, Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useAuth } from '../../providers/Auth/Auth.provider';
 
 const MenuBar = ({ handleHitEnter, handleOnChange }) => {
+  const history = useHistory();
+  const { authenticated, logout } = useAuth();
   const { pathname } = window.location;
   const path = pathname === '/' ? 'home' : pathname.slice(1);
   const [activeItem, setActiveItem] = useState(path);
   const handleItemClick = (e, { name }) => setActiveItem(name);
+
+  function deAuthenticate(event) {
+    event.preventDefault();
+    logout();
+    history.push('/login');
+  }
 
   return (
     <Menu secondary>
@@ -37,9 +46,9 @@ const MenuBar = ({ handleHitEnter, handleOnChange }) => {
         <Menu.Item
           as={Link}
           to="/login"
-          name="logout"
+          name={authenticated ? 'Logout' : 'Login'}
           active={activeItem === 'logout'}
-          onClick={handleItemClick}
+          onClick={authenticated ? deAuthenticate : () => history.push('/')}
         />
       </Menu.Menu>
     </Menu>

@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
-import { useForm } from '../../utils/hooks';
 
-import loginApi from '../../utils/login.api';
+import { useAuth } from '../../providers/Auth/Auth.provider';
+import LoginContext from '../../context/LoginContext';
 
 const LoginPage = () => {
-  const { onChange, onSubmit, values } = useForm(loginApi, {
-    username: '',
-    password: '',
-  });
+  const { setUsername, setPassword } = useContext(LoginContext);
+  const { login } = useAuth();
+  const history = useHistory();
+
+  function authenticate(event) {
+    event.preventDefault();
+    login();
+    history.push('/');
+  }
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
+  };
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={authenticate}>
       <h1>Login</h1>
       <Form.Input
         label="Username"
         placeholder="Username"
         type="text"
         name="username"
-        value={values.username}
-        onChange={onChange}
+        //value={values.username}
+        onChange={handleUsername}
       />
 
       <Form.Input
@@ -27,8 +39,8 @@ const LoginPage = () => {
         placeholder="Password"
         name="password"
         type="text"
-        value={values.password}
-        onChange={onChange}
+        //value={values.password}
+        onChange={handlePassword}
       />
 
       <Form.Field>

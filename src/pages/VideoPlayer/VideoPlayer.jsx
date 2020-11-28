@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useState, useContext, useEffect } from 'react';
+import { useAuth } from '../../providers/Auth/Auth.provider';
 import { Grid, Button } from 'semantic-ui-react';
 import VideoItem from '../../components/VideoItem/VideoItem';
 
@@ -7,12 +8,21 @@ import VideosContext from '../../context/VideosContext';
 import './VideoPlayer.styles.css';
 
 const VideoPlayer = () => {
+  const { authenticated } = useAuth();
   const { videos, selectedVideo, onVideoSelect } = useContext(VideosContext);
+
   let id = selectedVideo.id.videoId;
   const videoSrc = `https://www.youtube.com/embed/${id}`;
 
   let favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
   let favoritesId = JSON.parse(localStorage.getItem('favoritesId'));
+
+  const [isFav, setIsFav] = useState(favoritesList[`${id}`]);
+
+  useEffect(() => {
+    id = selectedVideo.id.videoId;
+    setIsFav(favoritesId[`${id}`]);
+  }, [selectedVideo]);
 
   const handleSetFavorites = () => {
     function getIdx(match) {
@@ -34,6 +44,7 @@ const VideoPlayer = () => {
     }
     localStorage.setItem('favoritesList', JSON.stringify(favoritesList));
     localStorage.setItem('favoritesId', JSON.stringify(favoritesId));
+    setIsFav(favoritesId[`${id}`]);
   };
   return (
     <Grid columns={2} padded>
@@ -48,8 +59,16 @@ const VideoPlayer = () => {
             }}
           >
             <h1 style={{ fontSize: '20px' }}>{selectedVideo.snippet.title}</h1>
-            <Button basic color="orange" onClick={handleSetFavorites}>
-              ADD TO FAVORITES
+            <Button
+              basic
+              color="orange"
+              onClick={
+                authenticated
+                  ? handleSetFavorites
+                  : () => console.error('Must be Authenticated!')
+              }
+            >
+              {isFav ? 'REMOVE FROM FAVORITES' : 'ADD TO FAVORITES'}
             </Button>
           </section>
           <p>{selectedVideo.snippet.description}</p>
