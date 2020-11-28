@@ -85,6 +85,7 @@ function App() {
                 <Private exact path="/favorites">
                   <FavoritesPage />
                 </Private>
+                <Route path="*" component={() => <h1>404</h1>} />
               </Switch>
             </Container>
           </VideosContext.Provider>
