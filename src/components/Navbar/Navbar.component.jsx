@@ -57,7 +57,7 @@ function Navbar() {
         {authenticated ? (
           <>
             <PrimaryButton>
-              <Link to="/secret">Favorites</Link>
+              <Link to="/favorites">Favorites</Link>
             </PrimaryButton>
             <PrimaryButton>
               <Link to="/" onClick={deAuthenticate}>

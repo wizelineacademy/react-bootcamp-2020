@@ -43,7 +43,7 @@ function App() {
             <Route exact path="/login">
               <LoginPage />
             </Route>
-            <Private exact path="/secret">
+            <Private exact path="/favorites">
               <SecretPage />
             </Private>
             <Route path="*">
