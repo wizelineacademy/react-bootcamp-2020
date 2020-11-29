@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import FormInput from '../../components/form-input';
 import CustomButton from '../../components/custom-button';
 
-import { auth, signInWithGoogle } from '../../utils/js/firebase';
+import { signInWithGoogle } from '../../utils/js/firebase';
 import './log-in.styles.scss';
 
 const initialState = {
@@ -16,17 +16,10 @@ function LogInPage() {
   const history = useHistory();
   const [state, setState] = useState(initialState);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, password } = state;
-
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setState({ ...state, email: '', password: '' });
-    } catch (error) {
-      console.log(error);
-    }
+    setState({ email: '', password: '' });
   };
 
   const handleChange = (event) => {

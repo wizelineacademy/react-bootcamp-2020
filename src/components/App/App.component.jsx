@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import { AuthContext } from '../../providers/auth';
-import { setCurrentUser } from '../../providers/auth/auth.actions';
+import { setCurrentAuth } from '../../providers/auth/auth.actions';
 
 import HomePage from '../../pages/home';
 import WatchVideoPage from '../../pages/watch-video';
@@ -13,7 +13,7 @@ import SignUpPage from '../../pages/sign-up';
 
 import Header from '../header';
 
-import { auth } from '../../utils/js/firebase';
+import { auth, createUserProfileDocument } from '../../utils/js/firebase';
 
 import './app.styles.scss';
 
@@ -21,10 +21,24 @@ const App = () => {
   const location = useLocation();
   const { authState, dispatch } = useContext(AuthContext);
   const { currentAuth } = authState;
+  console.log(authState);
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      dispatch(setCurrentUser(user));
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot((snapShot) => {
+          const newState = {
+            id: snapShot.id,
+            ...snapShot.data(),
+          };
+
+          dispatch(setCurrentAuth(newState));
+        });
+      } else {
+        dispatch(setCurrentAuth(null));
+      }
     });
 
     return () => {

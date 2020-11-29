@@ -17,7 +17,6 @@ const AvatarMenu = () => {
   const { currentAuth } = authState;
   const [anchorEl, setAnchorEl] = React.useState(false);
   const open = Boolean(anchorEl);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

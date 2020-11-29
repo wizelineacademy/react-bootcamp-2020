@@ -49,11 +49,9 @@ export const signInWithGoogle = (callbackSucces, callbackError) => {
   return auth
     .signInWithPopup(provider)
     .then((result) => {
-      console.log(result, callbackSucces);
       if (callbackSucces) callbackSucces(result);
     })
     .catch((error) => {
-      console.log(error, callbackError);
       if (callbackError) callbackError(error);
     });
 };

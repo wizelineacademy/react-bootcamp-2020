@@ -1,0 +1,36 @@
+.sign-in-container {
+  display: flex;
+  min-height: 100vh;
+  min-width: 100vw;
+  background: var(--secondary-background);
+
+  .main {
+    width: 340px;
+    margin: 15vh auto auto auto;
+    top: 20vh;
+  }
+  .header {
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: none;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+    }
+  }
+
+  .body {
+    border: 1px solid #eaecef;
+    border-radius: 5px;
+    background-color: var(--general-background);
+    padding: 20px;
+  }
+
+  .buttons-bar-contianer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+}
