@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import FormInput from '../../components/form-input';
 import CustomButton from '../../components/custom-button';
 
-import { signInWithGoogle } from '../../utils/js/firebase';
+import { auth, signInWithGoogle } from '../../utils/js/firebase';
 import './log-in.styles.scss';
 
 const initialState = {
@@ -15,11 +15,17 @@ const initialState = {
 function LogInPage() {
   const history = useHistory();
   const [state, setState] = useState(initialState);
+  const { email, password } = state;
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    setState({ email: '', password: '' });
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      history.push('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (event) => {
@@ -46,14 +52,14 @@ function LogInPage() {
               name='email'
               type='email'
               handleChange={handleChange}
-              value={state.email}
+              value={email}
               label='Email'
               required
             />
             <FormInput
               name='password'
               type='password'
-              value={state.password}
+              value={password}
               handleChange={handleChange}
               label='Password'
               required
