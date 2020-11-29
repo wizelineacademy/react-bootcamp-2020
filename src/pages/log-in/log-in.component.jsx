@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import FormInput from '../../components/form-input';
 import CustomButton from '../../components/custom-button';
@@ -13,6 +13,7 @@ const initialState = {
 };
 
 function LogInPage() {
+  const history = useHistory();
   const [state, setState] = useState(initialState);
 
   const handleSubmit = async (event) => {
@@ -32,6 +33,12 @@ function LogInPage() {
     const { value, name } = event.target;
     const newState = { ...state, [name]: value };
     setState(newState);
+  };
+
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle(() => {
+      history.push('/');
+    });
   };
 
   return (
@@ -60,7 +67,7 @@ function LogInPage() {
             />
             <div className='buttons-bar-contianer'>
               <CustomButton type='submit'> Sign in </CustomButton>
-              <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+              <CustomButton onClick={handleSignInWithGoogle} isGoogleSignIn>
                 Sign in with Google
               </CustomButton>
             </div>

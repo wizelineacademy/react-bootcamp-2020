@@ -1,6 +1,8 @@
-/* eslint-disable */
-import React, { useState, useEffect } from 'react';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
+
+import { AuthContext } from '../../providers/auth';
+import { setCurrentUser } from '../../providers/auth/auth.actions';
 
 import HomePage from '../../pages/home';
 import WatchVideoPage from '../../pages/watch-video';
@@ -15,24 +17,20 @@ import { auth } from '../../utils/js/firebase';
 
 import './app.styles.scss';
 
-const initialState = {
-  currentUser: {},
-};
-
 const App = () => {
   const location = useLocation();
-  const [authState, setAuthState] = useState(initialState);
+  const { authState, dispatch } = useContext(AuthContext);
+  const { currentAuth } = authState;
 
-  useEffect(function () {
-    auth.onAuthStateChanged((user) => {
-      const newState = {
-        ...authState,
-        currentUser: user,
-      };
-      console.log(user);
-      setAuthState(() => newState);
+  useEffect(() => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      dispatch(setCurrentUser(user));
     });
-  }, []);
+
+    return () => {
+      unsubscribeFromAuth();
+    };
+  }, [dispatch]);
 
   return (
     <div className='app'>
@@ -43,10 +41,14 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/settings' component={SettingsPage} />
-          <Route path='/favorites' component={FavoritesPage} />
+          <Route exact path='/favorites' component={FavoritesPage} />
           <Route path='/wv/:videoId' component={WatchVideoPage} />
-          <Route path='/login' component={LogInPage} />
-          <Route path='/signup' component={SignUpPage} />
+          <Route
+            exact
+            path='/login'
+            render={() => (currentAuth ? <Redirect to='/' /> : <LogInPage />)}
+          />
+          <Route exact path='/signup' component={SignUpPage} />
         </Switch>
       </div>
     </div>
