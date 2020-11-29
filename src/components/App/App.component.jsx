@@ -9,11 +9,10 @@ import SecretPage from '../../pages/Secret';
 import Private from '../Private';
 import Layout from '../Layout';
 import AppDataProvider from '../../providers/AppData';
-import VideoPlayer from "../../pages/VideoPlayer";
-import Theme from "../Theme";
+import VideoPlayer from '../../pages/VideoPlayer';
+import Theme from '../Theme';
 
 function App() {
-
   return (
     <BrowserRouter>
       <AuthProvider>

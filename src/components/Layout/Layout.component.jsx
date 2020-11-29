@@ -1,29 +1,20 @@
 import React from 'react';
-import Navigation from "../Navigation";
+import Navigation from '../Navigation';
 
 import './Layout.styles.css';
-import Header from "../Header";
-
-
+import Header from '../Header';
 
 function Layout({ children }) {
-
   return (
     <div className="page">
-
-
-      <Navigation >
-
-      </Navigation>
+      <Navigation />
 
       <main className="container">
         <Header />
 
-
         {children}
-
       </main>
-    </div >
+    </div>
   );
 }
 
