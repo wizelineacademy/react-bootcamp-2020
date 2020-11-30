@@ -16,6 +16,7 @@ const VideoList = styled('aside')`
   flex-flow: column;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.videoCardBg};
+  
 `;
 const VideoInformationContainer = styled('div')`
   padding: 1em;

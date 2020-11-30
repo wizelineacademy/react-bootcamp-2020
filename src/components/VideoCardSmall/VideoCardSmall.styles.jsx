@@ -6,17 +6,19 @@ const CardSmall = styled('li')`
   height: 120px;
   background-color: ${({ theme }) => theme.videoCardBg};
   align-items: center;
-  text-align: center;
-  box-shadow: 1px 1px 2px 2px ${({ theme }) => theme.shadows};
+  text-align: start;
+  border-top: 1px solid ${({ theme }) => theme.shadows};
   overflow-wrap: break-word;
   &:hover {
     transform: translateY(-1%);
   }
+ 
 `;
 const CardContainerSmall = styled('article')`
   width: 100%;
   height: 100%;
   display: flex;
+  padding: .3rem;
   flex-direction: row;
   cursor: pointer;
 `;
@@ -28,6 +30,7 @@ const CardImageSmall = styled('img')`
 const CardContentSmall = styled('div')`
   width: 100%;
   height: 90%;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
 `;

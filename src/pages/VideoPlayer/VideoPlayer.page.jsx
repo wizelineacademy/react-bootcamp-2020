@@ -9,7 +9,7 @@ import {
 } from './VideoPlayer.styles';
 import { useAppDataContext } from '../../providers/AppData';
 import { useSingleVideoAndRelated } from '../../utils/hooks/useSingleVideoAndRelated';
-import VideoCard from '../../components/VideoCard';
+import VideoCardSmall from '../../components/VideoCardSmall';
 import actions from '../../state/actions';
 
 const VideoPlayer = () => {
@@ -38,16 +38,16 @@ const VideoPlayer = () => {
           frameBorder="0"
         />
         <VideoInformationContainer>
-          <h2> {currentVideo ? currentVideo.snippet.title : null}</h2>
-          <p> {currentVideo ? currentVideo.snippet.description : null}</p>
+          <h2> {currentVideo ? currentVideo.title : null}</h2>
+          <p> {currentVideo ? currentVideo.description : null}</p>
         </VideoInformationContainer>
       </VideoContent>
       <VideoList theme={theme}>
         {videos
           ? videos
-              .filter((video) => video.id.videoId !== idVideo)
+              .filter((video) => video.id !== idVideo)
               .map((video) => (
-                <VideoCard size="small" video={video} key={video.id.videoId} />
+                <VideoCardSmall  video={video} key={video.id} />
               ))
           : null}
       </VideoList>

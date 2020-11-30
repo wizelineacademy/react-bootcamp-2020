@@ -3,10 +3,10 @@ import styled from 'styled-components';
 const Card = styled('li')`
   border-radius: 1%;
   display: flex;
-  width: 90%;
+  width: 300px;
   height: 350px;
   background-color: ${({ theme }) => theme.videoCardBg};
-  box-shadow: 1px 1px 2px 2px ${({ theme }) => theme.shadows};
+  box-shadow: 1px 1px 1px 1px ${({ theme }) => theme.shadows};
   align-items: center;
   margin: 0 auto;
   text-align: center;
@@ -40,11 +40,14 @@ const Title = styled('h4')`
   padding: 0.5rem;
 `;
 const Description = styled('p')`
+display:flex;
   font-size: small;
   padding: 0.5rem;
   overflow: hidden;
-  &:hover {
-  }
+  text-overflow:ellipsis;
+  height: 100px;
+  width: 100%;
+  
 `;
 
 export { Card, CardContainer, CardContent, CardImage, Description, Title };

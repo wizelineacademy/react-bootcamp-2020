@@ -5,7 +5,6 @@ const RELEVANT_DATA =
 const DARK_THEME = 'dark';
 const LIGHT_THEME = 'light';
 const PREFERED_THEME = 'PREFERED_THEME';
-const VIDEO_CARD_DEFAULT_SIZE = 'LARGE';
 
 export {
   AUTH_STORAGE_KEY,
@@ -14,5 +13,4 @@ export {
   DARK_THEME,
   LIGHT_THEME,
   PREFERED_THEME,
-  VIDEO_CARD_DEFAULT_SIZE,
 };

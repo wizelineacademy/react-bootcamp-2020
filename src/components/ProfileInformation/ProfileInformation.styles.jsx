@@ -18,5 +18,7 @@ const ImageContainer = styled('div')`
 const ProfileImage = styled('img')`
   align-self: center;
   height: 80%;
+  border-radius:50%;
+
 `;
 export { ProfileCard, ProfileImage, ImageContainer };

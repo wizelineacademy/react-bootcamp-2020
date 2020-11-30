@@ -5,7 +5,6 @@ import AuthProvider from '../../providers/Auth';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
 import Private from '../Private';
 import Layout from '../Layout';
 import AppDataProvider from '../../providers/AppData';
@@ -29,8 +28,7 @@ function App() {
                 <Route exact path="/login">
                   <LoginPage />
                 </Route>
-                <Private exact path="/secret">
-                  <SecretPage />
+                <Private exact path="/favorites">
                 </Private>
                 <Route path="*">
                   <NotFound />

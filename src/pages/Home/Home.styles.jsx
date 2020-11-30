@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const VideoGrid = styled('ul')`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 1em 0.5rem;
+  gap: 1em 1rem;
   padding: 0;
   @media screen and (max-width: 1600px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;

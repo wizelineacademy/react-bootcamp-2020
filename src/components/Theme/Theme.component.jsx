@@ -8,17 +8,21 @@ import generalTheme from '../../utils/Themes/generalTheme';
 
 import { DARK_THEME, LIGHT_THEME, PREFERED_THEME } from '../../utils/constants';
 import { storage } from '../../utils/storage';
+const SYSTEM_SCHEME_STRING = '(prefers-color-scheme: dark)';
 
 const GlobalStyles = createGlobalStyle`
+
+
 *{
    box-sizing:border-box;
+   font-family: ${(props) => props.theme.fontFamily};
+
 
 }
   body {
      margin: 0;
      padding: 0;
-   text-decoration: none;
-   font-family: ${(props) => props.theme.fontFam};
+    text-decoration: none;
     background-color: ${(props) => props.theme.bg};
     transition: 0.5s;
     outline: none;
@@ -27,31 +31,33 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+
 export default function Theme({ children }) {
   const { state, dispatch } = useAppDataContext();
+
 
   useEffect(() => {
     if (!storage.get(PREFERED_THEME)) {
       if (
         window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
+        window.matchMedia(SYSTEM_SCHEME_STRING).matches
       ) {
         dispatch({ type: actions.SET_THEME, payload: DARK_THEME });
       } else {
         dispatch({ type: actions.SET_THEME, payload: LIGHT_THEME });
       }
-      window
-        .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', (e) => {
-          dispatch({
-            type: actions.CHANGE_THEME,
-            payload: e.matches ? DARK_THEME : LIGHT_THEME,
-          });
-        });
+
     } else {
       dispatch({ type: actions.SET_THEME, payload: storage.get(PREFERED_THEME) });
     }
+    window
+    .matchMedia(SYSTEM_SCHEME_STRING)
+    .addEventListener('change', (e) => {
+      dispatch({ type: actions.SET_THEME, payload: e.matches ? DARK_THEME : LIGHT_THEME });
+    });
   }, [dispatch]);
+
+
   return (
     <ThemeProvider
       theme={
