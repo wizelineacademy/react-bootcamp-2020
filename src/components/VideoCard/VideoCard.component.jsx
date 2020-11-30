@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Paper, Divider, Button } from '@material-ui/core';
 import './VideoCard.styles.css';
-//import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 
 export default function VideoCard({ title, url, thumbnail }) {
   return (
@@ -14,7 +14,9 @@ export default function VideoCard({ title, url, thumbnail }) {
             {title}
           </a>
         </div>
-        <Button variant='contained' color='primary'>▶ Watch</Button>
+        <Button variant="contained" color="primary">
+          ▶ Watch
+        </Button>
       </Paper>
     </Grid>
   );
