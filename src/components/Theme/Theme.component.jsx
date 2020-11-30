@@ -53,7 +53,13 @@ export default function Theme({ children }) {
     }
   }, [dispatch]);
   return (
-    <ThemeProvider theme={state.theme === LIGHT_THEME ?{...generalTheme,...lightTheme} :{...generalTheme ,...darkTheme}}>
+    <ThemeProvider
+      theme={
+        state.theme === LIGHT_THEME
+          ? { ...generalTheme, ...lightTheme }
+          : { ...generalTheme, ...darkTheme }
+      }
+    >
       <GlobalStyles />
       {children}
     </ThemeProvider>

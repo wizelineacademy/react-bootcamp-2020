@@ -31,26 +31,22 @@ const AnimatedButton = styled(HeaderButton)`
   &:hover {
     transform: translateY(5%) rotateZ(1deg);
   }
-  
 `;
 
-const ButtonText=styled("span")`
-@media screen and (max-width: 1000px){
-   display: none;
-}
-`
+const ButtonText = styled('span')`
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
+`;
 const NavButton = styled(HeaderButton)`
-
-  .iconFa{
+  .iconFa {
     transition: 0.5s;
 
-    transform: rotateZ(${({ rotate }) =>rotate==="true" ? '180deg' : '0deg'});
-
+    transform: rotateZ(${({ rotate }) => (rotate === 'true' ? '180deg' : '0deg')});
   }
-  @media screen and (max-width: 1000px){
-   display: none;
-}
-  
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 
-export { HaderStyled, AnimatedButton, NavButton,ButtonText };
+export { HaderStyled, AnimatedButton, NavButton, ButtonText };

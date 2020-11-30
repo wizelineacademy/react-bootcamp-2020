@@ -20,11 +20,11 @@ const VideoGrid = styled('ul')`
 `;
 const WelcomeDisplay = styled('h1')`
   font-size: 50px;
-  padding: .5em;
+  padding: 0.5em;
   text-align: center;
-  @media screen and (max-width: 1000px){
-   font-size:24px;
-}
+  @media screen and (max-width: 1000px) {
+    font-size: 24px;
+  }
 `;
 
 export { VideoGrid, WelcomeDisplay };
