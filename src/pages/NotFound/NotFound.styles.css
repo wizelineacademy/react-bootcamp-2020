@@ -1,13 +1,8 @@
-.home-link {
+.not-found {
   font-size: 1rem;
   text-decoration: none;
   display: block;
-  text-align: right;
+  text-align: center;
   padding: 0.2rem 0.3rem;
 }
 
-.home-link::before {
-  content: '←';
-  padding-right: 0.2rem;
-  display: inline-block;
-}

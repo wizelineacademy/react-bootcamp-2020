@@ -1,8 +1,10 @@
 .homepage {
-  text-align: center;
-}
+  padding-top: 15px;
+  padding-left: 24px;
+  padding-right: 24px;
+
+ }
 
 .homepage h1 {
-  font-size: 3rem;
-  letter-spacing: -2px;
+  font-size: .8rem;
 }

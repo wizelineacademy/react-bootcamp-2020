@@ -1,4 +1,21 @@
+
+.sidebar-items span{
+ margin-left: 15px;
+ font-size: 14px;
+}
+.sidebar-items svg{
+  font-size: 14px;
+ }
+
+.sidebar-item :hover{
+  background-color: #FAFAFA;
+}
 .active {
-  font-weight: bold;
-  color: red;
+  background-color: #E6F5F2;
+}
+.active span{
+  color: #18A67B;
+}
+.active svg{
+  color: #18A67B;
 }

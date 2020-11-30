@@ -1,69 +1,67 @@
 import React from "react";
 import styled from 'styled-components'
-import { Link, useHistory} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../providers/Auth';
+import User  from '../User'
+import Logo from '../Logo'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faHeart } from '@fortawesome/free-solid-svg-icons';
+import './Sidebar.styles.css';
+
 
 
 
 const SidebarParent = styled.div`
-  background: #c34a36;
   width: 250px;
   height: 100vh;
+  border-right: solid 1px #F1F1F1;
 `;
+
+const SidebarItem = styled.div`
+    display: flex;
+    padding: 15px;
+    align-items: baseline;
+`;
+
+
 
 const Items = [
     {
         name: "Home",
         route: '/',
-        needsAuth: false
+        needsAuth: false,
+        icon: faHome
     },
     {
         name: "Favorites",
         route: '/favorites',
-        needsAuth: true
+        needsAuth: true,
+        icon: faHeart
     }
 ]
 
 function Sidebar(props) {
 
-    const { authenticated, logout, login} = useAuth();
-    const history = useHistory();
-
-    function deAuthenticate(event) {
-        event.preventDefault();
-        logout();
-        history.push('/');
-      }
-    
-    function authenticate(event) {
-        event.preventDefault();
-        login();
-        history.push('/');
-      }
+    const { authenticated } = useAuth();
 
     return (
         <>
             <SidebarParent>
-                <div>Logo</div>
-                <div> Usuario 
-                <Link to="/" onClick={deAuthenticate}>
-                      ← logout
-                </Link>
-
-                <Link to="/" onClick={authenticate}>
-                      ← login
-                </Link>
-                </div>
-                <div> 
+                <Logo/>
+                <User/>
+                <div className="sidebar-items"> 
                 {
                     Items.filter(item => !item.needsAuth || (item.needsAuth && authenticated) ).map((item, index)=> {
                       
                       return (
-                            <Link to={item.route}> 
-                                <div key={item.name}>
-                                    <p>{item.name}</p>
-                                </div>
-                            </Link>
+                          <div key={item.name} className={`sidebar-item ${ index === 0 ? "active" : "" }`}>
+                                <Link to={item.route}> 
+                                    <SidebarItem >
+                                        <FontAwesomeIcon icon={ item.icon }/>
+                                        <span>{item.name}</span>
+                                    </SidebarItem>
+                                </Link>
+                            </div>
                         );
                     })
                 } </div>
