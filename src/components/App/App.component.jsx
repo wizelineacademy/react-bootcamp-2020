@@ -1,33 +1,34 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import { CssBaseline, AppBar, Toolbar, Typography, Button, IconButton, InputBase } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import './App.styles.css'
 import VideoGrid from '../VideoGrid';
+import { videos } from '../../mock'
 
 export default function App() {
-  const videos = [
-    {
-      title: 'LEARN OPENCV in 3 HOURS with Python | Including 3x Example Projects (2020)',
-      url: 'https://www.youtube.com/watch?v=WQeoO7MI0Bs',
-      thumbnail:
-        'https://i.ytimg.com/vi/WQeoO7MI0Bs/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAGDDgbGughpBZroPFgIdL4Lqat2g',
-    },
-    {
-      title: '[ 𝑷𝒍𝒂𝒚𝒍𝒊𝒔𝒕 ] 코딩할때 듣기 좋은 노래 • lofi type beat • 3 hours',
-      url: 'https://www.youtube.com/watch?v=cbuZfY2S2UQ&t=2699s',
-      thumbnail:
-        'https://i.ytimg.com/vi/cbuZfY2S2UQ/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCB5wWjUoXrm5YaMdfnAS5hoJr9cQ',
-    },
-    {
-      title: 'Touch of Katana ⛩️ Japanese Lofi Hip-Hop',
-      url: 'https://www.youtube.com/watch?v=blnJvW3EhWA',
-      thumbnail:
-        'https://i.ytimg.com/vi/blnJvW3EhWA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDkXhff3y7sZvWPE4q7dDwmwE2VHQ',
-    },
-  ];
-
   return (
-    <Container maxWidth="sm">
-      <h1>Hola Mundo</h1>
+    <React.Fragment>
+      <CssBaseline />
+      <AppBar position="static" color="white">
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <YouTubeIcon color="secondary" fontSize="large" />
+          <Typography variant="h6" noWrap className="title">
+            YouTube Fav
+          </Typography>
+          <InputBase
+            className="searchbar"
+            placeholder="Search…"
+            inputProps={{ 'aria-label': 'search' }}
+          />
+          {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
+          <Button color="inherit" className="right">Login</Button>
+        </Toolbar>
+      </AppBar>
       <VideoGrid videos={videos} />
-    </Container>
+    </React.Fragment>
   );
 }

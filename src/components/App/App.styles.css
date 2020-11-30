@@ -1,0 +1,15 @@
+.title {
+  padding-left: 0.5em;
+  font-weight: bold !important;
+  display: block;
+  flex-grow: 1;
+}
+
+.searchbar {
+  flex-grow: 5;
+}
+
+.right {
+  position: relative;
+  margin-left: 0px;
+}
