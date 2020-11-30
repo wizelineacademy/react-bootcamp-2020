@@ -50,7 +50,7 @@ function User(props) {
           ) : (
             <FontAwesomeIcon className="no-user-icon" icon={faUserCircle} />
           )}
-          <UserName>{userData.name ? userData.name : 'Anonymous'}</UserName>
+          <UserName>{userData && userData.name ? userData.name : 'Anonymous'}</UserName>
         </UserInfo>
         <Auth>
           {authenticated && (
