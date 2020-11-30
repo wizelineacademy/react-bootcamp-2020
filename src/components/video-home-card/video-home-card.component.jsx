@@ -4,16 +4,9 @@ import Avatar from '@material-ui/core/Avatar';
 
 import './video-home-card.styles.scss';
 
-function VideoHomeCard({
-  videoId,
-  image,
-  title,
-  channelTitle,
-  channelImage,
-  views,
-  timestamp,
-  match,
-}) {
+function VideoHomeCard({ videoId, image, title, views, timestamp, channel, match }) {
+  const { title: channelTitle, image: channelImage } = channel;
+
   return (
     <div className='video-home-card-container'>
       <Link to={`${match.url}wv/${videoId}`}>

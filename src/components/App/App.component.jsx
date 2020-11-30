@@ -19,9 +19,8 @@ import './app.styles.scss';
 
 const App = () => {
   const location = useLocation();
-  const { authState, dispatch } = useContext(AuthContext);
+  const { authState, authDispatch } = useContext(AuthContext);
   const { currentAuth } = authState;
-  console.log(authState);
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -34,17 +33,17 @@ const App = () => {
             ...snapShot.data(),
           };
 
-          dispatch(setCurrentAuth(newState));
+          authDispatch(setCurrentAuth(newState));
         });
       } else {
-        dispatch(setCurrentAuth(null));
+        authDispatch(setCurrentAuth(null));
       }
     });
 
     return () => {
       unsubscribeFromAuth();
     };
-  }, [dispatch]);
+  }, [authDispatch]);
 
   return (
     <div className='app'>

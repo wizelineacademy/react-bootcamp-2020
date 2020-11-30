@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { VideosContext } from '../../providers/videos';
 import VideoHomeCard from '../../components/video-home-card';
 
 import './home.styles.scss';
 
-import { SummaryResult } from '../../utils/searchresult';
-
 function HomePage() {
+  const { videosState } = useContext(VideosContext);
+
+  const { videos, channels } = videosState;
   return (
     <div className='home-container'>
       <div className='videos-container'>
-        {SummaryResult.map(({ etag, ...otherItemProps }) => (
-          <VideoHomeCard key={etag} {...otherItemProps} />
-        ))}
+        {Object.keys(videos).map((videoKey) => {
+          const { etag, ...otherVideoProps } = videos[videoKey];
+
+          return (
+            <VideoHomeCard
+              key={etag}
+              {...otherVideoProps}
+              channel={channels[otherVideoProps.channelId]}
+            />
+          );
+        })}
       </div>
     </div>
   );

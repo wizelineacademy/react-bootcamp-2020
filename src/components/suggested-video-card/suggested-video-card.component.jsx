@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 import './suggested-video-card.styles.scss';
 
-function SuggestedVideoCard({ image, title, channelTitle, views, timestamp, videoId }) {
+function SuggestedVideoCard({ videoId, image, title, views, timestamp, channel }) {
+  const { title: channelTitle } = channel;
   const LINK_ID_VIDEO = `/wv/${videoId}`;
   return (
     <div className='suggested-video-card-container'>

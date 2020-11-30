@@ -4,10 +4,10 @@ import authReducer, { InitialState } from './auth.reducer';
 const AuthContext = React.createContext(null);
 
 function AuthProvider({ children }) {
-  const [authState, dispatch] = useReducer(authReducer, InitialState);
+  const [authState, authDispatch] = useReducer(authReducer, InitialState);
 
   return (
-    <AuthContext.Provider value={{ authState, dispatch }}>
+    <AuthContext.Provider value={{ authState, authDispatch }}>
       {children}
     </AuthContext.Provider>
   );

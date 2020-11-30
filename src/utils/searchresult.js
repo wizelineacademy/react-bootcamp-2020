@@ -1,4 +1,4 @@
-import { createSnippetDataSummary } from './js/youtube.api';
+import { formatVideosData } from './js/youtube.api';
 
 const SearchResult = {
   url:
@@ -1038,7 +1038,7 @@ const SearchResult = {
   },
 };
 
-export const SummaryResult = createSnippetDataSummary(
+export const SummaryResult2 = formatVideosData(
   SearchResult.data,
   SearchResult.videoData,
   SearchResult.channelData

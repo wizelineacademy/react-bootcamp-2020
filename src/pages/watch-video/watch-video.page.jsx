@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 
+import { VideosContext } from '../../providers/videos';
 import SuggestedVideoCard from '../../components/suggested-video-card';
 
 import './watch-video.styles.scss';
-import { SummaryResult } from '../../utils/searchresult';
 
 const WatchVideoPage = ({
   match: {
     params: { videoId },
   },
 }) => {
-  const videos = SummaryResult;
-  const selectedVideo = videos.find((v) => v.videoId === videoId);
+  const { videosState } = useContext(VideosContext);
+  const { videos, channels } = videosState;
 
-  const { title, channelTitle, channelImage, views, timestamp, channel } = selectedVideo;
+  const { title, views, timestamp, channelId } = videos[videoId];
+  const channel = channels[channelId];
+  const { title: channelTitle, image: channelImage } = channel;
 
   return (
     <div className='watch-video-container'>
@@ -50,9 +52,16 @@ const WatchVideoPage = ({
       </div>
       <div className='secondary'>
         <div className='path-video-container'>
-          {videos.map(({ etag, ...otherItemProps }) => (
-            <SuggestedVideoCard key={etag} {...otherItemProps} />
-          ))}
+          {Object.keys(videos).map((videoKey) => {
+            const { etag, ...otherVideoProps } = videos[videoKey];
+            return (
+              <SuggestedVideoCard
+                key={etag}
+                {...otherVideoProps}
+                channel={channels[otherVideoProps.channelId]}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
