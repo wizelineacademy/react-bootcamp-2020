@@ -45,7 +45,7 @@ function User(props) {
     <>
       <UserParent>
         <UserInfo>
-          {userData.avatarUrl ? (
+          {userData && userData.avatarUrl ? (
             <img width="25" height="25" alt="User" src={userData.avatarUrl} />
           ) : (
             <FontAwesomeIcon className="no-user-icon" icon={faUserCircle} />
