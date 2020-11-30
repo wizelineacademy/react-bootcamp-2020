@@ -20,7 +20,7 @@ function App() {
 
     script.onload = () => {
       window.gapi.load('client', () => {
-        window.gapi.client.setApiKey(process.env.API_KEY);
+        window.gapi.client.setApiKey(process.env.APP_API_KEY);
         window.gapi.client.load('youtube', 'v3', () => {
           setgapiReady(true);
         });
@@ -32,31 +32,30 @@ function App() {
 
   if (gapiReady) {
     console.log('ready!!');
-  
-  return (
-    <BrowserRouter>
-      <AuthProvider>
-        <VideoProvider>
-          <Layout>
-            <Switch>
-              <Route exact path="/">
-                <HomePage />
-              </Route>
-              <Private exact path="/favorites">
-                <FavoritePage />
-              </Private>
-              <Route path="*">
-                <NotFound />
-              </Route>
-            </Switch>
-          </Layout>
-        </VideoProvider>
-      </AuthProvider>
-    </BrowserRouter>
-  );
-  }else{
-   return <> Loding </>
+
+    return (
+      <BrowserRouter>
+        <AuthProvider>
+          <VideoProvider>
+            <Layout>
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Private exact path="/favorites">
+                  <FavoritePage />
+                </Private>
+                <Route path="*">
+                  <NotFound />
+                </Route>
+              </Switch>
+            </Layout>
+          </VideoProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    );
   }
+  return <> Loding </>;
 }
 
 export default App;
