@@ -41,12 +41,17 @@ export default function reducer(state, action) {
         ...state,
         currentVideo: state.videos.find((video) => video.id.videoId === action.payload),
       };
-    case actions.TOGGLE_NAV: {
+    case actions.TOGGLE_NAV:
       return {
         ...state,
         navigationOpen: !state.navigationOpen,
       };
-    }
+
+    case actions.SET_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
 
     default:
       throw new Error(`UNKNOW_ACTION: ${action.type}`);

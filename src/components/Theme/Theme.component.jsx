@@ -4,6 +4,8 @@ import { useAppDataContext } from '../../providers/AppData';
 import actions from '../../state/actions';
 import darkTheme from '../../utils/Themes/darkTheme';
 import lightTheme from '../../utils/Themes/lightTheme';
+import generalTheme from '../../utils/Themes/generalTheme';
+
 import { DARK_THEME, LIGHT_THEME, PREFERED_THEME } from '../../utils/constants';
 import { storage } from '../../utils/storage';
 
@@ -51,7 +53,7 @@ export default function Theme({ children }) {
     }
   }, [dispatch]);
   return (
-    <ThemeProvider theme={state.theme === LIGHT_THEME ? lightTheme : darkTheme}>
+    <ThemeProvider theme={state.theme === LIGHT_THEME ?{...generalTheme,...lightTheme} :{...generalTheme ,...darkTheme}}>
       <GlobalStyles />
       {children}
     </ThemeProvider>

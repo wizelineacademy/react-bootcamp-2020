@@ -7,9 +7,7 @@ const HaderStyled = styled('header')`
   align-content: center;
   width: 100%;
   max-width: 100vw;
-
   box-shadow: 1px 1px 3px 4px ${({ theme }) => theme.shadows};
-
   background-color: ${({ theme }) => theme.header};
 `;
 
@@ -33,12 +31,26 @@ const AnimatedButton = styled(HeaderButton)`
   &:hover {
     transform: translateY(5%) rotateZ(1deg);
   }
+  
 `;
 
+const ButtonText=styled("span")`
+@media screen and (max-width: 1000px){
+   display: none;
+}
+`
 const NavButton = styled(HeaderButton)`
-  transition: 0.5s;
 
-  transform: rotateZ(${({ rotate }) => (rotate ? '180deg' : '0deg')});
+  .iconFa{
+    transition: 0.5s;
+
+    transform: rotateZ(${({ rotate }) =>rotate==="true" ? '180deg' : '0deg'});
+
+  }
+  @media screen and (max-width: 1000px){
+   display: none;
+}
+  
 `;
 
-export { HaderStyled, AnimatedButton, NavButton };
+export { HaderStyled, AnimatedButton, NavButton,ButtonText };

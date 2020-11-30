@@ -5,8 +5,11 @@ html {
   font-family: sans-serif;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
 }
-
+li {
+  list-style: none !important;
+}
 *,
 *::before,
 *::after {
@@ -20,14 +23,11 @@ html {
 }
 
 a {
-  text-decoration: none;
   font-weight: bold;
   color: white;
+  text-decoration: none !important;
 }
 
 a:active {
   color: blueviolet;
-}
-
-hr {
 }

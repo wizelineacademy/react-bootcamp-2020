@@ -1,17 +1,32 @@
-import React from 'react';
+import React, {  useState } from 'react';
 import { useHistory } from 'react-router';
-
 import { useAuth } from '../../providers/Auth';
+import { useAppDataContext } from "../../providers/AppData";
+import loginApi from "../../utils/login";
+import actions from "../../state/actions";
 import './Login.styles.css';
 
 function LoginPage() {
   const { login } = useAuth();
   const history = useHistory();
+  let { dispatch } = useAppDataContext();
 
+  const [formValue, setFormValue] = useState({});
+
+  const onChangeForm = ({target:{name,value}}) => {
+
+    setFormValue({...formValue,[name]:value});
+
+  }
   function authenticate(event) {
     event.preventDefault();
-    login();
-    history.push('/secret');
+    loginApi(formValue.username,formValue.password).then((user) => {
+      login();
+      dispatch({ type: actions.SET_USER, payload: user });
+      history.push('/');
+
+    })
+      .catch((e) => console.log(e));
   }
 
   return (
@@ -21,13 +36,13 @@ function LoginPage() {
         <div className="form-group">
           <label htmlFor="username">
             <strong>username </strong>
-            <input required type="text" id="username" />
+            <input onChange={onChangeForm} required type="text" id="username" name="username" />
           </label>
         </div>
         <div className="form-group">
           <label htmlFor="password">
             <strong>password </strong>
-            <input required type="password" id="password" />
+            <input onChange={onChangeForm} required type="password" id="password" name="password" />
           </label>
         </div>
         <button type="submit">login</button>

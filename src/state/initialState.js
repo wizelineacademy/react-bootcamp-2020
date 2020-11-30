@@ -6,6 +6,7 @@ const initialState = {
   videos: [...videoMock],
   theme: '',
   navigationOpen: false,
+  user: null,
 };
 
 export default initialState;

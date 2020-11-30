@@ -11,7 +11,7 @@ const Card = styled('li')`
   margin: 0 auto;
   text-align: center;
   @media screen and (max-width: 700px) {
-    width: 350px;
+    width: 250px;
   }
 `;
 const CardContainer = styled('article')`
