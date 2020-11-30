@@ -81,13 +81,14 @@ const ItemPlay = styled.div`
 `;
 
 function VideoItem(props) {
-  const {id, title, author, description, img } = props;
+  const { id, title, author, description, img } = props;
+  const path = '/details/'.concat(id);
   return (
     <ItemContainer>
       <Container>
         <ImagePreview img={img}>
           <ItemPlay>
-            <Link to="/details">
+            <Link to={path}>
               <FontAwesomeIcon icon={faPlay} style={{ color: '#18A67B'}} />
             </Link>
           </ItemPlay>

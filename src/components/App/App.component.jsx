@@ -10,8 +10,6 @@ import Private from '../Private';
 import Layout from '../Layout';
 
 function App() {
-  // const API_KEY = 'AIzaSyAouhxcwwBMVFT6GoNF4ccP0_O7DnwmReY';
-  // const  API_KEY = process.env.API_KEY;
   const [gapiReady, setgapiReady] = useState(false);
 
   useEffect(() => {
