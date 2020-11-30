@@ -17,7 +17,7 @@ function Navbar() {
         <InputSearch />
       </div>
       <div className="login-container">
-        <Switch onChange={onChange} className="switch-theme" />{' '}
+        <Switch onChange={onChange} className="switch-theme" />
         <span className="label-switcher">Dark Mode</span>
         <DropdownLogin />
       </div>

@@ -1,13 +1,17 @@
 .ant-btn.login-dropdown {
-    border: none;
-    margin-left: 20px;
-    background-color: inherit;
+  border: none;
+  margin-left: 20px;
+  background-color: inherit;
 }
 
 .ant-btn.login-dropdown:hover,
 .ant-btn.login-dropdown:focus,
 .ant-btn.login-dropdown:active {
-    border: none;
-    margin-left: 20px;
-    background-color: inherit;
+  border: none;
+  margin-left: 20px;
+  background-color: inherit;
+}
+
+.error {
+  color: #ed0000;
 }

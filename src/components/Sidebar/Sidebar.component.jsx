@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.styles.css';
+import { useAuth } from '../../providers/Auth';
 
 const Sidebar = ({ isOpen, toggle }) => {
+  const { authenticated } = useAuth();
   const domNode = document.getElementById('sidebar-container');
 
   if (!domNode) {
@@ -20,6 +22,11 @@ const Sidebar = ({ isOpen, toggle }) => {
         <div className="sidebar-items">
           <NavLink to="/">Home</NavLink>
         </div>
+        {authenticated ? (
+          <div className="sidebar-items">
+            <NavLink to="/favorites">Favorites</NavLink>
+          </div>
+        ) : null}
       </div>
     </div>,
     domNode

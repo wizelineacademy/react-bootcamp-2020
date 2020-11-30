@@ -36,7 +36,8 @@
   border-bottom: 1px #e0e0e0 solid;
 }
 
-.sidebar-items a {
-  font-size: 16px;
-  color: #000;
+.sidebar-items a #notification-sidebar {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease;
 }
