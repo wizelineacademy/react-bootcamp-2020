@@ -87,11 +87,13 @@ function VideoItem(props) {
     <ItemContainer>
       <Container>
         <ImagePreview img={img}>
-          <ItemPlay>
-            <Link to={path}>
-              <FontAwesomeIcon icon={faPlay} style={{ color: '#18A67B'}} />
-            </Link>
-          </ItemPlay>
+          <Link to={path}>
+            <ItemPlay>
+              <Link to={path}>
+                <FontAwesomeIcon icon={faPlay} style={{ color: '#18A67B' }} />
+              </Link>
+            </ItemPlay>
+          </Link>
         </ImagePreview>
         <VideoDetail>
           <ItemTitle>{title.slice(0, 45)}</ItemTitle>

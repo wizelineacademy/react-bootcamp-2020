@@ -36,14 +36,14 @@ function AuthProvider({ children }) {
     } catch (e) {
       setAuthenticated(false);
       setUserData([]);
-      storage.set(AUTH_STORAGE_KEY, []);
+      storage.set(AUTH_STORAGE_KEY, false);
     }
   }, []);
 
   const logout = useCallback(() => {
     setAuthenticated(false);
     setUserData([]);
-    storage.set(AUTH_STORAGE_KEY, []);
+    storage.set(AUTH_STORAGE_KEY, false);
   }, []);
 
   return (

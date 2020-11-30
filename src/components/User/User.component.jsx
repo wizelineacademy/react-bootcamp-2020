@@ -45,25 +45,24 @@ function User(props) {
     <>
       <UserParent>
         <UserInfo>
-          {userData &&
-            (userData.avatarUrl ? (
-              <img width="25" height="25" alt="User" src={userData.avatarUrl} />
-            ) : (
-              <FontAwesomeIcon className="no-user-icon" icon={faUserCircle} />
-            ))}
-          <UserName>{userData.name ? userData.name : 'Anonymous'} </UserName>
+          {userData.avatarUrl ? (
+            <img width="25" height="25" alt="User" src={userData.avatarUrl} />
+          ) : (
+            <FontAwesomeIcon className="no-user-icon" icon={faUserCircle} />
+          )}
+          <UserName>{userData.name ? userData.name : 'Anonymous'}</UserName>
         </UserInfo>
         <Auth>
-          {authenticated &&
-            (authenticated ? (
-              <Link to="/" onClick={deAuthenticate}>
-                Logout
-              </Link>
-            ) : (
-              <Link to="/" onClick={authenticate}>
-                Login
-              </Link>
-            ))}
+          {authenticated && (
+            <Link to="/" onClick={deAuthenticate}>
+              Logout
+            </Link>
+          )}
+          {!authenticated && (
+            <Link to="/" onClick={authenticate}>
+              Login
+            </Link>
+          )}
         </Auth>
       </UserParent>
     </>

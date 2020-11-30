@@ -20,7 +20,7 @@ function App() {
 
     script.onload = () => {
       window.gapi.load('client', () => {
-        window.gapi.client.setApiKey(process.env.APP_API_KEY);
+        window.gapi.client.setApiKey("AIzaSyBHy5jF_oRnmR8Bknv9bjkHKx6wNug_src");
         window.gapi.client.load('youtube', 'v3', () => {
           setgapiReady(true);
         });
