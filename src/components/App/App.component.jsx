@@ -10,7 +10,8 @@ import Private from '../Private';
 import Layout from '../Layout';
 
 function App() {
-  const API_KEY = 'AIzaSyAouhxcwwBMVFT6GoNF4ccP0_O7DnwmReY';
+  // const API_KEY = 'AIzaSyAouhxcwwBMVFT6GoNF4ccP0_O7DnwmReY';
+  // const  API_KEY = process.env.API_KEY;
   const [gapiReady, setgapiReady] = useState(false);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ function App() {
 
     script.onload = () => {
       window.gapi.load('client', () => {
-        window.gapi.client.setApiKey(API_KEY);
+        window.gapi.client.setApiKey(process.env.API_KEY);
         window.gapi.client.load('youtube', 'v3', () => {
           setgapiReady(true);
         });
