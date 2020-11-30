@@ -6,10 +6,10 @@ import AuthProvider from '../../providers/Auth';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
+import FavoritesPage from '../../pages/Favorites';
 import VideoPage from '../../pages/Video';
 import Private from '../Private';
-import Fortune from '../Fortune';
+// import Fortune from '../Fortune';
 import Layout from '../Layout';
 
 import { SEARCH_DEFAULT } from '../../utils/constants';
@@ -29,8 +29,8 @@ export default function App() {
               <Route exact path="/login">
                 <LoginPage />
               </Route>
-              <Private exact path="/secret">
-                <SecretPage />
+              <Private exact path="/favorites">
+                <FavoritesPage />
               </Private>
               <Route exact path="/video/:id">
                 <VideoPage />
@@ -39,7 +39,7 @@ export default function App() {
                 <NotFound />
               </Route>
             </Switch>
-            <Fortune />
+            {/* <Fortune /> */}
           </Layout>
         </AuthProvider>
       </BrowserRouter>
