@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, Spin } from 'antd';
-import { triggerSearch } from '../../utils/services/youtube';
+import { getVideos } from '../../utils/services/youtube';
 import VideoCard from '../../components/VideoCard/VideoCard.component';
 import { useSearch } from '../../providers/Search/Search.provider';
 import './Home.styles.css';
@@ -12,7 +12,7 @@ function HomePage() {
 
   useEffect(() => {
     if (searchTerm) {
-      triggerSearch(searchTerm).then((data) => {
+      getVideos(searchTerm).then((data) => {
         const finalData = data.items.filter((item) => {
           const { id } = item;
           return id.kind !== 'youtube#channel';

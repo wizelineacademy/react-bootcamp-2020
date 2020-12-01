@@ -6,37 +6,3 @@
   font-size: 3rem;
   letter-spacing: -2px;
 }
-
-.grid-layout {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 20px;
-  padding: 50px;
-}
-
-.grid-item {
-  min-height: 345px;
-  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
-  border-radius: 0.5rem;
-  cursor: pointer;
-}
-.grid-item .img-thumbnail {
-  width: 100%;
-  height: auto;
-}
-
-.grid-item .title-container {
-  padding: 10px;
-  color: rgba(0, 0, 0, 0.85);
-  font-weight: 500;
-  font-size: 16px;
-  text-align: left;
-}
-
-.grid-item .description-container {
-  padding: 10px;
-  font-size: 15px;
-  text-align: justify;
-  color: #70818a;
-  font-weight: 300;
-}

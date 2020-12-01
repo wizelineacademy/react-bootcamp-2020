@@ -10,6 +10,21 @@
   padding: 20px;
 }
 
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(250px, 1fr));
+  grid-gap: 20px;
+  padding: 50px;
+}
+
 .textRight {
   text-align: right;
+}
+
+.px15 {
+  padding: 0 15px;
+}
+
+.my10 {
+  margin: 10px 0;
 }

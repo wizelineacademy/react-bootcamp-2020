@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './VideoCard.styles.css';
 
 function VideoCard({ data, id }) {
   const renderHTML = (rawHTML) =>
     React.createElement('div', { dangerouslySetInnerHTML: { __html: rawHTML } });
 
   return (
-    <article className="grid-item">
-      <Link to={`/video/${id}`}>
+    <Link to={`/video/${id}`}>
+      <article className="grid-item">
         <div className="img-container">
           <img
             src={data.thumbnails.medium.url}
@@ -16,9 +17,11 @@ function VideoCard({ data, id }) {
           />
         </div>
         <div className="title-container">{renderHTML(data.title)}</div>
-        <div className="description-container">{data.description}</div>
-      </Link>
-    </article>
+        <div className="description-container">
+          <p>{data.description}</p>
+        </div>
+      </article>
+    </Link>
   );
 }
 

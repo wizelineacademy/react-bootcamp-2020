@@ -36,6 +36,11 @@
   border-bottom: 1px #e0e0e0 solid;
 }
 
+.sidebar-items a {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 17px;
+}
+
 .sidebar-items a #notification-sidebar {
   visibility: hidden;
   opacity: 0;

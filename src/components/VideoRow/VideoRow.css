@@ -1,0 +1,10 @@
+.img-video-row {
+  width: 100%;
+  height: auto;
+}
+
+.title-row div {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 17px;
+  padding: 0 10px;
+}
