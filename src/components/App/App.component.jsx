@@ -10,7 +10,6 @@ import PlayerPage from '../../pages/Player';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
 import Private from '../Private';
-import Fortune from '../Fortune';
 import Layout from '../Layout';
 import Navbar from '../Navbar';
 import { random } from '../../utils/fns';
@@ -62,7 +61,6 @@ function App() {
                 <NotFound />
               </Route>
             </Switch>
-            <Fortune />
           </Layout>
         </VideoProvider>
       </AuthProvider>

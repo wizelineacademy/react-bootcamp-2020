@@ -12,18 +12,19 @@ function CardList() {
   const { videos } = useContext(VideoContext);
   const { setCurrentVideo } = useContext(VideoContext);
   function handleClickOnCard(video) {
-    setCurrentVideo(video)
+    setCurrentVideo(video);
   }
 
   return (
-    <CardListDiv >
+    <CardListDiv>
       {videos.map((video) => (
         <Card
+          key={video.videoId}
           videoId={video.videoId}
           title={video.title}
           description={video.description}
           imageUrl={video.imageUrl}
-          onClick={()=>handleClickOnCard(video)}
+          onClick={() => handleClickOnCard(video)}
         />
       ))}
     </CardListDiv>

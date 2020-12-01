@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router';
 
 import styled from 'styled-components';
@@ -68,16 +68,35 @@ const Login = styled.section`
   min-height: 400px;
 `;
 
+const ErrorLabel = styled.h4`
+  color: red;
+`;
+
 function LoginPage() {
   const { login } = useAuth();
   const history = useHistory();
   const inputUserName = useRef(null);
   const inputPassword = useRef(null);
+  const [userName, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorLogin, setErrrorLogin] = useState(false);
 
-  function authenticate(event) {
+  function onChangeUserName(value) {
+    setUsername(() => value);
+  }
+
+  function onChangePassword(value) {
+    setPassword(() => value);
+  }
+
+  async function authenticate(event) {
     event.preventDefault();
-    login();
-    history.push('/favorites');
+    try {
+      await login(userName, password);
+      history.push('/favorites');
+    } catch (error) {
+      setErrrorLogin(true);
+    }
   }
 
   return (
@@ -92,7 +111,13 @@ function LoginPage() {
           >
             username{' '}
           </FieldLabel>
-          <Input ref={inputUserName} required type="text" id="username" />
+          <Input
+            ref={inputUserName}
+            required
+            type="text"
+            id="username"
+            onChange={(event) => onChangeUserName(event.target.value)}
+          />
         </Div>
         <Div>
           <FieldLabel
@@ -102,8 +127,21 @@ function LoginPage() {
           >
             password{' '}
           </FieldLabel>
-          <Input ref={inputPassword} required type="password" id="password" />
+          <Input
+            ref={inputPassword}
+            required
+            type="password"
+            id="password"
+            onChange={(event) => onChangePassword(event.target.value)}
+          />
         </Div>
+        {errorLogin ? (
+          <>
+            <ErrorLabel>Incorrect user or password try again</ErrorLabel>
+          </>
+        ) : (
+          <> </>
+        )}
         <Button type="submit">Login</Button>
       </LoginForm>
     </Login>

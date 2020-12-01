@@ -32,18 +32,19 @@ const RowlistContainer = styled.div`
 function PlayerPage(props) {
   const { currentVideo } = useContext(VideoContext);
 
-  const url = 'https://www.youtube.com/embed/' + props.id.params.id;
+  const url = `https://www.youtube.com/embed/${props.id.params.id}`;
   return (
     <PlayerPageContainer>
       <PlayerContainer>
         <iframe
+          title={props.id.params.id}
           width="1240"
           height="496"
           src={url}
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+          allowFullScreen
+        />
         <p>{currentVideo.title}</p>
         <p>{currentVideo.description}</p>
       </PlayerContainer>

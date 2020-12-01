@@ -16,12 +16,17 @@ function RowList() {
   const { setCurrentVideo } = useContext(VideoContext);
 
   function handleClickOnRow(video) {
-    setCurrentVideo(video)
+    setCurrentVideo(video);
   }
   return (
     <StyledRowList>
       {videos.map((video) => (
-        <Row videoId={video.videoId} title={video.title} imageUrl={video.imageUrl}  onClick={()=>handleClickOnRow(video)}/>
+        <Row
+          videoId={video.videoId}
+          title={video.title}
+          imageUrl={video.imageUrl}
+          onClick={() => handleClickOnRow(video)}
+        />
       ))}
     </StyledRowList>
   );
