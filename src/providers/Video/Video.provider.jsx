@@ -3,14 +3,14 @@ import React, { useCallback, useState, useEffect, useRef } from 'react';
 const VideoContext = React.createContext();
 const videosMock = [
   {
-    videoId: '33445',
+    videoId: 'nmXMgqjQzls',
     title: 'video 1',
     description: 'description 1 description 1',
     imageUrl: 'https://i.ytimg.com/vi/nmXMgqjQzls/mqdefault.jpg',
     searchTerm: 'Wizeline',
   },
   {
-    videoId: '6666',
+    videoId: 'qq',
     title: 'video 2',
     description: 'description 2 description 2',
     imageUrl: 'https://i.ytimg.com/vi/nmXMgqjQzls/mqdefault.jpg',
@@ -27,7 +27,7 @@ const videosMock = [
 
 function VideoProvider({ children }) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentVideo, setCurrentVideo] = useState('');
+  const [currentVideo, setCurrentVideo] = useState({});
   const [videos, setVideos] = useState([]);
 
   const stateRef = useRef();
@@ -42,7 +42,7 @@ function VideoProvider({ children }) {
     setSearchTerm('Wizeline');
     const found = videosMock.filter((x) => x.searchTerm === 'Wizeline');
     setVideos(found);
-    setCurrentVideo('');
+    setCurrentVideo({});
   }, []);
 
   return (

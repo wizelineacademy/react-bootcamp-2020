@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import styled from 'styled-components';
 import Row from '../Row/Row.component';
+import { VideoContext } from '../../providers/Video';
 
 const StyledRowList = styled.div`
   display: flex;
@@ -10,24 +12,16 @@ const StyledRowList = styled.div`
 `;
 
 function RowList() {
-  const videos = [
-    {
-      videoId: '33445',
-      title: 'video 1',
-      description: 'description 1 description 1',
-      imageUrl: 'https://i.ytimg.com/vi/nmXMgqjQzls/mqdefault.jpg',
-    },
-    {
-      videoId: '6666',
-      title: 'video 2',
-      description: 'description 2 description 2',
-      imageUrl: 'https://i.ytimg.com/vi/nmXMgqjQzls/mqdefault.jpg',
-    },
-  ];
+  const { videos } = useContext(VideoContext);
+  const { setCurrentVideo } = useContext(VideoContext);
+
+  function handleClickOnRow(video) {
+    setCurrentVideo(video)
+  }
   return (
     <StyledRowList>
       {videos.map((video) => (
-        <Row videoId={video.videoId} title={video.title} imageUrl={video.imageUrl} />
+        <Row videoId={video.videoId} title={video.title} imageUrl={video.imageUrl}  onClick={()=>handleClickOnRow(video)}/>
       ))}
     </StyledRowList>
   );

@@ -10,14 +10,20 @@ const CardListDiv = styled.div`
 
 function CardList() {
   const { videos } = useContext(VideoContext);
+  const { setCurrentVideo } = useContext(VideoContext);
+  function handleClickOnCard(video) {
+    setCurrentVideo(video)
+  }
+
   return (
-    <CardListDiv className="card-list">
+    <CardListDiv >
       {videos.map((video) => (
         <Card
           videoId={video.videoId}
           title={video.title}
           description={video.description}
           imageUrl={video.imageUrl}
+          onClick={()=>handleClickOnCard(video)}
         />
       ))}
     </CardListDiv>

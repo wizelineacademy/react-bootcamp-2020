@@ -19,9 +19,13 @@ const CardDescription = styled.p`
   color: black;
 `;
 
-function Card({ videoId, title, description, imageUrl }) {
+function Card({ videoId, title, description, imageUrl, onClick }) {
   return (
-    <CardDiv>
+    <CardDiv
+      onClick={() => {
+        onClick();
+      }}
+    >
       <Link to={`/player/${videoId}`}>
         <img src={imageUrl} alt={imageUrl} />
         <CardTitle>{title}</CardTitle>

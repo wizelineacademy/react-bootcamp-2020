@@ -24,9 +24,13 @@ const RowTitle = styled.h3`
   color: black;
 `;
 
-function Row({ videoId, title, imageUrl }) {
+function Row({ videoId, title, imageUrl, onClick }) {
   return (
-    <RowDiv>
+    <RowDiv
+      onClick={() => {
+        onClick();
+      }}
+    >
       <Link to={`/player/${videoId}`}>
         <RowContent>
           <RowImg src={imageUrl} alt={imageUrl} />
