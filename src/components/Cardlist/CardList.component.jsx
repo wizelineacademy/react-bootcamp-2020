@@ -1,13 +1,17 @@
 import React, { useContext } from 'react';
+import styled from 'styled-components';
 import Card from '../Card/Card.component';
 import { VideoContext } from '../../providers/Video';
 
-import './CardList.styles.css';
+const CardListDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 function CardList() {
   const { videos } = useContext(VideoContext);
   return (
-    <div className="card-list">
+    <CardListDiv className="card-list">
       {videos.map((video) => (
         <Card
           videoId={video.videoId}
@@ -16,7 +20,7 @@ function CardList() {
           imageUrl={video.imageUrl}
         />
       ))}
-    </div>
+    </CardListDiv>
   );
 }
 

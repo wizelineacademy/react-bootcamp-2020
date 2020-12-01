@@ -1,15 +1,39 @@
 import React from 'react';
-import './Row.styles.css';
 import { Link } from 'react-router-dom';
+
+import styled from 'styled-components';
+
+const RowDiv = styled.div`
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  cursor: pointer;
+`;
+
+const RowImg = styled.img`
+  width: 120px;
+  height: 90px;
+`;
+
+const RowContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  color: black;
+`;
+
+const RowTitle = styled.h3`
+  color: black;
+`;
 
 function Row({ videoId, title, imageUrl }) {
   return (
-    <div className="row">
-      <Link className="row-link" to={`/player/${videoId}`}>
-        <img className="row-img" src={imageUrl} alt={imageUrl} />
-        <h3>{title}</h3>
+    <RowDiv>
+      <Link to={`/player/${videoId}`}>
+        <RowContent>
+          <RowImg src={imageUrl} alt={imageUrl} />
+          <RowTitle>{title}</RowTitle>
+        </RowContent>
       </Link>
-    </div>
+    </RowDiv>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route, HashRouter } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
 import VideoProvider from '../../providers/Video';
@@ -35,7 +35,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <VideoProvider>
           <Navbar />
@@ -66,7 +66,7 @@ function App() {
           </Layout>
         </VideoProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
