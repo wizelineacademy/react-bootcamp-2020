@@ -1,29 +1,8 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 
+import fetchYoutubeVideos from '../../utils/api/fetchYoutubeVideos';
+
 const VideoContext = React.createContext();
-const videosMock = [
-  {
-    videoId: 'nmXMgqjQzls',
-    title: 'video 1',
-    description: 'description 1 description 1',
-    imageUrl: 'https://i.ytimg.com/vi/nmXMgqjQzls/mqdefault.jpg',
-    searchTerm: 'Wizeline',
-  },
-  {
-    videoId: 'qq',
-    title: 'video 2',
-    description: 'description 2 description 2',
-    imageUrl: 'https://i.ytimg.com/vi/nmXMgqjQzls/mqdefault.jpg',
-    searchTerm: 'Wizeline',
-  },
-  {
-    videoId: '66646',
-    title: 'video 3',
-    description: 'description 2 description 2',
-    imageUrl: 'https://i.ytimg.com/vi/nmXMgqjQzls/mqdefault.jpg',
-    searchTerm: 'Infected',
-  },
-];
 
 function VideoProvider({ children }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -34,14 +13,15 @@ function VideoProvider({ children }) {
   stateRef.current = searchTerm;
 
   const fetchVideos = useCallback(() => {
-    const found = videosMock.filter((x) => x.searchTerm === stateRef.current);
-    setVideos(found);
+    const fetchedVideos = fetchYoutubeVideos(stateRef.current);
+
+    setVideos(fetchedVideos);
   }, []);
 
   useEffect(() => {
     setSearchTerm('Wizeline');
-    const found = videosMock.filter((x) => x.searchTerm === 'Wizeline');
-    setVideos(found);
+    const fetchedVideos = fetchYoutubeVideos('Wizeline');
+    setVideos(fetchedVideos);
     setCurrentVideo({});
   }, []);
 

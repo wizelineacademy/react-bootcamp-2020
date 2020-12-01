@@ -10,13 +10,18 @@ const CardDiv = styled.div`
   cursor: pointer;
   box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.26);
   border-radius: 18px;
+  max-width: 320px;
 `;
 const CardTitle = styled.h2`
   color: black;
+  font-size: 20px;
+  padding: 0px 10px;
 `;
 
 const CardDescription = styled.p`
-  color: black;
+  color: gray;
+  font-size: 10px;
+  padding: 0px 20px;
 `;
 
 function Card({ videoId, title, description, imageUrl, onClick }) {

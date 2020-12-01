@@ -6,6 +6,7 @@ import { VideoContext } from '../../providers/Video';
 const CardListDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 function CardList() {

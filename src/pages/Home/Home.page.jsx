@@ -4,13 +4,21 @@ import CardList from '../../components/Cardlist/CardList.component';
 
 import { useAuth } from '../../providers/Auth';
 
-const StyledHomePage = styled.section`
-  text-align: center;
-`;
-
 const H1 = styled.h1`
   font-size: 3rem;
   letter-spacing: -2px;
+  width: 100%;
+`;
+
+const HomePageContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 5px;
+  padding-left: 3px;
+  text-align: center;
+  height: 100%;
+  flex-direction: row;
 `;
 
 function HomePage() {
@@ -18,7 +26,7 @@ function HomePage() {
   const { authenticated } = useAuth();
 
   return (
-    <StyledHomePage ref={sectionRef}>
+    <HomePageContainer ref={sectionRef}>
       <H1>Welcome to some youtube copy enjoy!</H1>
       {authenticated ? (
         <>
@@ -28,7 +36,7 @@ function HomePage() {
         <> </>
       )}
       <CardList />
-    </StyledHomePage>
+    </HomePageContainer>
   );
 }
 
