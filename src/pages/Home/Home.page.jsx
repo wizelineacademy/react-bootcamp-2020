@@ -1,23 +1,57 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+/* global gapi */
+import React, { useEffect, useState } from 'react';
+// import { useHistory } from 'react-router-dom';
+import Navbar from '../../components/Navbar';
+import VideoItem from '../../components/VideoItem';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+// import { useAuth } from '../../providers/Auth';
+import { HomeContainer } from './Home.styled';
+// import './Home.styles.css';
 
-function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+const HomePage = () => {
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+  const [VideoList, setVideoList] = useState([]);
+  // const history = useHistory();
+  // const { authenticated, logout } = useAuth();
+
+  useEffect(() => {
+    gapi.client.setApiKey("AIzaSyDuNIHsx3MbUN3XHfHKgQ0f0FeatIsQtIk");
+    gapi.client.load("youtube", "v3", () => {});
+  }, [])
+  
+  const onSearchVideo = (SearchVideo) => {
+    let request = gapi.client.youtube.search.list({
+        part: "snippet",
+        type: "video",
+        q: SearchVideo,
+        maxResults: 20,
+        order: "ViewCount",
+        publishedAfter: "2020-01-01T00:00:00Z"
+    });
+    request.execute((response) => {
+      const { result: { items } } = response;
+        setVideoList(items);
+        console.log(items);
+    })
+}
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
+    <div>
+      <Navbar onSearchVideo={(value) => onSearchVideo(value)} />
+      <HomeContainer>
+        {
+          (VideoList) && (
+            VideoList.map((video) => 
+              <VideoItem 
+                key={video.etag} 
+                videoInfo={video.snippet} 
+                video={video.id} 
+              />
+            )
+          )
+        }
+      </HomeContainer>
+      {/* <h1>Hello stranger!</h1>
       {authenticated ? (
         <>
           <h2>Good to have you back</h2>
@@ -31,8 +65,8 @@ function HomePage() {
         </>
       ) : (
         <Link to="/login">let me in →</Link>
-      )}
-    </section>
+      )} */}
+    </div>
   );
 }
 
