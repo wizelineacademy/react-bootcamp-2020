@@ -132,8 +132,17 @@ function NavBar() {
           </TB>
         </Cover>
       </NavBarSearchBox>
-      <NavBarItem>About Us</NavBarItem>
+      <NavBarItem>
+        <Link to="/">Home</Link>
+      </NavBarItem>
       <NavBarItem>Darkmode</NavBarItem>
+      {authenticated ? (
+        <NavBarItem>
+          <Link to="/favorites">Favorites</Link>
+        </NavBarItem>
+      ) : (
+        <></>
+      )}
       {authenticated ? (
         <span>
           <Link to="/" onClick={deAuthenticate}>
