@@ -7,7 +7,6 @@ import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
 import Private from '../Private';
-import Fortune from '../Fortune';
 import Layout from '../Layout';
 import { random } from '../../utils/fns';
 
@@ -48,7 +47,6 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
-          <Fortune />
         </Layout>
       </AuthProvider>
     </BrowserRouter>
