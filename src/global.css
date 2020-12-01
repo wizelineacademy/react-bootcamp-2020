@@ -10,13 +10,6 @@
   padding: 20px;
 }
 
-.grid-layout {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(250px, 1fr));
-  grid-gap: 20px;
-  padding: 50px;
-}
-
 .textRight {
   text-align: right;
 }
@@ -27,4 +20,43 @@
 
 .my10 {
   margin: 10px 0;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(150px, 1fr));
+    grid-gap: 20px;
+    padding: 50px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media all and (max-width: 992px) and (min-width: 577px) {
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    grid-gap: 20px;
+    padding: 50px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media all and (max-width: 1200px) and (min-width: 993px) {
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    grid-gap: 20px;
+    padding: 50px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(150px, 1fr));
+    grid-gap: 20px;
+    padding: 50px;
+  }
 }

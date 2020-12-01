@@ -7,6 +7,14 @@ const getVideos = async (term) => {
   });
 };
 
+const getRelatedVideos = async (videoId) => {
+  return fetch(
+    `${process.env.REACT_APP_YOUTUBE_BASE_URL}/search?part=snippet&relatedToVideoId=${videoId}&type=video&key=${process.env.REACT_APP_API_KEY}`
+  ).then((response) => {
+    return response.json();
+  });
+};
+
 const getVideo = async (idVideo) => {
   return fetch(
     `${process.env.REACT_APP_YOUTUBE_BASE_URL}/videos?id=${idVideo}&key=${process.env.REACT_APP_API_KEY}&part=snippet,statistics`
@@ -15,4 +23,4 @@ const getVideo = async (idVideo) => {
   });
 };
 
-export { getVideos, getVideo };
+export { getVideos, getVideo, getRelatedVideos };

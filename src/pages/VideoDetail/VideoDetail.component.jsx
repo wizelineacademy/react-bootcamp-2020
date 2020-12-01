@@ -6,12 +6,14 @@ import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { useSearch } from '../../providers/Search/Search.provider';
 import { useFavorites } from '../../providers/Favorites/Favorites.provider';
 import { getVideos, getVideo } from '../../utils/services/youtube';
+import { useAuth } from '../../providers/Auth';
 import VideoRow from '../../components/VideoRow/VideoRow.component';
 import './VideoDetail.css';
 
 function VideoDetail() {
   const { searchTerm } = useSearch();
   const { addToFavorites, favorites } = useFavorites();
+  const { authenticated } = useAuth();
   const [dataVideo, setDataVideo] = useState({});
   const [loadingButton, setLoadingButton] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -82,7 +84,7 @@ function VideoDetail() {
             </Col>
           </Row>
           <Row gutter={[0, 24]}>
-            <Col span={18}>
+            <Col span={18} className="description-container">
               {Object.keys(dataVideo).length > 0 ? (
                 <>
                   <h2>{dataVideo.snippet.title}</h2>
@@ -95,35 +97,37 @@ function VideoDetail() {
                 </>
               )}
             </Col>
-            <Col span={6} className="textRight">
-              {isFavorite ? (
-                <Button
-                  type="dashed"
-                  shape="round"
-                  icon={<MinusCircleOutlined />}
-                  size="large"
-                  onClick={() =>
-                    Object.keys(dataVideo).length > 0 ? remove(dataVideo) : null
-                  }
-                  loading={loadingButton}
-                >
-                  Remove to Favorites
-                </Button>
-              ) : (
-                <Button
-                  type="primary"
-                  shape="round"
-                  icon={<PlusCircleOutlined />}
-                  size="large"
-                  onClick={() =>
-                    Object.keys(dataVideo).length > 0 ? add(dataVideo) : null
-                  }
-                  loading={loadingButton}
-                >
-                  Add to Favorites
-                </Button>
-              )}
-            </Col>
+            {authenticated ? (
+              <Col span={6} className="textRight">
+                {isFavorite ? (
+                  <Button
+                    type="dashed"
+                    shape="round"
+                    icon={<MinusCircleOutlined />}
+                    size="large"
+                    onClick={() =>
+                      Object.keys(dataVideo).length > 0 ? remove(dataVideo) : null
+                    }
+                    loading={loadingButton}
+                  >
+                    Remove to Favorites
+                  </Button>
+                ) : (
+                  <Button
+                    type="primary"
+                    shape="round"
+                    icon={<PlusCircleOutlined />}
+                    size="large"
+                    onClick={() =>
+                      Object.keys(dataVideo).length > 0 ? add(dataVideo) : null
+                    }
+                    loading={loadingButton}
+                  >
+                    Add to Favorites
+                  </Button>
+                )}
+              </Col>
+            ) : null}
           </Row>
         </Col>
         <Col span={8} className="px15">
