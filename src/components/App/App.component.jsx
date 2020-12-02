@@ -9,7 +9,6 @@ import NotFound from '../../pages/NotFound';
 import FavoritesPage from '../../pages/Favorites';
 import VideoPage from '../../pages/Video';
 import Private from '../Private';
-// import Fortune from '../Fortune';
 import Layout from '../Layout';
 
 import { SEARCH_DEFAULT } from '../../utils/constants';
@@ -39,7 +38,6 @@ export default function App() {
                 <NotFound />
               </Route>
             </Switch>
-            {/* <Fortune /> */}
           </Layout>
         </AuthProvider>
       </BrowserRouter>
