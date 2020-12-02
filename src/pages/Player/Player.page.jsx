@@ -29,6 +29,10 @@ const RowlistContainer = styled.div`
   overflow: scroll;
 `;
 
+const TextDescription = styled.p`
+  color: ${(props) => props.theme.textcolor};
+`;
+
 function PlayerPage(props) {
   const { currentVideo } = useContext(VideoContext);
 
@@ -45,8 +49,8 @@ function PlayerPage(props) {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
-        <p>{currentVideo.title}</p>
-        <p>{currentVideo.description}</p>
+        <TextDescription>{currentVideo.title}</TextDescription>
+        <TextDescription>{currentVideo.description}</TextDescription>
       </PlayerContainer>
       <RowlistContainer>
         <Rowlist />

@@ -9,6 +9,8 @@ const Container = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: ${(props) => props.theme.contrast};
+
 `;
 
 function Layout({ children }) {

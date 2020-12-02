@@ -42,9 +42,9 @@ const Cover = styled.div`
   right: 0;
   width: 400px;
   padding: 7px;
-  background-color: #7698ac;
+  background-color: ${(props) => props.theme.variant};
   border-radius: 8px;
-  box-shadow: 0 4px 22px #7698ac, 0 0 0 10px #ffffffeb;
+  box-shadow: 0 4px 22px ${(props) => props.theme.variant}, 0 0 0 10px #ffffffeb;
   transform: scale(0.6);
 `;
 

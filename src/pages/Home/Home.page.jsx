@@ -8,6 +8,15 @@ const H1 = styled.h1`
   font-size: 3rem;
   letter-spacing: -2px;
   width: 100%;
+  color: ${(props) => props.theme.textcolor};
+
+`;
+
+const H2 = styled.h2` 
+  letter-spacing: -2px;
+  width: 100%;
+  color: ${(props) => props.theme.textcolor};
+
 `;
 
 const HomePageContainer = styled.div`
@@ -30,7 +39,7 @@ function HomePage() {
       <H1>Welcome to some youtube copy enjoy!</H1>
       {authenticated ? (
         <>
-          <h2>Good to have you back</h2>
+          <H2>Good to have you back</H2>
         </>
       ) : (
         <> </>

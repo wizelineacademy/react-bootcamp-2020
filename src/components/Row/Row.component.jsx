@@ -20,8 +20,8 @@ const RowContent = styled.div`
   color: black;
 `;
 
-const RowTitle = styled.h3`
-  color: black;
+const RowTitle = styled.h3` 
+  color: ${(props) => props.theme.textcolor};
 `;
 
 function Row({ videoId, title, imageUrl, onClick }) {

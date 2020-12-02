@@ -9,7 +9,7 @@ const Button = styled.button`
   margin-top: 1rem;
   padding: 0.4rem 0.6rem;
   font-size: 1.2rem;
-  color: #1c5476;
+  color: ${(props) => props.theme.textcolor};
   border: none;
   background-color: transparent;
 `;
@@ -21,13 +21,17 @@ const Input = styled.input`
   padding: 0.4rem 0.6rem;
   border-radius: 3px;
   border: 1px solid white;
-  background-color: rgba(28, 84, 118, 0.3);
+  background-color: ${(props) => props.theme.variant};
   font-family: Nunito;
+  &:focus{
+    outline: none;
+}
 `;
 
 const H1 = styled.h1`
   text-align: center;
   letter-spacing: -1px;
+  color: ${(props) => props.theme.textcolor};
 `;
 
 const Div = styled.div`
@@ -42,6 +46,7 @@ const FieldLabel = styled.strong`
   font-weight: 700;
   text-transform: capitalize;
   margin-bottom: 0.4rem;
+  color: ${(props) => props.theme.textcolor};
 `;
 
 const LoginForm = styled.form`
@@ -57,7 +62,7 @@ const Login = styled.section`
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.highBackground};
   transform: translate(-50%, -50%);
   vertical-align: middle;
   box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.26);

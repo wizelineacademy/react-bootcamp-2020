@@ -4,17 +4,22 @@ import { ThemeProvider } from 'styled-components';
 const ThemeContext = React.createContext();
 
 export const darkTheme = {
-  backgroundColor: '#333333',
-  textColor: '#000000',
   primary: '#424242;',
   secondary: 'white',
+  variant:'#848484',
+  contrast:'#121212',
+  highBackground: '#424242;',
+  textcolor : 'white'
+
 };
 
 export const lightTheme = {
-  backgroundColor: '#e0e0e0',
-  textColor: '#ffffff',
   primary: '#1c5476;',
   secondary: 'white',
+  variant:'#7698ac',
+  contrast:'#ffffff',
+  highBackground: '#ffffff;',
+  textcolor : 'black'
 };
 
 function LocalThemeProvider({ children }) {
