@@ -55,15 +55,11 @@ const LoginForm = styled.form`
   align-items: center;
 `;
 
-const Login = styled.section`
+const Login = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   background-color: ${(props) => props.theme.highBackground};
-  transform: translate(-50%, -50%);
   vertical-align: middle;
   box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.26);
   border-radius: 18px;
@@ -75,6 +71,19 @@ const Login = styled.section`
 
 const ErrorLabel = styled.h4`
   color: red;
+`;
+
+const LoginPageContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 91vh;
+  margin-top: 5px;
+  padding-left: 3px;
+  text-align: center; 
+  flex-direction: row;
+  justify-content:center;
+  align-items:center;
 `;
 
 function LoginPage() {
@@ -105,6 +114,7 @@ function LoginPage() {
   }
 
   return (
+    <LoginPageContainer>
     <Login>
       <H1>Welcome back!</H1>
       <LoginForm onSubmit={authenticate}>
@@ -150,6 +160,7 @@ function LoginPage() {
         <Button type="submit">Login</Button>
       </LoginForm>
     </Login>
+    </LoginPageContainer>
   );
 }
 

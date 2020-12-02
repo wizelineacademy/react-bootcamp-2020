@@ -23,11 +23,11 @@ const HomePageContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 5px;
-  padding-left: 3px;
-  text-align: center;
-  height: 100%;
+  min-height: 91vh;
+  text-align: center; 
   flex-direction: row;
+  justify-content:center;
+  align-items:center;
 `;
 
 function HomePage() {

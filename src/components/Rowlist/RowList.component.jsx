@@ -8,7 +8,6 @@ const StyledRowList = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 500px;
 `;
 
 function RowList() {

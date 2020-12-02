@@ -8,9 +8,6 @@ const PlayerPageContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 5px;
-  padding-left: 3px;
-
   height: 100%;
   flex-direction: row;
 `;
@@ -21,12 +18,15 @@ const PlayerContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  padding-top:3px
+
 `;
 
 const RowlistContainer = styled.div`
   width: 30%;
-  height: 100%;
-  overflow: scroll;
+  height: 100%; 
+  padding:3px
+
 `;
 
 const TextDescription = styled.p`

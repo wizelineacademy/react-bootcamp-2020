@@ -7,7 +7,7 @@ export const darkTheme = {
   primary: '#424242;',
   secondary: 'white',
   variant:'#848484',
-  contrast:'#121212',
+  contrast:'#222222',
   highBackground: '#424242;',
   textcolor : 'white'
 
