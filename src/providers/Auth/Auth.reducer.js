@@ -7,18 +7,18 @@ export const initialState = {
 };
 
 export function authReducer(state, action) {
-  const { type, payload } = action;
+  const { type, payload = {} } = action;
 
   switch (type) {
     case ACTIONS.LOGIN:
-      return { ...state, user: payload };
-    case ACTIONS.SUCCESS:
-      return { ...state, user: payload.user };
+      return { ...state, loading: true, error: false };
+    case ACTIONS.LOGGED:
+      return { ...state, loading: false, user: payload.user };
     case ACTIONS.ERROR:
-      return { ...state, user: payload.error };
+      return { ...state, loading: false, error: payload.error };
     case ACTIONS.LOGOUT:
       return { ...initialState };
     default:
-      return state;
+      throw new Error(`Invalid action "${type}"`);
   }
 }

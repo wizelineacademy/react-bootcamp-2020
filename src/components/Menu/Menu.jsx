@@ -1,41 +1,71 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
-export default function PrincipalMenu(classes) {
-  const isLogged = true;
-  const [anchorEl, setAnchorEl] = React.useState(null);
+import { useAuth } from '../../providers/Auth/Auth.provider';
+import useStyles from './Menu.styled';
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+export default function PrincipalMenu() {
+  const classes = useStyles();
+  const { isLoggedIn } = useAuth();
+  const [state, setState] = React.useState({
+    left: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const list = (anchor) => (
+    <div
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List className={classes.list}>
+        <ListItem button key="Home">
+          <ListItemText primary="Home" />
+        </ListItem>
+      </List>
+      <Divider />
+      {isLoggedIn && (
+        <>
+          <ListItem button key="Favorites">
+            <ListItemText primary="Favorites" />
+          </ListItem>
+        </>
+      )}
+    </div>
+  );
   return (
     <div>
-      <IconButton
-        edge="start"
-        className={classes.menuButton}
-        color="inherit"
-        aria-label="menu"
-        onClick={handleClick}
-      >
-        <MenuIcon />
-      </IconButton>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose}>Home</MenuItem>
-        {isLogged && <MenuItem onClick={handleClose}>Favorites</MenuItem>}
-      </Menu>
+      {['left'].map((anchor) => (
+        <React.Fragment key={anchor}>
+          <IconButton
+            className={classes.menuButton}
+            edge="start"
+            onClick={toggleDrawer(anchor, true)}
+          >
+            <MenuIcon>{anchor}</MenuIcon>
+          </IconButton>
+          <Drawer
+            anchor={anchor}
+            open={state[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+          >
+            {list(anchor)}
+          </Drawer>
+        </React.Fragment>
+      ))}
     </div>
   );
 }

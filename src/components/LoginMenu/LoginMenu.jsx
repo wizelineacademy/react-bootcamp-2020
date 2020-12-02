@@ -74,7 +74,7 @@ function LoginMenu() {
           <MenuItem onClick={doLogin}>Login</MenuItem>
         )}
       </Menu>
-      {open && <LoginForm open={open} handleClose={handleClose} />}
+      {open && <LoginForm open={open} close={handleClose} />}
     </>
   );
 }

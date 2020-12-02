@@ -2,7 +2,7 @@ import loginApi from '../../api/loginapi';
 
 const ACTIONS = {
   LOGIN: 'LOGIN',
-  SUCCESS: 'SUCCESS',
+  LOGGED: 'LOGGED',
   ERROR: 'ERROR',
   LOGOUT: 'LOGOUT',
 };
@@ -14,7 +14,7 @@ const loginUser = (dispatch) => async (username, password) => {
     const user = await loginApi(username, password);
 
     dispatch({
-      type: ACTIONS.SUCCESS,
+      type: ACTIONS.LOGGED,
       payload: { user },
     });
     return user;
