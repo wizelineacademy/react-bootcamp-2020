@@ -8,7 +8,7 @@ import ThemeButton from '../ThemeButton/ThemeButton';
 import LoginMenu from '../LoginMenu/LoginMenu';
 import useStyles from './Navbar.styled';
 
-export default function ButtonAppBar() {
+export default function Navbar() {
   const classes = useStyles();
 
   return (

@@ -1,1 +1,1 @@
-export { default, useAuth } from './Auth.provider';
+export { useAuth } from './Auth.provider';
