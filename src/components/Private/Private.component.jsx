@@ -1,13 +1,20 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useSesion } from '../../utils/State';
 
-import { useAuth } from '../../providers/Auth';
+const Private = ({ component: Component, ...rest }) => {
 
-function Private({ children, ...rest }) {
-  const { authenticated } = useAuth();
+  const Sesion = useSesion();
 
   return (
-    <Route {...rest} render={() => (authenticated ? children : <Redirect to="/" />)} />
+    <Route {...rest} render={(props) => {
+        if(Sesion){
+            return <Component {...props} />
+        }
+        else{
+            return <Redirect to="/" />
+        }
+    }} />
   );
 }
 

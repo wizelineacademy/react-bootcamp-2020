@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function SecretPage() {
-  return (
-    <section>
-      <pre>
+const FavoritesPage = () => {
+
+  /* <pre>
         welcome, voyager...
         <Link to="/"> ← go back</Link>
       </pre>
@@ -16,9 +15,14 @@ function SecretPage() {
         title="rick roll"
         src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&autoplay=1"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      />
+      /> */
+
+
+  return (
+    <section>
+      <Link to="/" > Regresar </Link>
     </section>
   );
 }
 
-export default SecretPage;
+export default FavoritesPage;

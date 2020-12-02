@@ -6,7 +6,7 @@ export const NavBar = styled.header`
     height: 4rem;
     background: blue;
     display: flex;
-    padding: 1rem 1.5rem;
+    padding: .8rem 1.5rem;
 `; 
 
 export const InputStyled = styled(Input)`
@@ -18,6 +18,10 @@ export const SwitchStyled = styled(Switch)`
 `;
 
 export const LoginButton = styled.div`
-    width: 20%;
+    width: 2.4rem;
+    text-align: center;
+    padding: 5px;
+    border-radius: 100%;
+    background: grey;
     cursor: pointer;
 `;

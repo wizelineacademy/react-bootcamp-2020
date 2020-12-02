@@ -1,17 +1,23 @@
-const storage = {
-  get(key) {
-    try {
-      const rawValue = window.localStorage.getItem(key);
-      return JSON.parse(rawValue);
-    } catch (error) {
-      console.error(`Error parsing storage item "${key}".`);
-      return null;
+const cacheItem = "AppState";
+
+export const loadFromLocalStorage = () => {
+    try{
+        const serializedState = localStorage.getItem(cacheItem);
+        if(!serializedState) return null
+        return JSON.parse(serializedState)
     }
-  },
+    catch(e){
+        console.log(e);
+        return null
+    }
+}
 
-  set(key, value) {
-    window.localStorage.setItem(key, JSON.stringify(value));
-  },
-};
-
-export { storage };
+export const saveToLocalStorage = (state) => {
+    try{
+        const serializedState = JSON.stringify(state);
+        localStorage.setItem(cacheItem, serializedState);
+    }
+    catch(e){
+        console.log(e);
+    }
+}

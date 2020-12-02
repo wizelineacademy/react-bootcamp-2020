@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
-
-import { AUTH_STORAGE_KEY } from '../../utils/constants';
+import React, { useState, useEffect, useContext } from 'react';
 import { storage } from '../../utils/storage';
 
 const AuthContext = React.createContext(null);
