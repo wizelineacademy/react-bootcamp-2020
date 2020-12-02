@@ -18,7 +18,7 @@ function App() {
     function rotateBackground() {
       const xPercent = random(100);
       const yPercent = random(100);
-      body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
+      //body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
     }
 
     const intervalId = setInterval(rotateBackground, 3000);

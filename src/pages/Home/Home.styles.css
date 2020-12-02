@@ -1,8 +1,14 @@
 .homepage {
-  text-align: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* .homepage {
+  text-align: center;
+} */
+/* 
 .homepage h1 {
   font-size: 3rem;
   letter-spacing: -2px;
-}
+} */
