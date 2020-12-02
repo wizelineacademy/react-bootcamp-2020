@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useVideoContext } from '../../VideoState/Provider';
+import ThemeToggle from '../ThemeToggle';
 
 import './Navbar.styles.css';
 
@@ -25,8 +26,9 @@ const InputSearch = styled.input`
   border-width: 0;
   box-shadow: none;
   outline: 0;
-  width: 100%;
-  background-color: #fafafa;
+  width: 90%;
+  background-color: transparent;
+  color: ${(props) => props.theme.text};
 `;
 
 function NavBar() {
@@ -58,7 +60,7 @@ function NavBar() {
             value={search}
           />
         </SearchBar>
-        <div>DARK?</div>
+        <ThemeToggle/>
       </NavBarParent>
     </>
   );

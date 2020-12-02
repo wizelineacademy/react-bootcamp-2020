@@ -1,4 +1,5 @@
 import React, { useReducer, createContext, useContext } from 'react';
+import he from 'he';
 import { reducer, initialState } from './Reducer';
 import { ACTIONS } from './Actions';
 import getVideos from '../api/youtube';
@@ -22,10 +23,11 @@ const VideoProvider = ({ children }) => {
         const { snippet, id } = item;
         return {
           id: id.videoId,
-          title: snippet.title,
-          description: snippet.description,
+          title: snippet.title && he.decode(snippet.title),
+          description: snippet.description && he.decode(snippet.description),
           author: snippet.channelTitle,
           img: snippet.thumbnails.high.url,
+          url: `https://www.youtube.com/watch?v=${id.videoId}`,
         };
       });
       console.log(videos);
@@ -36,12 +38,20 @@ const VideoProvider = ({ children }) => {
       return null;
     }
   };
+  const setCurrentVideo = (dptch) => async (id, videoList) => {
+
+    const currentVideo = videoList.filter((item) => item.id === id);
+    console.log(currentVideo);
+    dptch({ type: ACTIONS.CURRENT_VIDEO, payload: { currentVideo } });
+  };
 
   const value = {
     loading: state.loading,
     error: state.error,
     videos: state.videos,
     fetchVideos: fetchVideos(dispatch),
+    currentVideo: state.currentVideo,
+    setCurrentVideo: setCurrentVideo(dispatch),
   };
 
   return <VideoContext.Provider value={value}>{children}</VideoContext.Provider>;

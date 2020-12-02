@@ -38,10 +38,3 @@ a {
   font-weight: bold;
   color: #AFAFAF;
 }
-
-a:active {
-  color: #18A67B;
-}
-svg {
-  color: #AFAFAF;
-}

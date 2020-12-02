@@ -5,8 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import './VideoItem.styles.css';
 
-
-
 const ItemContainer = styled.div`
   padding: 0px 10px 10px 0px;
   width: 33.333%;
@@ -89,17 +87,15 @@ function VideoItem(props) {
         <ImagePreview img={img}>
           <Link to={path}>
             <ItemPlay>
-              <Link to={path}>
-                <FontAwesomeIcon icon={faPlay} style={{ color: '#18A67B' }} />
-              </Link>
+              <FontAwesomeIcon icon={faPlay} style={{ color: '#18A67B' }} />
             </ItemPlay>
           </Link>
         </ImagePreview>
         <VideoDetail>
-          <ItemTitle>{title.slice(0, 45)}</ItemTitle>
+          <ItemTitle>{title && title.slice(0, 45)}</ItemTitle>
           <ItemAuthor>by {author}</ItemAuthor>
           <DescriptionContainer>
-            <ItemDescription>{description.slice(0, 200)}</ItemDescription>
+            <ItemDescription>{description && description.slice(0, 200)}</ItemDescription>
           </DescriptionContainer>
         </VideoDetail>
       </Container>

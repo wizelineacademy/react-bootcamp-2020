@@ -4,6 +4,7 @@ export const initialState = {
   error: false,
   loading: false,
   videos: [],
+  currentVideo: {},
 };
 
 export function reducer(state, action) {
@@ -27,6 +28,11 @@ export function reducer(state, action) {
         ...state,
         loading: false,
         error: payload.error,
+      };
+    case ACTIONS.CURRENT_VIDEO:
+      return {
+        ...state,
+        currentVideo: payload.currentVideo,
       };
     default:
       return {

@@ -1,73 +1,101 @@
-import React from "react";
-import styled from 'styled-components'
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../providers/Auth';
-import User  from '../User'
-import Logo from '../Logo'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../../providers/Auth';
+import User from '../User';
+import Logo from '../Logo';
 import './Sidebar.styles.css';
-
-
-
 
 const SidebarParent = styled.div`
   width: 250px;
   height: 100vh;
-  border-right: solid 1px #F1F1F1;
+  border-right: solid 1px #f1f1f1;
 `;
 
 const SidebarItem = styled.div`
-    display: flex;
-    padding: 15px;
-    align-items: baseline;
+  display: flex;
+  padding: 15px;
+  align-items: baseline;
 `;
 
-
+const ItemContainer = styled.div`
+  .label {
+    &-active {
+      color: ${(props) => props.theme.itemColor};
+    }
+  }
+  .icon {
+    &-active {
+      color: ${(props) => props.theme.itemColor};
+    }
+  }
+`;
 
 const Items = [
-    {
-        name: "Home",
-        route: '/',
-        needsAuth: false,
-        icon: faHome
-    },
-    {
-        name: "Favorites",
-        route: '/favorites',
-        needsAuth: true,
-        icon: faHeart
+  {
+    name: 'Home',
+    route: '/',
+    needsAuth: false,
+    icon: faHome,
+    active: true,
+  },
+  {
+    name: 'Favorites',
+    route: '/favorites',
+    needsAuth: true,
+    icon: faHeart,
+    active: false,
+  },
+];
+
+function Sidebar() {
+  const { authenticated } = useAuth();
+  const [items, setItems] = useState(Items);
+
+  const setActive = (value) => {
+    if (items) {
+      const newItem = [];
+      items.map((item) => {
+        newItem.push({
+          ...item,
+          active: item.name === value,
+        });
+      });
+      setItems(newItem);
     }
-]
+  };
 
-function Sidebar(props) {
-
-    const { authenticated } = useAuth();
-
-    return (
-        <>
-            <SidebarParent>
-                <Logo/>
-                <User/>
-                <div className="sidebar-items"> 
-                {
-                    Items.filter(item => !item.needsAuth || (item.needsAuth && authenticated) ).map((item, index)=> {
-                      
-                      return (
-                          <div key={item.name} className={`sidebar-item ${ index === 0 ? "active" : "" }`}>
-                                <Link to={item.route}> 
-                                    <SidebarItem >
-                                        <FontAwesomeIcon icon={ item.icon }/>
-                                        <span>{item.name}</span>
-                                    </SidebarItem>
-                                </Link>
-                            </div>
-                        );
-                    })
-                } </div>
-            </SidebarParent>
-        </>
-    );
+  return (
+    <>
+      <SidebarParent>
+        <Logo />
+        <User />
+        <div className="sidebar-items">
+          {items
+            .filter((item) => !item.needsAuth || (item.needsAuth && authenticated))
+            .map((item) => {
+              return (
+                <ItemContainer key={item.name} className={item.active ? 'active' : ''}>
+                  <Link to={item.route} onClick={() => setActive(item.name)}>
+                    <SidebarItem>
+                      <FontAwesomeIcon
+                        icon={item.icon}
+                        className={item.active ? ' icon icon-active' : 'icon'}
+                      />
+                      <span className={item.active ? ' label label-active' : 'label'}>
+                        {item.name}
+                      </span>
+                    </SidebarItem>
+                  </Link>
+                </ItemContainer>
+              );
+            })}
+        </div>
+      </SidebarParent>
+    </>
+  );
 }
 
 export default Sidebar;
