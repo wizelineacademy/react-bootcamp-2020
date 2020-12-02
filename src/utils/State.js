@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { saveToLocalStorage, loadFromLocalStorage } from './storage';
+import { SEARCH_VIDEO, APP_STATE } from './constants';
 
 const DarkTheme = {
     PrimaryColor: "black",
@@ -29,7 +30,8 @@ export const State = ({ children }) => {
     
     const [Theme, setTheme] = useState(PrimaryTheme);
     const [DarkMode, setDarkMode] = useState(false);
-    const [Sesion, setSesion] = useState(loadFromLocalStorage());
+    const [Sesion, setSesion] = useState(loadFromLocalStorage(APP_STATE));
+    const [SearchVideo, setSearchVideo] = useState(loadFromLocalStorage(SEARCH_VIDEO));
 
     useEffect(() => {
         if(DarkMode){
@@ -40,8 +42,12 @@ export const State = ({ children }) => {
     }, [DarkMode])
 
     useEffect(() => {
-        saveToLocalStorage(Sesion)
+        saveToLocalStorage(APP_STATE, Sesion)
     }, [Sesion])
+
+    useEffect(() => {
+        saveToLocalStorage(SEARCH_VIDEO, SearchVideo)
+    }, [SearchVideo])
 
     return (
         <StateContext.Provider 
@@ -50,7 +56,9 @@ export const State = ({ children }) => {
                 DarkMode,
                 setDarkMode,
                 Sesion,
-                setSesion
+                setSesion,
+                SearchVideo, 
+                setSearchVideo
             }}
         >
             { children }

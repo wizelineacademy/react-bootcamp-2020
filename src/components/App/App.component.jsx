@@ -5,18 +5,25 @@ import HomePage from '../../pages/Home';
 import Private from '../Private';
 import FavoritesPage from '../../pages/Favorites';
 import NotFound from '../../pages/NotFound';
-
+import Navbar from '../Navbar';
+import Player from '../../pages/Player';
 
 const App = () => {
 
   return (
     <BrowserRouter>
       <Layout>
+        <Navbar />
         <Switch>
           <Private 
             exact
             path="/favorites" 
             component={FavoritesPage} 
+          />
+          <Route 
+            exact
+            path="/player/:idVideo"
+            component={Player}
           />
           <Route path="/">
             <HomePage />

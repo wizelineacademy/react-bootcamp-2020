@@ -1,8 +1,6 @@
-const cacheItem = "AppState";
-
-export const loadFromLocalStorage = () => {
+export const loadFromLocalStorage = (key) => {
     try{
-        const serializedState = localStorage.getItem(cacheItem);
+        const serializedState = localStorage.getItem(key);
         if(!serializedState) return null
         return JSON.parse(serializedState)
     }
@@ -12,10 +10,10 @@ export const loadFromLocalStorage = () => {
     }
 }
 
-export const saveToLocalStorage = (state) => {
+export const saveToLocalStorage = (key, state) => {
     try{
         const serializedState = JSON.stringify(state);
-        localStorage.setItem(cacheItem, serializedState);
+        localStorage.setItem(key, serializedState);
     }
     catch(e){
         console.log(e);

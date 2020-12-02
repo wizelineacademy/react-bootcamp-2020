@@ -1,3 +1,4 @@
-const AUTH_STORAGE_KEY = 'wa_cert_authenticated';
+const APP_STATE = 'AppState';
+const SEARCH_VIDEO = 'SearchVideo';
 
-export { AUTH_STORAGE_KEY };
+export { APP_STATE, SEARCH_VIDEO };

@@ -7,10 +7,10 @@ import { useHistory, Route } from 'react-router';
 import Login from './Login'
 
 
-const Navbar = ({ onSearchVideo }) => {
+const Navbar = () => {
 
-    const { DarkMode, setDarkMode, Sesion, setSesion } = useContext(StateContext);
-    const [SearchVideo, setSearchVideo] = useState("")
+    const { DarkMode, setDarkMode, Sesion, setSesion, SearchVideo, setSearchVideo } = useContext(StateContext);
+    const [SearchVideoNav, setSearchVideoNav] = useState(SearchVideo)
     const history = useHistory();
 
     const onChangeSesion = () => {
@@ -27,10 +27,10 @@ const Navbar = ({ onSearchVideo }) => {
                 render={(props) => <Login {...props} /> } 
             />
             <InputStyled 
-                value={SearchVideo} 
-                onChange={({target: { value }}) => setSearchVideo(value)} 
+                value={SearchVideoNav}
+                onChange={({target: { value }}) => setSearchVideoNav(value)}
                 placeholder="Search..." 
-                onPressEnter={() => onSearchVideo(SearchVideo)}
+                onPressEnter={() => setSearchVideo(SearchVideoNav)}
             />
             <SwitchStyled 
                 checked={DarkMode} 

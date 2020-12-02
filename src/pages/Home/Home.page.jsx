@@ -1,43 +1,40 @@
 /* global gapi */
-import React, { useEffect, useState } from 'react';
-// import { useHistory } from 'react-router-dom';
-import Navbar from '../../components/Navbar';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import VideoItem from '../../components/VideoItem';
-
-// import { useAuth } from '../../providers/Auth';
 import { HomeContainer } from './Home.styled';
-// import './Home.styles.css';
+import { StateContext } from '../../utils/State';
+
 
 const HomePage = () => {
 
+  const { SearchVideo } = useContext(StateContext);
   const [VideoList, setVideoList] = useState([]);
-  // const history = useHistory();
-  // const { authenticated, logout } = useAuth();
+  const history = useHistory();
 
   useEffect(() => {
     gapi.client.setApiKey("AIzaSyDuNIHsx3MbUN3XHfHKgQ0f0FeatIsQtIk");
     gapi.client.load("youtube", "v3", () => {});
-  }, [])
-  
-  const onSearchVideo = (SearchVideo) => {
-    let request = gapi.client.youtube.search.list({
+
+    setTimeout(() => {
+      let request = gapi.client.youtube.search.list({
         part: "snippet",
         type: "video",
-        q: SearchVideo,
+        q: SearchVideo ? SearchVideo : " ",
         maxResults: 20,
         order: "ViewCount",
         publishedAfter: "2020-01-01T00:00:00Z"
-    });
-    request.execute((response) => {
-      const { result: { items } } = response;
-        setVideoList(items);
-        console.log(items);
-    })
-  }
+      });
+      request.execute((response) => {
+        const { result: { items } } = response;
+          setVideoList(items);
+          console.log(items);
+      })
+    }, 2000);
+  }, [SearchVideo])
 
   return (
     <div>
-      <Navbar onSearchVideo={(value) => onSearchVideo(value)} />
       <HomeContainer>
         {
           (VideoList) && (
@@ -45,7 +42,8 @@ const HomePage = () => {
               <VideoItem 
                 key={video.etag} 
                 videoInfo={video.snippet} 
-                video={video.id} 
+                videoID={video.id} 
+                viewVideo={(id) => history.push(`/player/${id}`) }
               />
             )
           )

@@ -1,9 +1,12 @@
 import React from 'react';
 import { CardVideo, Description, Img, InfoContainer, Title } from './VideoItem.styled';
 
-const VideoItem = ({ videoInfo: { title, description }, video: { videoId } }) => {
+const VideoItem = ({ videoInfo: { title, description }, videoID: { videoId }, viewVideo }) => {
+
     return (
-        <CardVideo>
+        <CardVideo 
+            onClick={() => viewVideo(videoId)}
+        >
             <Img background={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`} />
             <InfoContainer>
                 <Title>
