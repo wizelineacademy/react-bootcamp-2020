@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
-import { Button, Col, Row, Spin } from 'antd';
+import { Col, Row, Spin } from 'antd';
 import { useParams } from 'react-router';
-import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { useSearch } from '../../providers/Search/Search.provider';
 import { useFavorites } from '../../providers/Favorites/Favorites.provider';
 import { getVideo } from '../../utils/services/youtube';
 import { useAuth } from '../../providers/Auth';
 import VideoRow from '../../components/VideoRow/VideoRow.component';
-import './VideoDetail.css';
 import useFetchVideos from '../../utils/hooks/useFetchVideos';
+import FavoriteButton from '../../components/FavoriteButton/FavoriteButton.component';
+import './VideoDetail.css';
 
 function VideoDetail() {
   const { searchTerm } = useSearch();
@@ -52,6 +52,13 @@ function VideoDetail() {
     addToFavorites(newFavorites);
   };
 
+  const handleClick = () => {
+    if (isFavorite) {
+      return remove(dataVideo);
+    }
+    return add(dataVideo);
+  };
+
   return (
     <section className="full-width">
       <Row className="detail-container">
@@ -85,31 +92,7 @@ function VideoDetail() {
             </Col>
             {authenticated ? (
               <Col span={6} className="textRight">
-                {isFavorite ? (
-                  <Button
-                    type="dashed"
-                    shape="round"
-                    icon={<MinusCircleOutlined />}
-                    size="large"
-                    onClick={() =>
-                      Object.keys(dataVideo).length > 0 ? remove(dataVideo) : null
-                    }
-                  >
-                    Remove to Favorites
-                  </Button>
-                ) : (
-                  <Button
-                    type="primary"
-                    shape="round"
-                    icon={<PlusCircleOutlined />}
-                    size="large"
-                    onClick={() =>
-                      Object.keys(dataVideo).length > 0 ? add(dataVideo) : null
-                    }
-                  >
-                    Add to Favorites
-                  </Button>
-                )}
+                <FavoriteButton isFavorite={isFavorite} handleClick={handleClick} />
               </Col>
             ) : null}
           </Row>
