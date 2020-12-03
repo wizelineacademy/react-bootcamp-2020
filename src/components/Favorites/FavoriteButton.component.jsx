@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Button from 'react-bootstrap/Button';
+
 // @todo fix label not rerendering when parent component changes
 export default function FavoriteButton(props) {
   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -22,8 +24,8 @@ export default function FavoriteButton(props) {
   }
 
   return (
-    <button type="button" onClick={handleClick}>
+    <Button type="button" onClick={handleClick}>
       {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-    </button>
+    </Button>
   );
 }

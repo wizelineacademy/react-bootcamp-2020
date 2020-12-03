@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
 
-import './Home.styles.css';
-
 import YouTubeSearchList from '../../components/YouTube/YouTubeSearchList.component';
 
 function HomePage() {

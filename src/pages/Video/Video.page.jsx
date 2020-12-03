@@ -1,5 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import YouTubeVideoArticle from '../../components/YouTube/YouTubeVideoArticle.component';
 import YouTubeRelatedList from '../../components/YouTube/YouTubeRelatedList.component';
 
@@ -8,12 +12,18 @@ export default function VideoPage() {
 
   return (
     <section className="videopage">
-      <article>
-        <YouTubeVideoArticle id={id} />
-      </article>
-      <aside>
-        <YouTubeRelatedList id={id} />
-      </aside>
+      <Row>
+        <Col>
+          <article>
+            <YouTubeVideoArticle id={id} />
+          </article>
+        </Col>
+        <Col className="col-lg-3">
+          <aside>
+            <YouTubeRelatedList id={id} />
+          </aside>
+        </Col>
+      </Row>
     </section>
   );
 }

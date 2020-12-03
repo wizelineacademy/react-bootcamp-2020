@@ -1,13 +1,18 @@
 import React from 'react';
-import Navbar from '../Nav/Navbar.component';
+
+import Container from 'react-bootstrap/Container';
+
+import Navigation from '../Navigation/Navigation.component';
 
 export default function Layout({ children }) {
   return (
-    <>
+    <Container fluid>
       <header>
-        <Navbar />
+        <Navigation />
       </header>
-      <main className="main">{children}</main>
-    </>
+      <main className="main" role="main">
+        {children}
+      </main>
+    </Container>
   );
 }
