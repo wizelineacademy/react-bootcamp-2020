@@ -7,6 +7,7 @@ import LocalThemeProvider from '../../providers/Theme';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import FavoritesPage from '../../pages/Favorites';
+import FavoritesPlayerPage from '../../pages/FavoritesPlayer';
 import PlayerPage from '../../pages/Player';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
@@ -39,6 +40,11 @@ function App() {
                   exact
                   path="/player/:id"
                   render={({ match }) => <PlayerPage id={match} />}
+                />
+                <Route
+                  exact
+                  path="/favorites/:id"
+                  render={({ match }) => <FavoritesPlayerPage id={match} />}
                 />
                 <Route path="*">
                   <NotFound />

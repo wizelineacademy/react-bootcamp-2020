@@ -18,6 +18,17 @@ function getFavoritesVideos() {
   return savedFavorites ? savedFavorites.favoriteVideos : [];
 }
 
+function isFavoriteVideo(video) {
+  const savedFavorites = storage.get(USER_PREFERENCES);
+
+  const found = savedFavorites.favoriteVideos.find((actualVideo) => {
+    return actualVideo.videoId === video.videoId;
+  });
+
+  const result = !!found;
+  return result;
+}
+
 function removeFromFavorites(video) {
   const savedFavorites = storage.get(USER_PREFERENCES);
 
@@ -28,7 +39,7 @@ function removeFromFavorites(video) {
   storage.set(USER_PREFERENCES, savedFavorites);
 }
 
-export { addToFavorites, removeFromFavorites, getFavoritesVideos };
+export { addToFavorites, removeFromFavorites, getFavoritesVideos, isFavoriteVideo };
 
 // {"favoriteVideos":
 

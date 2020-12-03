@@ -16,11 +16,11 @@ const FavoritesPageContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 5px;
-  padding-left: 3px;
+  min-height: 91vh;
   text-align: center;
-  height: 100%;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 function FavoritesPage() {
@@ -36,7 +36,7 @@ function FavoritesPage() {
         welcome, to your favorites
         <Link to="/"> ← go back</Link>
       </H1>
-      <CardList videos={favorites} />
+      <CardList videos={favorites} isFavorit />
     </FavoritesPageContainer>
   );
 }

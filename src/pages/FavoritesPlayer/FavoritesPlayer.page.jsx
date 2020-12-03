@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Rowlist from '../../components/Rowlist/RowList.component';
 import Player from '../../components/Player/Player.component';
-// import { VideoContext } from '../../providers/Video';
+import Rowlist from '../../components/Rowlist/RowList.component';
 
 const PlayerPageContainer = styled.div`
   display: flex;
@@ -18,9 +17,7 @@ const RowlistContainer = styled.div`
   padding: 3px;
 `;
 
-function PlayerPage(props) {
-  // const { setCurrentVideo, videos, currentVideo } = useContext(VideoContext);
-
+function FavoritesPlayer(props) {
   return (
     <PlayerPageContainer>
       <Player id={props.id.params.id} />
@@ -31,4 +28,4 @@ function PlayerPage(props) {
   );
 }
 
-export default PlayerPage;
+export default FavoritesPlayer;

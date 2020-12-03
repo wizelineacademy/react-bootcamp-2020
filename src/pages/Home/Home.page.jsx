@@ -43,7 +43,7 @@ function HomePage() {
       ) : (
         <> </>
       )}
-      <CardList videos={videos} />
+      <CardList videos={videos} isFavorit={false} />
     </HomePageContainer>
   );
 }
