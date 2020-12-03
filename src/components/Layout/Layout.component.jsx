@@ -3,7 +3,7 @@ import React from 'react';
 import './Layout.styles.css';
 
 function Layout({ children }) {
-  return <main className="container">{children}</main>;
+  return <div className="wrapper">{children}</div>;
 }
 
 export default Layout;

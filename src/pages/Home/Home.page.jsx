@@ -1,3 +1,4 @@
+/* 
 import React, { useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -33,6 +34,28 @@ function HomePage() {
         <Link to="/login">let me in →</Link>
       )}
     </section>
+  );
+}
+
+export default HomePage;
+*/
+import React from 'react';
+import Layout from '../../components/Layout/Layout.component';
+import Logo from '../../components/Logo/Logo.component';
+import SearchBar from '../../components/SearchBar/SearchBar.component';
+import SuggestedSearches from '../../components/SuggestedSearches/SuggestedSearches.component';
+
+import './Home.styles.css';
+
+function HomePage() {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  return (
+    <Layout>
+      <Logo />
+      <SearchBar initSearchQuery={searchQuery} onChange={setSearchQuery} />
+      <SuggestedSearches />
+    </Layout>
   );
 }
 
