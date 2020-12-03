@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "YouTube explorer",
+  "name": "A small app to search for videos hosted on YouTube",
   "icons": [
     {
       "src": "favicon.ico",
