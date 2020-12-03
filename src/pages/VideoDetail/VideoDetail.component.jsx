@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Alert, Button, Col, Row } from 'antd';
+import { Button, Col, Row, Spin } from 'antd';
 import { useParams } from 'react-router';
 import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { useSearch } from '../../providers/Search/Search.provider';
@@ -15,7 +15,6 @@ function VideoDetail() {
   const { addToFavorites, favorites } = useFavorites();
   const { authenticated } = useAuth();
   const [dataVideo, setDataVideo] = useState({});
-  const [loadingButton, setLoadingButton] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [videos, setVideos] = useState([]);
   const { videoId } = useParams();
@@ -49,12 +48,10 @@ function VideoDetail() {
       } else {
         setIsFavorite(false);
       }
-      setLoadingButton(false);
     }
   }, [favorites, dataVideo]);
 
   const add = (video) => {
-    setLoadingButton(true);
     if (!favorites.some((item) => item.id === video.id)) {
       const newFavorites = [...favorites, video];
       addToFavorites(newFavorites);
@@ -108,7 +105,6 @@ function VideoDetail() {
                     onClick={() =>
                       Object.keys(dataVideo).length > 0 ? remove(dataVideo) : null
                     }
-                    loading={loadingButton}
                   >
                     Remove to Favorites
                   </Button>
@@ -121,7 +117,6 @@ function VideoDetail() {
                     onClick={() =>
                       Object.keys(dataVideo).length > 0 ? add(dataVideo) : null
                     }
-                    loading={loadingButton}
                   >
                     Add to Favorites
                   </Button>
@@ -137,13 +132,9 @@ function VideoDetail() {
               return <VideoRow data={snippet} id={id.videoId} key={id.videoId} />;
             })
           ) : (
-            <Alert
-              message="Warning"
-              description="There are not related videos."
-              type="warning"
-              showIcon
-              closable
-            />
+            <div className="textCenter py20">
+              <Spin size="large" />
+            </div>
           )}
         </Col>
       </Row>

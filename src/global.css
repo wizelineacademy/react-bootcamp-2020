@@ -14,12 +14,26 @@
   text-align: right;
 }
 
+.textCenter {
+  text-align: center !important;
+}
+
+.py20 {
+  padding: 20px 0;
+}
+
 .px15 {
   padding: 0 15px;
 }
 
 .my10 {
   margin: 10px 0;
+}
+
+.no-results-container {
+  width: 100%;
+  text-align: left;
+  padding: 5rem 0
 }
 
 /* Small devices (landscape phones, 576px and up) */

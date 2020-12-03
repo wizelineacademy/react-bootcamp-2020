@@ -28,30 +28,30 @@ function HomePage() {
       <h1>Challenge</h1>
 
       {isLoading ? (
-        <div style={{ width: '100%', textAlign: 'center', padding: '5rem 0' }}>
+        <div className=" textCenter no-results-container">
           <Spin size="large" />
         </div>
       ) : (
           <>
-          {videos.length > 0 ? (
-            <div className="grid-layout">
-              {
-                videos.map((item) => {
-                  const { snippet, id } = item;
-                  return <VideoCard data={snippet} id={id.videoId} key={id.videoId}/>;
-                })
-              }
-            </div>
-          ) : (
-            <div style={{ width: '100%', textAlign: 'center', padding: '5rem 0' }}>
-              <Alert
-                message="Warning"
-                description="There are not videos for this term."
-                type="warning"
-                showIcon
-                closable
-              />
-            </div>
+          {videos.length > 0
+            ? ( <div className="grid-layout">
+                {
+                  videos.map((item) => {
+                    const { snippet, id } = item;
+                    return <VideoCard data={snippet} id={id.videoId} key={id.videoId}/>;
+                  })
+                }
+              </div>)
+            : (
+              <div className="no-results-container">
+                <Alert
+                  message="Warning"
+                  description="There are not videos for this term."
+                  type="warning"
+                  showIcon
+                  closable
+                />
+              </div>
           )}
         </>
       )}

@@ -16,7 +16,7 @@ function FavoritePage() {
           })}
         </div>
       ) : (
-        <div style={{ width: '100%', textAlign: 'center', padding: '5rem 0' }}>
+        <div className="no-results-container">
           <Alert
             message="Warning"
             description="You haven't added any video to your favorites yet."
