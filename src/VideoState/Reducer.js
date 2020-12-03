@@ -5,6 +5,7 @@ export const initialState = {
   loading: false,
   videos: [],
   currentVideo: {},
+  favorites: [],
 };
 
 export function reducer(state, action) {
@@ -33,6 +34,16 @@ export function reducer(state, action) {
       return {
         ...state,
         currentVideo: payload.currentVideo,
+      };
+    case ACTIONS.ADD_FAVORITES:
+      return {
+        ...state,
+        favorites: payload.favorites,
+      };
+    case ACTIONS.REMOVE_FAVORITES:
+      return {
+        ...state,
+        favorites: payload.favorites,
       };
     default:
       return {

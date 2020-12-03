@@ -1,8 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import VideoItem from '../../components/VideoItem';
+import { useAuth } from '../../providers/Auth';
+import VideoListItem from '../../components/VideoListItem';
 import { useVideoContext } from '../../VideoState/Provider';
 
 import './Details.styles.css';
@@ -16,13 +19,20 @@ const ItemContainer = styled.div`
 
 const VideoContainer = styled.div`
   width: 70%;
-  background-color: red;
+  background-color: ${(props) => props.theme.body};
+  border: 1px solid ${(props) => props.theme.divider};
+  height: 500px;
+  border-radius: 5px;
 `;
 
 const ListContainer = styled.div`
   width: 30%;
-  background-color: blue;
   padding: 0px 16px 0px 16px;
+`;
+
+const DetailsContainer = styled.div`
+  padding: 10px;
+  line-height: 15px;
 `;
 
 const ItemTitle = styled.h1`
@@ -41,27 +51,61 @@ const ItemDescription = styled.span`
   line-height: 10px;
 `;
 
-function DetailsPage() {
-  const [current, setCurrent] = useState({});
-  const [list, setList] = useState([]);
+const Button = styled.button`
+  background: ${(props) => props.theme.itemColor};
+  border-radius: 3px;
+  border: 2px solid ${(props) => props.theme.itemColor};
+  font-family: Lato;
+  color: white;
+  margin: 0.5em 1em;
+  padding: 0.5em 1em;
+  float: right;
+`;
 
-  const { videos, currentVideo, setCurrentVideo } = useVideoContext();
+function DetailsPage() {
+  const {
+    videos,
+    currentVideo,
+    setCurrentVideo,
+    setFavorites,
+    favorites,
+    removeFavorites,
+  } = useVideoContext();
+
+  const [current, setCurrent] = useState({});
+
+  const [list, setList] = useState([]);
   const { id } = useParams();
+  const { authenticated } = useAuth();
 
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    setCurrentVideo(id, videos);
+    setCurrentVideo(id);
   }, [videos]);
 
   useEffect(() => {
     if (currentVideo) {
       setCurrent(currentVideo[0]);
-      const currentId = current && current.id;
-      const filterVideo = videos.filter((item) => item.id !== currentId);
+      const filterVideo = videos
+        .concat(favorites)
+        .filter((item, index, self) => index === self.findIndex((t) => t.id === item.id));
       setList(filterVideo);
     }
   }, [currentVideo, current]);
+
+  const handleClick = (ids) => {
+    setCurrentVideo(ids);
+    window.scrollTo(0, 0);
+  };
+
+  const handleFavorites = () => {
+    if (favorites && favorites.findIndex((item) => item.id === current.id) === -1) {
+      setFavorites(current);
+    } else {
+      removeFavorites(current);
+    }
+  };
 
   return (
     <section className="details-page" ref={sectionRef}>
@@ -70,24 +114,36 @@ function DetailsPage() {
           {current && (
             <>
               <ReactPlayer url={current.url} width="100%" />
-              <ItemTitle> {current.title} </ItemTitle>
-              <ItemAuthor> By {current.author} </ItemAuthor>
-              <ItemDescription> {current.description} </ItemDescription>
+              <DetailsContainer>
+                {authenticated && (
+                  <Button onClick={() => handleFavorites()}>
+                    <FontAwesomeIcon icon={faHeart} />
+                    {favorites &&
+                    favorites.findIndex((item) => item.id === current.id) >= 0
+                      ? ' Remove '
+                      : ' Add '}
+                    to Favorites
+                  </Button>
+                )}
+                <ItemTitle> {current.title} </ItemTitle>
+                <ItemAuthor> By {current.author} </ItemAuthor>
+                <ItemDescription> {current.description} </ItemDescription>
+              </DetailsContainer>
             </>
           )}
         </VideoContainer>
         <ListContainer>
-          {list
-            .map((item) => (
-              <VideoItem
-                key={item.id}
-                title={item.title}
-                img={item.img}
-                author={item.author}
-                description={item.description || 'No description.'}
-                id={item.id}
-              />
-            ))}
+          {list.map((item) => (
+            <VideoListItem
+              key={item.id}
+              title={item.title}
+              img={item.img}
+              author={item.author}
+              description={item.description || 'No description.'}
+              id={item.id}
+              onClick={handleClick}
+            />
+          ))}
         </ListContainer>
       </ItemContainer>
     </section>

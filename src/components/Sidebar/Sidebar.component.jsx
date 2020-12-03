@@ -11,7 +11,9 @@ import './Sidebar.styles.css';
 const SidebarParent = styled.div`
   width: 250px;
   height: 100vh;
-  border-right: solid 1px #f1f1f1;
+  .active {
+    background-color: ${(props) => props.theme.backgroundItem};
+  }
 `;
 
 const SidebarItem = styled.div`

@@ -1,5 +1,5 @@
-import React from "react";
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -14,11 +14,11 @@ const ItemContainer = styled.div`
 `;
 
 const Container = styled.div`
-  border: 1px solid #ccc;
+  border: 1px solid ${(props) => props.theme.divider};
   width: 100%;
   height: 100%;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.body};
 `;
 
 const ImagePreview = styled.div`
@@ -45,12 +45,13 @@ const ItemTitle = styled.h1`
 const ItemAuthor = styled.h2`
   font-size: 12px;
   font-weight: bold;
-  line-height: 10px;
+  line-height: 0px;
   color: #afafaf;
 `;
 
 const ItemDescription = styled.span`
   font-size: 14px;
+  line-height: 12px;
 `;
 
 const DescriptionContainer = styled.p`

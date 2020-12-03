@@ -38,11 +38,30 @@ const VideoProvider = ({ children }) => {
       return null;
     }
   };
-  const setCurrentVideo = (dptch) => async (id, videoList) => {
-
-    const currentVideo = videoList.filter((item) => item.id === id);
-    console.log(currentVideo);
+  const setCurrentVideo = (dptch, states) => async (id) => {
+    const { favorites, videos } = states;
+    const currentVideo = videos.concat(favorites).filter((item) => item.id === id);
     dptch({ type: ACTIONS.CURRENT_VIDEO, payload: { currentVideo } });
+  };
+
+  const setFavorites = (dptch, states) => async (video) => {
+    console.log(video);
+    const { favorites } = states;
+    const index = favorites.findIndex((item) => item.id === video.id);
+    if (index === -1) {
+      favorites.push(video);
+    }
+    dptch({ type: ACTIONS.SET_FAVORITES, payload: { favorites } });
+  };
+
+  const removeFavorites = (dptch, states) => async (video) => {
+    console.log(video);
+    const { favorites } = states;
+    const index = favorites.findIndex((item) => item.id === video.id);
+    if (index >= 0) {
+      favorites.splice(index, 1);
+    }
+    dptch({ type: ACTIONS.REMOVE_FAVORITES, payload: { favorites } });
   };
 
   const value = {
@@ -51,7 +70,10 @@ const VideoProvider = ({ children }) => {
     videos: state.videos,
     fetchVideos: fetchVideos(dispatch),
     currentVideo: state.currentVideo,
-    setCurrentVideo: setCurrentVideo(dispatch),
+    setCurrentVideo: setCurrentVideo(dispatch, state),
+    setFavorites: setFavorites(dispatch, state),
+    removeFavorites: removeFavorites(dispatch, state),
+    favorites: state.favorites,
   };
 
   return <VideoContext.Provider value={value}>{children}</VideoContext.Provider>;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useVideoContext } from '../../VideoState/Provider';
@@ -33,6 +34,7 @@ const InputSearch = styled.input`
 
 function NavBar() {
   const [search, setSearch] = useState('Wizeline');
+  const history = useHistory();
   const { fetchVideos } = useVideoContext();
 
   function onChange(e) {
@@ -41,6 +43,7 @@ function NavBar() {
   function onkeyDown(e) {
     if (e.key === 'Enter') {
       fetchVideos(search);
+      history.push('/');
     }
   }
   useEffect(() => {
@@ -60,7 +63,7 @@ function NavBar() {
             value={search}
           />
         </SearchBar>
-        <ThemeToggle/>
+        <ThemeToggle />
       </NavBarParent>
     </>
   );

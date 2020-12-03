@@ -11,6 +11,7 @@ const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.background};
+  border-left: solid 1px #f1f1f1;
 `;
 
 function Layout({ children }) {

@@ -3,17 +3,19 @@ import { ACTIONS } from './Actions';
 export const lightTheme = {
   body: '#FFF',
   text: '#363537',
-  toggleBorder: '#FFF',
   background: '#FAFAFA',
   itemColor: '#18A67B',
+  divider: '#CCC',
+  backgroundItem: '#E6F5F2',
 };
 
 export const darkTheme = {
-  body: '#363537',
+  body: '#1C1C1C',
   text: '#FAFAFA',
-  toggleBorder: '#6B8096',
-  background: '#363537',
-  itemsColor: '#AFAFAF',
+  background: '#151515',
+  itemColor: '#AFAFAF',
+  divider: '#1C1C1C',
+  backgroundItem: '#444345',
 };
 
 export const initialState = {

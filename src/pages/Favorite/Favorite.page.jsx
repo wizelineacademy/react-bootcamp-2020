@@ -1,5 +1,8 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
+import VideoItem from '../../components/VideoItem';
+import { useVideoContext } from '../../VideoState/Provider';
+
 import './Favorite.styles.css';
 
 const ItemContainer = styled.div`
@@ -10,17 +13,28 @@ const ItemContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-function FavoritePage() {
+function FavoritesPage() {
+  const { favorites } = useVideoContext();
+
   const sectionRef = useRef(null);
 
   return (
     <section className="favorite" ref={sectionRef}>
-      <h1>My favorites</h1>
+      <h1>My Favorites</h1>
       <ItemContainer>
-        <div>hola</div>
+        {favorites.map((item) => (
+          <VideoItem
+            key={item.id}
+            title={item.title}
+            img={item.img}
+            author={item.author}
+            description={item.description || 'No description.'}
+            id={item.id}
+          />
+        ))}
       </ItemContainer>
     </section>
   );
 }
 
-export default FavoritePage;
+export default FavoritesPage;
