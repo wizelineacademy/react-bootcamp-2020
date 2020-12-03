@@ -5,31 +5,20 @@ import { useParams } from 'react-router';
 import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { useSearch } from '../../providers/Search/Search.provider';
 import { useFavorites } from '../../providers/Favorites/Favorites.provider';
-import { getVideos, getVideo } from '../../utils/services/youtube';
+import { getVideo } from '../../utils/services/youtube';
 import { useAuth } from '../../providers/Auth';
 import VideoRow from '../../components/VideoRow/VideoRow.component';
 import './VideoDetail.css';
+import useFetchVideos from '../../utils/hooks/useFetchVideos';
 
 function VideoDetail() {
   const { searchTerm } = useSearch();
+  const { videos } = useFetchVideos(searchTerm);
   const { addToFavorites, favorites } = useFavorites();
   const { authenticated } = useAuth();
   const [dataVideo, setDataVideo] = useState({});
   const [isFavorite, setIsFavorite] = useState(false);
-  const [videos, setVideos] = useState([]);
   const { videoId } = useParams();
-
-  useEffect(() => {
-    if (searchTerm) {
-      getVideos(searchTerm).then((data) => {
-        const finalData = data.items.filter((item) => {
-          const { id } = item;
-          return id.kind !== 'youtube#channel';
-        });
-        setVideos(finalData);
-      });
-    }
-  }, [searchTerm]);
 
   useEffect(() => {
     if (videoId) {
