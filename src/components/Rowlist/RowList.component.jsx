@@ -10,8 +10,7 @@ const StyledRowList = styled.div`
   flex-direction: column;
 `;
 
-function RowList() {
-  const { videos } = useContext(VideoContext);
+function RowList({ videos, isFavorit }) {
   const { setCurrentVideo } = useContext(VideoContext);
 
   function handleClickOnRow(video) {
@@ -26,6 +25,7 @@ function RowList() {
           title={video.title}
           imageUrl={video.imageUrl}
           onClick={() => handleClickOnRow(video)}
+          isFavorit={isFavorit}
         />
       ))}
     </StyledRowList>

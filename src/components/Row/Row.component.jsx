@@ -24,14 +24,14 @@ const RowTitle = styled.h3`
   color: ${(props) => props.theme.textcolor};
 `;
 
-function Row({ videoId, title, imageUrl, onClick }) {
+function Row({ videoId, title, imageUrl, onClick, isFavorit }) {
   return (
     <RowDiv
       onClick={() => {
         onClick();
       }}
     >
-      <Link to={`/player/${videoId}`}>
+      <Link to={isFavorit ? `/favorites/${videoId}` : `/player/${videoId}`}>
         <RowContent>
           <RowImg src={imageUrl} alt={imageUrl} />
           <RowTitle>{title}</RowTitle>

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import styled from 'styled-components';
 import Rowlist from '../../components/Rowlist/RowList.component';
 import Player from '../../components/Player/Player.component';
-// import { VideoContext } from '../../providers/Video';
+import { VideoContext } from '../../providers/Video';
 
 const PlayerPageContainer = styled.div`
   display: flex;
@@ -19,13 +20,13 @@ const RowlistContainer = styled.div`
 `;
 
 function PlayerPage(props) {
-  // const { setCurrentVideo, videos, currentVideo } = useContext(VideoContext);
+  const { videos } = useContext(VideoContext);
 
   return (
     <PlayerPageContainer>
       <Player id={props.id.params.id} />
       <RowlistContainer>
-        <Rowlist />
+        <Rowlist videos={videos} isFavorit={false} />
       </RowlistContainer>
     </PlayerPageContainer>
   );
