@@ -8,10 +8,9 @@ import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
 import Container from './App.styled';
 import NavBar from '../NavBar';
+import Private from '../Private/Private.component';
 
 function App() {
-  // const API_KEY = process.env.REACT_APP_API_KEY;
-
   return (
     <AuthProvider>
       <BrowserRouter>
@@ -20,6 +19,9 @@ function App() {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/login" component={LoginPage} />
+            <Private>
+              <Route path="/secret" component={SecretPage} />
+            </Private>
             <Route path="*" component={NotFound} />
           </Switch>
         </Container>

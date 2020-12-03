@@ -1,25 +1,42 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 
-const API_URL = 'http://fortunecookieapi.herokuapp.com/v1/fortunes?limit=10';
+const API_URL =
+  'https://youtube.googleapis.com/youtube/v3/search?key=AIzaSyB-e-DiiSf7jlGCcmMPCzSRkDkKt0yP8Z4&part=snippet&q=blackpink&maxResults=20';
 
 function useYoutubeAPI() {
-  const [response, setResponse] = React.useState(null);
-  const [error, setError] = React.useState(null);
+  const [videoItems, setVideoItems] = useState(null);
 
   useEffect(() => {
-    async function fetchVideos() {
-      try {
-        const response = await fetch(API_URL);
-        const fortuneCookies = await response.json();
-        setResponse(json);
-      } catch (error) {
-        setError(error);
-      }
+    function start() {
+      window.gapi.client
+        .init({
+          apiKey: process.env.REACT_APP_API_KEY,
+          // clientId and scope are optional if auth is not required.
+          // 'clientId': 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com',
+          // 'scope': 'profile',
+        })
+        .then(function () {
+          // 3. Initialize and make the API request.
+          return window.gapi.client.request({
+            path: API_URL,
+          });
+        })
+        .then(
+          function (response) {
+            console.log(response.result);
+            setVideoItems(response.result.items);
+          },
+          function (reason) {
+            console.log('Error: ' + reason.result.error.message);
+          }
+        );
     }
 
-    fetchVideos();
+    window.gapi.load('client', start);
   }, []);
-  return { response, error };
+
+  return { videoItems };
 }
 
 export { useYoutubeAPI };
