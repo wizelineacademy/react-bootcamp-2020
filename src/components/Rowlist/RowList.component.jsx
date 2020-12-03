@@ -21,6 +21,7 @@ function RowList() {
     <StyledRowList>
       {videos.map((video) => (
         <Row
+          key={video.videoId}
           videoId={video.videoId}
           title={video.title}
           imageUrl={video.imageUrl}

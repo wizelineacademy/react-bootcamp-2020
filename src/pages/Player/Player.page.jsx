@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 import Rowlist from '../../components/Rowlist/RowList.component';
@@ -18,15 +18,13 @@ const PlayerContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-top:3px
-
+  padding-top: 3px;
 `;
 
 const RowlistContainer = styled.div`
   width: 30%;
-  height: 100%; 
-  padding:3px
-
+  height: 100%;
+  padding: 3px;
 `;
 
 const TextDescription = styled.p`
@@ -34,7 +32,15 @@ const TextDescription = styled.p`
 `;
 
 function PlayerPage(props) {
-  const { currentVideo } = useContext(VideoContext);
+  const { setCurrentVideo, videos, currentVideo } = useContext(VideoContext);
+
+  useEffect(() => {
+    if (videos !== undefined) {
+      const videoId = props.id.params.id;
+      const video = videos.find((video) => video.videoId === videoId);
+      if (video !== undefined) setCurrentVideo(video);
+    }
+  }, [videos]);
 
   const url = `https://www.youtube.com/embed/${props.id.params.id}`;
   return (
