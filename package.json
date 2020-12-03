@@ -40,8 +40,7 @@
     "postcss": "^7",
     "postcss-cli": "^8.3.0",
     "prettier": "^2.1.1",
-    "pretty-quick": "^3.0.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "pretty-quick": "^3.0.0"
   },
   "browserslist": {
     "production": [

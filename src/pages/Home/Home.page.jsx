@@ -32,23 +32,28 @@ function HomePage() {
           <Spin size="large" />
         </div>
       ) : (
-        <div className="grid-layout">
-          {' '}
-          {videos.length > 1 ? (
-            videos.map((item) => {
-              const { snippet, id } = item;
-              return <VideoCard data={snippet} id={id.videoId} key={id.videoId} />;
-            })
+          <>
+          {videos.length > 0 ? (
+            <div className="grid-layout">
+              {
+                videos.map((item) => {
+                  const { snippet, id } = item;
+                  return <VideoCard data={snippet} id={id.videoId} key={id.videoId}/>;
+                })
+              }
+            </div>
           ) : (
-            <Alert
-              message="Warning"
-              description="There are not videos for this term."
-              type="warning"
-              showIcon
-              closable
-            />
+            <div style={{ width: '100%', textAlign: 'center', padding: '5rem 0' }}>
+              <Alert
+                message="Warning"
+                description="There are not videos for this term."
+                type="warning"
+                showIcon
+                closable
+              />
+            </div>
           )}
-        </div>
+        </>
       )}
     </section>
   );

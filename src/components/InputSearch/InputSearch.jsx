@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
+import { useLocation, useHistory } from 'react-router-dom';
 import { SearchOutlined } from '@ant-design/icons';
 import { useSearch } from '../../providers/Search/Search.provider';
 
 function InputSearch() {
+  const location = useLocation();
+  const history = useHistory();
   const [term, setTerm] = useState(null);
   const { triggerSearchTerm, searchTerm } = useSearch();
 
@@ -15,6 +18,10 @@ function InputSearch() {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       triggerSearchTerm(term);
+
+      if (location.pathname !== '/') {
+        history.push('/');
+      }
     }
   };
 
