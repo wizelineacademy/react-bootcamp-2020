@@ -12,15 +12,15 @@ function VideoProvider({ children }) {
   const stateRef = useRef();
   stateRef.current = searchTerm;
 
-  const fetchVideos = useCallback(() => {
-    const fetchedVideos = fetchYoutubeVideos(stateRef.current);
+  const fetchVideos = useCallback(async () => {
+    const fetchedVideos = await fetchYoutubeVideos(stateRef.current);
 
     setVideos(fetchedVideos);
   }, []);
 
-  useEffect(() => {
+  useEffect(async () => {
     setSearchTerm('Wizeline');
-    const fetchedVideos = fetchYoutubeVideos('Wizeline');
+    const fetchedVideos = await fetchYoutubeVideos('Wizeline');
     setVideos(fetchedVideos);
     setCurrentVideo({});
   }, []);

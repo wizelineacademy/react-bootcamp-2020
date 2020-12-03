@@ -1,5 +1,7 @@
 import { data } from './mockdata';
 
+// const key = 'put the key here';
+
 const mapVideos = (videosFromService) => {
   const mapped = videosFromService.items
     .filter((item) => item.id.kind === 'youtube#video')
@@ -14,36 +16,12 @@ const mapVideos = (videosFromService) => {
   return mapped;
 };
 
-const fetchYoutubeVideos = (searchTerm) => {
-  console.log(`fetching ${searchTerm}`);
+const fetchYoutubeVideos = async (searchTerm) => {
+  console.log(searchTerm);
+  // const response = await fetch(`https://content-youtube.googleapis.com/youtube/v3/search?part=id&part=snippet&maxResults=25&q=${searchTerm}&key=${key}`);
+  // const data = await response.json();
+
   return mapVideos(data);
 };
-
-// const useFetch = (uri, searchTerm) => {
-//   const [fetchedVideos, setFetchedVideos] = useState([]);
-//   const [loading, setLoading] = useState(false);
-
-//   useEffect(() => {
-//     const fetchVideos = async () => {
-//       try {
-//         setLoading(true);
-//         // const response = await fetch(uri);
-//         // const data = await response.json();
-
-//         // setFetchedVideos(data.results);
-//         const found = videosMock.filter((x) => x.searchTerm === searchTerm);
-//         setFetchedVideos(found);
-
-//         setLoading(false);
-//       } catch (e) {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchVideos();
-//   }, [searchTerm]);
-
-//   return { fetchedVideos, loading };
-// };
 
 export default fetchYoutubeVideos;
