@@ -1,37 +1,14 @@
-/* global gapi */
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import VideoItem from '../../components/VideoItem';
 import { HomeContainer } from './Home.styled';
-import { StateContext } from '../../utils/State';
+import { useFetch } from '../../utils/hooks/useFetch';
 
 
 const HomePage = () => {
 
-  const { SearchVideo } = useContext(StateContext);
-  const [VideoList, setVideoList] = useState([]);
+  const { VideoList } = useFetch();
   const history = useHistory();
-
-  useEffect(() => {
-    gapi.client.setApiKey("AIzaSyDuNIHsx3MbUN3XHfHKgQ0f0FeatIsQtIk");
-    gapi.client.load("youtube", "v3", () => {});
-
-    setTimeout(() => {
-      let request = gapi.client.youtube.search.list({
-        part: "snippet",
-        type: "video",
-        q: SearchVideo ? SearchVideo : " ",
-        maxResults: 20,
-        order: "ViewCount",
-        publishedAfter: "2020-01-01T00:00:00Z"
-      });
-      request.execute((response) => {
-        const { result: { items } } = response;
-          setVideoList(items);
-          console.log(items);
-      })
-    }, 2000);
-  }, [SearchVideo])
 
   return (
     <div>

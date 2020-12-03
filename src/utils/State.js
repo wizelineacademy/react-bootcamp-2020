@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { saveToLocalStorage, loadFromLocalStorage } from './storage';
-import { SEARCH_VIDEO, APP_STATE } from './constants';
+import { SEARCH_VIDEO, APP_STATE, VIDEO } from './constants';
 
 const DarkTheme = {
     PrimaryColor: "black",
@@ -31,7 +31,8 @@ export const State = ({ children }) => {
     const [Theme, setTheme] = useState(PrimaryTheme);
     const [DarkMode, setDarkMode] = useState(false);
     const [Sesion, setSesion] = useState(loadFromLocalStorage(APP_STATE));
-    const [SearchVideo, setSearchVideo] = useState(loadFromLocalStorage(SEARCH_VIDEO));
+    const [SearchVideo, setSearchVideo] = useState("Wizeline");
+    const [Video, setVideo] = useState(loadFromLocalStorage(VIDEO));
 
     useEffect(() => {
         if(DarkMode){
@@ -49,6 +50,10 @@ export const State = ({ children }) => {
         saveToLocalStorage(SEARCH_VIDEO, SearchVideo)
     }, [SearchVideo])
 
+    useEffect(() => {
+        saveToLocalStorage(VIDEO, Video)
+    }, [Video])
+
     return (
         <StateContext.Provider 
             value={{
@@ -58,7 +63,9 @@ export const State = ({ children }) => {
                 Sesion,
                 setSesion,
                 SearchVideo, 
-                setSearchVideo
+                setSearchVideo,
+                Video,
+                setVideo
             }}
         >
             { children }
