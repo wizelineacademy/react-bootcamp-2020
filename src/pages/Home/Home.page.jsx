@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import styled from 'styled-components';
 import CardList from '../../components/Cardlist/CardList.component';
+import { VideoContext } from '../../providers/Video';
 
 import { useAuth } from '../../providers/Auth';
 
@@ -9,14 +10,12 @@ const H1 = styled.h1`
   letter-spacing: -2px;
   width: 100%;
   color: ${(props) => props.theme.textcolor};
-
 `;
 
-const H2 = styled.h2` 
+const H2 = styled.h2`
   letter-spacing: -2px;
   width: 100%;
   color: ${(props) => props.theme.textcolor};
-
 `;
 
 const HomePageContainer = styled.div`
@@ -24,16 +23,16 @@ const HomePageContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   min-height: 91vh;
-  text-align: center; 
+  text-align: center;
   flex-direction: row;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
 `;
 
 function HomePage() {
   const sectionRef = useRef(null);
   const { authenticated } = useAuth();
-
+  const { videos } = useContext(VideoContext);
   return (
     <HomePageContainer ref={sectionRef}>
       <H1>Welcome to some youtube copy enjoy!</H1>
@@ -44,7 +43,7 @@ function HomePage() {
       ) : (
         <> </>
       )}
-      <CardList />
+      <CardList videos={videos} />
     </HomePageContainer>
   );
 }

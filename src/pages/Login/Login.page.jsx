@@ -23,9 +23,9 @@ const Input = styled.input`
   border: 1px solid white;
   background-color: ${(props) => props.theme.variant};
   font-family: Nunito;
-  &:focus{
+  &:focus {
     outline: none;
-}
+  }
 `;
 
 const H1 = styled.h1`
@@ -80,10 +80,10 @@ const LoginPageContainer = styled.div`
   min-height: 91vh;
   margin-top: 5px;
   padding-left: 3px;
-  text-align: center; 
+  text-align: center;
   flex-direction: row;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
 `;
 
 function LoginPage() {
@@ -115,51 +115,51 @@ function LoginPage() {
 
   return (
     <LoginPageContainer>
-    <Login>
-      <H1>Welcome back!</H1>
-      <LoginForm onSubmit={authenticate}>
-        <Div>
-          <FieldLabel
-            onClick={() => {
-              inputUserName.current.focus();
-            }}
-          >
-            username{' '}
-          </FieldLabel>
-          <Input
-            ref={inputUserName}
-            required
-            type="text"
-            id="username"
-            onChange={(event) => onChangeUserName(event.target.value)}
-          />
-        </Div>
-        <Div>
-          <FieldLabel
-            onClick={() => {
-              inputPassword.current.focus();
-            }}
-          >
-            password{' '}
-          </FieldLabel>
-          <Input
-            ref={inputPassword}
-            required
-            type="password"
-            id="password"
-            onChange={(event) => onChangePassword(event.target.value)}
-          />
-        </Div>
-        {errorLogin ? (
-          <>
-            <ErrorLabel>Incorrect user or password try again</ErrorLabel>
-          </>
-        ) : (
-          <> </>
-        )}
-        <Button type="submit">Login</Button>
-      </LoginForm>
-    </Login>
+      <Login>
+        <H1>Welcome back!</H1>
+        <LoginForm onSubmit={authenticate}>
+          <Div>
+            <FieldLabel
+              onClick={() => {
+                inputUserName.current.focus();
+              }}
+            >
+              username{' '}
+            </FieldLabel>
+            <Input
+              ref={inputUserName}
+              required
+              type="text"
+              id="username"
+              onChange={(event) => onChangeUserName(event.target.value)}
+            />
+          </Div>
+          <Div>
+            <FieldLabel
+              onClick={() => {
+                inputPassword.current.focus();
+              }}
+            >
+              password{' '}
+            </FieldLabel>
+            <Input
+              ref={inputPassword}
+              required
+              type="password"
+              id="password"
+              onChange={(event) => onChangePassword(event.target.value)}
+            />
+          </Div>
+          {errorLogin ? (
+            <>
+              <ErrorLabel>Incorrect user or password try again</ErrorLabel>
+            </>
+          ) : (
+            <> </>
+          )}
+          <Button type="submit">Login</Button>
+        </LoginForm>
+      </Login>
     </LoginPageContainer>
   );
 }

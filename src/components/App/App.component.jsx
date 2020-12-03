@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { Switch, Route, HashRouter } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
@@ -15,7 +15,6 @@ import Layout from '../Layout';
 import Navbar from '../Navbar';
 
 function App() {
-
   return (
     <HashRouter>
       <AuthProvider>

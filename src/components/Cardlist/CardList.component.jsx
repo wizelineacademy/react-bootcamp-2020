@@ -9,8 +9,8 @@ const CardListDiv = styled.div`
   justify-content: center;
 `;
 
-function CardList() {
-  const { videos } = useContext(VideoContext);
+function CardList({ videos }) {
+  // const { videos } = useContext(VideoContext);
   const { setCurrentVideo } = useContext(VideoContext);
   function handleClickOnCard(video) {
     setCurrentVideo(video);

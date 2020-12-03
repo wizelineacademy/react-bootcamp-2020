@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import CardList from '../../components/Cardlist/CardList.component';
-
+import { getFavoritesVideos } from '../../utils/favorites';
 
 const H1 = styled.h1`
   font-size: 3rem;
   letter-spacing: -2px;
   width: 100%;
   color: ${(props) => props.theme.textcolor};
-
 `;
-
 
 const FavoritesPageContainer = styled.div`
   display: flex;
@@ -25,15 +23,20 @@ const FavoritesPageContainer = styled.div`
   flex-direction: row;
 `;
 
-
 function FavoritesPage() {
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    setFavorites(getFavoritesVideos());
+  }, []);
+
   return (
     <FavoritesPageContainer>
       <H1>
         welcome, to your favorites
         <Link to="/"> ← go back</Link>
       </H1>
-      <CardList />
+      <CardList videos={favorites} />
     </FavoritesPageContainer>
   );
 }

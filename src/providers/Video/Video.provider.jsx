@@ -22,7 +22,6 @@ function VideoProvider({ children }) {
     setSearchTerm('Wizeline');
     const fetchedVideos = fetchYoutubeVideos('Wizeline');
     setVideos(fetchedVideos);
-    console.log('useefect provider')
     setCurrentVideo({});
   }, []);
 
