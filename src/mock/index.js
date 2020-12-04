@@ -17,6 +17,31 @@ const videos = [
     thumbnail:
       'https://i.ytimg.com/vi/blnJvW3EhWA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDkXhff3y7sZvWPE4q7dDwmwE2VHQ',
   },
+  {
+    title: 'TypeScript Crash Course',
+    url: 'https://www.youtube.com/watch?v=rAy_3SIqT-E',
+    thumbnail:
+      'https://i.ytimg.com/vi/rAy_3SIqT-E/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAki1P_A6fgU9YYweb4IZfB0APZ6g',
+  },
+  {
+    title: 'Python tricks: Writing user-friendly code with PEP-8 naming conventions',
+    url: 'https://www.youtube.com/watch?v=Sm0wwmEwqpI',
+    thumbnail:
+      'https://i.ytimg.com/vi/Sm0wwmEwqpI/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9O21HCQGRssoQV_hpzjIw6wtLlg',
+  },
+  {
+    title: 'dreamy ~ lofi hip hop mix',
+    url: 'https://www.youtube.com/watch?v=Dy9ojlR72TM',
+    thumbnail:
+      'https://i.ytimg.com/vi/Dy9ojlR72TM/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCMKB6w4wxtWTBztp7Akfpz8ifNfA',
+  },
+  {
+    title:
+      "Easy & Powerful Arduino Alternative? #4 Pyboard (MicroPython) Beginner's Guide",
+    url: 'https://www.youtube.com/watch?v=CyrgzzxQPzk',
+    thumbnail:
+      'https://i.ytimg.com/vi/CyrgzzxQPzk/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB_aL4gt8xGKVxTzbfcKLY0CgXJFA',
+  },
 ];
 
 module.exports.videos = videos;

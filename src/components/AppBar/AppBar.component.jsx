@@ -10,9 +10,7 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import YouTubeIcon from '@material-ui/icons/YouTube';
-import './App.styles.css';
-import VideoGrid from '../VideoGrid';
-import { videos } from '../../mock';
+import './AppBar.styles.css';
 
 export default function App() {
   return (
@@ -38,7 +36,6 @@ export default function App() {
           </Button>
         </Toolbar>
       </AppBar>
-      <VideoGrid videos={videos} />
     </>
   );
 }
