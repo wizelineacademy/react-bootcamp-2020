@@ -4,11 +4,10 @@ import VideoGrid from '../../components/VideoGrid';
 import { videos } from '../../mock';
 
 export default function HomePage() {
-
   return (
     <div>
-      <AppBar/>
-      <VideoGrid videos={videos} />    
+      <AppBar />
+      <VideoGrid videos={videos} />
     </div>
-  )
+  );
 }
