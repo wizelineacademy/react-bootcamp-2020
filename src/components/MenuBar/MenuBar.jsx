@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
-import { Input, Menu } from 'semantic-ui-react';
+import React, { useState, useContext } from 'react';
+import { Input, Menu, Radio } from 'semantic-ui-react';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../providers/Auth/Auth.provider';
 
-const MenuBar = ({ handleHitEnter, handleOnChange }) => {
+import VideosContext from '../../context/VideosContext';
+import ThemeContext from '../../context/ThemeContext';
+
+const MenuBar = () => {
   const history = useHistory();
+  const { light, handleTheme } = useContext(ThemeContext);
+  const { handleHitEnter, handleOnChange } = useContext(VideosContext);
+
   const { authenticated, logout } = useAuth();
   const { pathname } = window.location;
   const path = pathname === '/' ? 'home' : pathname.slice(1);
@@ -18,7 +24,7 @@ const MenuBar = ({ handleHitEnter, handleOnChange }) => {
   }
 
   const menuBar = authenticated ? (
-    <Menu secondary>
+    <Menu secondary inverted={!light} size="large">
       <Menu.Item
         as={Link}
         to="/"
@@ -44,6 +50,9 @@ const MenuBar = ({ handleHitEnter, handleOnChange }) => {
             onKeyPress={handleHitEnter}
           />
         </Menu.Item>
+        <Menu.Item>
+          <Radio toggle onChange={handleTheme} />
+        </Menu.Item>
         <Menu.Item
           as={Link}
           to="/login"
@@ -54,7 +63,7 @@ const MenuBar = ({ handleHitEnter, handleOnChange }) => {
       </Menu.Menu>
     </Menu>
   ) : (
-    <Menu secondary>
+    <Menu secondary inverted={!light}>
       <Menu.Item
         as={Link}
         to="/"
@@ -70,6 +79,9 @@ const MenuBar = ({ handleHitEnter, handleOnChange }) => {
             onChange={handleOnChange}
             onKeyPress={handleHitEnter}
           />
+          <Menu.Item>
+            <Radio toggle onChange={handleTheme} />
+          </Menu.Item>
         </Menu.Item>
         <Menu.Item
           as={Link}

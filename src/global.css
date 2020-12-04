@@ -19,19 +19,3 @@ body {
   padding: 0;
   text-rendering: optimizeLegibility;
 }
-
-.separator::before {
-  content: '•';
-  color: white;
-  padding: 0.4rem;
-}
-
-a {
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
-}
-
-a:active {
-  color: blueviolet;
-}

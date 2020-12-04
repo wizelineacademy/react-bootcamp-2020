@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { Image } from 'semantic-ui-react';
+import { Image, Segment } from 'semantic-ui-react';
 
 import './VideoItem.styles.css';
 

@@ -6,8 +6,6 @@ import { Grid } from 'semantic-ui-react';
 import VideoCardHome from '../../components/VideoCardHome/VideoCardHome';
 import VideosContext from '../../context/VideosContext';
 
-import './HomePage.styles.css';
-
 function HomePage() {
   const { videos } = useContext(VideosContext);
 

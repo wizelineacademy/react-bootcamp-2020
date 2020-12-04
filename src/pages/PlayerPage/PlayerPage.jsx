@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
+
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import VideoList from '../../components/VideoList/VideoList';
 

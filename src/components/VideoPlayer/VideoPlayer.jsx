@@ -1,8 +1,9 @@
 /* eslint-disable */
 import React, { Fragment, useState, useContext, useEffect } from 'react';
-import { useAuth } from '../../providers/Auth/Auth.provider';
 import { Button } from 'semantic-ui-react';
+import { useAuth } from '../../providers/Auth/Auth.provider';
 import VideosContext from '../../context/VideosContext';
+
 import moment from 'moment';
 
 const VideoPlayer = () => {
@@ -18,7 +19,6 @@ const VideoPlayer = () => {
   const [isFav, setIsFav] = useState(favoritesList[`${id}`]);
 
   useEffect(() => {
-    id = selectedVideo.id.videoId;
     setIsFav(favoritesId[`${id}`]);
   }, [selectedVideo]);
 
@@ -35,7 +35,7 @@ const VideoPlayer = () => {
       const i = getIdx(id);
       const newList = [...favoritesList.slice(0, i), ...favoritesList.slice(i + 1)];
       favoritesList = newList;
-      favoritesId[`${id}`] = false;
+      delete favoritesId[`${id}`];
     } else {
       favoritesId[`${id}`] = true;
       favoritesList.push(selectedVideo);

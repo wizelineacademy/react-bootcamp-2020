@@ -4,9 +4,11 @@ import { Button, Checkbox, Form } from 'semantic-ui-react';
 
 import { useAuth } from '../../providers/Auth/Auth.provider';
 import LoginContext from '../../context/LoginContext';
+import ThemeContext from '../../context/ThemeContext';
 
 const LoginPage = () => {
   const { setUsername, setPassword } = useContext(LoginContext);
+  const { light } = useContext(ThemeContext);
   const { login } = useAuth();
   const history = useHistory();
 
@@ -23,7 +25,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Form onSubmit={authenticate} width={6}>
+    <Form onSubmit={authenticate} width={6} inverted={!light}>
       <h1>Login</h1>
       <Form.Input
         width={6}

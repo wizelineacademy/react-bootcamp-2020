@@ -29,14 +29,11 @@ function AuthProvider({ children }) {
     // handleLogin();
     setAuthenticated(true);
     storage.set(AUTH_STORAGE_KEY, true);
-    storage.set('favoritesList', []);
-    storage.set('favoritesId', {});
   }, []);
 
   const logout = useCallback(() => {
     setAuthenticated(false);
     storage.set(AUTH_STORAGE_KEY, false);
-    storage.clear();
   }, []);
 
   return (
