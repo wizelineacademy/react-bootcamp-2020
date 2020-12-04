@@ -1,18 +1,18 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import Brightness2Icon from '@material-ui/icons/Brightness2';
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import Brightness3Icon from '@material-ui/icons/Brightness3';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
 
-export default function ThemeButton() {
-  const [darkTheme, setDarkTheme] = React.useState(false);
+import { useUserPreferences } from '../../providers/Preferences/UserPreferences.provider';
 
-  const handleThemeClick = () => {
-    setDarkTheme(!darkTheme);
-  };
+function ThemeButton() {
+  const { isLightThemeOn, invertTheme } = useUserPreferences();
 
   return (
-    <IconButton onClick={handleThemeClick}>
-      {!darkTheme ? <Brightness2Icon /> : <WbSunnyIcon />}
+    <IconButton onClick={invertTheme}>
+      {isLightThemeOn ? <Brightness3Icon /> : <Brightness7Icon />}
     </IconButton>
   );
 }
+
+export default ThemeButton;

@@ -28,32 +28,31 @@ export default function FormDialog(props) {
         <DialogContent>
           {error && <LoginAlert />}
           <TextField
-            autoFocus
-            margin="dense"
-            id="Username"
+            id="username"
             label="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             disabled={loading}
+            type="text"
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="password"
             label="Password"
-            type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             disabled={loading}
+            type="password"
             fullWidth
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.close} color="primary">
+          <Button onClick={props.close} color="secondary">
             Cancel
           </Button>
-          <Button onClick={handleLogin} color="primary">
+          <Button onClick={handleLogin} color="secondary">
             Login
           </Button>
         </DialogActions>
