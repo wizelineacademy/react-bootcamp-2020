@@ -23,8 +23,8 @@ function App() {
                 <Route exact path="/">
                   <HomePage />
                 </Route>
-                <Private exact path="/favorites" >
-                  <Favorites/>
+                <Private exact path="/favorites">
+                  <Favorites />
                 </Private>
                 <Route exact path="/watch/:idVideo">
                   <VideoPlayer />
@@ -32,7 +32,7 @@ function App() {
                 <Route exact path="/login">
                   <LoginPage />
                 </Route>
-               
+
                 <Route path="*">
                   <NotFound />
                 </Route>

@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-const cardAnimation=keyframes`
+const cardAnimation = keyframes`
 0%{
   transform: rotate(1deg)
 }25%{
@@ -15,16 +15,14 @@ const cardAnimation=keyframes`
   transform: rotate(1deg)
 
 }
-`
+`;
 const Card = styled('li')`
-
-
   border-radius: 2%;
   display: flex;
   width: 300px;
   height: 350px;
   background-color: ${({ theme }) => theme.videoCardBg};
-  box-shadow: 1px 5px 14px  ${({ theme }) => theme.shadows};
+  box-shadow: 1px 5px 14px ${({ theme }) => theme.shadows};
   align-items: center;
   margin: 0 auto;
   text-align: center;
@@ -32,9 +30,8 @@ const Card = styled('li')`
     width: 250px;
   }
 
-  &:hover{
-    animation: ${cardAnimation} .2s   ;
-
+  &:hover {
+    animation: ${cardAnimation} 0.2s;
   }
 `;
 const CardContainer = styled('article')`
@@ -45,7 +42,7 @@ const CardContainer = styled('article')`
   cursor: pointer;
 `;
 const CardImage = styled('img')`
-  border-radius: 2.5%  2.5% 0 0;
+  border-radius: 2.5% 2.5% 0 0;
   width: auto;
   height: 45%;
   display: flex;
@@ -58,10 +55,10 @@ const CardContent = styled('div')`
   display: flex;
   flex-direction: column;
 `;
-const Title = styled('h4')` 
-  white-space : nowrap;
-  display:block;
-  overflow:hidden;
+const Title = styled('h4')`
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
   text-overflow: ellipsis;
   font-size: large;
   width: 100%;
@@ -69,16 +66,16 @@ const Title = styled('h4')`
   height: 5vh;
   margin: 0;
   padding: 0.5rem;
- 
+
   background-color: ${({ theme }) => theme.header};
 `;
 const Description = styled('p')`
-  font-weight:bold;
+  font-weight: bold;
   font-size: small;
   padding: 0.5rem;
   height: 100px;
   width: auto;
-  overflow:hidden;
+  overflow: hidden;
 `;
 
 export { Card, CardContainer, CardContent, CardImage, Description, Title };

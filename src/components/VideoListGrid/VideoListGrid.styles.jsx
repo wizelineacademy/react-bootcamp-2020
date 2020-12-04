@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 const VideoGrid = styled('ul')`
-  margin: 0 auto; 
+  margin: 0 auto;
   display: grid;
-  width: ${({listSize})=> listSize?"min-content":"auto"} ;
+  width: ${({ listSize }) => (listSize ? 'min-content' : 'auto')};
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: ${({listSize})=>!listSize ||listSize!==1?" 2em 2rem ":"none"};
+  gap: ${({ listSize }) => (!listSize || listSize !== 1 ? ' 2em 2rem ' : 'none')};
   padding: 0;
   @media screen and (max-width: 1600px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -37,4 +37,4 @@ const NotContentDisplay = styled('p')`
   }
 `;
 
-export { VideoGrid, WelcomeDisplay,NotContentDisplay };
+export { VideoGrid, WelcomeDisplay, NotContentDisplay };

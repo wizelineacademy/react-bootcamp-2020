@@ -7,7 +7,7 @@ import { useAuth } from '../../providers/Auth';
 const ProfileInformation = () => {
   const { state } = useAppDataContext();
   const theme = useContext(ThemeContext);
-  const {authenticated} = useAuth();
+  const { authenticated } = useAuth();
   return (
     <ProfileCard theme={theme}>
       <ImageContainer>
