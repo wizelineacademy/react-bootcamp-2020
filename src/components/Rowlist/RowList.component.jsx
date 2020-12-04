@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 import Row from '../Row/Row.component';
-import { VideoContext } from '../../providers/Video';
 
 const StyledRowList = styled.div`
   display: flex;
@@ -11,11 +10,7 @@ const StyledRowList = styled.div`
 `;
 
 function RowList({ videos, isFavorit }) {
-  const { setCurrentVideo } = useContext(VideoContext);
-
-  function handleClickOnRow(video) {
-    setCurrentVideo(video);
-  }
+  function handleClickOnRow() {}
   return (
     <StyledRowList>
       {videos.map((video) => (

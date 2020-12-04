@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Card from '../Card/Card.component';
-import { VideoContext } from '../../providers/Video';
 
 const CardListDiv = styled.div`
   display: flex;
@@ -10,10 +9,7 @@ const CardListDiv = styled.div`
 `;
 
 function CardList({ videos, isFavorit }) {
-  const { setCurrentVideo } = useContext(VideoContext);
-  function handleClickOnCard(video) {
-    setCurrentVideo(video);
-  }
+  function handleClickOnCard() {}
 
   return (
     <CardListDiv>

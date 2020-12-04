@@ -18,11 +18,14 @@ function VideoProvider({ children }) {
     setVideos(fetchedVideos);
   }, []);
 
-  useEffect(async () => {
+  useEffect(() => {
     setSearchTerm('Wizeline');
-    const fetchedVideos = await fetchYoutubeVideos('Wizeline');
-    setVideos(fetchedVideos);
-    setCurrentVideo({});
+    async function fetchData() {
+      const fetchedVideos = await fetchYoutubeVideos('Wizeline');
+      setVideos(fetchedVideos);
+      setCurrentVideo({});
+    }
+    fetchData();
   }, []);
 
   return (

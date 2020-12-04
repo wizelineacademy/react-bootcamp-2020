@@ -41,7 +41,7 @@ const Div = styled.div`
   margin-bottom: 1rem;
 `;
 
-const FieldLabel = styled.strong`
+const FieldLabel = styled.label`
   display: block;
   font-weight: 700;
   text-transform: capitalize;
@@ -119,13 +119,7 @@ function LoginPage() {
         <H1>Welcome back!</H1>
         <LoginForm onSubmit={authenticate}>
           <Div>
-            <FieldLabel
-              onClick={() => {
-                inputUserName.current.focus();
-              }}
-            >
-              username{' '}
-            </FieldLabel>
+            <FieldLabel htmlFor="username">username </FieldLabel>
             <Input
               ref={inputUserName}
               required
@@ -135,13 +129,7 @@ function LoginPage() {
             />
           </Div>
           <Div>
-            <FieldLabel
-              onClick={() => {
-                inputPassword.current.focus();
-              }}
-            >
-              password{' '}
-            </FieldLabel>
+            <FieldLabel htmlFor="password">password </FieldLabel>
             <Input
               ref={inputPassword}
               required
