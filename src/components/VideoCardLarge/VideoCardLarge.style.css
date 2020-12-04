@@ -1,0 +1,30 @@
+.multimediaArea img {
+  max-width: inherit;
+  max-height: inherit;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  width: inherit;
+  height: inherit;
+}
+
+.contentArea p {
+  width: inherit;
+  font-size: 0.8rem;
+  text-align: left;
+  white-space: nowrap;
+  max-width: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contentArea .title {
+  font-weight: bold;
+  margin-bottom: unset;
+}
+
+.contentArea .description {
+  line-height: 1.3rem;
+  font-size: 0.6rem;
+  height: 3rem;
+  white-space: unset;
+  margin-top: unset;
+}

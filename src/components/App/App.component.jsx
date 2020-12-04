@@ -10,15 +10,14 @@ import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
 import Navbar from '../Navbar';
-import { random } from '../../utils/fns';
 
 function App() {
   useLayoutEffect(() => {
     const { body } = document;
 
     function rotateBackground() {
-      const xPercent = random(100);
-      const yPercent = random(100);
+      const xPercent = 0;
+      const yPercent = 0;
       body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
     }
 
