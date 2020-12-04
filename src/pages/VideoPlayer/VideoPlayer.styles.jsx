@@ -8,50 +8,44 @@ const PageContent = styled('section')`
 `;
 
 const VideoContent = styled('div')`
-display:grid;
-width:100%;
-grid-template-rows:50% 4vh 4vh auto ;
-height: 100%;
+  display: grid;
+  width: 100%;
+  grid-template-rows: 50% 4vh 4vh auto;
+  height: 100%;
 
-.fav-bar {
-  display:flex;
-  padding:0.2rem;
- 
-  background-color: ${({ theme }) => theme.secondaryColor};
+  .fav-bar {
+    display: flex;
+    padding: 0.2rem;
+
+    background-color: ${({ theme }) => theme.secondaryColor};
   }
   .fav-button-container {
-  display:flex;
-  align-content:flex-end;
-  flex-direction:row-reverse;
-  padding:0.2rem;
- 
+    display: flex;
+    align-content: flex-end;
+    flex-direction: row-reverse;
+    padding: 0.2rem;
   }
 
-
-  button{
+  button {
     cursor: pointer;
-    font-size:medium;
-    outline:none;
-    border-radius:1rem;
-    margin:0;
-    padding:0;
+    font-size: medium;
+    outline: none;
+    border-radius: 1rem;
+    margin: 0;
+    padding: 0;
     width: 30%;
-    transition:.3s;
-
-  
+    transition: 0.3s;
   }
 
-  button.fav{
+  button.fav {
     color: ${({ theme }) => theme.header};
-    border:3px solid ${({ theme }) => theme.header};
-    background-color:transparent;
-   
+    border: 3px solid ${({ theme }) => theme.header};
+    background-color: transparent;
   }
-  button.no-fav{
+  button.no-fav {
     color: white;
-    border:3px solid ${({ theme }) => theme.header};
+    border: 3px solid ${({ theme }) => theme.header};
     background-color: ${({ theme }) => theme.header};
-
   }
 `;
 

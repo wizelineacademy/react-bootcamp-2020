@@ -10,8 +10,6 @@ function HomePage() {
 
   useYoutubeVideos();
 
-   
-
   return (
     <section>
       <WelcomeDisplay>Welcome to my Challenge</WelcomeDisplay>

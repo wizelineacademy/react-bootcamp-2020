@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { useHistory } from 'react-router';
 
-
 import {
   Card,
   CardContainer,
@@ -15,7 +14,6 @@ import {
 export default function VideoCard({ video: { id, description, image, title } }) {
   const { theme } = useContext(ThemeContext);
   const history = useHistory();
-
 
   const openVideoPage = () => {
     history.push(`/watch/${id}`);
