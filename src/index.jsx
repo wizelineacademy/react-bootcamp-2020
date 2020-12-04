@@ -8,7 +8,7 @@ import WatchVideoPage from './pages/Watch';
 ReactDOM.render(
   <React.StrictMode>
     {/* <HomePage /> */}
-    <WatchVideoPage/>
+    <WatchVideoPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
