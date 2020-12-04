@@ -7,6 +7,7 @@ import {
   Button,
   IconButton,
   InputBase,
+  Link,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import YouTubeIcon from '@material-ui/icons/YouTube';
@@ -21,9 +22,9 @@ export default function App() {
           <IconButton edge="start" color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <a href="/" target="_self" rel="noopener noreferrer">
+          <Link href="/" target="_self" rel="noopener noreferrer">
             <YouTubeIcon color="secondary" fontSize="large" />
-          </a>
+          </Link>
           <Typography variant="h6" noWrap className="title">
             Favorites
           </Typography>
