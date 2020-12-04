@@ -5,9 +5,9 @@ import { videos } from '../../mock';
 
 export default function HomePage() {
   return (
-    <div>
+    <React.Fragment>
       <AppBar />
       <VideoGrid videos={videos} />
-    </div>
+    </React.Fragment>
   );
 }

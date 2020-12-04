@@ -1,6 +1,3 @@
-.VideoGrid {
+.content {
   flex-grow: 1;
-  margin-top: 30px !important;
-  padding-left: 5em;
-  padding-right: 5em;
 }
