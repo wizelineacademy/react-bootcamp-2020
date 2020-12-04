@@ -19,7 +19,7 @@ function App() {
         <SearchProvider>
           <FavoritesProvider>
             <Layout>
-              <Navbar />
+              <Navbar/>
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/video/:videoId" component={VideoDetail} />
