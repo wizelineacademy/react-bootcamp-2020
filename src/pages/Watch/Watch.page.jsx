@@ -7,11 +7,11 @@ import { videos } from '../../mock';
 import '../../global.css';
 
 export default function WatchVideoPage() {
-  let { id } = useParams();
-  const video = videos.filter(v => v.id === id).pop();
+  const { id } = useParams();
+  const video = videos.filter((v) => v.id === id).pop();
 
   if (video === undefined) {
-    return <h1>Not Found!</h1>
+    return <h1>Not Found!</h1>;
   }
 
   return (

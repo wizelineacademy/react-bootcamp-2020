@@ -20,4 +20,5 @@ export default function VideoCard({ video }) {
         </Button>
       </Paper>
     </Grid>
-  )}
+  );
+}
