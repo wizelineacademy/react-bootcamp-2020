@@ -8,7 +8,7 @@ export default function VideoGrid({ videos }) {
     <Grid container className="content" justify="flex-start" spacing={3}>
       {videos.map((video) => {
         return (
-          <VideoCard title={video.title} url={video.url} thumbnail={video.thumbnail} />
+          <VideoCard key={video.id} video={video} />
         );
       })}
     </Grid>

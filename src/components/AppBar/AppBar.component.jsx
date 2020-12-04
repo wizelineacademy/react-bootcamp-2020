@@ -16,14 +16,16 @@ export default function App() {
   return (
     <>
       <CssBaseline />
-      <AppBar position="static" color="white">
+      <AppBar position="static" color="default">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <YouTubeIcon color="secondary" fontSize="large" />
+          <a href="/" target="_self" rel="noopener noreferrer">
+            <YouTubeIcon color="secondary" fontSize="large" />
+          </a>
           <Typography variant="h6" noWrap className="title">
-            YouTube Fav
+            Favorites
           </Typography>
           <InputBase
             className="searchbar"
