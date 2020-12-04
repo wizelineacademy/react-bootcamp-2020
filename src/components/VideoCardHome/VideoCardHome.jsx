@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-//import { Image } from 'semantic-ui-react';
+// import { Image } from 'semantic-ui-react';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
