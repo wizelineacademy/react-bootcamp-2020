@@ -1,22 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './pages/Home';
-import './global.css';
 import WatchVideoPage from './pages/Watch';
+import NotFoundPage from './pages/NotFound';
+import './global.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <BrowserRouter>
       <Switch>
         <Route path="/watch/:id">
           <WatchVideoPage />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <HomePage />
         </Route>
+        <Route path="/">
+          <NotFoundPage />
+        </Route>
       </Switch>
-    </Router>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
