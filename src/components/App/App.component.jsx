@@ -14,8 +14,8 @@ import Theme from '../Theme';
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <AppDataProvider>
+      <AppDataProvider>
+        <AuthProvider>
           <Theme>
             <Layout>
               <Switch>
@@ -28,16 +28,15 @@ function App() {
                 <Route exact path="/login">
                   <LoginPage />
                 </Route>
-                <Private exact path="/favorites">
-                </Private>
+                <Private exact path="/favorites" />
                 <Route path="*">
                   <NotFound />
                 </Route>
               </Switch>
             </Layout>
           </Theme>
-        </AppDataProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </AppDataProvider>
     </BrowserRouter>
   );
 }

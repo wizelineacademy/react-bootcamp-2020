@@ -7,7 +7,7 @@ import { toSimpleYoutubeData } from '../mappers/youtubeVideosMapper';
 import actions from '../../state/actions';
 
 const API_URL_SINGLE_VIDEO = `https://www.googleapis.com/youtube/v3/videos?maxResults=1&part=id,snippet${API_KEY}&id=`;
-const API_URL_RELATED_VIDEOS = `https://www.googleapis.com/youtube/v3/search?maxResults=5&part=snippet&type=video${API_KEY}${RELEVANT_DATA}&relatedToVideoId=`;
+const API_URL_RELATED_VIDEOS = `https://www.googleapis.com/youtube/v3/search?maxResults=1&part=snippet&type=video${API_KEY}${RELEVANT_DATA}&relatedToVideoId=`;
 const DEFAULT_SINGLE_VIDEO_INDEX = 0;
 
 const useSingleVideoAndRelated = (idVideo) => {
@@ -19,19 +19,11 @@ const useSingleVideoAndRelated = (idVideo) => {
         const responseSingleVideo = await fetch(API_URL_SINGLE_VIDEO + idVideo);
         const dataSingleVideo = await responseSingleVideo.json();
         const item = dataSingleVideo.items[DEFAULT_SINGLE_VIDEO_INDEX];
-        if (responseSingleVideo.status > 400) {
-          throw new Error(`something go wrong trying to video by id ${idVideo}`);
-        }
-        if (item) {
-          const mappedItem = toSingleVideo(item);
-
-          dispatch({
-            type: actions.ADD_VIDEOS,
-            payload: [mappedItem],
-          });
-        }
+        const mappedItem = toSingleVideo(item);
+        return [mappedItem];
       } catch (error) {
         console.error(error);
+        return [];
       }
     }
     async function fetchYoutubeVideosRelated() {
@@ -39,27 +31,29 @@ const useSingleVideoAndRelated = (idVideo) => {
         const responseRelatedVideos = await fetch(API_URL_RELATED_VIDEOS + idVideo);
         const dataRelatedVideos = await responseRelatedVideos.json();
         const { items } = dataRelatedVideos;
-
-        if (responseRelatedVideos.status >= 400) {
-          throw new Error(`something goes grong trying to get related videos ${idVideo}`);
-        }
-
-        if (items.length > 0) {
-          const mappedVideos = toSimpleYoutubeData(items);
-          dispatch({
-            type: actions.ADD_VIDEOS,
-            payload: mappedVideos,
-          });
-        }
+        return items.map(toSimpleYoutubeData);
       } catch (error) {
         console.error(error);
+        return [];
       }
     }
-
-    if (state.videos.size === 0 || !state.videos.some((video) => video.id === idVideo)) {
-      fetchYoutubeVideo();
-      fetchYoutubeVideosRelated();
-    }
+    const fetchData = async () => {
+      let currentVideo = [];
+      let relatedVideos = [];
+      if (
+        state.videos.size === 0 ||
+        !state.videos.some((video) => video.id === idVideo)
+      ) {
+        currentVideo = await fetchYoutubeVideo();
+        relatedVideos = await fetchYoutubeVideosRelated();
+      }
+      dispatch({
+        type: actions.ADD_VIDEOS,
+        payload: [...relatedVideos, ...currentVideo],
+      });
+      dispatch({ type: actions.SET_CURRENT_VIDEO, payload: idVideo });
+    };
+    fetchData();
   }, [dispatch, idVideo, state.videos]);
 };
 

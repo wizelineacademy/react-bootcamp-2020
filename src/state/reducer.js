@@ -2,57 +2,38 @@ import actions from './actions';
 import { storage } from '../utils/storage';
 import { DARK_THEME, LIGHT_THEME, PREFERED_THEME } from '../utils/constants';
 
-function toggleTheme(state) {
-  if (state.theme === DARK_THEME) {
-    storage.set(PREFERED_THEME, LIGHT_THEME);
-    return {
-      ...state,
-      theme: LIGHT_THEME,
-    };
-  }
-  storage.set(PREFERED_THEME, DARK_THEME);
-  return {
-    ...state,
-    theme: DARK_THEME,
-  };
-}
-
-function toggleFavorite({ payload: idVideo }, state) {
-  const videoIndex = state.favorites.findIndex((video) => video.id === idVideo);
-  if (videoIndex < 0) {
-    const selectedVideo = state.videos.find((video) => video.id === idVideo);
-    if (!selectedVideo) {
-      throw new Error(`cant find video with id ${idVideo}`);
-    }
-    return {
-      ...state,
-      favorites: [...state.favorites, selectedVideo],
-    };
-  }
-  const favoritesCopy = Object.assign(state.favorites, []);
-  favoritesCopy.splice(videoIndex, 0);
-  return {
-    ...state,
-    favorites: favoritesCopy,
-  };
-}
-
 export default function reducer(state, action) {
   switch (action.type) {
     case actions.TOGGLE_THEME:
-      return toggleTheme(state);
-
+      if (state.theme === DARK_THEME) {
+        storage.set(PREFERED_THEME, LIGHT_THEME);
+        return {
+          ...state,
+          theme: LIGHT_THEME,
+        };
+      }
+      storage.set(PREFERED_THEME, DARK_THEME);
+      return {
+        ...state,
+        theme: DARK_THEME,
+      };
     case actions.SET_THEME:
       return {
         ...state,
         theme: action.payload,
       };
     case actions.SET_VIDEOS:
+      if (!action.payload) {
+        return state;
+      }
       return {
         ...state,
         videos: action.payload,
       };
     case actions.ADD_VIDEOS:
+      if (action.payload.length === 0) {
+        return state;
+      }
       return {
         ...state,
         videos: [...state.videos, ...action.payload],
@@ -73,8 +54,34 @@ export default function reducer(state, action) {
         ...state,
         user: action.payload,
       };
+    case actions.ADD_FAVORITE:
+      return {
+        ...state,
+        favorites: [
+          ...state.favorites,
+          state.videos.find((video) => video.id === action.payload),
+        ],
+      };
+    case actions.REMOVE_FAVORITE:
+      return {
+        ...state,
+        favorites: state.favorites.filter((video) => video.id !== action.payload),
+      };
     case actions.TOGGLE_FAVORITE:
-      return toggleFavorite(action, state);
+      return {
+        ...state,
+        favorites: state.favorites.some((video) => video.id === action.payload)
+          ? state.favorites.filter((video) => video.id !== action.payload)
+          : [
+              ...state.favorites,
+              state.videos.find((video) => video.id === action.payload),
+            ],
+      };
+    case actions.SET_SEARCH_STRING:
+      return {
+        ...state,
+        searchString: action.payload,
+      };
 
     default:
       throw new Error(`UNKNOW_ACTION: ${action.type}`);

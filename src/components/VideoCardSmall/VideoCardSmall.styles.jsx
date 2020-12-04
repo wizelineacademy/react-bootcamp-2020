@@ -12,13 +12,12 @@ const CardSmall = styled('li')`
   &:hover {
     transform: translateY(-1%);
   }
- 
 `;
 const CardContainerSmall = styled('article')`
   width: 100%;
   height: 100%;
   display: flex;
-  padding: .3rem;
+  padding: 0.3rem;
   flex-direction: row;
   cursor: pointer;
 `;

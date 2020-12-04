@@ -40,14 +40,13 @@ const Title = styled('h4')`
   padding: 0.5rem;
 `;
 const Description = styled('p')`
-display:flex;
+  display: flex;
   font-size: small;
   padding: 0.5rem;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   height: 100px;
   width: 100%;
-  
 `;
 
 export { Card, CardContainer, CardContent, CardImage, Description, Title };

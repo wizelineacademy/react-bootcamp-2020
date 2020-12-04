@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useAuth } from '../../providers/Auth';
 import { useAppDataContext } from '../../providers/AppData';
+import {storage} from "../../utils/storage";
+import {USER_STORAGE_KEY} from "../../utils/constants"
 import loginApi from '../../utils/login';
 import actions from '../../state/actions';
 import './Login.styles.css';
@@ -22,7 +24,8 @@ function LoginPage() {
       .then((user) => {
         login();
         dispatch({ type: actions.SET_USER, payload: user });
-        history.push('/');
+        storage.set(USER_STORAGE_KEY,user)
+        history.goBack() ;
       })
       .catch((e) => console.log(e));
   }

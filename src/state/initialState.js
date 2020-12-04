@@ -12,6 +12,7 @@ const initialState = {
   theme: '',
   navigationOpen: true,
   user: null,
+  searchString: '',
 };
 
 export default initialState;

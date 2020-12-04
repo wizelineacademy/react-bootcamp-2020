@@ -12,6 +12,7 @@ import { useAppDataContext } from '../../providers/AppData';
 import { DARK_THEME } from '../../utils/constants';
 import actions from '../../state/actions';
 import './styles/Header.styles.css';
+import SearchInput from "../SearchInput";
 
 const SUN_EMOJI = '🌞';
 const MOON_EMOJI = '🌑';
@@ -31,12 +32,13 @@ const Header = () => {
       <NavButton onClick={openNav} rotate={state.navigationOpen.toString()}>
         <FontAwesomeIcon className="iconFa" icon={faAngleDoubleRight} />
       </NavButton>
+      <SearchInput/>
 
       <AnimatedButton onClick={changeTheme}>
         <ButtonText>{'Toggle theme '}</ButtonText>
-
         <span>{state.theme === DARK_THEME ? `${SUN_EMOJI} ` : `${MOON_EMOJI}`}</span>
       </AnimatedButton>
+
     </HaderStyled>
   );
 };

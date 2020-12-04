@@ -9,30 +9,35 @@ const API_URL = `https://www.googleapis.com/youtube/v3/search?&type=video&part=i
 const useYoutubeVideos = () => {
   const { state, dispatch } = useAppDataContext();
 
+  const { searchString, videos } = state;
   useEffect(() => {
-    async function fetchYoutubeVideos(searchString) {
-      let search = '';
-      if (searchString) {
-        search = `&q=${searchString}`;
-      }
-      try {
-        const response = await fetch(API_URL + search);
-        const data = await response.json();
-        if (response.status >= 200 && response.status < 400) {
-          const mappedData = data.items.map(toSimpleYoutubeData);
+    async function fetchYoutubeVideos() {
+      if (videos.length > 0 && !searchString) {
+        dispatch({
+          type: actions.SET_VIDEOS,
+          payload: null,
+        });
+      } else {
+        try {
+          dispatch({
+            type: actions.SET_VIDEOS,
+            payload: [],
+          });
+          const response = await fetch(`${API_URL}&q=${searchString}`);
+          const data = await response.json();
+          const mappedData = data.items ? data.items.map(toSimpleYoutubeData) : [];
 
           dispatch({
             type: actions.SET_VIDEOS,
             payload: mappedData,
           });
+        } catch (error) {
+          console.error(error);
         }
-      } catch (error) {
-        console.error(error);
       }
     }
-
     fetchYoutubeVideos();
-  }, [dispatch]);
+  }, [dispatch, searchString, videos.length]);
 
   return state;
 };
