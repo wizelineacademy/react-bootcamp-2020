@@ -20,7 +20,7 @@ export default function VideoCard({ video: { id, description, image, title } }) 
   };
 
   return (
-    <Card theme={theme}>
+    <Card role="listitem" theme={theme}>
       <CardContainer onClick={openVideoPage}>
         <CardImage src={image} alt={title} />
         <CardContent>

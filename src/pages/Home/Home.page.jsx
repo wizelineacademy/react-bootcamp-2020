@@ -1,23 +1,26 @@
 import React from 'react';
 import { useYoutubeVideos } from '../../utils/hooks/useYoutbeVideos';
 import { useAppDataContext } from '../../providers/AppData';
-import { VideoGrid, WelcomeDisplay } from './Home.styles';
+import { VideoListGrid } from "../../components/VideoListGrid";
 import VideoCard from '../../components/VideoCard';
+
+
 
 function HomePage() {
   const { state } = useAppDataContext();
   const { videos } = state;
+  const emptyMessage="ohh no, theres is no videos..." 
+
 
   useYoutubeVideos();
 
   return (
     <section>
-      <WelcomeDisplay>Welcome to my Challenge</WelcomeDisplay>
-      <VideoGrid>
+      <VideoListGrid listSize={videos.length} emptyMessage={emptyMessage} welcomeMessage="Welcome to my challenge">
         {videos
           ? videos.map((video) => <VideoCard video={video} key={video.id} />)
           : null}
-      </VideoGrid>
+      </VideoListGrid>
     </section>
   );
 }

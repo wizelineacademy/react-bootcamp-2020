@@ -10,6 +10,7 @@ import Layout from '../Layout';
 import AppDataProvider from '../../providers/AppData';
 import VideoPlayer from '../../pages/VideoPlayer';
 import Theme from '../Theme';
+import Favorites from '../../pages/Favorites';
 
 function App() {
   return (
@@ -22,13 +23,16 @@ function App() {
                 <Route exact path="/">
                   <HomePage />
                 </Route>
+                <Private exact path="/favorites" >
+                  <Favorites/>
+                </Private>
                 <Route exact path="/watch/:idVideo">
                   <VideoPlayer />
                 </Route>
                 <Route exact path="/login">
                   <LoginPage />
                 </Route>
-                <Private exact path="/favorites" />
+               
                 <Route path="*">
                   <NotFound />
                 </Route>

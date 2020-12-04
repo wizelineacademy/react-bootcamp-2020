@@ -4,7 +4,7 @@ import { useAppDataContext } from '../../providers/AppData';
 import actions from '../../state/actions';
 import { toSimpleYoutubeData } from '../mappers/youtubeVideosMapper';
 
-const API_URL = `https://www.googleapis.com/youtube/v3/search?&type=video&part=id,snippet&maxResults=20${API_KEY}${RELEVANT_DATA}`;
+const API_URL = `https://www.googleapis.com/youtube/v3/search?&type=video&part=id,snippet&maxResults=3${API_KEY}${RELEVANT_DATA}`;
 
 const useYoutubeVideos = () => {
   const { state, dispatch } = useAppDataContext();

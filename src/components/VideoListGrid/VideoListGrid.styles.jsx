@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 const VideoGrid = styled('ul')`
+  margin: 0 auto; 
   display: grid;
+  width: ${({listSize})=> listSize?"min-content":"auto"} ;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 1em 1rem;
+  gap: ${({listSize})=>!listSize ||listSize!==1?" 2em 2rem ":"none"};
   padding: 0;
   @media screen and (max-width: 1600px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -27,4 +29,12 @@ const WelcomeDisplay = styled('h1')`
   }
 `;
 
-export { VideoGrid, WelcomeDisplay };
+const NotContentDisplay = styled('p')`
+  font-size: 5vh;
+  text-align: center;
+  @media screen and (max-width: 1000px) {
+    font-size: 24px;
+  }
+`;
+
+export { VideoGrid, WelcomeDisplay,NotContentDisplay };
