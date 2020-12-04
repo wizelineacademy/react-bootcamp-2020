@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Paper, Divider, Button } from '@material-ui/core';
+import { Grid, Paper, Divider, Button, Link } from '@material-ui/core';
 import './VideoCard.styles.css';
 // import Button from '@material-ui/core/Button';
 
@@ -11,9 +11,9 @@ export default function VideoCard({ video }) {
         <img src={thumbnail} alt={title} className="thumbnail" />
         <Divider />
         <div className="paperTitle">
-          <a href={`/watch/${id}`} target="_self" rel="noopener noreferrer">
+          <Link href={`/watch/${id}`} target="_self" rel="noopener noreferrer">
             {title}
-          </a>
+          </Link>
         </div>
         <Button variant="contained" color="primary">
           ▶ Watch
