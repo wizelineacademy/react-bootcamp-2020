@@ -1,27 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { StateContext } from '../../utils/State';
+import VideoItem from '../../components/VideoItem';
+import { FavoritesContainer } from './Favorites.styled';
+import { useHistory } from 'react-router';
 
 const FavoritesPage = () => {
 
-  /* <pre>
-        welcome, voyager...
-        <Link to="/"> ← go back</Link>
-      </pre>
-      <iframe
-        width="800"
-        height="450"
-        allowFullScreen
-        frameBorder="0"
-        title="rick roll"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&autoplay=1"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      /> */
+  const history = useHistory();
+  const { FavoriteVideos, Sesion } = useContext(StateContext);
 
+  useEffect(() => {
+    if(!Sesion){
+      history.push("/");
+    }
+  }, [Sesion, history])
 
   return (
-    <section>
-      <Link to="/" > Regresar </Link>
-    </section>
+    <FavoritesContainer>
+      {
+        (FavoriteVideos && FavoriteVideos.length > 0) && (
+          FavoriteVideos.map(({ videoId, title, description, publishTime, image }) => 
+            <VideoItem 
+              key={videoId}
+              videoInfo={{
+                title, 
+                description, 
+                publishTime,
+                thumbnails: { medium: { url: image } }
+              }} 
+              videoID={{
+                videoId
+              }} 
+              viewVideo={() => history.push(`/favorites/player`) }
+            />
+          )
+        ) 
+      }
+    </FavoritesContainer>
   );
 }
 

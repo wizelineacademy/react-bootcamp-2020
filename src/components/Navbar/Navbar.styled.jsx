@@ -25,3 +25,11 @@ export const LoginButton = styled.div`
     background: grey;
     cursor: pointer;
 `;
+
+export const BaseButton = styled.button`
+    width: 5rem;
+    padding: .5rem;
+    border: solid 1px;
+    border-color: red;
+    cursor: pointer;
+`;

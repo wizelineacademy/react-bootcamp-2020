@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { StateContext } from '../../utils/State';
-import { NavBar, InputStyled, SwitchStyled, LoginButton } from './Navbar.styled';
+import { NavBar, InputStyled, SwitchStyled, LoginButton, BaseButton } from './Navbar.styled';
 import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import Login from './Login'
+import { useHistory } from 'react-router';
 
 
 const Navbar = () => {
@@ -11,6 +12,7 @@ const Navbar = () => {
     const { DarkMode, setDarkMode, Sesion, setSesion, SearchVideo, setSearchVideo } = useContext(StateContext);
     const [SearchVideoNav, setSearchVideoNav] = useState(SearchVideo)
     const [OpenModal, setOpenModal] = useState("");
+    const history = useHistory();
 
     const onChangeSesion = () => {
         if(Sesion){
@@ -27,6 +29,20 @@ const Navbar = () => {
     return (
         <NavBar>
             { Modals[OpenModal] }
+            <BaseButton
+                onClick={() => history.push("/")}
+            >
+                Home
+            </BaseButton>
+            {
+                (Sesion) && (
+                    <BaseButton
+                        onClick={() => history.push("/favorites")}
+                    >
+                        Favorites
+                    </BaseButton>
+                )
+            }
             <InputStyled 
                 value={SearchVideoNav}
                 onChange={({target: { value }}) => setSearchVideoNav(value)}

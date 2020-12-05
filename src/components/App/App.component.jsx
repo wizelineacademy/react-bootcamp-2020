@@ -20,6 +20,11 @@ const App = () => {
             path="/favorites" 
             component={FavoritesPage} 
           />
+          <Private 
+            exact 
+            path="/favorites/player"
+            component={Player}
+          />
           <Route 
             exact
             path="/player"

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { StateContext } from '../../utils/State';
 import { ListContainer, ListItem, ListItemText, PlayerContainer, PlayerVideoContainer, VideoDescription, VideoTitle } from './Player.styled';
 import { useFetch } from '../../utils/hooks/useFetch';
@@ -10,6 +10,7 @@ import { Tooltip } from 'antd';
 const Player = () => {
 
   const history = useHistory();
+  const { pathname } = useLocation();
   const { Video: { description, image, publishTime, title, videoId: VideoID }, 
     Sesion, FavoriteVideos, setFavoriteVideos, setVideo } = useContext(StateContext);
   const { VideoList } = useFetch();
@@ -20,6 +21,12 @@ const Player = () => {
       FavoriteVideos.find(({ videoId }) => videoId === VideoID)
     );
   }, [FavoriteVideos, VideoID]);
+
+  useEffect(() => {
+    if(!Sesion && pathname.includes("/favorites")){
+      history.push("/");
+    }
+  }, [Sesion, history, pathname])
 
   const addFavoriteVideo = () => {
     setFavoriteVideos([ ...FavoriteVideos, {
@@ -39,7 +46,12 @@ const Player = () => {
 
   const selectOtherVideo = (video) => {
     setVideo(video);
-    history.push(`/player`)
+    if(!pathname.includes("/favorites")){
+      history.push(`/player`);
+    } else {
+      history.push("/favorites/player");
+    }
+    
   };
   
 
@@ -51,7 +63,8 @@ const Player = () => {
           frameBorder="0" 
           title="Video" 
           width="100%" 
-          height="550" 
+          height="550"
+          allowFullScreen
         />
         <VideoTitle>
           <div>
@@ -85,7 +98,33 @@ const Player = () => {
       </PlayerVideoContainer>
       <ListContainer>
         {
-          (VideoList) && (
+          (FavoriteVideos && pathname.includes("/favorites")) && (
+            FavoriteVideos.map(({ description, image, publishTime, title, videoId }) => 
+              <ListItem
+                key={videoId}
+                onClick={() => selectOtherVideo({
+                  description,
+                  image,
+                  publishTime,
+                  title,
+                  videoId
+                })}
+              >
+                <img 
+                  src={image}
+                  alt={title}
+                  width="120"
+                  height="100"
+                />
+                <ListItemText>
+                  {title}
+                </ListItemText>
+              </ListItem>
+            )
+          ) 
+        }
+        {
+          (VideoList && VideoList.length > 0 && !pathname.includes("/favorites") ) && (
             VideoList.map(({ snippet: {title, description, publishTime, thumbnails: { medium: { url } }}, 
               id: { videoId }}) => 
               <ListItem

@@ -18,6 +18,7 @@ const Login = ({ onClose }) => {
         if(User !== SesionInfo.User) return message.error("Wrong user");
         if(Password !== SesionInfo.Password) return message.error("Wrong password");
         setSesion(SesionInfo);
+        message.success(" Welcome user :) ")
         onClose();
     }
  
