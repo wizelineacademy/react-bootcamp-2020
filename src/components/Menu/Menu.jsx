@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
@@ -11,6 +12,7 @@ import { useAuth } from '../../providers/Auth/Auth.provider';
 import useStyles from './Menu.styled';
 
 export default function PrincipalMenu() {
+  const { push } = useHistory();
   const classes = useStyles();
   const { isLoggedIn } = useAuth();
   const [state, setState] = React.useState({
@@ -32,14 +34,14 @@ export default function PrincipalMenu() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className={classes.list}>
-        <ListItem button key="Home">
+        <ListItem button key="Home" onClick={() => push('/')}>
           <ListItemText primary="Home" />
         </ListItem>
       </List>
       <Divider />
       {isLoggedIn && (
         <>
-          <ListItem button key="Favorites">
+          <ListItem button key="Favorites" onClick={() => push('/secret')}>
             <ListItemText primary="Favorites" />
           </ListItem>
         </>

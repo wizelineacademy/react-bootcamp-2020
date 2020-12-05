@@ -1,38 +1,21 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
 
-import { useAuth } from '../../providers/Auth';
+import Card from '../../components/Card/Card';
+import { useStyles } from './HomePage.styled';
 import './Home.styles.css';
 
 function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
-
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
-
+  const classes = useStyles();
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
+    <Grid container className={classes.root} spacing={3}>
+      <Grid item xs={12}>
+        <h1>Hello stranger</h1>
+      </Grid>
+      <Grid item xs={12}>
+        <Card />
+      </Grid>
+    </Grid>
   );
 }
 
