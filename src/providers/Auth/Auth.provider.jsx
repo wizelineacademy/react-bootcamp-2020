@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 
 import { AUTH_STORAGE_KEY, AUTH_IMG_STORAGE_KEY } from '../../utils/constants';
 import { storage } from '../../utils/storage';
@@ -14,14 +14,7 @@ function useAuth() {
 }
 
 function AuthProvider({ children }) {
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const lastAuthState = storage.get(AUTH_STORAGE_KEY);
-    const isAuthenticated = Boolean(lastAuthState);
-
-    setAuthenticated(isAuthenticated);
-  }, []);
+  const [authenticated, setAuthenticated] = useState(Boolean(storage.get(AUTH_STORAGE_KEY)) || false);
 
   const login = useCallback((user) => {
     setAuthenticated(true);

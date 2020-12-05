@@ -62,7 +62,7 @@ function VideoDetail() {
   return (
     <section className="full-width">
       <Row className="detail-container">
-        <Col span={16}>
+        <Col xs={24} sm={24} md={16} lg={16} xl={16} className="px15">
           <Row gutter={[0, 24]}>
             <Col span={24}>
               <iframe
@@ -77,7 +77,7 @@ function VideoDetail() {
             </Col>
           </Row>
           <Row gutter={[0, 24]}>
-            <Col span={18} className="description-container">
+            <Col xs={12} sm={12} md={18} lg={18} xl={18} className="description-container">
               {Object.keys(dataVideo).length > 0 ? (
                 <>
                   <h2>{dataVideo.snippet.title}</h2>
@@ -91,13 +91,13 @@ function VideoDetail() {
               )}
             </Col>
             {authenticated ? (
-              <Col span={6} className="textRight">
+              <Col xs={12} sm={12} md={6} lg={6} xl={6} className="textRight">
                 <FavoriteButton isFavorite={isFavorite} handleClick={handleClick} />
               </Col>
             ) : null}
           </Row>
         </Col>
-        <Col span={8} className="px15">
+        <Col sm={8} md={8} lg={8} xl={8} xs={24} className="px15">
           {videos.length > 1 ? (
             videos.map((item) => {
               const { snippet, id } = item;

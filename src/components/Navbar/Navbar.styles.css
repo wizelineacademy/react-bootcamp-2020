@@ -4,18 +4,48 @@
     color: #fff;
 }
 
-.search-container {
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .search-container {
+    width: 75%;
+    text-align: left;
+  }
+
+  .login-container {
+    width: 25%;
+  }
+
+  .login-container .switch-theme {
+    display: none;
+  }
+
+  .login-container .label-switcher {
+    display: none;
+  }
+
+  .search-container .ant-input-affix-wrapper.search-input{
+    width: 150px !important;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 577px) {
+  .search-container {
     width: 50%;
     text-align: left;
-}
+  }
 
-.search-input {
-    width: 200px;
-}
-
-.login-container {
+  .login-container {
     width: 50%;
     text-align: right;
+  }
+
+  .search-container .ant-input-affix-wrapper.search-input{
+    width: 200px !important;
+  }
+
 }
 
 .login-container .switch-theme {

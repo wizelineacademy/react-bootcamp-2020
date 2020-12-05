@@ -29,7 +29,6 @@ function InputSearch() {
     <>
       <Input
         className="search-input"
-        style={{ width: '200px' }}
         placeholder="search"
         prefix={<SearchOutlined />}
         defaultValue={searchTerm}
