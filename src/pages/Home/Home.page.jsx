@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import SearchContext from '../../contexts/search';
+import SearchContext, {initialSearch} from '../../contexts/search';
 import AppBar from '../../components/AppBar';
 import VideoGrid from '../../components/VideoGrid';
 import videos from '../../mock';
-
-const initialSearch = '';
 
 export default function HomePage() {
   const [search, setSearch] = useState(initialSearch);
