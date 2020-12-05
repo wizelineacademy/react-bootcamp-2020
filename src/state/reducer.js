@@ -31,13 +31,14 @@ export default function reducer(state, action) {
         videos: action.payload,
       };
     case actions.ADD_VIDEOS:
-      if (action.payload.length === 0) {
+      if (!action.payload) {
         return state;
       }
       return {
         ...state,
         videos: [...state.videos, ...action.payload],
       };
+
     case actions.SET_CURRENT_VIDEO:
       return {
         ...state,
@@ -53,19 +54,6 @@ export default function reducer(state, action) {
       return {
         ...state,
         user: action.payload,
-      };
-    case actions.ADD_FAVORITE:
-      return {
-        ...state,
-        favorites: [
-          ...state.favorites,
-          state.videos.find((video) => video.id === action.payload),
-        ],
-      };
-    case actions.REMOVE_FAVORITE:
-      return {
-        ...state,
-        favorites: state.favorites.filter((video) => video.id !== action.payload),
       };
     case actions.TOGGLE_FAVORITE:
       return {

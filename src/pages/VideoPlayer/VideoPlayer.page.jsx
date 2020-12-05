@@ -10,10 +10,11 @@ import {
   VideoInformationContainer,
 } from './VideoPlayer.styles';
 import { useAppDataContext } from '../../providers/AppData';
-import { useSingleVideoAndRelated } from '../../utils/hooks/useSingleVideoAndRelated';
 import VideoCardSmall from '../../components/VideoCardSmall';
 import { useAuth } from '../../providers/Auth';
 import actions from '../../state/actions';
+import { useSingleVideo } from '../../utils/hooks/useSingleVideo';
+import { useRelatedVideos } from '../../utils/hooks/useRelatedVideos';
 
 const VideoPlayer = () => {
   const { state, dispatch } = useAppDataContext();
@@ -24,21 +25,18 @@ const VideoPlayer = () => {
 
   useEffect(() => {
     setIsFavorite(state.favorites.some((video) => video.id === idVideo));
+     
   }, [state.favorites, idVideo]);
 
-  useSingleVideoAndRelated(idVideo);
+  useRelatedVideos(idVideo);
+  useSingleVideo(idVideo);
 
   const { theme } = useContext(ThemeContext);
 
   const toggleFavorite = () => {
     dispatch({ type: actions.TOGGLE_FAVORITE, payload: idVideo });
   };
-  const toggleFavoriteByKey = ({ key }) => {
-    if (key === 'Enter') {
-      console.log();
-      dispatch({ type: actions.TOGGLE_FAVORITE, payload: idVideo });
-    }
-  };
+ 
 
   const { videos, currentVideo } = state;
 
@@ -61,7 +59,6 @@ const VideoPlayer = () => {
               className={isFavorite ? 'fav' : 'no-fav'}
               type="button"
               onClick={toggleFavorite}
-              onKeyDown={toggleFavoriteByKey}
             >
               {isFavorite ? <span>REMOVE FAVORITES</span> : <span>ADD FAVORITES</span>}
               <FontAwesomeIcon icon={faStar} />
@@ -76,8 +73,7 @@ const VideoPlayer = () => {
       <VideoList theme={theme}>
         {videos
           ? videos
-              .filter((video) => video.id !== idVideo)
-              .map((video) => <VideoCardSmall video={video} key={video.id} />)
+              .map((video) =><VideoCardSmall video={video} key={video.id} />)
           : null}
       </VideoList>
     </PageContent>

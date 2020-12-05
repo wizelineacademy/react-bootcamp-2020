@@ -20,8 +20,6 @@ const HeaderButton = styled('button')`
   color: white;
   text-transform: capitalize;
   transition: all 0.2s;
-  z-index: 100;
-
   &:focus {
     outline: none;
   }

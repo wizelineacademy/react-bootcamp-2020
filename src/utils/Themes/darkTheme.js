@@ -1,7 +1,7 @@
 const darkTheme = {
   bg: '#191919',
   text: '#fff',
-  header: '#8b091c',
+  header: '#000000',
   videoCardBg: '#222222',
   shadows: '#121313',
   navBg: '#222222',

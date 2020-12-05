@@ -6,7 +6,7 @@ import Header from '../Header';
 
 function Layout({ children }) {
   return (
-    <div className="page">
+    <div className="page" id="page">
       <Navigation />
 
       <main className="container">

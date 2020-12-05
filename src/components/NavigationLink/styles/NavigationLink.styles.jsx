@@ -7,8 +7,13 @@ const NavListItem = styled('li')`
   display: flex;
   align-items: center;
   flex-direction: row;
-  justify-content: space-evenly;
-  padding: 0.4rem;
+  justify-content: space-between;
+  padding: 1rem;
+  @media screen and (max-width: 1000px) {
+    padding:0.2;
+    justify-content: center;
+
+  }
 
   &:hover {
     transition: 0.5s;
@@ -16,7 +21,7 @@ const NavListItem = styled('li')`
   }
 
   div {
-    color: ${({ theme }) => theme.header};
+    color: ${({ theme }) => theme.secondaryColor};
 
     font-size: larger;
   }

@@ -16,7 +16,7 @@ const Navigation = () => {
   const history = useHistory();
 
   return (
-    <NavigationBlock role="navigation" theme={theme} show={state.navigationOpen}>
+    <NavigationBlock theme={theme} show={state.navigationOpen}>
       <ProfileInformation />
       <ul className="navlist">
         <NavigationLink action={() => history.push('/')} icon={faHome}>

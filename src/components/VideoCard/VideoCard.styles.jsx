@@ -41,11 +41,16 @@ const CardContainer = styled('article')`
   flex-direction: column;
   cursor: pointer;
 `;
-const CardImage = styled('img')`
+const CardImage = styled('div')`
   border-radius: 2.5% 2.5% 0 0;
   width: auto;
   height: 45%;
   display: flex;
+  background-image: url(${({src})=>src});
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:0%;
+
   flex-direction: column;
 `;
 
