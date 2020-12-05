@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { random } from '../fns';
+// import { random } from '../fns';
 
 const API_URL = 'http://fortunecookieapi.herokuapp.com/v1/fortunes?limit=10';
 
@@ -13,7 +13,7 @@ function useFortune() {
         const response = await fetch(API_URL);
         const fortuneCookies = await response.json();
 
-        const randomIndex = random(fortuneCookies.length);
+        const randomIndex = 2; // random(fortuneCookies.length);
         const currentFortune = fortuneCookies[randomIndex];
 
         setFortune(currentFortune.message);

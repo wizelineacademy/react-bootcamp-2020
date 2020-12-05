@@ -1,5 +1,5 @@
 import React from 'react';
-import './SuggestedSearches.style.css';
+import './SuggestedSearches.styles.css';
 import GetSuggestedSearches from './GetSuggestedSearches.component';
 
 export default function Sugestedsearches() {

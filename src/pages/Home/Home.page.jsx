@@ -53,7 +53,7 @@ function HomePage() {
   return (
     <Layout>
       <Logo />
-      <SearchBar initSearchQuery={searchQuery} onChange={setSearchQuery} />
+      <SearchBar initSearchQuery={searchQuery} onChange={setSearchQuery} homepage />
       <SuggestedSearches />
     </Layout>
   );

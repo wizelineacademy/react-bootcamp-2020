@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default () => {
   function getRandomElements(arr, n) {
@@ -46,7 +47,9 @@ export default () => {
 
   const randomSuggestedSearchesElements = getRandomElements(suggestedSearchesElements, 4);
   const elements = randomSuggestedSearchesElements.map((value) => (
-    <span key={value}>{value}</span>
+    <Link key={value} to={`/search/${value}`}>
+      <span>{value}</span>
+    </Link>
   ));
   return elements;
 };
