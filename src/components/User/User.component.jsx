@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../providers/Auth';
+import Modal from '../Modal/Modal.component';
 import './User.styles.css';
 
 const UserParent = styled.div`
@@ -29,18 +30,30 @@ const Auth = styled.div`
 
 function User(props) {
   const { authenticated, logout, login, userData } = useAuth();
-  const history = useHistory();
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    if (authenticated) {
+      handleClose();
+    }
+  }, [authenticated]);
 
   function deAuthenticate(event) {
     event.preventDefault();
     logout();
-    history.push('/');
   }
   function authenticate(event) {
     event.preventDefault();
-    login("wizeline", "Rocks!");
-    history.push('/');
+    handleShow();
   }
+
+  function handleLogin(user, pass) {
+    login(user, pass);
+  }
+
   return (
     <>
       <UserParent>
@@ -65,6 +78,12 @@ function User(props) {
           )}
         </Auth>
       </UserParent>
+      <Modal
+        className="modal"
+        show={show}
+        handleClose={handleClose}
+        handleLogin={handleLogin}
+      />
     </>
   );
 }

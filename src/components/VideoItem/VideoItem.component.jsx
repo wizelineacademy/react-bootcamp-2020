@@ -38,7 +38,7 @@ const VideoDetail = styled.div`
 `;
 
 const ItemTitle = styled.h1`
-  font-size: 20px;
+  font-size: 0.8rem;
   font-weight: bold;
   line-height: 13px;
 `;

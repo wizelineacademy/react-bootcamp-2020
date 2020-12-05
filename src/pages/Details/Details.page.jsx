@@ -87,8 +87,8 @@ function DetailsPage() {
   useEffect(() => {
     if (currentVideo) {
       setCurrent(currentVideo[0]);
-      const filterVideo = videos
-        .concat(favorites)
+      const filterVideo = favorites
+        .concat(videos)
         .filter((item, index, self) => index === self.findIndex((t) => t.id === item.id));
       setList(filterVideo);
     }

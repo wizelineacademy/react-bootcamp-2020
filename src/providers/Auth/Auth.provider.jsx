@@ -16,6 +16,8 @@ function useAuth() {
 
 function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
+  const [error, setError] = useState('');
+
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
@@ -28,12 +30,14 @@ function AuthProvider({ children }) {
 
   const login = useCallback(async (user, pass) => {
     try {
+      setError('');
       const response = await loginApi(user, pass);
       console.log(response);
       setAuthenticated(true);
       setUserData(response);
       storage.set(AUTH_STORAGE_KEY, response);
     } catch (e) {
+      setError(e.message);
       setAuthenticated(false);
       setUserData([]);
       storage.set(AUTH_STORAGE_KEY, false);
@@ -41,13 +45,14 @@ function AuthProvider({ children }) {
   }, []);
 
   const logout = useCallback(() => {
+    setError('');
     setAuthenticated(false);
     setUserData([]);
     storage.set(AUTH_STORAGE_KEY, false);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ login, logout, authenticated, userData }}>
+    <AuthContext.Provider value={{ login, logout, authenticated, userData, error }}>
       {children}
     </AuthContext.Provider>
   );
