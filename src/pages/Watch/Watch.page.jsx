@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
+import NotFoundPage from '../NotFound';
 import AppBar from '../../components/AppBar';
 import VideoDisplay from '../../components/VideoDisplay';
 import videos from '../../mock';
@@ -11,7 +12,7 @@ export default function WatchVideoPage() {
   const video = videos.filter((v) => v.id === id).pop();
 
   if (video === undefined) {
-    return <h1>Not Found!</h1>;
+    return <NotFoundPage />;
   }
 
   return (
