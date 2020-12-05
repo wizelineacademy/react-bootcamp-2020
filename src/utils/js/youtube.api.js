@@ -50,28 +50,22 @@ const fetchBySearchInput = (searchInput, onSucces, onError, onComplete) => {
 };
 
 const fetchVideosByIds = (ids = [], onSucces, onError, onComplete) => {
+  const stringIds = ids.join();
   return axios
-    .get(`${BASE_YOUTUBE_URI}videos`, {
-      params: {
-        key: YOUTUBE_API_KEY,
-        part: 'snippet',
-        id: ids.join(),
-      },
-    })
+    .get(
+      `${BASE_YOUTUBE_URI}videos?key=${YOUTUBE_API_KEY}&part=snippet&id=${stringIds}&part=statistics`
+    )
     .then(onSucces)
     .catch(onError)
     .then(onComplete);
 };
 
 const fetchChannelsByIds = (ids = [], onSucces, onError, onComplete) => {
+  const stringIds = ids.join();
   return axios
-    .get(`${BASE_YOUTUBE_URI}channels`, {
-      params: {
-        key: YOUTUBE_API_KEY,
-        part: 'snippet',
-        id: ids.join(),
-      },
-    })
+    .get(
+      `${BASE_YOUTUBE_URI}channels?key=${YOUTUBE_API_KEY}&part=snippet&id=${stringIds}&part=statistics`
+    )
     .then(onSucces)
     .catch(onError)
     .then(onComplete);
@@ -87,13 +81,13 @@ export const formatVideosData = (searchData = [], videoData = [], channelData = 
       id: { videoId },
       snippet: { channelId },
     } = sdItem;
-    //Normalizing data for videos
+    // Normalizing data for videos
     if (!videosDataSummary.videos[videoId]) {
       if (!videoDictionary[videoId]) {
         videoDictionary[videoId] = videoData.items.find((el) => el.id === videoId);
       }
 
-      //Video object
+      // Video object
       videosDataSummary.videos[videoId] = {
         videoId,
         etag: sdItem.etag,
@@ -110,7 +104,7 @@ export const formatVideosData = (searchData = [], videoData = [], channelData = 
       };
     }
 
-    //Normalizing data for channels
+    // Normalizing data for channels
     if (!videosDataSummary.channels[channelId]) {
       let image = '';
       let description = '';
@@ -130,7 +124,7 @@ export const formatVideosData = (searchData = [], videoData = [], channelData = 
         suscribers = channel.statistics.subscriberCount;
       }
 
-      //Channel object
+      //  Channel object
       videosDataSummary.channels[channelId] = {
         channelId,
         title: sdItem.snippet.channelTitle,
@@ -148,6 +142,7 @@ export const searchVideos = (searchInput = 'wizeline', onSucces, onError, onComp
   fetchBySearchInput(
     searchInput,
     (response) => {
+      console.log('Serchvideos succes');
       const {
         data: { items },
       } = response;
@@ -175,10 +170,12 @@ export const searchVideos = (searchInput = 'wizeline', onSucces, onError, onComp
         onError
       );
 
-      Promise.all([videosPromise, channelsPromise]).then(() => {
-        const videoDataSummary = formatVideosData(searchData, videoData, channelData);
-        onSucces(videoDataSummary);
-      });
+      Promise.all([videosPromise, channelsPromise])
+        .then(() => {
+          const videoDataSummary = formatVideosData(searchData, videoData, channelData);
+          onSucces(videoDataSummary);
+        })
+        .catch(onError);
     },
     onError,
     onComplete

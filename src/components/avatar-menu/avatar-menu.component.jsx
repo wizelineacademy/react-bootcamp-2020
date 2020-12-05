@@ -7,7 +7,6 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import Avatar from '@material-ui/core/Avatar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { AuthContext } from '../../providers/auth';
-//  import { setCurrentUser } from '../../providers/auth/auth.actions';
 import { auth } from '../../utils/js/firebase';
 
 import './avatar-menu.styles.scss';

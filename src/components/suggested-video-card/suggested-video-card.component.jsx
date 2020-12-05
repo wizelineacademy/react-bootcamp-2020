@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { VideosContext } from '../../providers/videos';
+import { setVideoToWatch } from '../../providers/videos/videos.actions';
 
 import './suggested-video-card.styles.scss';
 
-function SuggestedVideoCard({ videoId, image, title, views, timestamp, channel }) {
+function SuggestedVideoCard({ video, channel }) {
+  const { videosDispatch } = useContext(VideosContext);
+  const { videoId, image, title, views, timestamp } = video;
+
+  const handleMoveToWatchVideoOnClick = () => {
+    videosDispatch(setVideoToWatch({ video, channel }));
+  };
+
   const { title: channelTitle } = channel;
   const LINK_ID_VIDEO = `/wv/${videoId}`;
   return (
     <div className='suggested-video-card-container'>
-      <Link to={LINK_ID_VIDEO}>
+      <Link to={LINK_ID_VIDEO} onClick={handleMoveToWatchVideoOnClick}>
         <img className='thumbnail' src={image} alt='' />
       </Link>
       <div className='info'>
-        <Link to={LINK_ID_VIDEO}>
+        <Link to={LINK_ID_VIDEO} onClick={handleMoveToWatchVideoOnClick}>
           <h4>{title}</h4>
         </Link>
         <p>{channelTitle}</p>

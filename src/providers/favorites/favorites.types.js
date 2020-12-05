@@ -1,0 +1,7 @@
+const FavoritesActionTypes = {
+  SET_FAVORITES_VIDEOS: 'SET_FAVORITES_VIDEOS',
+  ADD_FAVORITE_VIDEO: 'ADD_FAVORITE_VIDEO',
+  REMOVE_FAVORITE_VIDEO: 'REMOVE_FAVORITE_VIDEO',
+};
+
+export default FavoritesActionTypes;

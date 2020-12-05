@@ -2,21 +2,41 @@ import React, { useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 
 import { VideosContext } from '../../providers/videos';
+import { FavoritesContext } from '../../providers/favorites';
+
+import {
+  addVideoToFavorites,
+  removeVideoFromFavorites,
+} from '../../providers/favorites/favorites.actions';
 import SuggestedVideoCard from '../../components/suggested-video-card';
 
 import './watch-video.styles.scss';
 
-const WatchVideoPage = ({
-  match: {
-    params: { videoId },
-  },
-}) => {
+const WatchVideoPage = () => {
   const { videosState } = useContext(VideosContext);
-  const { videos, channels } = videosState;
+  const { favoritesState, favoritesDispatch } = useContext(FavoritesContext);
 
-  const { title, views, timestamp, channelId } = videos[videoId];
-  const channel = channels[channelId];
+  const {
+    videosInfo: { videos: favoritesVideos },
+  } = favoritesState;
+
+  const {
+    videosInfo: { videos, channels },
+    videoToWatch,
+  } = videosState;
+
+  const {
+    video: { videoId, title, views, timestamp },
+    channel,
+  } = videoToWatch;
   const { title: channelTitle, image: channelImage } = channel;
+
+  const handleAddFavoriteVideoOnClick = () => {
+    favoritesDispatch(addVideoToFavorites(videoToWatch));
+  };
+  const handleRemoveFavoriteVideoOnClick = () => {
+    favoritesDispatch(removeVideoFromFavorites(videoToWatch));
+  };
 
   return (
     <div className='watch-video-container'>
@@ -36,6 +56,24 @@ const WatchVideoPage = ({
           <p>
             {views} views • {timestamp}
           </p>
+
+          {favoritesVideos[videoId] ? (
+            <button
+              type='button'
+              className='favorite-button-container'
+              onClick={handleRemoveFavoriteVideoOnClick}
+            >
+              remove
+            </button>
+          ) : (
+            <button
+              type='button'
+              className='favorite-button-container'
+              onClick={handleAddFavoriteVideoOnClick}
+            >
+              add
+            </button>
+          )}
         </div>
         <div className='channel-info'>
           <div className='header'>
@@ -53,12 +91,12 @@ const WatchVideoPage = ({
       <div className='secondary'>
         <div className='path-video-container'>
           {Object.keys(videos).map((videoKey) => {
-            const { etag, ...otherVideoProps } = videos[videoKey];
+            const { etag, channelId } = videos[videoKey];
             return (
               <SuggestedVideoCard
                 key={etag}
-                {...otherVideoProps}
-                channel={channels[otherVideoProps.channelId]}
+                video={videos[videoKey]}
+                channel={channels[channelId]}
               />
             );
           })}

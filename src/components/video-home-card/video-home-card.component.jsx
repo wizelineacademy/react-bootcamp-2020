@@ -1,22 +1,31 @@
-import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
+
+import { VideosContext } from '../../providers/videos';
+import { setVideoToWatch } from '../../providers/videos/videos.actions';
 
 import './video-home-card.styles.scss';
 
-function VideoHomeCard({ videoId, image, title, views, timestamp, channel, match }) {
+function VideoHomeCard({ video, channel }) {
+  const { videosDispatch } = useContext(VideosContext);
+  const { videoId, image, title, views, timestamp } = video;
   const { title: channelTitle, image: channelImage } = channel;
+
+  const handleMoveToWatchVideoOnClick = () => {
+    videosDispatch(setVideoToWatch({ video, channel }));
+  };
 
   return (
     <div className='video-home-card-container'>
-      <Link to={`${match.url}wv/${videoId}`}>
+      <Link to={`wv/${videoId}`} onClick={handleMoveToWatchVideoOnClick}>
         <img className='thumbnail' src={image} alt='' />
       </Link>
 
       <div className='info'>
         <Avatar className='avatar' alt={channelTitle} src={channelImage} />
         <div className='text'>
-          <Link to={`${match.url}wv/${videoId}`}>
+          <Link to={`wv/${videoId}`} onClick={handleMoveToWatchVideoOnClick}>
             <h4>{title}</h4>
           </Link>
           <p>{channelTitle}</p>
@@ -29,4 +38,4 @@ function VideoHomeCard({ videoId, image, title, views, timestamp, channel, match
   );
 }
 
-export default withRouter(VideoHomeCard);
+export default VideoHomeCard;

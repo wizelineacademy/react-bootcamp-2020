@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import AuthProvider from './providers/auth';
 import VideosProvider from './providers/videos';
+import FavoritesProvider from './providers/favorites';
 
 import App from './components/app';
 import './global.scss';
@@ -14,7 +15,9 @@ ReactDOM.render(
     <React.StrictMode>
       <AuthProvider>
         <VideosProvider>
-          <App />
+          <FavoritesProvider>
+            <App />
+          </FavoritesProvider>
         </VideosProvider>
       </AuthProvider>
     </React.StrictMode>

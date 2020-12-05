@@ -3,9 +3,9 @@ import VideosActionTypes from './videos.types';
 import { SummaryResult2 } from '../../utils/searchresult';
 
 const INITIAL_STATE = {
-  selectedVideo: null,
-  videos: SummaryResult2.videos,
-  channels: SummaryResult2.channels,
+  searchQuery: '',
+  videosInfo: SummaryResult2,
+  videoToWatch: {},
   isFetching: false,
   errorMessage: undefined,
 };
@@ -21,7 +21,7 @@ const videosReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        videosData: action.payload,
+        videosInfo: action.payload,
       };
     case VideosActionTypes.FETCH_VIDEOS_FAILURE:
       return {
@@ -29,10 +29,15 @@ const videosReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
-    case VideosActionTypes.SET_SELECTED_VIDEO:
+    case VideosActionTypes.SET_SEARCH_QUERY:
       return {
         ...state,
-        selectedVideo: action.payload,
+        searchQuery: action.payload,
+      };
+    case VideosActionTypes.SET_VIDEO_TO_WATCH:
+      return {
+        ...state,
+        videoToWatch: action.payload,
       };
     default:
       return state;
