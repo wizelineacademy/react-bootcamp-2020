@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import NotFoundPage from '../NotFound';
+import SearchContext, { initialSearch } from '../../contexts/search';
 import AppBar from '../../components/AppBar';
 import VideoDisplay from '../../components/VideoDisplay';
 import videos from '../../mock';
 import '../../global.css';
 
 export default function WatchVideoPage() {
+  const [search, setSearch] = useState(initialSearch);
   const { id } = useParams();
   const video = videos.filter((v) => v.id === id).pop();
 
@@ -17,15 +19,17 @@ export default function WatchVideoPage() {
 
   return (
     <>
-      <AppBar />
-      <Grid container className="content">
-        <Grid item xs={12} sm={8} md={10}>
-          <VideoDisplay video={video} />
+      <SearchContext.Provider value={{ search, setSearch }}>
+        <AppBar />
+        <Grid container className="content">
+          <Grid item xs={12} sm={8} md={10}>
+            <VideoDisplay video={video} />
+          </Grid>
+          <Grid item sm>
+            &nbsp;
+          </Grid>
         </Grid>
-        <Grid item sm>
-          &nbsp;
-        </Grid>
-      </Grid>
+      </SearchContext.Provider>
     </>
   );
 }
