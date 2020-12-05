@@ -12,9 +12,9 @@ import OnLoading from '../Feedback/OnLoading.component';
 const ITEMS_PER_LINE = 5;
 
 export default function YouTubeSearchList() {
-  const { search } = useContext(SearchContext);
+  const { searchTerm } = useContext(SearchContext);
   const { videos, isLoaded, error } = useYouTubeDataAPI('search', 'list', {
-    q: search,
+    q: searchTerm,
   });
 
   function renderRow(index) {

@@ -7,8 +7,8 @@ import SearchContext from '../../state/SearchContext';
 import useFormInput from '../../utils/hooks/useFormInput';
 
 export default function SearchForm() {
-  const { search, setSearch } = useContext(SearchContext);
-  const searchInput = useFormInput(search, setSearch);
+  const { searchTerm, setSearchTerm } = useContext(SearchContext);
+  const searchInput = useFormInput(searchTerm, setSearchTerm);
 
   return (
     <Form inline>

@@ -11,13 +11,13 @@ import VideoPage from '../../pages/Video';
 import Private from '../Private';
 import Layout from '../Layout';
 
-import { SEARCH_DEFAULT } from '../../utils/constants';
+import { SEARCH_TERM_DEFAULT } from '../../utils/constants';
 
 export default function App() {
-  const [search, setSearch] = useState(SEARCH_DEFAULT);
+  const [searchTerm, setSearchTerm] = useState(SEARCH_TERM_DEFAULT);
 
   return (
-    <SearchContext.Provider value={{ search, setSearch }}>
+    <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
       <BrowserRouter>
         <AuthProvider>
           <Layout>
