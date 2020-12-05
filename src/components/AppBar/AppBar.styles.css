@@ -2,14 +2,15 @@
   padding-left: 0.5em;
   font-weight: bold !important;
   display: block;
-  flex-grow: 1;
 }
 
-.searchbar {
-  flex-grow: 5;
-}
-
-.right {
+.login {
   position: relative;
   margin-left: 0px;
+}
+
+@media only screen and (max-width: 650px) {
+  .title {
+    display: none;
+  }
 }
