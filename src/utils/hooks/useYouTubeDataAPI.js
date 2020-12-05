@@ -1,14 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
 
-const API_KEY = 'AIzaSyAcgmsZB2M27kvgZju-qtHhKiziG5dzYf8'; // benoit.borrel@gmail.com
-// const API_KEY = 'AIzaSyBfCTxfs9EgNkuHKRjful5zvSVVNymV34g'; // benoit@borrel.com
+// const API_KEY = 'AIzaSyAcgmsZB2M27kvgZju-qtHhKiziG5dzYf8'; // benoit.borrel@gmail.com
+const API_KEY = 'AIzaSyBfCTxfs9EgNkuHKRjful5zvSVVNymV34g'; // benoit@borrel.com
 const API_URL = 'https://www.googleapis.com/youtube/v3/';
 const API_PARAM_PART = 'snippet';
 const API_PARAM_TYPE = 'video';
 const API_PARAM_MAX_RESULTS = 10;
 
 export default function useYouTubeDataAPI(resource, method, parameters) {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [videos, setVideos] = useState([]);
 
@@ -70,12 +69,10 @@ export default function useYouTubeDataAPI(resource, method, parameters) {
   useEffect(() => {
     async function fetchYouTubeAPI() {
       try {
-        setIsLoaded(true);
         const response = await fetch(memoizedUrl);
         const data = await response.json();
         setVideos(data.items);
       } catch (err) {
-        setIsLoaded(true);
         setError(err);
       }
     }
@@ -83,5 +80,5 @@ export default function useYouTubeDataAPI(resource, method, parameters) {
     fetchYouTubeAPI();
   }, [memoizedUrl]);
 
-  return { videos, isLoaded, error };
+  return { videos, error };
 }

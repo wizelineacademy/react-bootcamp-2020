@@ -9,21 +9,20 @@ import OnError from '../Feedback/OnError.component';
 import OnLoading from '../Feedback/OnLoading.component';
 
 export default function YouTubeVideoArticle(props) {
-  const { videos, isLoaded, error } = useYouTubeDataAPI('videos', 'list', {
+  const { videos, error } = useYouTubeDataAPI('videos', 'list', {
     id: props.id,
   });
 
-  // @todo better check
-  if (!videos[0]) {
-    return <div>No video</div>;
+  if (error) {
+    return <OnError error={error} />;
+  }
+
+  if (videos === undefined || videos.length === 0) {
+    return <OnLoading />;
   }
 
   return (
     <>
-      {error && <OnError error={error} />}
-
-      {!isLoaded && <OnLoading />}
-
       <Row>
         <Col>
           {/* eslint-disable-next-line react/no-danger */}

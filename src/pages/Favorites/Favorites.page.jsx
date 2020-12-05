@@ -13,10 +13,11 @@ const ITEMS_PER_LINE = 5;
 
 export default function FavoritesPage() {
   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-  const { videos, isLoaded, error } = useYouTubeDataAPI('videos', 'list', {
+  const { videos, error } = useYouTubeDataAPI('videos', 'list', {
     id: favorites.toString(),
   });
 
+  // @todo refactor to leverage <CardColumns>
   function renderRow(index) {
     const videosRow = videos.slice(index, index + ITEMS_PER_LINE);
 
@@ -35,6 +36,14 @@ export default function FavoritesPage() {
     );
   }
 
+  if (error) {
+    return <OnError error={error} />;
+  }
+
+  if (videos === undefined || videos.length === 0) {
+    return <OnLoading />;
+  }
+
   return (
     <section className="favoritespage">
       {favorites.length === 0 && (
@@ -42,10 +51,6 @@ export default function FavoritesPage() {
           <Alert variant="info">No videos were added as favorites yet.</Alert>
         </div>
       )}
-
-      {error && <OnError error={error} />}
-
-      {!isLoaded && <OnLoading />}
 
       {(videos || []).map((video, index) => renderRow(index))}
     </section>

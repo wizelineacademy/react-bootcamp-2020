@@ -9,16 +9,20 @@ import OnError from '../Feedback/OnError.component';
 import OnLoading from '../Feedback/OnLoading.component';
 
 export default function YouTubeRelatedList(props) {
-  const { videos, isLoaded, error } = useYouTubeDataAPI('search', 'list', {
+  const { videos, error } = useYouTubeDataAPI('search', 'list', {
     relatedToVideoId: props.id,
   });
 
+  if (error) {
+    return <OnError error={error} />;
+  }
+
+  if (videos === undefined || videos.length === 0) {
+    return <OnLoading />;
+  }
+
   return (
     <>
-      {error && <OnError error={error} />}
-
-      {!isLoaded && <OnLoading />}
-
       {(videos || []).map((video) => (
         <Row key={video.id.videoId}>
           <Col className="mb-3">

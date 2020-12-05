@@ -13,10 +13,11 @@ const ITEMS_PER_LINE = 5;
 
 export default function YouTubeSearchList() {
   const { searchTerm } = useContext(SearchContext);
-  const { videos, isLoaded, error } = useYouTubeDataAPI('search', 'list', {
+  const { videos, error } = useYouTubeDataAPI('search', 'list', {
     q: searchTerm,
   });
 
+  // @todo refactor to leverage <CardColumns>
   function renderRow(index) {
     const videosRow = videos.slice(index, index + ITEMS_PER_LINE);
 
@@ -35,13 +36,13 @@ export default function YouTubeSearchList() {
     );
   }
 
-  return (
-    <>
-      {error && <OnError error={error} />}
+  if (error) {
+    return <OnError error={error} />;
+  }
 
-      {!isLoaded && <OnLoading />}
+  if (videos === undefined || videos.length === 0) {
+    return <OnLoading />;
+  }
 
-      {(videos || []).map((video, index) => renderRow(index))}
-    </>
-  );
+  return (videos || []).map((video, index) => renderRow(index));
 }
