@@ -21,7 +21,7 @@ describe('VideoCardSmall', () => {
         <VideoCardSmall video={videoProp} />
       </ThemeProvider>
     );
-    const image =  screen.queryByRole("listitem").children[0].children[0];
+    const image = screen.queryByRole('listitem').children[0].children[0];
     expect(image).toBeTruthy();
   });
   it('renders descrption', () => {
