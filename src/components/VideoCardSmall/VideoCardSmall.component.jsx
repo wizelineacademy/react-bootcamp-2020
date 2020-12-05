@@ -17,7 +17,7 @@ export default function VideoCardSmall({ video: { id, channelTitle, image, title
   };
 
   return (
-    <CardSmall theme={theme}>
+    <CardSmall role="listitem" theme={theme}>
       <CardContainerSmall onClick={openVideoPage}>
         <CardImageSmall src={image} alt={title} />
         <CardContentSmall>
