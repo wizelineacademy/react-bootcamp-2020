@@ -23,7 +23,7 @@ export default function App() {
           <Typography variant="h6" noWrap className="title">
             Favorites
           </Typography>
-          <SearchBar/>
+          <SearchBar />
           {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
           <Button color="inherit" className="right">
             Login

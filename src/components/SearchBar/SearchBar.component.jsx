@@ -11,7 +11,9 @@ export default function SearchBar() {
         placeholder="Search…"
         inputProps={{ 'aria-label': 'search' }}
       />
-      <Button className="search-btn"><SearchIcon/></Button>
+      <Button className="search-btn">
+        <SearchIcon />
+      </Button>
     </div>
-  )
+  );
 }
