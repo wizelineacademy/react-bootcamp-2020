@@ -25,7 +25,6 @@ const VideoPlayer = () => {
 
   useEffect(() => {
     setIsFavorite(state.favorites.some((video) => video.id === idVideo));
-     
   }, [state.favorites, idVideo]);
 
   useRelatedVideos(idVideo);
@@ -36,7 +35,6 @@ const VideoPlayer = () => {
   const toggleFavorite = () => {
     dispatch({ type: actions.TOGGLE_FAVORITE, payload: idVideo });
   };
- 
 
   const { videos, currentVideo } = state;
 
@@ -72,8 +70,7 @@ const VideoPlayer = () => {
       </VideoContent>
       <VideoList theme={theme}>
         {videos
-          ? videos
-              .map((video) =><VideoCardSmall video={video} key={video.id} />)
+          ? videos.map((video) => <VideoCardSmall video={video} key={video.id} />)
           : null}
       </VideoList>
     </PageContent>

@@ -46,10 +46,10 @@ const CardImage = styled('div')`
   width: auto;
   height: 45%;
   display: flex;
-  background-image: url(${({src})=>src});
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-position:0%;
+  background-image: url(${({ src }) => src});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0%;
 
   flex-direction: column;
 `;
