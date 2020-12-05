@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 
 import { useAuth } from '../../providers/Auth';
 import SearchForm from '../Search/SearchForm.component';
+import ThemeButton from '../Theme/ThemeButton.component';
 
 export default function Navigation() {
   const { authenticated, logout } = useAuth();
@@ -35,6 +36,7 @@ export default function Navigation() {
       </Nav>
 
       <Nav>
+        <ThemeButton />
         {authenticated ? (
           <>
             <Link to="/" onClick={deAuthenticate}>

@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { ThemeContext } from '../../state/ThemeContext';
+
 export default function YouTubeVideoCard(props) {
   const id = props.video.id.videoId ?? props.video.id;
+  const { theme } = useContext(ThemeContext);
 
   if (props.layout === 'vertical') {
     return (
-      <Card>
+      <Card className={theme} style={{ transition: '0.25s' }}>
         {/* @todo fix encoded HTML entities that Link create */}
         {props.elements.includes('img') && (
           <Link to={`/video/${id}`}>
@@ -36,7 +39,7 @@ export default function YouTubeVideoCard(props) {
   }
 
   return (
-    <Card>
+    <Card className={theme} style={{ transition: '0.25s' }}>
       <Row className="no-gutters">
         <Col>
           {props.elements.includes('img') && (
