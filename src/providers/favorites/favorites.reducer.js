@@ -1,7 +1,8 @@
 import FavoritesActionTypes from './favorites.types';
 import { addVideoToFavorites, removeVideoFromFavorites } from './favorites.utils';
 
-const INITIAL_STATE = {
+const LOCAL_FAVORITES_KEY = 'localFavorites';
+const INITIAL_STATE = JSON.parse(localStorage.getItem(LOCAL_FAVORITES_KEY)) || {
   videosInfo: { videos: {}, channels: {} },
 };
 
@@ -27,5 +28,5 @@ const videosReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export { INITIAL_STATE as InitialState };
+export { INITIAL_STATE as InitialState, LOCAL_FAVORITES_KEY as LocalKey };
 export default videosReducer;
