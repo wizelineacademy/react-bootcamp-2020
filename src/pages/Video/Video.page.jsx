@@ -12,7 +12,7 @@ export default function VideoPage() {
 
   return (
     <section className="videopage">
-      <Row>
+      <Row className="mt-3">
         <Col>
           <article>
             <YouTubeVideoArticle id={id} />
