@@ -1,0 +1,31 @@
+.videoCard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 330px;
+  padding: 4px;
+  background-color: darkgrey;
+}
+
+.videoThumbnail {
+  text-align: center;
+}
+
+.videoInfo {
+  padding: 2px 16px;
+  color: white;
+}
+
+.videoTitle {
+  font-weight: bold;
+  font-size: medium;
+}
+
+.videoDescription {
+  font-size: small;
+}
+
+.videoChannel {
+  background-color: cornflowerblue;
+  padding: 1px 10px;
+  font-size: small;
+  margin-top: 5px;
+}

@@ -1,0 +1,20 @@
+.suggested_searches {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+.suggested_searches p {
+  color: white;
+}
+
+.suggested_searches a {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.suggested_searches_list span {
+  margin-left: 20px;
+}
