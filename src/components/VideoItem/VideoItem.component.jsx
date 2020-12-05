@@ -7,7 +7,7 @@ const VideoItem = ({ videoInfo: { title, description, publishTime, thumbnails: {
     const { setVideo } = useContext(StateContext);
 
     const onClickVideo = () => {
-        viewVideo(videoId)
+        viewVideo();
         setVideo({
             title,
             description,

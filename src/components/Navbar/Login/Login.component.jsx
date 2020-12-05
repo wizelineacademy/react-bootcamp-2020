@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { message, Modal, Row } from 'antd';
-import { useHistory } from 'react-router';
 import { UserInput, PasswordInput, ButtonStyle } from './Login.styled';
 import { StateContext } from '../../../utils/State';
 
@@ -9,18 +8,17 @@ const SesionInfo = {
     Password: "123"
 };
 
-const Login = () => {
+const Login = ({ onClose }) => {
 
     const [User, setUser] = useState("");
     const [Password, setPassword] = useState("");
     const { setSesion } = useContext(StateContext);
-    const history = useHistory();
 
     const onSubmit = () => {
         if(User !== SesionInfo.User) return message.error("Wrong user");
         if(Password !== SesionInfo.Password) return message.error("Wrong password");
         setSesion(SesionInfo);
-        history.push("/")
+        onClose();
     }
  
     return (
@@ -28,7 +26,7 @@ const Login = () => {
             centered
             visible
             footer={null}
-            onCancel={() => history.push("/")}
+            onCancel={onClose}
             width="24rem"
             bodyStyle={{ padding: "2rem" }}
             title="Login"
@@ -46,7 +44,7 @@ const Login = () => {
             <Row justify="space-between">
                 <ButtonStyle
                     color="red"
-                    onClick={() => history.push("/")}
+                    onClick={onClose}
                 >
                     Cancel
                 </ButtonStyle>

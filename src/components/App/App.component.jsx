@@ -22,7 +22,7 @@ const App = () => {
           />
           <Route 
             exact
-            path="/player/:idVideo"
+            path="/player"
             component={Player}
           />
           <Route path="/">

@@ -3,7 +3,6 @@ import { StateContext } from '../../utils/State';
 import { NavBar, InputStyled, SwitchStyled, LoginButton } from './Navbar.styled';
 import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
-import { useHistory, Route } from 'react-router';
 import Login from './Login'
 
 
@@ -11,21 +10,23 @@ const Navbar = () => {
 
     const { DarkMode, setDarkMode, Sesion, setSesion, SearchVideo, setSearchVideo } = useContext(StateContext);
     const [SearchVideoNav, setSearchVideoNav] = useState(SearchVideo)
-    const history = useHistory();
+    const [OpenModal, setOpenModal] = useState("");
 
     const onChangeSesion = () => {
         if(Sesion){
             setSesion(null);
         } else {
-            history.push("/login")
+            setOpenModal("Login");
         }
     }
 
+    const Modals = {
+        "Login": <Login onClose={() => setOpenModal("")} />
+    };
+
     return (
         <NavBar>
-            <Route path="/login" 
-                render={(props) => <Login {...props} /> } 
-            />
+            { Modals[OpenModal] }
             <InputStyled 
                 value={SearchVideoNav}
                 onChange={({target: { value }}) => setSearchVideoNav(value)}

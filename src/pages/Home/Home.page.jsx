@@ -11,7 +11,6 @@ const HomePage = () => {
   const history = useHistory();
 
   return (
-    <div>
       <HomeContainer>
         {
           (VideoList) && (
@@ -20,13 +19,12 @@ const HomePage = () => {
                 key={video.etag} 
                 videoInfo={video.snippet} 
                 videoID={video.id} 
-                viewVideo={(id) => history.push(`/player/${id}`) }
+                viewVideo={() => history.push(`/player`) }
               />
             )
           )
         }
       </HomeContainer>
-    </div>
   );
 }
 
