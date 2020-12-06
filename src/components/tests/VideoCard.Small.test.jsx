@@ -1,11 +1,9 @@
 import React from 'react';
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen} from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter } from 'react-router-dom';
 import VideoCardSmall from '../VideoCardSmall/VideoCardSmall.component';
 import lightTheme from '../../utils/Themes/lightTheme';
-import { CardSmall } from '../VideoCardSmall/VideoCardSmall.styles';
 
 describe('VideoCardSmall', () => {
   const videoProp = {
@@ -41,20 +39,5 @@ describe('VideoCardSmall', () => {
     );
     const title = screen.getByText(videoProp.title);
     expect(title).toBeTruthy();
-  });
-
-  it('handles on click', () => {
-    const onCLick = jest.fn();
-    render(
-      <BrowserRouter>
-        <ThemeProvider theme={lightTheme}>
-          <CardSmall onClick={onCLick} />
-        </ThemeProvider>
-      </BrowserRouter>
-    );
-
-    const card = screen.getByRole('listitem');
-    fireEvent.click(card);
-    expect(onCLick).toHaveBeenCalledTimes(1);
   });
 });
