@@ -19,12 +19,12 @@
 .contentArea .title {
   font-weight: bold;
   margin-bottom: unset;
+  margin-block-start: 0.5rem;
 }
 
 .contentArea .description {
-  line-height: 1.3rem;
   font-size: 0.6rem;
-  height: 3rem;
+  height: 2rem;
   white-space: unset;
   margin-top: unset;
 }
