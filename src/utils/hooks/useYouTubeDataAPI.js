@@ -1,11 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
 
-// const API_KEY = 'AIzaSyAcgmsZB2M27kvgZju-qtHhKiziG5dzYf8'; // benoit.borrel@gmail.com
-const API_KEY = 'AIzaSyBfCTxfs9EgNkuHKRjful5zvSVVNymV34g'; // benoit@borrel.com
+const API_KEY = 'AIzaSyAcgmsZB2M27kvgZju-qtHhKiziG5dzYf8'; // benoit.borrel@gmail.com
+// const API_KEY = 'AIzaSyBfCTxfs9EgNkuHKRjful5zvSVVNymV34g'; // benoit@borrel.com
 const API_URL = 'https://www.googleapis.com/youtube/v3/';
 const API_PARAM_PART = 'snippet';
 const API_PARAM_TYPE = 'video';
-const API_PARAM_MAX_RESULTS = 10;
+const API_PARAM_MAX_RESULTS = 15;
 
 export default function useYouTubeDataAPI(resource, method, parameters) {
   const [error, setError] = useState(null);
@@ -70,6 +70,9 @@ export default function useYouTubeDataAPI(resource, method, parameters) {
     async function fetchYouTubeAPI() {
       try {
         const response = await fetch(memoizedUrl);
+        if (response.status !== 200) {
+          throw new Error(`HTTP ${response.status}`);
+        }
         const data = await response.json();
         setVideos(data.items);
       } catch (err) {
