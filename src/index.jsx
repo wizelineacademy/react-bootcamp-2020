@@ -1,18 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LeftDrawer from './components/LeftDrawer';
-import SearchBar from './components/SearchBar';
-import RightSideMenu from './components/RightSideMenu';
-// import LeftDrawer from './components/LeftDrawer';
-/* import App from './components/App'; */
-// import SearchBar from './components/SearchBar';
+// import Main from './pages/Main';
+import Video from './pages/Video';
 import './global.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <LeftDrawer />
-    <SearchBar />
-    <RightSideMenu />
+    <Video />
   </React.StrictMode>,
   document.getElementById('root')
 );

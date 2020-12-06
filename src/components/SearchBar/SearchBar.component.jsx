@@ -24,7 +24,6 @@ function SearchBar() {
             root: classes.inputRoot,
             input: classes.inputInput,
           }}
-          inputProps={{ 'aria-label': 'search' }}
         />
       </div>
     </div>
