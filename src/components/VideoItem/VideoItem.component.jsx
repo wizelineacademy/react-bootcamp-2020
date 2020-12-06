@@ -4,7 +4,7 @@ import { StateContext } from '../../utils/State';
 
 const VideoItem = ({ videoInfo: { title, description, publishTime, thumbnails: { medium: { url } } }, videoID: { videoId }, viewVideo }) => {
 
-    const { setVideo } = useContext(StateContext);
+    const { setVideo, Theme: { PrimaryColor }, DarkMode } = useContext(StateContext);
 
     const onClickVideo = () => {
         viewVideo();
@@ -22,8 +22,12 @@ const VideoItem = ({ videoInfo: { title, description, publishTime, thumbnails: {
             onClick={onClickVideo}
         >
             <Img background={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`} />
-            <InfoContainer>
-                <Title>
+            <InfoContainer
+                color={PrimaryColor}
+            >
+                <Title
+                    color={DarkMode ? "white" : "black"}
+                >
                     {title}
                 </Title>
                 <Description>

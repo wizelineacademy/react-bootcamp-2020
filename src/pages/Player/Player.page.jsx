@@ -11,10 +11,16 @@ const Player = () => {
 
   const history = useHistory();
   const { pathname } = useLocation();
-  const { Video: { description, image, publishTime, title, videoId: VideoID }, 
-    Sesion, FavoriteVideos, setFavoriteVideos, setVideo } = useContext(StateContext);
+  const { Video: { description, image, publishTime, title, videoId: VideoID }, Sesion, FavoriteVideos, 
+  setFavoriteVideos, setVideo, DarkMode, Theme: { TextColor } } = useContext(StateContext);
   const { VideoList } = useFetch();
   const [IsFavorite, setIsFavorite] = useState(null);
+
+  useEffect(() => {
+    if(!VideoID){
+      history.push("/");
+    }
+  }, [VideoID, history])
 
   useEffect(() => {
     setIsFavorite(
@@ -66,7 +72,9 @@ const Player = () => {
           height="550"
           allowFullScreen
         />
-        <VideoTitle>
+        <VideoTitle
+          color={TextColor}
+        >
           <div>
             {title}
           </div>
@@ -92,65 +100,69 @@ const Player = () => {
               </Tooltip>
           }
         </VideoTitle>
-        <VideoDescription>
-          {description}
-        </VideoDescription>
-      </PlayerVideoContainer>
-      <ListContainer>
-        {
-          (FavoriteVideos && pathname.includes("/favorites")) && (
-            FavoriteVideos.map(({ description, image, publishTime, title, videoId }) => 
-              <ListItem
-                key={videoId}
-                onClick={() => selectOtherVideo({
-                  description,
-                  image,
-                  publishTime,
-                  title,
-                  videoId
-                })}
-              >
-                <img 
-                  src={image}
-                  alt={title}
-                  width="120"
-                  height="100"
-                />
-                <ListItemText>
-                  {title}
-                </ListItemText>
-              </ListItem>
-            )
-          ) 
-        }
-        {
-          (VideoList && VideoList.length > 0 && !pathname.includes("/favorites") ) && (
-            VideoList.map(({ snippet: {title, description, publishTime, thumbnails: { medium: { url } }}, 
-              id: { videoId }}) => 
-              <ListItem
-                key={videoId}
-                onClick={() => selectOtherVideo({
-                  description,
-                  image: url,
-                  publishTime,
-                  title,
-                  videoId
-                })}
-              >
-                <img 
-                  src={url}
-                  alt={title}
-                  width="120"
-                  height="100"
-                />
-                <ListItemText>
-                  {title}
-                </ListItemText>
-              </ListItem>
-            )
+      <VideoDescription>
+        {description}
+      </VideoDescription>
+    </PlayerVideoContainer>
+    <ListContainer>
+      {
+        (FavoriteVideos && pathname.includes("/favorites")) && (
+          FavoriteVideos.map(({ description, image, publishTime, title, videoId }) => 
+            <ListItem
+              color={DarkMode ? "grey" : "white"}
+              colorTxt={TextColor}
+              key={videoId}
+              onClick={() => selectOtherVideo({
+                description,
+                image,
+                publishTime,
+                title,
+                videoId
+              })}
+            >
+              <img 
+                src={image}
+                alt={title}
+                width="120"
+                height="100"
+              />
+              <ListItemText>
+                {title}
+              </ListItemText>
+            </ListItem>
           )
-        }
-      </ListContainer> 
+        ) 
+      }
+      {
+        (VideoList && VideoList.length > 0 && !pathname.includes("/favorites") ) && (
+          VideoList.map(({ snippet: {title, description, publishTime, thumbnails: { medium: { url } }}, 
+            id: { videoId }}) => 
+            <ListItem
+              color={DarkMode ? "grey" : "white"}
+              colorTxt={ TextColor }
+              key={videoId}
+              onClick={() => selectOtherVideo({
+                description,
+                image: url,
+                publishTime,
+                title,
+                videoId
+              })}
+            >
+              <img 
+                src={url}
+                alt={title}
+                width="120"
+                height="100"
+              />
+              <ListItemText>
+                {title}
+              </ListItemText>
+            </ListItem>
+          )
+        )
+      }
+    </ListContainer> 
     </PlayerContainer>
   );
 }

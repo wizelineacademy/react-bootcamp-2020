@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PlayerContainer = styled.div`
     padding: 1rem;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: row;
 `;
@@ -23,6 +23,7 @@ export const VideoTitle = styled.div`
     padding: .8rem 1.5rem;
     display: flex;
     justify-content: space-between;
+    color: ${({ color }) => color}
 `;
 
 export const VideoDescription = styled.div`
@@ -34,15 +35,17 @@ export const VideoDescription = styled.div`
 
 export const ListContainer = styled.div`
     width: 30%;
-    height: 100%;
+    height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 `;
 
 export const ListItem = styled.div`
     width: 100%;
     height: 6rem;
     position: relative;
-    color: black;
-    background: white;
+    color: ${({ colorTxt }) => colorTxt};
+    background: ${({ color }) => color};
     overflow: hidden;
     display: flex;
     align-items: center;

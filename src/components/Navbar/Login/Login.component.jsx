@@ -12,7 +12,7 @@ const Login = ({ onClose }) => {
 
     const [User, setUser] = useState("");
     const [Password, setPassword] = useState("");
-    const { setSesion } = useContext(StateContext);
+    const { setSesion, Theme: { PrimaryColor, TextColor }, DarkMode } = useContext(StateContext);
 
     const onSubmit = () => {
         if(User !== SesionInfo.User) return message.error("Wrong user");
@@ -28,9 +28,9 @@ const Login = ({ onClose }) => {
             visible
             footer={null}
             onCancel={onClose}
+            closable={false}
             width="24rem"
-            bodyStyle={{ padding: "2rem" }}
-            title="Login"
+            bodyStyle={{ padding: "2rem", background: PrimaryColor }}
         >
             <UserInput 
                 placeholder="Usuario"
@@ -44,13 +44,15 @@ const Login = ({ onClose }) => {
             />
             <Row justify="space-between">
                 <ButtonStyle
-                    color="red"
+                    color={TextColor}
+                    back={DarkMode ? "grey" : "white" }
                     onClick={onClose}
                 >
                     Cancel
                 </ButtonStyle>
                 <ButtonStyle
-                    color="blue"
+                    color={TextColor}
+                    back={DarkMode ? "grey" : "white" }
                     onClick={onSubmit}
                 >
                     Log In

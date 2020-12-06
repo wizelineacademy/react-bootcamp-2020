@@ -5,4 +5,5 @@ export const HomeContainer = styled.div`
     display: flex; 
     flex-Wrap: wrap;
     justify-content: center;
+    background: ${({ color }) => color}
 `;

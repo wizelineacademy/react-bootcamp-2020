@@ -5,4 +5,5 @@ export const FavoritesContainer = styled.div`
     display: flex; 
     flex-Wrap: wrap;
     justify-content: left;
+    height: 100vh;
 `;

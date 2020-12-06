@@ -4,7 +4,6 @@ export const CardVideo = styled.div`
     width: 20rem;
     height: 21rem;
     background: white;
-    transition: background 1s;
     color: black;
     cursor: pointer;
     display: block;
@@ -14,9 +13,6 @@ export const CardVideo = styled.div`
     box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),
     0px 1px 1px 0px rgba(0,0,0,0.14),
     0px 1px 3px 0px rgba(0,0,0,0.12);
-    &:hover {
-        background: #cacaca;
-    }
 `;
 
 export const Img = styled.div`
@@ -34,12 +30,18 @@ export const InfoContainer = styled.div`
     padding: 1rem;
     height: 60%;
     overflow: hidden;
+    background: ${({ color }) => color};
+    transition: background 1s;
+    &:hover {
+        background: #cacaca;
+    }
 `;
 
 export const Title = styled.div`
     font-size: 1.1rem;
     width: 100%;
     margin-bottom: .4rem;
+    color: ${({ color }) => color};
 `;
 
 export const Description = styled.div`

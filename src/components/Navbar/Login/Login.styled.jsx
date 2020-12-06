@@ -26,7 +26,7 @@ export const ButtonStyle = styled.button`
     width: calc(50% - .5rem);
     padding: .5rem 0rem;
     cursor: pointer;
-    background: white;
+    background: ${({ back }) => back};
     border: solid 1px;
     border-color: ${({ color }) => color};
     border-radius: .4rem;
