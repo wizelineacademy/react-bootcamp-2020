@@ -1,10 +1,10 @@
 import React from 'react';
 import { renderHook } from '@testing-library/react-hooks';
 import videoMock from '../../../mocks/videoMock.json';
-import { useSingleVideo } from '../useSingleVideo';
+import { useRelatedVideos } from '../useRelatedVideos';
 import AppDataProvider from '../../../providers/AppData';
 
-describe('useSingleVideo', () => {
+describe('useRelatedVideos', () => {
   const mockFetch = (mockData) => {
     global.fetch = jest
       .fn()
@@ -27,7 +27,7 @@ describe('useSingleVideo', () => {
   it('it fetch data if not already on video list or cache', async () => {
     const wrapper = ({ children }) => <AppDataProvider>{children}</AppDataProvider>;
     const anyId = 'anyid';
-    const { result, waitForNextUpdate } = renderHook(() => useSingleVideo(anyId), {
+    const { result, waitForNextUpdate } = renderHook(() => useRelatedVideos(anyId), {
       wrapper,
     });
     await waitForNextUpdate();

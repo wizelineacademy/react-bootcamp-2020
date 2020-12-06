@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { API_KEY, RELEVANT_DATA } from '../constants';
 import { useAppDataContext } from '../../providers/AppData';
 
@@ -11,6 +11,7 @@ const API_URL_RELATED_VIDEOS = `https://www.googleapis.com/youtube/v3/search?max
 const useRelatedVideos = (idVideo) => {
   const cache = useRef({});
   const { state, dispatch } = useAppDataContext();
+  const [fetched, setFetched] = useState(false);
 
   useEffect(() => {
     async function fetchRelated() {
@@ -19,6 +20,7 @@ const useRelatedVideos = (idVideo) => {
           type: actions.ADD_VIDEOS,
           payload: false,
         });
+        setFetched(false);
       } else if (cache.current[idVideo]) {
         console.log('here');
         const data = cache.current[idVideo];
@@ -26,6 +28,7 @@ const useRelatedVideos = (idVideo) => {
           type: actions.ADD_VIDEOS,
           payload: data,
         });
+        setFetched(false);
       } else {
         try {
           const responseRelatedVideos = await fetch(API_URL_RELATED_VIDEOS + idVideo);
@@ -37,13 +40,16 @@ const useRelatedVideos = (idVideo) => {
             type: actions.ADD_VIDEOS,
             payload: mapedVideos,
           });
+          setFetched(true);
         } catch (error) {
           console.error(error);
+          setFetched(false);
         }
       }
     }
     fetchRelated();
   }, [dispatch, idVideo, state.videos]);
+  return fetched;
 };
 
 export { useRelatedVideos };
