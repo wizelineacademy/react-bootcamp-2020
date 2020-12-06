@@ -169,7 +169,7 @@ function NavBar() {
 
   return (
     <NavBarHeader>
-      <NavBarTitle>Hotdog</NavBarTitle>
+      <NavBarTitle>Academy project</NavBarTitle>
       <NavBarSearchBox>
         <Cover id="cover">
           <TB>
