@@ -6,7 +6,6 @@ import Favourites from "../../pages/Favourites/Favourites";
 import VideoPlayer from "../../pages/VideoPlayer/VideoPlayer";
 import FormLoggin from "../../pages/Login/FormLogging";
 import Navbar from "../Navbar/Navbar";
-import {videos} from '../../mock/video';
 
 import "./styles.css";
 
@@ -16,7 +15,7 @@ const App = () => {
   const [sideBar, setSideBar] = useState(false);
   const [mapFavs, setMapFavs] = useState(new Map());
   const [objVideo, setObjVideo] = useState({});
-  const [videoList, setVideoList] = useState(videos.items);
+  const [videoList, setVideoList] = useState([]);
   const [userLogged, setUserLogged] = useState({
     userStatus: false,
     user: ""
@@ -30,7 +29,6 @@ const App = () => {
     publishedDate: "",
     description: ""
   });
-
   return (
     <div className="App">
       <BrowserRouter>

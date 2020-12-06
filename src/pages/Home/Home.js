@@ -19,9 +19,6 @@ const Home = () => {
       .catch((error) => {
         console.error(error);
       });
-    }
-    else{
-      console.log('no hago peticion youtube tendencias');
     };
   })()
   return (

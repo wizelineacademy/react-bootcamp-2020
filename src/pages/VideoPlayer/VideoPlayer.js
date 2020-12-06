@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import VideoFrame from "../../components/VideoFrame/VideoFrame";
 import PageContext from "../../providers/Context/PageContext";
 import VideoList from "../../components/VideoList/VideoList";
+import { Route, Redirect } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 const VideoPlayer = () => {
   const { video } = useContext(PageContext);
@@ -16,6 +17,15 @@ const VideoPlayer = () => {
           <VideoList videos={videoList} />
         </Grid>
       </Grid>
+      <Route
+        render={() =>
+          videoList < 1 ? (
+            
+            <Redirect to="/" />
+          ) : (
+            <Redirect to="/video-player" /> 
+          )
+        }/>
     </div>
   );
 };

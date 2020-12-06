@@ -3,7 +3,7 @@ import PageContext from "../../providers/Context/PageContext";
 import { Link } from "react-router-dom";
 import * as Styles from "./styles/VideoCardStyles";
 
-export default function VideoCard(props) {
+const VideoCard = (props) => {
   const { video, setVideo } = useContext(PageContext);
   const { setObjVideo } = useContext(PageContext);
 
@@ -36,3 +36,5 @@ export default function VideoCard(props) {
     </div>
   );
 }
+
+export default VideoCard;

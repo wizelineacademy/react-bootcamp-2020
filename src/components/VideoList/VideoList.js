@@ -20,7 +20,7 @@ const VideoList = (props) => {
 
   return (
     <div>
-      <GridList spacing={props.spacing} className="Root" cols={3}>
+      <GridList  className="Root" cols={3}>
         {videos}
       </GridList>
     </div>

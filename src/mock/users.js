@@ -1,12 +1,18 @@
 export const usersMock = [
   {
-    user: "Cesar",
+    user: "cesar",
     mail: "cesar@wizeline.com",
     password: "1234"
   },
   {
-    user: "Luis",
-    mail: "luis@wizeline.com",
+    user: "matador",
+    mail: "luishernandez@wizeline.com",
+    password: "12345"
+  },
+
+  {
+    user: "gustavo",
+    mail: "cerati@wizeline.com",
     password: "12345"
   }
 ];

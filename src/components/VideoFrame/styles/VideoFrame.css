@@ -12,6 +12,11 @@
     text-decoration: none;
     overflow: hidden;
     cursor: pointer;
+    display: none;
+}
+
+.favs.active{
+  display: inline;
 }
 
 .favs:after {

@@ -27,11 +27,9 @@ const Navbar = () => {
       </li>
     );
       if(!data.loggedRequired){
-        console.log('no requiere sesion');
         return navItems;
       }
       else if( userLogged.userStatus ){
-        console.log('requiere sesion');
         return navItems;
       }
   });

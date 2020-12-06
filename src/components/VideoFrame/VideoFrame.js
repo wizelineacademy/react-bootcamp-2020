@@ -9,11 +9,10 @@ const VideoFrame = () => {
   const { video } = useContext(PageContext);
   const { objVideo } = useContext(PageContext);
   const { userLogged } = useContext(PageContext);
-  const { mapFavs, setMapFavs} = useContext(PageContext);
+  const { mapFavs } = useContext(PageContext);
 
   const handlerAddFavs = () => {
     let flag = true;
-    let MapFav = new Map();
     let Arr = [];
     let auxArr = mapFavs.get(userLogged.user);
     if( mapFavs.get(userLogged.user)){
@@ -28,8 +27,7 @@ const VideoFrame = () => {
     }
     else{
       Arr.push(objVideo);
-      MapFav.set(userLogged.user,Arr);
-      setMapFavs(MapFav);
+      mapFavs.set(userLogged.user,Arr);
     }
   
   };
@@ -49,7 +47,7 @@ const VideoFrame = () => {
             <p>{video.publishedDate}</p>
           </div>
           <div>
-          <button className="favs" onClick={handlerAddFavs} variant="outlined" color="primary"><b><RiHeartAddLine/>Favs</b></button>
+          <button className={userLogged.user ? 'favs active' : 'favs'} onClick={handlerAddFavs} variant="outlined" color="primary"><b><RiHeartAddLine/>Favs</b></button>
           </div>
           
         </Styles.Info>
