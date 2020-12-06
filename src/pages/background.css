@@ -1,0 +1,15 @@
+.backgroundColor {
+  background-color: gray;
+}
+
+.background {
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  background: url("https://source.unsplash.com/G8rRItjrwkA") no-repeat center
+    center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  color: #0a0a0b;
+  overflow: hidden;
+}
