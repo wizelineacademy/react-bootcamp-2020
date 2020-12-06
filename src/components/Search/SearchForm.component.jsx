@@ -8,7 +8,11 @@ export default function SearchForm() {
   const searchInput = useFormInput(searchTerm, setSearchTerm);
 
   return (
-    <form>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+      }}
+    >
       <input {...searchInput} placeholder="Search" className="form-control" />
     </form>
   );
