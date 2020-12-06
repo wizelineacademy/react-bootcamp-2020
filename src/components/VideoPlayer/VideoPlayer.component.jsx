@@ -1,24 +1,16 @@
 import React from 'react';
+import YouTube from 'react-youtube';
+import Typography from '@material-ui/core/Typography';
 
 function VideoPlayer(props) {
+  const opts = {
+    width: '100%',
+  };
   return (
     <div>
-      <div>
-        <iframe
-          src={`https://www.youtube.com/watch?v=${props.snippet.id.videoId}`}
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          title={props.snippet.title}
-          allowFullScreen
-        />
-      </div>
-      <div>
-        <div>
-          <a href="{video.snippet.title}" className="header">
-            {props.snippet.title}
-          </a>
-          <div>{props.snippet.description}</div>
-        </div>
-      </div>
+      <YouTube videoId={props.video.id.videoId} opts={opts} />
+      <Typography variant="h5">{props.video.snippet.title}</Typography>
+      <Typography>{props.video.snippet.description}</Typography>
     </div>
   );
 }
