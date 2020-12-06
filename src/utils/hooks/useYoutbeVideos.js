@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { API_KEY, RELEVANT_DATA } from '../constants';
 import { useAppDataContext } from '../../providers/AppData';
 import actions from '../../state/actions';
@@ -8,6 +8,7 @@ const API_URL = `https://www.googleapis.com/youtube/v3/search?&type=video&part=i
 
 const useYoutubeVideos = () => {
   const { state, dispatch } = useAppDataContext();
+  const [fetched, setFetched] = useState(false);
 
   const cache = useRef({});
   const { searchString } = state;
@@ -18,6 +19,7 @@ const useYoutubeVideos = () => {
           type: actions.SET_VIDEOS,
           payload: cache.current[searchString],
         });
+        setFetched(false);
       } else {
         try {
           dispatch({
@@ -33,8 +35,10 @@ const useYoutubeVideos = () => {
             type: actions.SET_VIDEOS,
             payload: mappedData,
           });
+          setFetched(true);
         } catch (error) {
           console.error(error);
+          setFetched(false);
         }
       }
     }
@@ -42,7 +46,7 @@ const useYoutubeVideos = () => {
     fetchYoutubeVideos();
   }, [dispatch, searchString]);
 
-  return state;
+  return fetched;
 };
 
 export { useYoutubeVideos };

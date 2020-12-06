@@ -1,5 +1,5 @@
 const AUTH_STORAGE_KEY = 'wa_cert_authenticated';
-const API_KEY = '&key=AIzaSyAk-SKWeCMHEzZlQUta2FUFyZhbUV28GBo';
+const API_KEY = 'key=AIzaSyAk-SKWeCMHEzZlQUta2FUFyZhbUV28GBo';
 const RELEVANT_DATA =
   '&fields=etag,nextPageToken,prevPageToken,pageInfo/totalResults,items(id/videoId,snippet/title,snippet/description,snippet/thumbnails/high/url,snippet/channelTitle)';
 const DARK_THEME = 'dark';
