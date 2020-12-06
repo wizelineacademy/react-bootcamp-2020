@@ -192,22 +192,16 @@ function mock() {
   };
 }
 
+const maxResults = 25;
+
 export async function getVideos(searchItem) {
   if (useMock) {
     return mock().items;
   }
 
-  await window.gapi.load('client');
-
-  window.gapi.client.setApiKey('');
-
-  const x = await window.gapi.client.load('youtube', 'v3');
-  window.gapi.load('client:auth2', x);
-
-  const maxResult = 25;
   const part = ['snippet', 'id'];
   const { result } = await window.gapi.client.youtube.search.list({
-    maxResult,
+    maxResults,
     part,
     q: searchItem,
   });

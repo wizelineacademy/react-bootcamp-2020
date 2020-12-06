@@ -58,13 +58,17 @@ function VideoPage() {
           {isLoggedIn &&
             (isFavorite(video) ? (
               <Tooltip title="Remove from favorites">
-                <IconButton onClick={RemoveVideo}>
+                <IconButton
+                  onClick={RemoveVideo}
+                  className={classes.icon}
+                  color="secondary"
+                >
                   <StarIcon />
                 </IconButton>
               </Tooltip>
             ) : (
               <Tooltip title="Add to favorites">
-                <IconButton onClick={AddVideo}>
+                <IconButton onClick={AddVideo} className={classes.icon} color="secondary">
                   <StarBorderIcon />
                 </IconButton>
               </Tooltip>

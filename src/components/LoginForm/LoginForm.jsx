@@ -34,6 +34,7 @@ export default function FormDialog(props) {
             onChange={(e) => setUsername(e.target.value)}
             disabled={loading}
             type="text"
+            color="secondary"
             fullWidth
           />
           <TextField
@@ -45,6 +46,7 @@ export default function FormDialog(props) {
             }}
             disabled={loading}
             type="password"
+            color="secondary"
             fullWidth
           />
         </DialogContent>

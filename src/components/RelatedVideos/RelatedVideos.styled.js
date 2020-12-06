@@ -17,5 +17,6 @@ export const useStyles = makeStyles(() => ({
   imgMini: {
     width: '120px',
     height: '90px',
+    margin: 5,
   },
 }));

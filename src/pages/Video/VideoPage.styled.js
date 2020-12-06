@@ -10,6 +10,7 @@ export const useStyles = makeStyles(() => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    marginRight: 10,
   },
   video: {
     width: '100%',
@@ -19,8 +20,13 @@ export const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     display: 'flex',
     boxSizing: 'border-box',
+    marginTop: 10,
   },
   title: {
     paddingTop: '6px',
+  },
+  icon: {
+    width: '65px',
+    height: '65px',
   },
 }));

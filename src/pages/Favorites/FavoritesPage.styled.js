@@ -4,6 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     padding: 20,
+    justifyContent: 'center',
   },
   paper: {
     height: 140,
