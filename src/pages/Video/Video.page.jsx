@@ -18,7 +18,7 @@ export default function VideoPage() {
             <YouTubeVideoArticle id={id} />
           </article>
         </Col>
-        <Col className="col-lg-3">
+        <Col className="col-lg-3 pl-0">
           <aside>
             <YouTubeRelatedList id={id} />
           </aside>

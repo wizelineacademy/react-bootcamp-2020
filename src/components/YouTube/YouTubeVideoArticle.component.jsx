@@ -34,10 +34,10 @@ export default function YouTubeVideoArticle(props) {
       </Row>
 
       <Row className="justify-content-between mt-3">
-        <Col className="col-3">
+        <Col>
           <h2>{videos[0].snippet.title}</h2>
         </Col>
-        <Col>
+        <Col className="col-3">
           <div className="float-right">
             <FavoriteButton id={props.id} />
           </div>

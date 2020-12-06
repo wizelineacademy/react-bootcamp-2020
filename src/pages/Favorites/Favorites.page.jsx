@@ -28,7 +28,7 @@ export default function FavoritesPage() {
     return (
       <Row key={index} className="mt-3">
         {(videosRow || []).map((video) => (
-          <Col key={video.id}>
+          <Col key={video.id} className="col-md-3">
             <YouTubeVideoCard video={video} />
           </Col>
         ))}
@@ -40,7 +40,7 @@ export default function FavoritesPage() {
     return <OnError error={error} />;
   }
 
-  if (videos === undefined || videos.length === 0) {
+  if (videos === undefined) {
     return <OnLoading />;
   }
 
