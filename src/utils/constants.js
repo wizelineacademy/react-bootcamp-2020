@@ -1,3 +1,4 @@
+export const NUMBER_OF_SUGGESTIONS = 3;
 export const AUTH_STORAGE_KEY = 'wa_cert_authenticated';
 export const API_KEY = 'AIzaSyDed0jEe8ysTWp2v2AXd_CZdcOg8FR19FQ';
 export const BASE_API_URL =

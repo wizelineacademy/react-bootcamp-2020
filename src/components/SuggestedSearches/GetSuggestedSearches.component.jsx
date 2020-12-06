@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { suggestedSearchesElements } from '../../utils/mockedData';
+import { NUMBER_OF_SUGGESTIONS } from '../../utils/constants';
 
 export default () => {
   function getRandomElements(arr, n) {
@@ -12,40 +14,11 @@ export default () => {
     }
     return result;
   }
-  const suggestedSearchesElements = [
-    'bts',
-    'pewdiepie',
-    'asmr',
-    'billie eilish',
-    'baby shark',
-    'badabun',
-    'blackpink',
-    'old town road',
-    'music',
-    'peliculas completas en español',
-    'fortnite',
-    'pewdiepie vs t series',
-    'minecraft',
-    'senorita',
-    'ariana grande',
-    'alan walker',
-    'tik tok',
-    'musica',
-    'bad bunny',
-    'wintergatan marble machine',
-    'mantis shrimp',
-    'diresta tool drawer',
-    'markiplier',
-    'old town road',
-    'jacksepticeye',
-    'dantdm',
-    'game grumps',
-    'cnn',
-    'wwe',
-    'lofi',
-  ];
 
-  const randomSuggestedSearchesElements = getRandomElements(suggestedSearchesElements, 4);
+  const randomSuggestedSearchesElements = getRandomElements(
+    suggestedSearchesElements,
+    NUMBER_OF_SUGGESTIONS
+  );
   const elements = randomSuggestedSearchesElements.map((value) => (
     <Link key={value} to={`/search/${value}`}>
       <span>{value}</span>

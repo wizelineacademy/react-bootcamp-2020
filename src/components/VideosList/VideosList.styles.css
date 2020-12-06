@@ -1,0 +1,43 @@
+.videosList {
+  width: 100%;
+}
+
+@media (min-width: 350px) {
+  .videosList {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 330px;
+  }
+}
+
+@media (min-width: 700px) {
+  .videosList {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 330px 330px;
+  }
+}
+
+@media (min-width: 1050px) {
+  .videosList {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 330px 330px 330px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .videosList {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 330px 330px 330px 330px;
+  }
+}
+
+@media (min-width: 1750px) {
+  .videosList {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 330px 330px 330px 330px 330px;
+  }
+}

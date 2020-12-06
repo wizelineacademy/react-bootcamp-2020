@@ -2,6 +2,8 @@ import React from 'react';
 import { useGetVideos } from '../../utils/hooks/useGetVideos';
 import VideoCard from '../VideoCard/VideoCard.component';
 
+import './VideosList.styles.css';
+
 export default function VideosList({ searchQuery }) {
   const videosList = useGetVideos(searchQuery);
 

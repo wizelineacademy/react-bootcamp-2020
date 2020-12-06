@@ -13,15 +13,25 @@ export default function VideoEmbed({ videoId }) {
     const iframeHTML = (
       <iframe
         title="youtube player"
-        width="480"
-        height="270"
+        width="851"
+        height="479"
         src={urlVideo}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />
     );
-    return <div className="videosList">{iframeHTML}</div>;
+    return (
+      <div className="VideoPlayer">
+        <div>{iframeHTML}</div>
+        <div>{video.snippet.title}</div>
+        <div className="videoDescription">{video.snippet.description}</div>
+        <div>{video.snippet.publishedAt}</div>
+        <div>{video.statistics.viewCount}</div>
+        <div>{video.statistics.likeCount}</div>
+        <div>{video.snippet.channelTitle}</div>
+      </div>
+    );
     // return <div className="videosList"> {video.player.embedHtml} </div>;
   }
   return '';

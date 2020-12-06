@@ -1,8 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
 
-export default function SearchBar({ initSearchQuery, onChange }) {
-  const [searchQuery, setSearchQuery] = React.useState(initSearchQuery);
+import { useHistory } from 'react-router-dom';
+// import styled from 'styled-components';
+
+import './SearchBar.styles.css';
+
+export default function SearchBar({ initSearchQuery, onChange, homepage }) {
+  const [searchQuery, setSearchQuery] = useState(initSearchQuery);
+  // eslint-disable-next-line prefer-const
+  let history = useHistory();
 
   const handleChange = (event) => {
     setSearchQuery(event.target.value);
@@ -10,9 +16,8 @@ export default function SearchBar({ initSearchQuery, onChange }) {
   const triggerChange = () => {
     if (searchQuery) {
       onChange(searchQuery);
-      /*     } else {
-      setError("Please, enter a pokemon name for testeing the branch");
- */
+      const searchRedirect = `/search/${searchQuery}`;
+      history.push(searchRedirect);
     }
   };
 
@@ -22,28 +27,34 @@ export default function SearchBar({ initSearchQuery, onChange }) {
     }
   };
 
-  const Input = styled.input`
-    color: #333;
-    font-size: 1.2rem;
-    margin: 0 auto;
-    padding: 1.5rem 2rem;
-    border-radius: 0.2rem;
-    background-color: rgb(255, 255, 255);
-    border: none;
-    width: 50%;
-    display: block;
-    border-bottom: 0.3rem solid transparent;
-    transition: all 0.3s;
-  `;
+  let InputSearchBar;
+  if (homepage) {
+    InputSearchBar = (
+      <div className="search">
+        <input
+          type="text"
+          className="full_search_input"
+          placeholder="eg. React Tutorials"
+          value={searchQuery}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+    );
+  } else {
+    InputSearchBar = (
+      <div className="search">
+        <input
+          type="text"
+          className="search_input"
+          placeholder="Search"
+          value={searchQuery}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+    );
+  }
 
-  return (
-    <div className="search">
-      <Input
-        placeholder="eg. React Tutorials 2"
-        value={searchQuery}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-      />
-    </div>
-  );
+  return InputSearchBar;
 }
