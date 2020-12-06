@@ -41,7 +41,7 @@ export default function PrincipalMenu() {
       <Divider />
       {isLoggedIn && (
         <>
-          <ListItem button key="Favorites" onClick={() => push('/secret')}>
+          <ListItem button key="Favorites" onClick={() => push('/favorites')}>
             <ListItemText primary="Favorites" />
           </ListItem>
         </>
