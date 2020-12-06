@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import * as BiIcons from "react-icons/bi";
 import PageContext from "../../providers/Context/PageContext";
 import apiYoutube from "../../utils/apiYoutube";
+import { useHistory } from "react-router-dom";
 import "./Searchbar.css";
 
 const Searchbar = () => {
+  const history = useHistory();
   const { searchText, setSearchText } = useContext(PageContext);
   const { videoList, setVideoList } = useContext(PageContext);
 
@@ -21,6 +23,7 @@ const Searchbar = () => {
 
   }
   const searchVideo = (e) => {
+
     const params = {
       q: searchText
     };
@@ -35,8 +38,9 @@ const Searchbar = () => {
 
     e.stopPropagation();
     e.preventDefault();
-
+    history.push('/');
     return setSearchText("");
+    
   };
 
   return (

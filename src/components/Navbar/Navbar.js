@@ -34,7 +34,6 @@ const Navbar = () => {
         console.log('requiere sesion');
         return navItems;
       }
-      return 0;
   });
   return (
     <div>

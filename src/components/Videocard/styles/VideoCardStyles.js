@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
 export const Descriptions = styled.div`
+  color:black;
+  font-size:9pt;
   overflow: scroll;
   position: absolute;
   top: 0px;

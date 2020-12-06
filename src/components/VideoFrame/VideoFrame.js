@@ -1,19 +1,37 @@
 import React, { useContext } from "react";
-import Button from '@material-ui/core/Button';
+import { RiHeartAddLine } from "react-icons/ri";
 import PageContext from "../../providers/Context/PageContext";
+import './styles/VideoFrame.css';
 
 import * as Styles from "./styles/VideoFrameStyles";
 
 const VideoFrame = () => {
   const { video } = useContext(PageContext);
   const { objVideo } = useContext(PageContext);
-  const { favVideos, setFavVideos } = useContext(PageContext);
   const { userLogged } = useContext(PageContext);
+  const { mapFavs, setMapFavs} = useContext(PageContext);
 
   const handlerAddFavs = () => {
-    let auxArr = [...favVideos];
-    auxArr.push(objVideo);
-    setFavVideos(auxArr);
+    let flag = true;
+    let MapFav = new Map();
+    let Arr = [];
+    let auxArr = mapFavs.get(userLogged.user);
+    if( mapFavs.get(userLogged.user)){
+      for (let i = 0; i < auxArr.length; i++) {
+        if(auxArr[i].id.videoId === objVideo.id.videoId){
+          flag = false;
+        }
+      }
+      if(flag){
+        mapFavs.get(userLogged.user).push(objVideo);
+      }   
+    }
+    else{
+      Arr.push(objVideo);
+      MapFav.set(userLogged.user,Arr);
+      setMapFavs(MapFav);
+    }
+  
   };
 
   return (
@@ -31,7 +49,7 @@ const VideoFrame = () => {
             <p>{video.publishedDate}</p>
           </div>
           <div>
-          <Button variant="outlined" color="primary">Primary</Button>
+          <button className="favs" onClick={handlerAddFavs} variant="outlined" color="primary"><b><RiHeartAddLine/>Favs</b></button>
           </div>
           
         </Styles.Info>

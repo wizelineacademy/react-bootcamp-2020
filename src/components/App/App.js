@@ -14,9 +14,8 @@ import "./styles.css";
 const App = () => {
   const [searchText, setSearchText] = useState("");
   const [sideBar, setSideBar] = useState(false);
-  const [mapFavs, setMapFavs] = useState(new Map())
+  const [mapFavs, setMapFavs] = useState(new Map());
   const [objVideo, setObjVideo] = useState({});
-  const [favVideos, setFavVideos] = useState([]);
   const [videoList, setVideoList] = useState(videos.items);
   const [userLogged, setUserLogged] = useState({
     userStatus: false,
@@ -31,7 +30,7 @@ const App = () => {
     publishedDate: "",
     description: ""
   });
-  
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -49,8 +48,8 @@ const App = () => {
             setUserLogged,
             objVideo,
             setObjVideo,
-            favVideos,
-            setFavVideos
+            mapFavs, 
+            setMapFavs
           }}
         >
           <Navbar />

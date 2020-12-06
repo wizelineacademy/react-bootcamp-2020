@@ -11,18 +11,17 @@ export const Container = styled.div`
 `;
 
 export const Info = styled.div`
+  font-size: 8pt;
   position: static;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: flex-start;
   width: 100%;
   height: 25%;
   margin-top: -40px;
   margin-bottom: 40px;
   border-radius: 0px 0px 12px 12px;
-  -moz-box-shadow: 4px 4px 14px #000;
-  -webkit-box-shadow: 1px 1px 14px #000;
   @media (max-width: 320px) {
     height: 200px;
   }
