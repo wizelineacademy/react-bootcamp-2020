@@ -14,12 +14,15 @@ function addToFavorites(video) {
 
 function getFavoritesVideos() {
   const savedFavorites = storage.get(USER_PREFERENCES);
-
   return savedFavorites ? savedFavorites.favoriteVideos : [];
 }
 
 function isFavoriteVideo(video) {
   const savedFavorites = storage.get(USER_PREFERENCES);
+
+  if (!savedFavorites) {
+    return false;
+  }
 
   const found = savedFavorites.favoriteVideos.find((actualVideo) => {
     return actualVideo.videoId === video.videoId;
