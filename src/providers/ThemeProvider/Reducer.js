@@ -33,6 +33,6 @@ export function ThemeReducer(state, action) {
         theme: state.isLightTheme ? darkTheme : lightTheme,
       };
     default:
-      throw new Error(`Invalid action "${type}"`);
+      return new Error(`Invalid action "${type}"`);
   }
 }

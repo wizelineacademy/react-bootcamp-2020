@@ -4,5 +4,5 @@ export default async function getVideos(search) {
     part: ['id', 'snippet'],
     q: search,
   });
-  return result.items;
+  return result ? result.items : [];
 }
