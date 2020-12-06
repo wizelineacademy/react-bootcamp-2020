@@ -10,13 +10,11 @@ function HomePage() {
   const { videos } = useContext(VideosContext);
 
   return (
-    <Grid>
+    <Grid stackable>
       <Grid.Row columns={3}>
         {videos.map((video, id) => (
           <Grid.Column>
-            <Link to="/player">
-              <VideoCardHome video={video} key={id} />
-            </Link>
+            <VideoCardHome video={video} key={id} />
           </Grid.Column>
         ))}
       </Grid.Row>

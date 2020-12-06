@@ -4,8 +4,8 @@ export const fetchYouTubeApi = async (search) => {
   const res = await youtube.get('search', {
     params: {
       part: 'snippet',
-      maxResults: 15,
-      key: 'AIzaSyDhq3WUDZYl7SHpmy3BS0lQu7yWCmY6qvI',
+      maxResults: 16,
+      key: 'AIzaSyAfOS1Tb_1twFmVrtwQqaa5I7nWggs9v50',
       q: search,
     },
   });

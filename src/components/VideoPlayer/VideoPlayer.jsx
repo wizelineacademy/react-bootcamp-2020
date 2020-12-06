@@ -4,18 +4,16 @@ import { Button } from 'semantic-ui-react';
 import { useAuth } from '../../providers/Auth/Auth.provider';
 import VideosContext from '../../context/VideosContext';
 
+import { FAVORITES_LIST, FAVORITES_ID } from '../../utils/constants';
+import { storage } from '../../utils/storage';
+import { getIdx } from '../../utils/utils';
+
 import moment from 'moment';
-
 const VideoPlayer = () => {
+  let favoritesList = storage.get(FAVORITES_LIST);
+  let favoritesId = storage.get(FAVORITES_ID);
   const { authenticated } = useAuth();
-  const { selectedVideo } = useContext(VideosContext);
-
-  let id = selectedVideo.id.videoId;
-  const videoSrc = `https://www.youtube.com/embed/${id}`;
-
-  let favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
-  let favoritesId = JSON.parse(localStorage.getItem('favoritesId'));
-
+  const { selectedVideo, id } = useContext(VideosContext);
   const [isFav, setIsFav] = useState(favoritesList[`${id}`]);
 
   useEffect(() => {
@@ -23,16 +21,8 @@ const VideoPlayer = () => {
   }, [selectedVideo]);
 
   const handleSetFavorites = () => {
-    function getIdx(match) {
-      for (let i = 0; i < favoritesList.length; i++) {
-        if (favoritesList[i].id.videoId === match) {
-          return i;
-        }
-      }
-    }
-
     if (favoritesId[`${id}`]) {
-      const i = getIdx(id);
+      const i = getIdx(favoritesList, id);
       const newList = [...favoritesList.slice(0, i), ...favoritesList.slice(i + 1)];
       favoritesList = newList;
       delete favoritesId[`${id}`];
@@ -40,13 +30,18 @@ const VideoPlayer = () => {
       favoritesId[`${id}`] = true;
       favoritesList.push(selectedVideo);
     }
-    localStorage.setItem('favoritesList', JSON.stringify(favoritesList));
-    localStorage.setItem('favoritesId', JSON.stringify(favoritesId));
+    storage.set(FAVORITES_LIST, favoritesList);
+    storage.set(FAVORITES_ID, favoritesId);
     setIsFav(favoritesId[`${id}`]);
   };
   return (
     <Fragment>
-      <iframe src={videoSrc} height="25%" width="100%" title="title" />
+      <iframe
+        src={`https://www.youtube.com/embed/${id}`}
+        height="25%"
+        width="100%"
+        title="title"
+      />
       <section
         style={{
           display: 'flex',
