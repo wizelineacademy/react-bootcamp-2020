@@ -13,17 +13,32 @@ const LargeVideoCard = styled.div`
   }
 `;
 
-const MultimediaArea = styled.div`
+const LargeMultimediaArea = styled.div`
   border-radius: 6px;
   width: 480px;
   height: 290px;
   max-width: inherit;
 `;
 
-const ContentArea = styled.div`
+const LargeContentArea = styled.div`
   max-width: inherit;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 `;
 
-export { LargeVideoCard, MultimediaArea, ContentArea };
+const LargeCardParragraphContent = styled.p`
+  width: inherit;
+  font-size: 0.8rem;
+  text-align: left;
+  white-space: nowrap;
+  max-width: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export {
+  LargeVideoCard,
+  LargeMultimediaArea,
+  LargeContentArea,
+  LargeCardParragraphContent,
+};
