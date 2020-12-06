@@ -7,7 +7,10 @@ const SmallVideoCard = styled.div`
   background-color: #ffff;
   box-sizing: border-box;
   box-shadow: 1px 1px 2px 2px rgba(133, 131, 131, 0.753);
-  transition: transform 500ms;
+  transition: transform 250ms;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   &:hover {
     transform: scale(1.05);
   }

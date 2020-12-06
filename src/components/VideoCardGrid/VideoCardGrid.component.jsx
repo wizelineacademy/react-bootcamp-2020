@@ -1,15 +1,28 @@
 import React from 'react';
 
 import VideoCardLarge from '../VideoCardLarge/VideoCardLarge.componenet';
-import { LargeCardGrid } from './VideoCardGrid.style';
+import VideoCardSmall from '../VideoCardSmall/VideoCardSmall.component';
+import { LargeCardGrid, SmallCardGrid } from './VideoCardGrid.style';
 
 function VideoCardGrid() {
   return (
-    <LargeCardGrid>
-      <VideoCardLarge />
-      <VideoCardLarge />
-      <VideoCardLarge />
-    </LargeCardGrid>
+    <div>
+      <LargeCardGrid>
+        <VideoCardLarge />
+        <VideoCardLarge />
+        <VideoCardLarge />
+      </LargeCardGrid>
+      <SmallCardGrid>
+        <VideoCardSmall />
+        <VideoCardSmall />
+        <VideoCardSmall />
+        <VideoCardSmall />
+        <VideoCardSmall />
+        <VideoCardSmall />
+        <VideoCardSmall />
+        <VideoCardSmall />
+      </SmallCardGrid>
+    </div>
   );
 }
 
