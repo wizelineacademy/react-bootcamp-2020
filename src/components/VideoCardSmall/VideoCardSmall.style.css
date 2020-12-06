@@ -1,0 +1,19 @@
+.videoSmall-wrapper .multimediaArea img {
+  width: inherit;
+  height: inherit;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.videoSmall-wrapper .contentArea .title {
+  font-weight: bold;
+  margin-bottom: unset;
+  margin-block-start: 0.5rem;
+}
+
+.videoSmall-wrapper .contentArea .description {
+  font-size: 0.6rem;
+  height: 2rem;
+  white-space: unset;
+  margin-top: unset;
+}

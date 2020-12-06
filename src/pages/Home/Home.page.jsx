@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../providers/Auth';
 import './Home.styles.css';
 import VideoCardGrid from '../../components/VideoCardGrid';
+import VideoCardSmall from '../../components/VideoCardSmall/VideoCardSmall.component';
 
 function HomePage() {
   const history = useHistory();
@@ -32,7 +33,7 @@ function HomePage() {
       ) : (
         <>
           <VideoCardGrid />
-          <Link to="/login">let me in →</Link>
+          <VideoCardSmall />
         </>
       )}
     </section>
