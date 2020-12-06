@@ -6,7 +6,7 @@ import { toSimpleYoutubeData } from '../mappers/youtubeVideosMapper';
 
 import actions from '../../state/actions';
 
-const API_URL_RELATED_VIDEOS = `https://www.googleapis.com/youtube/v3/search?maxResults=5&part=snippet&type=video${API_KEY}${RELEVANT_DATA}&relatedToVideoId=`;
+const API_URL_RELATED_VIDEOS = `https://www.googleapis.com/youtube/v3/search?maxResults=10&part=snippet&type=video${API_KEY}${RELEVANT_DATA}&relatedToVideoId=`;
 
 const useRelatedVideos = (idVideo) => {
   const cache = useRef({});

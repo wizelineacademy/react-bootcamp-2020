@@ -19,7 +19,7 @@ describe("Layout", () => {
             </UserData>
          </AuthProvider>);
         const navigation = screen.queryByRole('navigation');
-        expect(navigation).toBeTruthy
+        expect(navigation).toBeTruthy();
 
    });
    it("should render header always", () => {
