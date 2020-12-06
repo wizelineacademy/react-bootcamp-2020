@@ -1,11 +1,14 @@
 import VideosActionTypes from './videos.types';
-
 import { SummaryResult2 } from '../../utils/searchresult';
 
+const summaryResultKeys = Object.keys(SummaryResult2.videos);
+console.log(summaryResultKeys);
+const defaultVideo = SummaryResult2.videos[summaryResultKeys[0]];
+const defaulrChannel = SummaryResult2.channels[defaultVideo.channelId];
 const INITIAL_STATE = {
   searchQuery: '',
   videosInfo: SummaryResult2,
-  videoToWatch: {},
+  videoToWatch: { video: defaultVideo, channel: defaulrChannel },
   isFetching: false,
   errorMessage: undefined,
 };

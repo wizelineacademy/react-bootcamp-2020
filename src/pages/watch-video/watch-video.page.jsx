@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
+import StarOutlineIcon from '@material-ui/icons/StarOutline';
+import StarRateIcon from '@material-ui/icons/StarRate';
 
 import { VideosContext } from '../../providers/videos';
 import { FavoritesContext } from '../../providers/favorites';
@@ -53,27 +55,32 @@ const WatchVideoPage = () => {
         </div>
         <div className='video-info'>
           <h3>{title}</h3>
-          <p>
-            {views} views • {timestamp}
-          </p>
-
-          {favoritesVideos[videoId] ? (
-            <button
-              type='button'
-              className='favorite-button-container'
-              onClick={handleRemoveFavoriteVideoOnClick}
-            >
-              remove
-            </button>
-          ) : (
-            <button
-              type='button'
-              className='favorite-button-container'
-              onClick={handleAddFavoriteVideoOnClick}
-            >
-              add
-            </button>
-          )}
+          <div className='primary-video-details'>
+            <div className='video-count-contianer'>
+              <p>
+                {views} views • {timestamp}
+              </p>
+            </div>
+            <div className='actions-contianer'>
+              <div className='favorites-action'>
+                {favoritesVideos[videoId] ? (
+                  <div title='Remove from favorites'>
+                    <StarRateIcon
+                      fontSize='large'
+                      onClick={handleRemoveFavoriteVideoOnClick}
+                    />
+                  </div>
+                ) : (
+                  <div title='Add to favorites'>
+                    <StarOutlineIcon
+                      fontSize='large'
+                      onClick={handleAddFavoriteVideoOnClick}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
         <div className='channel-info'>
           <div className='header'>

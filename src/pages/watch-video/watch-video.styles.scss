@@ -28,6 +28,19 @@
         font-weight: var(--info-font-weight);
         padding: 5px 0px;
       }
+      .primary-video-details {
+        display: flex;
+        justify-content: space-between;
+        .actions-contianer {
+          .favorites-action {
+            color: #f00;
+
+            div {
+              padding: 0px 5px;
+            }
+          }
+        }
+      }
     }
 
     .channel-info {
