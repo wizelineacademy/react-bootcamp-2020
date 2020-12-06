@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import Main from './pages/Main';
-import Video from './pages/Video';
+import App from './components/App';
 import './global.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Video />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
