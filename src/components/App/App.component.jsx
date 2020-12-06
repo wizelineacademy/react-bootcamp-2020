@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter , Switch, Route } from 'react-router-dom';
 import Layout from '../Layout';
 import HomePage from '../../pages/Home';
 import Private from '../Private';
@@ -11,7 +11,7 @@ import Player from '../../pages/Player';
 const App = () => {
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Layout>
         <Navbar />
         <Switch>
@@ -44,7 +44,7 @@ const App = () => {
           </Route>
         </Switch>
       </Layout>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
