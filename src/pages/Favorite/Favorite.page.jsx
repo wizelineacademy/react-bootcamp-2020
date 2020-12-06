@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import VideoItem from '../../components/VideoItem';
 import Empty from '../../components/Empty/Empty.component';
+import VideoItem from '../../components/VideoItem';
 import { useVideoContext } from '../../VideoState/Provider';
 
-import './Home.styles.css';
+import './Favorite.styles.css';
 
 const ItemContainer = styled.div`
   width: 100%;
@@ -18,19 +18,19 @@ const Title = styled.h1`
   font-size: 0.8rem;
 `;
 
-function HomePage() {
-  const { videos } = useVideoContext();
+function FavoritesPage() {
+  const { favorites } = useVideoContext();
 
   const sectionRef = useRef(null);
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <Title>Wellcome to the challenge!</Title>
+    <section className="favorite" ref={sectionRef}>
+      <Title>My Favorites</Title>
       <ItemContainer>
-        {videos.length === 0 ? (
-          <Empty container="1" />
+        {favorites.length === 0 ? (
+          <Empty container="2" />
         ) : (
-          videos.map((item) => (
+          favorites.map((item) => (
             <VideoItem
               key={item.id}
               title={item.title}
@@ -46,4 +46,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default FavoritesPage;

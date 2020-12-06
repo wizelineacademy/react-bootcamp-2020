@@ -1,6 +1,10 @@
-.homepage {
+.details-page {
   padding-top: 15px;
   padding-left: 24px;
   padding-right: 24px;
 
  }
+
+.details-page h1 {
+  font-size: .8rem;
+}
