@@ -1,10 +1,13 @@
-import React from 'react';
-import { HomeScreen } from './components/HomeScreen';
+import React, { useState } from 'react';
+
+import { AuthContext } from './context/AuthContext';
+import { AppRouter } from './routers/AppRouter';
 
 export const App = () => {
+  const [user, setUser] = useState({ name: 'wizeline', password: 'wizelinerocks!' });
   return (
-    <div>
-      <HomeScreen />
-    </div>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <AppRouter />;
+    </AuthContext.Provider>
   );
 };

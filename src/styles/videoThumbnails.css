@@ -1,0 +1,33 @@
+.video_thumb {
+  /* border: 1px solid red; */
+  background-color: #323f54;
+  font-family: 'Roboto', sans-serif;
+  font-size: small;
+  color: #fff;
+  width: 320px;
+  margin: 0px 15px 15px 0px;
+  cursor: pointer;
+}
+
+img {
+  height: 180px;
+  width: 320px;
+}
+
+.video_info {
+  /* border: 1px solid blue; */
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+#title {
+  margin: 10px;
+}
+
+#channel {
+  margin: 10px;
+}

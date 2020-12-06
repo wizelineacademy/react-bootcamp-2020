@@ -2,14 +2,16 @@ import React from 'react';
 import { useFetch } from '../hooks/useFetch';
 import { VideoThumbnail } from './VideoThumbnail';
 
+import '../styles/homeVideoContainer.css';
+
 export const HomeScreen = () => {
   const API_KEY = 'AIzaSyD1gLhLYnPMzo2z2KWvKPy1N-W6xnNqjEI';
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${API_KEY}&q=wizeline&type=video`;
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${API_KEY}&q=wizeline&type=video&maxResults=12`;
 
   const { data, loading } = useFetch(url);
 
   const { items } = !!data && data;
-  console.log(items);
+
   let thumbnails = [];
 
   if (!loading) {
@@ -20,16 +22,16 @@ export const HomeScreen = () => {
         channelName={item.snippet.channelTitle}
         title={item.snippet.title}
         description={item.snippet.description}
-        img={item.snippet.thumbnails.default.url}
+        img={item.snippet.thumbnails.medium.url}
       />
     ));
   }
 
   return (
     <div>
-      Home Screen
+      <h1>Welcome to the Challenge!</h1>
       <hr />
-      {loading ? <p>loading</p> : thumbnails}
+      {loading ? <p>loading</p> : <div className='video_container'>{thumbnails}</div>}
     </div>
   );
 };
