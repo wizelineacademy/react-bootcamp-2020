@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import AuthProvider from '../../providers/Auth';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import NotFound from '../../pages/NotFound';
 import AppNavbar from '../Navbar';
 import FavoritesPage from '../../pages/Favorites';
-import UserContext from '../../state/UserContext';
-import YoutubeList from '../YoutubeList/YoutubeList';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import UserContext from '../../state/GlobalContext';
+import DetailPage from '../../pages/Detail';
+import ScrollTop from '../../utils/scrolltop';
+import HomePage from '../../pages/Home/Home.page';
+import ViewFavoritesPage from '../../pages/ViewFavorites/ViewFavorites.page';
 
 // Handle expiration time
 const expiration = JSON.parse(localStorage.getItem('expiration'));
@@ -17,14 +19,17 @@ if (expiration) {
   if (expiration.timestamp < new Date().getTime()) {
     localStorage.removeItem('appUser');
     localStorage.removeItem('expiration');
+    localStorage.removeItem('favorites');
   }
 }
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
-  const [searchG, setSearchG] = useState('');
+  const [query, setQuery] = useState('');
+  const [responseList, setResponseList] = useState([]);
+  const [activeVideo, setActiveVideo] = useState(null);
+  const [favorites, setFavorites] = useState([]);
 
   const PrivateRoute = (isAuthorized) => {
     if (isAuthorized) {
@@ -39,17 +44,22 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollTop />
       <Container fluid>
         <UserContext.Provider
           value={{
             showLogin,
             setShowLogin,
-            isAuthenticated,
-            setIsAuthenticated,
             user,
             setUser,
-            searchG,
-            setSearchG,
+            query,
+            setQuery,
+            responseList,
+            setResponseList,
+            activeVideo,
+            setActiveVideo,
+            favorites,
+            setFavorites,
           }}
         >
           <Row className="text-center">
@@ -61,36 +71,22 @@ function App() {
             <Col sm={12}>
               <Switch>
                 <Route exact path="/">
-                  <YoutubeList />
+                  <HomePage />
+                </Route>
+                <Route exact path="/video/:id">
+                  <DetailPage />
+                </Route>
+                <Route exact path="/favorites/:id">
+                  <ViewFavoritesPage />
                 </Route>
                 {PrivateRoute(user)}
-                {/* <Route exact path="/favorites">
-                  <FavoritesPage />
-                </Route> */}
-                <Route exact path="*">
+                <Route path="*">
                   <NotFound />
                 </Route>
               </Switch>
             </Col>
           </Row>
         </UserContext.Provider>
-        <AuthProvider>
-          {/* <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <Fortune /> */}
-        </AuthProvider>
       </Container>
     </BrowserRouter>
   );

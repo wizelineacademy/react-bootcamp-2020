@@ -1,55 +1,47 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import LoginPage from '../../pages/Login';
-import UserContext from '../../state/UserContext';
+import GlobalContext from '../../state/GlobalContext';
 
 function AppNavbar() {
-  const { setShowLogin } = useContext(UserContext);
-  const { user, setUser } = useContext(UserContext);
+  const { setShowLogin, user, setUser, setQuery } = useContext(GlobalContext);
   const [searchInput, setSearchInput] = useState('');
-  const { searchG, setSearchG } = useContext(UserContext);
+
   const history = useHistory();
-
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('appUser')));
-  }, [setUser]);
-
-  let login;
-  let logout;
-  let avatar;
-  let favorites;
+  let loginNav;
+  let logoutNav;
+  let avatarNav;
+  let favoritesNav;
 
   // Event handlers
-  const handleInputChange = (event) => {
-    console.log('searchInputChanged: ');
-    console.log(event.target.value);
+  function handleInputChange(event) {
     setSearchInput(event.target.value);
-  };
+  }
 
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
-    console.log('submit');
-    console.log(searchG);
-    // llama a youtube
-    setSearchG(searchInput);
-  };
+    setQuery(searchInput);
+    history.push('/');
+  }
 
-  const handleLogout = () => {
+  function handleLogout() {
     setUser(null);
     localStorage.removeItem('appUser');
     localStorage.removeItem('expiration');
+    localStorage.removeItem('favorites');
     history.push('/');
-  };
+  }
 
   // Display links depending if user is authenticated
   if (user) {
-    logout = <Nav.Link onClick={handleLogout}>Logout</Nav.Link>;
-    favorites = <Nav.Link onClick={() => history.push('favorites')}>Favorites</Nav.Link>;
-    avatar = <img className="avatar" src={user.avatarUrl} alt={user.name} />;
-    // name = {user.name}
+    logoutNav = <Nav.Link onClick={handleLogout}>Logout</Nav.Link>;
+    favoritesNav = (
+      <Nav.Link onClick={() => history.push('/favorites')}>Favorites</Nav.Link>
+    );
+    avatarNav = <img className="avatar" src={user.avatarUrl} alt={user.name} />;
   } else {
-    login = <Nav.Link onClick={() => setShowLogin(true)}>Login</Nav.Link>;
+    loginNav = <Nav.Link onClick={() => setShowLogin(true)}>Login</Nav.Link>;
   }
 
   return (
@@ -61,11 +53,11 @@ function AppNavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link onClick={() => history.push('/')}>Home</Nav.Link>
-            {favorites}
+            {favoritesNav}
           </Nav>
-          <Nav>{avatar}</Nav>
-          <Nav>{login}</Nav>
-          <Nav>{logout}</Nav>
+          <Nav>{avatarNav}</Nav>
+          <Nav>{loginNav}</Nav>
+          <Nav>{logoutNav}</Nav>
           <Form inline onSubmit={handleSubmit}>
             <FormControl
               type="text"

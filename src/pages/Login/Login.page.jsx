@@ -1,14 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Modal, Form, Button, Alert } from 'react-bootstrap';
 import loginApi from '../../utils/login';
-import LoginContext from '../../state/UserContext';
+import GlobalContext from '../../state/GlobalContext';
 
 function LoginPage() {
   let ErrorMessage;
-  const { showLogin, setShowLogin } = useContext(LoginContext);
-  const { setIsAuthenticated } = useContext(LoginContext);
-  const { setUser } = useContext(LoginContext);
+  const { setUser, showLogin, setShowLogin } = useContext(GlobalContext);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('appUser')));
+  }, [setUser]);
 
   const handleClose = () => {
     setShowLogin(false);
@@ -18,21 +20,16 @@ function LoginPage() {
   const [data, setData] = useState({ username: '', password: '' });
 
   const handleInputChange = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
     setData({
       ...data,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleOnLogin = (event) => {
     event.preventDefault();
-    console.log('Submit form');
-    // console.log(datos.username.value);
     loginApi(data.username, data.password)
       .then((response) => {
-        setIsAuthenticated(true);
         setUser(response);
         localStorage.setItem('appUser', JSON.stringify(response));
         localStorage.setItem(
@@ -54,7 +51,7 @@ function LoginPage() {
 
   return (
     <Modal show={showLogin} onHide={handleClose} centered animation={false}>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleOnLogin}>
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
@@ -87,35 +84,6 @@ function LoginPage() {
       </Form>
     </Modal>
   );
-  // const { login } = useAuth();
-  // const history = useHistory();
-
-  // function authenticate(event) {
-  //   event.preventDefault();
-  //   login();
-  //   history.push('/secret');
-  // }
-
-  // return (
-  //   <section className="login">
-  //     <h1>Welcome back!</h1>
-  //     <form onSubmit={authenticate} className="login-form">
-  //       <div className="form-group">
-  //         <label htmlFor="username">
-  //           <strong>username </strong>
-  //           <input required type="text" id="username" />
-  //         </label>
-  //       </div>
-  //       <div className="form-group">
-  //         <label htmlFor="password">
-  //           <strong>password </strong>
-  //           <input required type="password" id="password" />
-  //         </label>
-  //       </div>
-  //       <button type="submit">login</button>
-  //     </form>
-  //   </section>
-  // );
 }
 
 export default LoginPage;
