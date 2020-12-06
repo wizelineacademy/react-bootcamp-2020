@@ -6,7 +6,7 @@ import { LargeCardGrid, SmallCardGrid } from './VideoCardGrid.style';
 
 function VideoCardGrid() {
   return (
-    <div>
+    <>
       <LargeCardGrid>
         <VideoCardLarge />
         <VideoCardLarge />
@@ -22,7 +22,7 @@ function VideoCardGrid() {
         <VideoCardSmall />
         <VideoCardSmall />
       </SmallCardGrid>
-    </div>
+    </>
   );
 }
 
