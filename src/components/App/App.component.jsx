@@ -15,7 +15,7 @@ import Header from '../header';
 
 import { auth, createUserProfileDocument } from '../../utils/js/firebase';
 
-import './app.styles.scss';
+import { AppContainer, AppMainContainer } from './app.styles';
 
 const App = () => {
   const location = useLocation();
@@ -46,11 +46,11 @@ const App = () => {
   }, [authDispatch]);
 
   return (
-    <div className='app'>
+    <AppContainer>
       {location.pathname !== '/login' && location.pathname !== '/signup' ? (
         <Header />
       ) : null}
-      <div className='app-main-content'>
+      <AppMainContainer>
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/settings' component={SettingsPage} />
@@ -63,8 +63,8 @@ const App = () => {
           />
           <Route exact path='/signup' component={SignUpPage} />
         </Switch>
-      </div>
-    </div>
+      </AppMainContainer>
+    </AppContainer>
   );
 };
 
