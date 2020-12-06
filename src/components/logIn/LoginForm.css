@@ -1,0 +1,6 @@
+.paper {
+  display: flex;
+  margin-top: 64px;
+  align-items: center;
+  flex-direction: column;
+}
