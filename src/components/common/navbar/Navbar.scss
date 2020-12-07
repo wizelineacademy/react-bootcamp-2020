@@ -1,4 +1,29 @@
-.NavbarItems {
+.ui.menu.top-menu {
+    border: none; /*Remove Semantic UI's bottom border*/
+    height: 80px;
+    background: rgb(206, 184, 184);
+
+    .nav-container {
+      //justify-content: space-between; /*maximize whitespace between elements*/
+      flex-grow: 1; /* take available space in the flex container */
+      padding: 0;
+    }
+
+    .header-icon {
+        color: #a0a0a0;
+    }
+
+    .fa-react {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        font-size: 2rem;
+    }
+
+    .name-header {
+        font-size: 1.1rem;
+    }
+}
+/*.NavbarItems {
     background: linear-gradient(90deg, #3F51B5 0%, #3F51B5 100%);
     height: 80px;
     display: flex;
@@ -150,3 +175,4 @@
 button {
     margin-right: 20px;
 }
+*/

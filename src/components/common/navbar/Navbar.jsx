@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { MenuItems } from './MenuItems';
 import Button from '../button';
-import './Navbar.css';
+
+import {Link} from 'react-router-dom';
+import {Image, Menu, Icon} from 'semantic-ui-react';
+import './Navbar.scss';
 
 import SearchBar from '../searchBar';
 import ToggleSwitch from '../toggleSwitch';
 
-const Navbar = () => {
+const Navbar = ({handleSubmit}) => {
     const [clicked, setClicked] = useState(false);
     const [dark, setDark] = useState(false);
 
@@ -15,11 +18,37 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="NavbarItems">
+        <Menu borderless className='top-menu' fixed='top'>
+            <Menu.Item header className='logo'>
+            <i className="fab fa-react"></i><Link to='/'><p className="name-header">React bootcamp 2020</p></Link>
+            </Menu.Item>
+            <Menu.Menu className='nav-container'>
+                <SearchBar handleFormSubmit={handleSubmit}/>
+            </Menu.Menu>
+            <Menu.Menu position='right'>
+                <Menu.Item onClick={ handleClick }>
+                    <Icon 
+                        className='header-icon' 
+                        name={clicked ? 'moon' : 'sun'} 
+                        size='large'
+                    />
+                </Menu.Item>
+                <Menu.Item>
+                    <Icon className='header-icon' name='home icon' size='large'/>
+                </Menu.Item>
+                <Menu.Item>
+                    <Icon className='header-icon' name='star' size='large'/>
+                </Menu.Item>
+                <Menu.Item name='avatar'>
+                    <Image src='https://sites.google.com/site/heroespoderosos/_/rsrc/1397058950773/home/Estatua_de_cera_de_Luffy.png?height=330&width=400' size='tiny' avatar/>
+                </Menu.Item>
+            </Menu.Menu>
+        </Menu>
+        /*<nav className="NavbarItems">
             <h1 className="navbar-logo">React bootcamp 2020 <i className="fab fa-react"></i></h1>
             
             <div className="search-bar">
-                <SearchBar />
+                <SearchBar handleFormSubmit={handleSubmit}/>
             </div>
             
             <div className="switch">
@@ -48,7 +77,7 @@ const Navbar = () => {
                 }
             </ul>
             <Button>Login</Button>
-        </nav>
+        </nav> */
     );
 }
 
