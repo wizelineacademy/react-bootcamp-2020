@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 import AuthProvider from '../../providers/Auth';
@@ -11,9 +11,7 @@ import MainAppBar from '../MainAppBar';
 import LeftDrawer from '../LeftDrawer';
 import DataContext from '../../state/DataContext';
 import useStyles from './AppStyles';
-import { items } from '../../mock/mockedData';
-import { favItems } from '../../mock/mockedFavs';
-import { defaultItems } from '../../mock/mockDefault';
+import { defaultItems } from '../../mock/mockedData';
 import FavoritesContext from '../../state/FavoritesContext';
 import reducer from '../../state/FavoritesReducer';
 
@@ -25,6 +23,8 @@ const initialState = {
 function App() {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [items, setItems] = useState(defaultItems);
+  const values = { items, setItems };
 
   useEffect(() => {
     dispatch({ type: 'LOAD_FROM_STORAGE' });
@@ -33,18 +33,12 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className={classes.root}>
-          <CssBaseline />
-          <MainAppBar />
-          <LeftDrawer />
+        <DataContext.Provider value={values}>
+          <div className={classes.root}>
+            <CssBaseline />
+            <MainAppBar />
+            <LeftDrawer />
 
-          <DataContext.Provider
-            value={{
-              items,
-              favItems,
-              defaultItems,
-            }}
-          >
             <FavoritesContext.Provider
               value={{
                 state,
@@ -59,8 +53,8 @@ function App() {
                 <Protected exact path="/favorites" component={Favorites} />
               </Switch>
             </FavoritesContext.Provider>
-          </DataContext.Provider>
-        </div>
+          </div>
+        </DataContext.Provider>
       </BrowserRouter>
     </AuthProvider>
   );

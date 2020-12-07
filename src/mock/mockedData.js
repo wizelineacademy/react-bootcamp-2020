@@ -1,4 +1,4 @@
-export const items = [
+export const defaultItems = [
   {
     kind: 'youtube#searchResult',
     etag: 'QmtXC8RgQSN4Qb1llBLGUbtuWrw',
