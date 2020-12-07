@@ -9,7 +9,7 @@ const DialogProvider = (props) => {
   const [dialogState, dispatch] = useReducer(reducer, initialState);
   const dialogActions = useMemo(() => actions(dispatch), []);
   useEffect(() => {
-    dialogActions.registerDialog('miDialogo', false);
+    dialogActions.registerDialog('miDialogo', true);
     dialogActions.registerDialog('otro dialogo', false);
   }, [dialogActions]);
   return (
@@ -20,7 +20,6 @@ const DialogProvider = (props) => {
       }}
     >
       <Dialog
-        title="este es mi dialogo"
         open={
           dialogState.dialogs.miDialogo ? dialogState.dialogs.miDialogo.isOpen : false
         }
