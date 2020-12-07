@@ -1,6 +1,5 @@
 import React from 'react';
 
-import searchResultMocked from '../../utils/searchResultMocked.json';
 import {
   SmallVideoCard,
   SmallMultimediaArea,
@@ -9,21 +8,21 @@ import {
 } from './VideoCardSmall.style';
 import './VideoCardSmall.style.css';
 
-function VideoCardSmall() {
+function VideoCardSmall({ searchItem }) {
   return (
     <SmallVideoCard className="videoSmall-wrapper">
       <SmallMultimediaArea className="multimediaArea">
         <img
-          src={searchResultMocked.items[2].snippet.thumbnails.medium.url}
-          alt={`Thumbnail for "${searchResultMocked.items[2].snippet.title}" video`}
+          src={searchItem.snippet.thumbnails.medium.url}
+          alt={`Thumbnail for "${searchItem.snippet.title}" video`}
         />
       </SmallMultimediaArea>
       <SmallContentArea className="contentArea">
         <SmallCardParragraphContent className="title">
-          {searchResultMocked.items[2].snippet.title}
+          {searchItem.snippet.title}
         </SmallCardParragraphContent>
         <SmallCardParragraphContent className="description">
-          {searchResultMocked.items[1].snippet.description}
+          {searchItem.snippet.description}
         </SmallCardParragraphContent>
       </SmallContentArea>
     </SmallVideoCard>

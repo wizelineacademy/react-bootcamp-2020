@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
@@ -10,47 +10,38 @@ import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
 import Navbar from '../Navbar';
+import VideoSearchContext from '../../state/VideoSearchContext';
 
 function App() {
-  useLayoutEffect(() => {
-    const { body } = document;
+  const [query, setQuery] = React.useState('Wizeline');
 
-    function rotateBackground() {
-      const xPercent = 0;
-      const yPercent = 0;
-      body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
-    }
-
-    const intervalId = setInterval(rotateBackground, 3000);
-    body.addEventListener('click', rotateBackground);
-
-    return () => {
-      clearInterval(intervalId);
-      body.removeEventListener('click', rotateBackground);
-    };
-  }, []);
+  const queryFn = (newQuery) => {
+    setQuery(newQuery);
+  };
 
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Layout>
-          <Navbar />
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/favorites">
-              <SecretPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <Fortune />
-        </Layout>
+        <VideoSearchContext.Provider value={{ query, queryFn }}>
+          <Layout>
+            <Navbar onQuery={queryFn} />
+            <Switch>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
+              <Route exact path="/login">
+                <LoginPage />
+              </Route>
+              <Private exact path="/favorites">
+                <SecretPage />
+              </Private>
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+            <Fortune />
+          </Layout>
+        </VideoSearchContext.Provider>
       </AuthProvider>
     </BrowserRouter>
   );

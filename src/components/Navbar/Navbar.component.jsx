@@ -11,7 +11,7 @@ import {
 import { PrimaryButton } from '../../styledComponents';
 import { useAuth } from '../../providers/Auth';
 
-function Navbar() {
+function Navbar({ onQuery }) {
   const [query, setQuery] = React.useState('');
   const history = useHistory();
   const { authenticated, logout } = useAuth();
@@ -29,7 +29,8 @@ function Navbar() {
 
   const onSearchButtonClicked = (event) => {
     if (event.key === 'Enter') {
-      console.log(query);
+      setQuery(query);
+      onQuery(query);
     }
   };
 
