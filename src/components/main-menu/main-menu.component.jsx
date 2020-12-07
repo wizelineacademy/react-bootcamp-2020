@@ -11,8 +11,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GradeIcon from '@material-ui/icons/Grade';
 
-import { MainMenuIcon } from './main-menu.styles';
-import './main-menu.styles.scss';
+import { MainMenuIcon, Bottom, MainMenuList } from './main-menu.styles';
 
 const MainMenu = ({ history }) => {
   const [mainMenuState, setMainMenuState] = useState(false);
@@ -26,8 +25,7 @@ const MainMenu = ({ history }) => {
   };
 
   const list = (
-    <div
-      className='main-menu-list'
+    <MainMenuList
       role='presentation'
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
@@ -46,7 +44,7 @@ const MainMenu = ({ history }) => {
           <ListItemText primary='Favorites' />
         </ListItem>
       </List>
-      <div className='bottom'>
+      <Bottom>
         <Divider />
         <List>
           <ListItem button key='Settings' onClick={() => history.push(`/settings`)}>
@@ -56,8 +54,8 @@ const MainMenu = ({ history }) => {
             <ListItemText primary='Settings' />
           </ListItem>
         </List>
-      </div>
-    </div>
+      </Bottom>
+    </MainMenuList>
   );
 
   return (

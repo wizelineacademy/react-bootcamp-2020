@@ -16,7 +16,7 @@ export const CardInformation = styled.div`
     font-size: ${(props) => props.theme.primary_text_size};
     margin-bottom: 5px;
     color: ${(props) => props.theme.primary_text_color};
-    font-weight: ${(props) => props.theme.secondary_title_weight};
+    font-weight: ${(props) => props.theme.primary_title_weight};
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;

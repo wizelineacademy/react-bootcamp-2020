@@ -1,13 +1,13 @@
 /* eslint-disable */
 import React from 'react';
 
-import './form-input.styles.scss';
+import { FormInputContainer } from './form-input.styles';
 
 const FormInput = ({ handleChange, label, ...otherPorps }) => (
-  <div className='form-input-container'>
+  <FormInputContainer>
     <label htmlFor={otherPorps.type}>{label}</label>
     <input onChange={handleChange} {...otherPorps} />
-  </div>
+  </FormInputContainer>
 );
 
 export default FormInput;

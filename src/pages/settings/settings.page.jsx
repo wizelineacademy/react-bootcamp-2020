@@ -3,7 +3,7 @@ import Switch from '@material-ui/core/Switch';
 import { ThemeContext } from '../../providers/theme';
 import { setTheme } from '../../providers/theme/theme.actions';
 
-import './settings.styles.scss';
+import { SettingsContainer } from './settings.styles';
 
 function SettingsPage() {
   const { themeDispatch } = useContext(ThemeContext);
@@ -14,7 +14,7 @@ function SettingsPage() {
   };
 
   return (
-    <div className='settings-container'>
+    <SettingsContainer>
       <h1>Settings</h1>
       <p>Dark mode</p>
       <Switch
@@ -23,7 +23,7 @@ function SettingsPage() {
         name='checkedA'
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
-    </div>
+    </SettingsContainer>
   );
 }
 

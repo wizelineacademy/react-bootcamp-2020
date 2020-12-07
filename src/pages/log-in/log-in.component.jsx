@@ -5,7 +5,15 @@ import FormInput from '../../components/form-input';
 import CustomButton from '../../components/custom-button';
 
 import { auth, signInWithGoogle } from '../../utils/js/firebase';
-import './log-in.styles.scss';
+
+import {
+  SignInContainer,
+  Main,
+  Header,
+  Body,
+  ButtonsBarContainer,
+  NewUserContainer,
+} from './log-in.styles';
 
 const initialState = {
   email: '',
@@ -41,12 +49,12 @@ function LogInPage() {
   };
 
   return (
-    <div className='sign-in-container'>
-      <div className='main'>
-        <div className='header'>
+    <SignInContainer>
+      <Main>
+        <Header>
           <h1>Sign in</h1>
-        </div>
-        <div className='body'>
+        </Header>
+        <Body>
           <form onSubmit={handleSubmit}>
             <FormInput
               name='email'
@@ -64,22 +72,22 @@ function LogInPage() {
               label='Password'
               required
             />
-            <div className='buttons-bar-contianer'>
+            <ButtonsBarContainer>
               <CustomButton type='submit'> Sign in </CustomButton>
               <CustomButton onClick={handleSignInWithGoogle} isGoogleSignIn>
                 Sign in with Google
               </CustomButton>
-            </div>
+            </ButtonsBarContainer>
           </form>
-        </div>
+        </Body>
 
-        <div className='new-user-container'>
+        <NewUserContainer>
           <p>
             New? <Link to='/signup'>Create an account.</Link>
           </p>
-        </div>
-      </div>
-    </div>
+        </NewUserContainer>
+      </Main>
+    </SignInContainer>
   );
 }
 

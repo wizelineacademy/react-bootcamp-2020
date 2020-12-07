@@ -15,10 +15,8 @@ const light = {
   secondary_text_color: '#606060', //  --text-secondary-color: #606060;
   primary_border_color: '1px solid rgba(0, 0, 0, 0.1);',
   primary_action_icon_color: '#f00',
-
-  //  --text-input-border: #606060;
-  //  --text-input-selected-border: #4285f4;
-  //  --header-container-height: 56px;
+  primary_text_input_border: '1px solid #606060',
+  primary_text_selected_input_border: '1px solid #4285f4',
 };
 const dark = {
   ...commonTheme,
@@ -28,6 +26,8 @@ const dark = {
   secondary_text_color: '#aaa',
   primary_border_color: '1px solid rgba(255, 255, 255, 0.1);',
   primary_action_icon_color: '#fff',
+  primary_text_input_border: '1px solid #606060',
+  primary_text_selected_input_border: '1px solid #4285f4',
 };
 
 const Themes = {

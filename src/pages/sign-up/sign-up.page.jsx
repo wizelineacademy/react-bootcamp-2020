@@ -6,7 +6,13 @@ import CustomButton from '../../components/custom-button';
 
 import { auth, createUserProfileDocument } from '../../utils/js/firebase';
 
-import './sign-up.styles.scss';
+import {
+  SignUpContainer,
+  Main,
+  Header,
+  Body,
+  ButtonsBarContainer,
+} from './sign-up.styles';
 
 const initialState = {
   displayName: '',
@@ -55,12 +61,12 @@ function SignUpPage() {
   };
 
   return (
-    <div className='sign-in-container'>
-      <div className='main'>
-        <div className='header'>
+    <SignUpContainer>
+      <Main>
+        <Header>
           <h1>Sign up</h1>
-        </div>
-        <div className='body'>
+        </Header>
+        <Body>
           <form onSubmit={handleSubmit}>
             <FormInput
               type='text'
@@ -94,13 +100,13 @@ function SignUpPage() {
               label='Confirm Password'
               required
             />
-            <div className='buttons-bar-contianer'>
+            <ButtonsBarContainer>
               <CustomButton type='submit'> Create account </CustomButton>
-            </div>
+            </ButtonsBarContainer>
           </form>
-        </div>
-      </div>
-    </div>
+        </Body>
+      </Main>
+    </SignUpContainer>
   );
 }
 
