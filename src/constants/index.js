@@ -1,7 +1,7 @@
 const API_KEY = 'AIzaSyBq-gHlHOKf8O48_75pQhAlAbBV3pRdDhw';
-const API_URL = 'http://localhost:3001';
+const API_URL = 'https://youtube.googleapis.com/youtube/v3/search/'; // 'http://localhost:3001';
 const INITIAL_QUERY = 'a';
-// const APIURL = "https://youtube.googleapis.com/youtube/v3/search";
+const FAVORITES = false;
 
 const USERS = {
   wizeline: {
@@ -15,4 +15,4 @@ const USERS = {
   },
 };
 
-export { API_KEY, API_URL, INITIAL_QUERY, USERS };
+export { API_KEY, API_URL, INITIAL_QUERY, USERS, FAVORITES };
