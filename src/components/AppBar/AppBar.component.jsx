@@ -1,14 +1,8 @@
 import React from 'react';
-import {
-  CssBaseline,
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Link,
-} from '@material-ui/core';
+import { CssBaseline, AppBar, Toolbar, Typography, Link } from '@material-ui/core';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import SearchBar from '../SearchBar';
+import User from '../User';
 import './AppBar.styles.css';
 
 export default function App() {
@@ -24,10 +18,7 @@ export default function App() {
             Favorites
           </Typography>
           <SearchBar />
-          {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
-          <Button color="inherit" className="right">
-            Login
-          </Button>
+          <User />
         </Toolbar>
       </AppBar>
     </>
