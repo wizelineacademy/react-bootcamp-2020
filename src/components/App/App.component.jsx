@@ -55,8 +55,8 @@ function App() {
     <BrowserRouter>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <DialogProvider>
-          <AuthProvider>
+        <AuthProvider>
+          <DialogProvider>
             <Layout>
               <Switch>
                 <Route exact path="/video/:videoId">
@@ -77,8 +77,8 @@ function App() {
               </Switch>
               <Fortune />
             </Layout>
-          </AuthProvider>
-        </DialogProvider>
+          </DialogProvider>
+        </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>
   );

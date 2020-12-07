@@ -12,8 +12,6 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
-import { useQuery } from 'react-query';
-import auth from '../../services/auth';
 import SearchVideos from '../SearchVideos';
 import { AuthContext } from '../../contexts/authContext/authContext';
 import { DialogContext } from '../../contexts/dialogContext/Dialog';
@@ -118,24 +116,10 @@ function UserMenu() {
   );
 }
 
-function storeUser(res, action) {
-  if (res.data.length !== 1) return null;
-  action(res.data[0]);
-}
-
 export default function TopAppBar() {
   const classes = useStyles();
-  const { authState, authActions } = useContext(AuthContext);
+  const { authState } = useContext(AuthContext);
   const { dialogActions } = useContext(DialogContext);
-  const { refetch } = useQuery(
-    ['/login', { user: 'wizeline', password: 'Rocks!' }],
-    auth.signIn,
-    {
-      refetchOnWindowFocus: false,
-      enabled: false,
-      onSuccess: (data) => storeUser(data, authActions.authStateChanged),
-    }
-  );
   return (
     <>
       <AppBar position="fixed" classes={{ root: classes.appBarRoot }}>
@@ -156,7 +140,6 @@ export default function TopAppBar() {
           {!authState.user && (
             <Button
               onClick={() => {
-                refetch();
                 dialogActions.setOpen('miDialogo', true);
               }}
               size="medium"

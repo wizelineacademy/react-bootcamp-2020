@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useQuery } from 'react-query';
 import styles from './Login.styles';
 import ImageLoad from '../../ImageLoad';
 import logo from '../../../assets/images/wizeline-academy-1.png';
 import logoSmall from '../../../assets/images/wizeline-academy-1-small.jpg';
+import auth from '../../../services/auth';
+import { AuthContext } from '../../../contexts/authContext/authContext';
 
 const useStyles = makeStyles(styles);
 
-export default function Login() {
+function storeUser(res, action) {
+  if (res.data.length !== 1) return null;
+  action(res.data[0]);
+}
+
+export default function Login(props) {
+  const { handleClose } = props;
   const classes = useStyles();
   const [userName, setUserName] = useState(null);
   const [password, setPassword] = useState(null);
   const [rememberMe, setRememberMe] = useState(false);
+  const { authActions } = useContext(AuthContext);
+
+  const { refetch } = useQuery(['/login', { user: userName, password }], auth.signIn, {
+    refetchOnWindowFocus: false,
+    enabled: false,
+    onSuccess: (data) => storeUser(data, authActions.authStateChanged),
+  });
   const changeValue = (field, value) => {
     if (field === 'userName') return setUserName(value);
     if (field === 'password') return setPassword(value);
@@ -26,6 +42,8 @@ export default function Login() {
   const submitData = (e) => {
     e.preventDefault();
     console.log(userName, password, rememberMe);
+    refetch();
+    handleClose();
   };
   return (
     <>
@@ -76,6 +94,7 @@ export default function Login() {
               color="secondary"
             />
             <Button
+              disabled={!userName || !password}
               type="submit"
               fullWidth
               variant="contained"

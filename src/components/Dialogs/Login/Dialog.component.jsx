@@ -56,7 +56,7 @@ export default function CustomizedDialogs(props) {
           {title}
         </DialogTitle>
         <DialogContent dividers>
-          <Login />
+          <Login handleClose={handleClose} />
         </DialogContent>
       </Dialog>
     </div>
