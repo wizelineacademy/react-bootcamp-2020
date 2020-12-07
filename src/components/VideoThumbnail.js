@@ -8,12 +8,12 @@ import { types } from '../types/types';
 
 export const VideoThumbnail = ({ channelName, title, img, videoId, description }) => {
   const { user, dispatch } = useContext(AuthContext);
-  const { name, logged } = user;
+  const { name, logged, query } = user;
   const history = useHistory();
   const handleClick = () => {
     const action = {
       type: types.playVideo,
-      payload: { name, logged, channelName, title, videoId, description },
+      payload: { name, logged, query, channelName, title, videoId, description },
     };
     dispatch(action);
     history.push('/video');
