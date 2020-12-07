@@ -21,6 +21,9 @@ function VideoCardLarge({ searchItem }) {
         <LargeCardParragraphContent className="title">
           {searchItem.snippet.title}
         </LargeCardParragraphContent>
+        <LargeCardParragraphContent className="title channel">
+          {searchItem.snippet.channelTitle}
+        </LargeCardParragraphContent>
         <LargeCardParragraphContent className="description">
           {searchItem.snippet.description}
         </LargeCardParragraphContent>

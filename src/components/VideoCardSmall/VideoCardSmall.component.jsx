@@ -21,6 +21,9 @@ function VideoCardSmall({ searchItem }) {
         <SmallCardParragraphContent className="title">
           {searchItem.snippet.title}
         </SmallCardParragraphContent>
+        <SmallCardParragraphContent className="title channel">
+          {searchItem.snippet.channelTitle}
+        </SmallCardParragraphContent>
         <SmallCardParragraphContent className="description">
           {searchItem.snippet.description}
         </SmallCardParragraphContent>

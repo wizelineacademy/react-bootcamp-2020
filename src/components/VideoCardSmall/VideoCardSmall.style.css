@@ -11,6 +11,13 @@
   margin-block-start: 0.5rem;
 }
 
+.videoSmall-wrapper .contentArea .title.channel{
+  margin-top: unset;
+  font-weight: unset;
+  font-size: 0.7rem;
+  color: darkslategray;
+}
+
 .videoSmall-wrapper .contentArea .description {
   font-size: 0.6rem;
   height: 2rem;
