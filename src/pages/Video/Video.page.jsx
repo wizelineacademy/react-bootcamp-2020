@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import VideoWatch from '../../components/VideoWatch';
-import { items } from '../../mock/mockedData';
+import DataContext from '../../state/DataContext';
 
 function Video() {
-  const currentVideo = items[0];
-  const filteredItems = items.filter((item) => item.etag !== currentVideo.etag);
-
+  const { id } = useParams();
+  const { items } = useContext(DataContext);
+  const filteredItems = items.filter((item) => item.id.videoId !== id);
+  const currentVideo = items.filter((item) => item.id.videoId === id);
   return <VideoWatch currentVideo={currentVideo} items={filteredItems} />;
 }
 

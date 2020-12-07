@@ -7,7 +7,9 @@ import Protected from '../Protected';
 import Video from '../../pages/Video';
 import MainAppBar from '../MainAppBar';
 import LeftDrawer from '../LeftDrawer';
+import DataContext from '../../state/DataContext';
 import useStyles from './AppStyles';
+import { items } from '../../mock/mockedData';
 
 function App() {
   const classes = useStyles();
@@ -19,11 +21,17 @@ function App() {
           <CssBaseline />
           <MainAppBar />
           <LeftDrawer />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/player/:id" component={Video} />
-            <Protected path="/favorites" component={Home} />
-          </Switch>
+          <DataContext.Provider
+            value={{
+              items,
+            }}
+          >
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/player/:id" component={Video} />
+              <Protected path="/favorites" component={Home} />
+            </Switch>
+          </DataContext.Provider>
         </div>
       </BrowserRouter>
     </AuthProvider>

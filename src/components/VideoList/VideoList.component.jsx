@@ -5,7 +5,11 @@ function VideoList(props) {
   return (
     <div>
       {props.items.map((item) => (
-        <VideoListItem snippet={item.snippet} key={item.id.videoId} />
+        <VideoListItem
+          snippet={item.snippet}
+          key={item.id.videoId}
+          id={item.id.videoId}
+        />
       ))}
     </div>
   );

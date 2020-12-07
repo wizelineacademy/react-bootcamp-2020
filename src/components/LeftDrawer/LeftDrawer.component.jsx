@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,12 +24,14 @@ function LeftDrawer() {
       <Toolbar />
       <div className={classes.drawerContainer}>
         <List>
-          <ListItem button key="Home">
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItem>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <ListItem button key="Home">
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItem>
+          </Link>
           <ListItem button key="Favorites">
             <ListItemIcon>
               <FavoriteIcon />

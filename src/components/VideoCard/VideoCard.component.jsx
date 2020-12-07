@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -21,20 +22,22 @@ function VideoCard(props) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          component="img"
-          image={props.snippet.thumbnails.high.url}
-          title={props.snippet.title}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.snippet.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.snippet.description}
-          </Typography>
-        </CardContent>
+        <Link to={`/player/${props.id}`} style={{ textDecoration: 'none' }}>
+          <CardMedia
+            className={classes.media}
+            component="img"
+            image={props.snippet.thumbnails.high.url}
+            title={props.snippet.title}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.snippet.title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.snippet.description}
+            </Typography>
+          </CardContent>
+        </Link>
       </CardActionArea>
     </Card>
   );
