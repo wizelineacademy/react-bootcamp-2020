@@ -12,7 +12,6 @@ export default function LoginPage() {
 
     const name = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    console.log(name, password);
 
     login(name, password);
     history.push('/');
