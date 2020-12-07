@@ -1,10 +1,9 @@
 import React, { useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import Videos from '../../components/Videos';
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
 
-function HomePage() {
+import { useAuth } from '../../providers/Auth';
+
+function FavoritesPage() {
   const history = useHistory();
   const sectionRef = useRef(null);
   const { authenticated, logout } = useAuth();
@@ -17,6 +16,7 @@ function HomePage() {
 
   return (
     <section className="homepage" ref={sectionRef}>
+      <h1>Favorites!</h1>
       {authenticated ? (
         <>
           <h2>Good to have you back</h2>
@@ -29,11 +29,10 @@ function HomePage() {
           </span>
         </>
       ) : (
-        <h1>Bienvenidos al challenge 2020</h1>
+        <Link to="/login">let me in →</Link>
       )}
-      <Videos />
     </section>
   );
 }
 
-export default HomePage;
+export default FavoritesPage;

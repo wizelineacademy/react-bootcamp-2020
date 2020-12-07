@@ -1,0 +1,38 @@
+aside ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  position: fixed;
+  top: 56px;
+  left: 0px;
+  height: 100%;
+  overflow: auto;
+}
+
+aside ul li {
+  display: block;
+  color: rgb(230, 230, 230);
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+aside ul li.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+aside ul li:hover:not(.active) {
+  background-color: rgb(230, 230, 230);
+  color: white;
+}
+
+@media (max-width: 600px) {
+  aside ul {
+    width: 90vw;
+    position: fixed;
+    top: 56px;
+    overflow: auto;
+    text-align: center;
+  }
+}
