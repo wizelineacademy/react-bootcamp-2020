@@ -8,11 +8,6 @@ import SearchPage from '../../pages/Search';
 import WatchPage from '../../pages/Watch';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
-import Private from '../Private';
-// import Fortune from '../Fortune';
-// import Layout from '../Layout';
-// import { random } from '../../utils/fns';
 
 function App() {
   return (
@@ -25,18 +20,12 @@ function App() {
           <Route exact path="/search/:searchQuery">
             <SearchPage />
           </Route>
-          <Route exact path="/search">
-            <SearchPage />
-          </Route>
           <Route exact path="/watch/:videoId">
             <WatchPage />
           </Route>
           <Route exact path="/login">
             <LoginPage />
           </Route>
-          <Private exact path="/secret">
-            <SecretPage />
-          </Private>
           <Route path="*">
             <NotFound />
           </Route>

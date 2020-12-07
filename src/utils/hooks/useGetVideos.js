@@ -18,15 +18,14 @@ function useGetVideos(searchQuery) {
         const response = await fetch(API_URL);
         const jsonResult = await response.json();
 
-        console.log(jsonResult);
-        console.log(process.env.REACT_APP_API_KEY);
-        if (jsonResult.code === 200) {
-          // remove channels and playlist
-          const jsonResultOnlyVideos = jsonResult.items.filter((item) => {
-            return item.id.kind === 'youtube#video';
-          });
-          setVideosList(jsonResultOnlyVideos);
-        }
+        // console.log(jsonResult);
+        // if (jsonResult.code === 200) {
+        // remove channels and playlist
+        const jsonResultOnlyVideos = jsonResult.items.filter((item) => {
+          return item.id.kind === 'youtube#video';
+        });
+        setVideosList(jsonResultOnlyVideos);
+        // }
       } catch (error) {
         console.error('Error retrieving results: ', error);
       }

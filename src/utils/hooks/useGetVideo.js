@@ -15,13 +15,13 @@ function useGetVideo(videoId) {
         const API_URL = Constants.BASE_API_URL_VIDEO.replace(
           '<VIDEO_ID>',
           videoId
-        ).replace('<API_KEY>', process.env.API_KEY);
+        ).replace('<API_KEY>', process.env.REACT_APP_API_KEY);
         // console.log(API_URL);
 
         const response = await fetch(API_URL);
         const jsonResult = await response.json();
 
-        console.log(jsonResult);
+        // console.log(jsonResult);
         setVideoInfo(jsonResult);
       } catch (error) {
         console.error('Error retrieving results: ', error);
