@@ -8,7 +8,7 @@ import "./Searchbar.css";
 const Searchbar = () => {
   const history = useHistory();
   const { searchText, setSearchText } = useContext(PageContext);
-  const { videoList, setVideoList } = useContext(PageContext);
+  const { setVideoList } = useContext(PageContext);
 
   const handleSearch = (event) => {
     const auxText = event.target.value;
