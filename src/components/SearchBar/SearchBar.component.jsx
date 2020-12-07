@@ -1,11 +1,16 @@
-import React, { useContext } from 'react';
-import { InputBase, Button } from '@material-ui/core';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { InputBase, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import './SearchBar.styles.css';
-import SearchContext from '../../contexts/search';
 
 export default function SearchBar() {
-  const { setSearch } = useContext(SearchContext);
+  const history = useHistory();
+
+  const searchVideo = () => {
+    const search = document.getElementById('searchInput').value;
+    history.push(`/?q=${search}`);
+  };
 
   return (
     <div className="search-box">
@@ -13,14 +18,16 @@ export default function SearchBar() {
         id="searchInput"
         className="search-input"
         placeholder="Search…"
-        inputProps={{ 'aria-label': 'search' }}
+        inputProps={{ 'aria-label': 'search video' }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            searchVideo();
+          }
+        }}
       />
-      <Button
-        className="search-btn"
-        onClick={() => setSearch(document.getElementById('searchInput').value)}
-      >
+      <IconButton className="search-btn" aria-label="search video" onClick={searchVideo}>
         <SearchIcon />
-      </Button>
+      </IconButton>
     </div>
   );
 }
