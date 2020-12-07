@@ -69,14 +69,19 @@ const findFavoriteURL = `${BASE_URL}videos?part=snippet`;
 const findFavorite = async (id) => {
   const favorite = await fetch(`${findFavoriteURL}&id=${id}&key=${API_TOKEN}`);
   const data = await favorite.json();
-  const snippet = data.items[0];
-  return {
-    id: snippet.id,
-    title: snippet.snippet.title,
-    description: snippet.snippet.description,
-    thumbnail: snippet.snippet.thumbnails.medium.url,
-    publishedAt: formatDate(snippet.snippet.publishedAt),
-  };
+  try {
+    const snippet = data.items[0];
+    return {
+      id: snippet.id,
+      title: snippet.snippet.title,
+      description: snippet.snippet.description,
+      thumbnail: snippet.snippet.thumbnails.medium.url,
+      publishedAt: formatDate(snippet.snippet.publishedAt),
+    };
+  } catch (error) {
+    console.log(`Error retreiving favorite for id: ${id}${error}`);
+    return {};
+  }
 };
 
 export const getFavorites = async () => {

@@ -30,5 +30,9 @@ export const arrayEqualsTo = (arr1, arr2) => {
 };
 
 export const isVideoFavorite = (id) => {
-  return storage.get('favorites').includes(id);
+  if (storage.get('favorites')) {
+    return storage.get('favorites').includes(id);
+  }
+  storage.set('favorites', []);
+  return false;
 };

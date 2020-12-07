@@ -5,7 +5,6 @@ export const storage = {
       return JSON.parse(item);
     } catch (error) {
       console.log(`Error parsing storage key ${key}`);
-      return null;
     }
   },
 
