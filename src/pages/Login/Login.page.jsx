@@ -1,39 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
-
+import styles from './Login.module.css';
 import { useAuth } from '../../providers/Auth';
-import './Login.styles.css';
 
-function LoginPage() {
-  const { login } = useAuth();
+const Login = () => {
+  // Page's state
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  // Adapt hooks for use at nested levels
+  const { login, authenticated } = useAuth();
   const history = useHistory();
 
-  function authenticate(event) {
-    event.preventDefault();
-    login();
-    history.push('/secret');
-  }
+  // Page's handler functions
+  const handleUsername = (e) => {
+    e.preventDefault();
+    setUsername(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    e.preventDefault();
+    setPassword(e.target.value);
+  };
+
+  const authenticate = () => {
+    if (username === 'wizeline' && password === 'Rocks!') {
+      login();
+      history.push('/');
+    }
+  };
+
+  useEffect(() => {
+    if (authenticated) {
+      history.push('/');
+    }
+  }, []);
 
   return (
-    <section className="login">
-      <h1>Welcome back!</h1>
-      <form onSubmit={authenticate} className="login-form">
-        <div className="form-group">
-          <label htmlFor="username">
-            <strong>username </strong>
-            <input required type="text" id="username" />
-          </label>
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">
-            <strong>password </strong>
-            <input required type="password" id="password" />
-          </label>
-        </div>
-        <button type="submit">login</button>
-      </form>
+    <section className={styles.login_page}>
+      <div className={styles.login_container}>
+        <h2 className={styles.login_title}>Welcome Back!</h2>
+        <form onSubmit={authenticate}>
+          <div className={styles.form_row}>
+            <label htmlFor="username">
+              Username
+              <input
+                required
+                id="username"
+                name="username"
+                type="text"
+                onChange={handleUsername}
+                value={username}
+              />
+            </label>
+          </div>
+          <div className={styles.form_row}>
+            <label htmlFor="password">
+              Password
+              <input
+                required
+                id="password"
+                type="password"
+                onChange={handlePassword}
+                value={password}
+              />
+            </label>
+          </div>
+          <div className={styles.form_row}>
+            <button type="button">Log in</button>
+          </div>
+        </form>
+      </div>
     </section>
   );
-}
+};
 
-export default LoginPage;
+export default Login;

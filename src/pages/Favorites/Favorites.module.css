@@ -1,0 +1,22 @@
+header {
+  font-size: calc(var(--font-size) * 1.5);
+  text-align: center;
+  width: 100%;
+  background-color: var(--body-background);
+  padding: 15px;
+}
+
+.card_grid {
+  background-color: var(--body-background);
+  padding: 15px;
+  padding-top: 45px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+@media (min-width: 1263px) {
+  .card_grid {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  }
+}
