@@ -1,13 +1,18 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import SearchIcon from '@material-ui/icons/Search';
 import MainMenu from '../main-menu';
 import AvatarMenu from '../avatar-menu';
 
 import { VideosContext } from '../../providers/videos';
 import { setSearchQuery, fetchVideosAsync } from '../../providers/videos/videos.actions';
 
-import './header.styles.scss';
+import {
+  HeaderContainer,
+  InputContainer,
+  SearchButton,
+  SearchInput,
+  IconsContainer,
+} from './header.styles';
 
 function Header() {
   const history = useHistory();
@@ -41,26 +46,26 @@ function Header() {
   };
 
   return (
-    <div className='header-container'>
-      <div className='header-left'>
+    <HeaderContainer>
+      <div>
         <MainMenu />
       </div>
 
-      <div className='input-container'>
-        <input
+      <InputContainer>
+        <SearchInput
           placeholder='Search'
           type='text'
           onKeyUp={handleInputOnKeyUp}
           onChange={handleInputOnChange}
           value={searchQuery}
         />
-        <SearchIcon className='search-btn' onClick={handleSearchButtonClick} />
-      </div>
+        <SearchButton onClick={handleSearchButtonClick} />
+      </InputContainer>
 
-      <div className='icons'>
+      <IconsContainer>
         <AvatarMenu />
-      </div>
-    </div>
+      </IconsContainer>
+    </HeaderContainer>
   );
 }
 

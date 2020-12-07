@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { VideosContext } from '../../providers/videos';
 import VideoDirectory from '../../components/video-directory';
 
-import './home.styles.scss';
+import { HomeContainer } from './home.styles';
 
 function HomePage() {
   const { videosState } = useContext(VideosContext);
@@ -10,9 +10,9 @@ function HomePage() {
   const { videos } = videosState;
 
   return (
-    <div className='home-container'>
+    <HomeContainer>
       <VideoDirectory videos={videos} />
-    </div>
+    </HomeContainer>
   );
 }
 

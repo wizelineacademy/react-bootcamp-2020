@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import StarRateIcon from '@material-ui/icons/StarRate';
 
@@ -12,14 +11,26 @@ import {
 } from '../../providers/favorites/favorites.actions';
 import SuggestedVideoCard from '../../components/suggested-video-card';
 
-import './watch-video.styles.scss';
+import {
+  WatchVideoContainer,
+  PrincipalContianer,
+  SecondaryContainer,
+  Video,
+  VideoInformation,
+  PrimaryVideoDetails,
+  FavoritesAction,
+  FavoritesActionIconContainer,
+  ChannelInformation,
+  ChannelHeader,
+  ChannelAvatar,
+  ChannelHeaderInformation,
+  ChannelDescription,
+} from './watch-video.styles';
 
 const WatchVideoPage = () => {
   const { videosState } = useContext(VideosContext);
   const { favoritesState, favoritesDispatch } = useContext(FavoritesContext);
-
   const { videos: favoritesVideos } = favoritesState;
-
   const { videos, videoToWatch } = videosState;
 
   const {
@@ -43,10 +54,10 @@ const WatchVideoPage = () => {
   };
 
   return (
-    <div className='watch-video-container'>
-      <div className='principal'>
+    <WatchVideoContainer>
+      <PrincipalContianer>
         <div className='video-container'>
-          <iframe
+          <Video
             className='video'
             allowFullScreen
             frameBorder='0'
@@ -55,57 +66,57 @@ const WatchVideoPage = () => {
             allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
           />
         </div>
-        <div className='video-info'>
+        <VideoInformation>
           <h3>{title}</h3>
-          <div className='primary-video-details'>
-            <div className='video-count-contianer'>
+          <PrimaryVideoDetails>
+            <div>
               <p>
                 {views} views • {timestamp}
               </p>
             </div>
-            <div className='actions-contianer'>
-              <div className='favorites-action'>
+            <div>
+              <FavoritesAction>
                 {favoritesVideos[videoId] ? (
-                  <div title='Remove from favorites'>
+                  <FavoritesActionIconContainer title='Remove from favorites'>
                     <StarRateIcon
                       fontSize='large'
                       onClick={handleRemoveFavoriteVideoOnClick}
                     />
-                  </div>
+                  </FavoritesActionIconContainer>
                 ) : (
-                  <div title='Add to favorites'>
+                  <FavoritesActionIconContainer title='Add to favorites'>
                     <StarOutlineIcon
                       fontSize='large'
                       onClick={handleAddFavoriteVideoOnClick}
                     />
-                  </div>
+                  </FavoritesActionIconContainer>
                 )}
-              </div>
+              </FavoritesAction>
             </div>
-          </div>
-        </div>
-        <div className='channel-info'>
-          <div className='header'>
-            <Avatar className='avatar' alt={channelTitle} src={channelImage} />
-            <div className='info'>
+          </PrimaryVideoDetails>
+        </VideoInformation>
+        <ChannelInformation>
+          <ChannelHeader>
+            <ChannelAvatar className='avatar' alt={channelTitle} src={channelImage} />
+            <ChannelHeaderInformation>
               <h4>{channelTitle}</h4>
               <p>{channelSubscribers} subscribers</p>
-            </div>
-          </div>
-          <div className='channel-description'>
+            </ChannelHeaderInformation>
+          </ChannelHeader>
+          <ChannelDescription>
             <p>{channelDescription}</p>
-          </div>
-        </div>
-      </div>
-      <div className='secondary'>
-        <div className='path-video-container'>
+          </ChannelDescription>
+        </ChannelInformation>
+      </PrincipalContianer>
+      <SecondaryContainer>
+        <div>
           {Object.keys(videos).map((videoKey) => {
             const { etag } = videos[videoKey];
             return <SuggestedVideoCard key={etag} video={videos[videoKey]} />;
           })}
         </div>
-      </div>
-    </div>
+      </SecondaryContainer>
+    </WatchVideoContainer>
   );
 };
 

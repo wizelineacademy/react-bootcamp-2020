@@ -11,7 +11,6 @@ import ThemeProvider from './providers/theme';
 import App from './components/app';
 
 import { GlobalStyles } from './global.styles';
-import './global.scss';
 
 ReactDOM.render(
   <BrowserRouter>

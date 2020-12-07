@@ -9,9 +9,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import SettingsIcon from '@material-ui/icons/Settings';
-import MenuIcon from '@material-ui/icons/Menu';
 import GradeIcon from '@material-ui/icons/Grade';
 
+import { MainMenuIcon } from './main-menu.styles';
 import './main-menu.styles.scss';
 
 const MainMenu = ({ history }) => {
@@ -63,7 +63,7 @@ const MainMenu = ({ history }) => {
   return (
     <div>
       <React.Fragment key='left'>
-        <MenuIcon onClick={toggleDrawer(true)} />
+        <MainMenuIcon onClick={toggleDrawer(true)} />
         <Drawer anchor='left' open={mainMenuState} onClose={toggleDrawer(false)}>
           {list}
         </Drawer>

@@ -1,11 +1,16 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
 
 import { VideosContext } from '../../providers/videos';
 import { setVideoToWatch } from '../../providers/videos/videos.actions';
 
-import './video-home-card.styles.scss';
+import {
+  VideoHomeCardContianer,
+  Thumbnail,
+  CardInformation,
+  Cardtext,
+  CardAvatar,
+} from './video-home-card.styles';
 
 function VideoHomeCard({ video }) {
   const { videosDispatch } = useContext(VideosContext);
@@ -23,14 +28,14 @@ function VideoHomeCard({ video }) {
   };
 
   return (
-    <div className='video-home-card-container'>
+    <VideoHomeCardContianer>
       <Link to={`wv/${videoId}`} onClick={handleMoveToWatchVideoOnClick}>
-        <img className='thumbnail' src={image} alt='' />
+        <Thumbnail className='thumbnail' src={image} alt='' />
       </Link>
 
-      <div className='info'>
-        <Avatar className='avatar' alt={channelTitle} src={channelImage} />
-        <div className='text'>
+      <CardInformation>
+        <CardAvatar className='avatar' alt={channelTitle} src={channelImage} />
+        <Cardtext>
           <Link to={`wv/${videoId}`} onClick={handleMoveToWatchVideoOnClick}>
             <h4>{title}</h4>
           </Link>
@@ -38,9 +43,9 @@ function VideoHomeCard({ video }) {
           <p>
             {views} views • {timestamp}
           </p>
-        </div>
-      </div>
-    </div>
+        </Cardtext>
+      </CardInformation>
+    </VideoHomeCardContianer>
   );
 }
 

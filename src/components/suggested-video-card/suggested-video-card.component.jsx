@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import { VideosContext } from '../../providers/videos';
 import { setVideoToWatch } from '../../providers/videos/videos.actions';
 
-import './suggested-video-card.styles.scss';
+import {
+  SuggestedVideoCardContainer,
+  Thumbnail,
+  CardInformation,
+} from './suggested-video-card.styles';
 
 function SuggestedVideoCard({ video }) {
   const { videosDispatch } = useContext(VideosContext);
@@ -22,11 +26,11 @@ function SuggestedVideoCard({ video }) {
 
   const LINK_ID_VIDEO = `/wv/${videoId}`;
   return (
-    <div className='suggested-video-card-container'>
+    <SuggestedVideoCardContainer>
       <Link to={LINK_ID_VIDEO} onClick={handleMoveToWatchVideoOnClick}>
-        <img className='thumbnail' src={image} alt='' />
+        <Thumbnail className='thumbnail' src={image} alt='' />
       </Link>
-      <div className='info'>
+      <CardInformation>
         <Link to={LINK_ID_VIDEO} onClick={handleMoveToWatchVideoOnClick}>
           <h4>{title}</h4>
         </Link>
@@ -34,8 +38,8 @@ function SuggestedVideoCard({ video }) {
         <p>
           {views} views • {timestamp}
         </p>
-      </div>
-    </div>
+      </CardInformation>
+    </SuggestedVideoCardContainer>
   );
 }
 
