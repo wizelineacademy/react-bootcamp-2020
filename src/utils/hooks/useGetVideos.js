@@ -13,18 +13,20 @@ function useGetVideos(searchQuery) {
         const API_URL = Constants.BASE_API_URL.replace(
           '<SearchQuery>',
           searchQuery
-        ).replace('<API_KEY>', Constants.API_KEY);
+        ).replace('<API_KEY>', process.env.REACT_APP_API_KEY);
 
         const response = await fetch(API_URL);
         const jsonResult = await response.json();
 
-        // console.log(jsonResult);
-
-        // remove channels and playlist
-        const jsonResultOnlyVideos = jsonResult.items.filter((item) => {
-          return item.id.kind === 'youtube#video';
-        });
-        setVideosList(jsonResultOnlyVideos);
+        console.log(jsonResult);
+        console.log(process.env.REACT_APP_API_KEY);
+        if (jsonResult.code === 200) {
+          // remove channels and playlist
+          const jsonResultOnlyVideos = jsonResult.items.filter((item) => {
+            return item.id.kind === 'youtube#video';
+          });
+          setVideosList(jsonResultOnlyVideos);
+        }
       } catch (error) {
         console.error('Error retrieving results: ', error);
       }

@@ -15,7 +15,7 @@ function useGetVideo(videoId) {
         const API_URL = Constants.BASE_API_URL_VIDEO.replace(
           '<VIDEO_ID>',
           videoId
-        ).replace('<API_KEY>', Constants.API_KEY);
+        ).replace('<API_KEY>', process.env.API_KEY);
         // console.log(API_URL);
 
         const response = await fetch(API_URL);

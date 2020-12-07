@@ -39,7 +39,7 @@ function HomePage() {
 
 export default HomePage;
 */
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../../components/Layout/Layout.component';
 import Logo from '../../components/Logo/Logo.component';
 import SearchBar from '../../components/SearchBar/SearchBar.component';
@@ -48,7 +48,7 @@ import SuggestedSearches from '../../components/SuggestedSearches/SuggestedSearc
 import './Home.styles.css';
 
 function HomePage() {
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <Layout>

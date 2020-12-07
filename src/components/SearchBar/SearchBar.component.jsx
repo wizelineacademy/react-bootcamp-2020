@@ -30,7 +30,7 @@ export default function SearchBar({ initSearchQuery, onChange, homepage }) {
   let InputSearchBar;
   if (homepage) {
     InputSearchBar = (
-      <div className="search">
+      <div className="search_homepage">
         <input
           type="text"
           className="full_search_input"

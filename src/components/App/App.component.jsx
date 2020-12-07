@@ -25,6 +25,9 @@ function App() {
           <Route exact path="/search/:searchQuery">
             <SearchPage />
           </Route>
+          <Route exact path="/search">
+            <SearchPage />
+          </Route>
           <Route exact path="/watch/:videoId">
             <WatchPage />
           </Route>
