@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const API_KEY = 'AIzaSyC0QRvoYj2ksqADSrJwlNEbZFFM2fDIVsg';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const API_URL = `https://www.googleapis.com/youtube/v3/search?&type=video&part=id,snippet&maxResults=5&key=${API_KEY}`;
 
@@ -190,6 +190,7 @@ function useVideos({ a = 'wizeline' }) {
     }
 
     findVideos();
+    console.log(process.env);
   }, [search]);
 
   return { videos };
