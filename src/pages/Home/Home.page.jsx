@@ -17,22 +17,28 @@ function HomePage() {
 
   return (
     <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
+      <h1>Welcome</h1>
+      <br />
+      {authenticated ?
+        (
+          <>
+            <h2>
+              Go back to<Link to="/main" className="link"> Main Page </Link>
+            </h2>
+            <h2>
+              <Link to="/" onClick={deAuthenticate} className="link">
+                ← Logout
             </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
+            </h2>
+          </>
+        )
+        : (
+          <h2>
+            Please<Link to="/login" className="link"> Log in </Link>
+      to continue</h2 >
+        )
+      }
+    </section >
   );
 }
 

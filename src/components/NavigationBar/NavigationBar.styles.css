@@ -1,0 +1,26 @@
+.nav-bar{
+    width: 100%;
+    margin-top: 10px;
+}
+.nav-bar-container{
+    width: 100%;
+    border-top: 100px;
+}
+
+.nav-item-link{
+    font-size: medium;
+    margin-right: 10px;
+    color: #000;
+}
+.nav-brand-img{
+    height:40px;
+    width:40px;
+}
+.nav-item-logout{
+    position: absolute;
+    right: 10px;
+    color: #000;
+}
+.nav-form{
+  /*  align-self: flex-end;*/
+}
