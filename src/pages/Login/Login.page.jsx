@@ -67,7 +67,7 @@ const Login = () => {
             </label>
           </div>
           <div className={styles.form_row}>
-            <button type="button">Log in</button>
+            <button type="submit">Log in</button>
           </div>
         </form>
       </div>
