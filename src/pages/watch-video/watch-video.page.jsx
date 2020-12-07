@@ -18,20 +18,22 @@ const WatchVideoPage = () => {
   const { videosState } = useContext(VideosContext);
   const { favoritesState, favoritesDispatch } = useContext(FavoritesContext);
 
-  const {
-    videosInfo: { videos: favoritesVideos },
-  } = favoritesState;
+  const { videos: favoritesVideos } = favoritesState;
+
+  const { videos, videoToWatch } = videosState;
 
   const {
-    videosInfo: { videos, channels },
-    videoToWatch,
-  } = videosState;
-
-  const {
-    video: { videoId, title, views, timestamp },
-    channel,
+    videoId,
+    title,
+    views,
+    timestamp,
+    channel: {
+      title: channelTitle,
+      image: channelImage,
+      subscribers: channelSubscribers,
+      description: channelDescription,
+    },
   } = videoToWatch;
-  const { title: channelTitle, image: channelImage } = channel;
 
   const handleAddFavoriteVideoOnClick = () => {
     favoritesDispatch(addVideoToFavorites(videoToWatch));
@@ -87,25 +89,19 @@ const WatchVideoPage = () => {
             <Avatar className='avatar' alt={channelTitle} src={channelImage} />
             <div className='info'>
               <h4>{channelTitle}</h4>
-              <p>{channel.suscribers} subscribers</p>
+              <p>{channelSubscribers} subscribers</p>
             </div>
           </div>
           <div className='channel-description'>
-            <p>{channel.description}</p>
+            <p>{channelDescription}</p>
           </div>
         </div>
       </div>
       <div className='secondary'>
         <div className='path-video-container'>
           {Object.keys(videos).map((videoKey) => {
-            const { etag, channelId } = videos[videoKey];
-            return (
-              <SuggestedVideoCard
-                key={etag}
-                video={videos[videoKey]}
-                channel={channels[channelId]}
-              />
-            );
+            const { etag } = videos[videoKey];
+            return <SuggestedVideoCard key={etag} video={videos[videoKey]} />;
           })}
         </div>
       </div>

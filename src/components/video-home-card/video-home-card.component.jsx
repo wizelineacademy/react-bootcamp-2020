@@ -7,13 +7,19 @@ import { setVideoToWatch } from '../../providers/videos/videos.actions';
 
 import './video-home-card.styles.scss';
 
-function VideoHomeCard({ video, channel }) {
+function VideoHomeCard({ video }) {
   const { videosDispatch } = useContext(VideosContext);
-  const { videoId, image, title, views, timestamp } = video;
-  const { title: channelTitle, image: channelImage } = channel;
+  const {
+    videoId,
+    image,
+    title,
+    views,
+    timestamp,
+    channel: { title: channelTitle, image: channelImage },
+  } = video;
 
   const handleMoveToWatchVideoOnClick = () => {
-    videosDispatch(setVideoToWatch({ video, channel }));
+    videosDispatch(setVideoToWatch(video));
   };
 
   return (

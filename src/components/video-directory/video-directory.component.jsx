@@ -3,19 +3,13 @@ import VideoHomeCard from '../video-home-card';
 
 import './video-directory.styles.scss';
 
-function VideoDirectory({ videos, channels }) {
+function VideoDirectory({ videos }) {
   return (
     <div className='video-directory-container'>
       {Object.keys(videos).map((videoKey) => {
-        const { etag, channelId } = videos[videoKey];
+        const { etag } = videos[videoKey];
 
-        return (
-          <VideoHomeCard
-            key={etag}
-            video={videos[videoKey]}
-            channel={channels[channelId]}
-          />
-        );
+        return <VideoHomeCard key={etag} video={videos[videoKey]} />;
       })}
     </div>
   );

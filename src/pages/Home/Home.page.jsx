@@ -7,13 +7,11 @@ import './home.styles.scss';
 function HomePage() {
   const { videosState } = useContext(VideosContext);
 
-  const {
-    videosInfo: { videos, channels },
-  } = videosState;
+  const { videos } = videosState;
 
   return (
     <div className='home-container'>
-      <VideoDirectory videos={videos} channels={channels} />
+      <VideoDirectory videos={videos} />
     </div>
   );
 }

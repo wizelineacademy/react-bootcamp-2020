@@ -3,7 +3,7 @@ import { addVideoToFavorites, removeVideoFromFavorites } from './favorites.utils
 
 const LOCAL_FAVORITES_KEY = 'localFavorites';
 const INITIAL_STATE = JSON.parse(localStorage.getItem(LOCAL_FAVORITES_KEY)) || {
-  videosInfo: { videos: {}, channels: {} },
+  videos: {},
 };
 
 const videosReducer = (state = INITIAL_STATE, action) => {
@@ -11,17 +11,17 @@ const videosReducer = (state = INITIAL_STATE, action) => {
     case FavoritesActionTypes.SET_FAVORITES_VIDEOS:
       return {
         ...state,
-        videosInfo: action.payload,
+        videos: action.payload,
       };
     case FavoritesActionTypes.ADD_FAVORITE_VIDEO:
       return {
         ...state,
-        videosInfo: addVideoToFavorites(state.videosInfo, action.payload),
+        videos: addVideoToFavorites(state.videos, action.payload),
       };
     case FavoritesActionTypes.REMOVE_FAVORITE_VIDEO:
       return {
         ...state,
-        videosInfo: removeVideoFromFavorites(state.videosInfo, action.payload),
+        videos: removeVideoFromFavorites(state.videos, action.payload),
       };
     default:
       return state;

@@ -30,7 +30,6 @@ export const fetchVideosAsync = (query, dispatch) => {
   searchVideos(
     query,
     (result) => {
-      console.log('Succes', result);
       dispatch(fetchVideosSuccess(result));
     },
     (error) => {

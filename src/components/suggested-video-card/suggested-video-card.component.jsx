@@ -5,15 +5,21 @@ import { setVideoToWatch } from '../../providers/videos/videos.actions';
 
 import './suggested-video-card.styles.scss';
 
-function SuggestedVideoCard({ video, channel }) {
+function SuggestedVideoCard({ video }) {
   const { videosDispatch } = useContext(VideosContext);
-  const { videoId, image, title, views, timestamp } = video;
+  const {
+    videoId,
+    image,
+    title,
+    views,
+    timestamp,
+    channel: { title: channelTitle },
+  } = video;
 
   const handleMoveToWatchVideoOnClick = () => {
-    videosDispatch(setVideoToWatch({ video, channel }));
+    videosDispatch(setVideoToWatch(video));
   };
 
-  const { title: channelTitle } = channel;
   const LINK_ID_VIDEO = `/wv/${videoId}`;
   return (
     <div className='suggested-video-card-container'>

@@ -1956,7 +1956,7 @@ const SearchResult = {
   },
 };
 
-export const SummaryResult2 = formatVideosData(
+export const SummaryResult = formatVideosData(
   SearchResult.data,
   SearchResult.videoData,
   SearchResult.channelData

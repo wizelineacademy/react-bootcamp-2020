@@ -1,13 +1,12 @@
 import VideosActionTypes from './videos.types';
-import { SummaryResult2 } from '../../utils/searchresult';
+import { SummaryResult } from '../../utils/searchresult';
 
-const summaryResultKeys = Object.keys(SummaryResult2.videos);
-const defaultVideo = SummaryResult2.videos[summaryResultKeys[0]];
-const defaulrChannel = SummaryResult2.channels[defaultVideo.channelId];
+const summaryResultKeys = Object.keys(SummaryResult);
+const defaultVideo = SummaryResult[summaryResultKeys[0]];
 const INITIAL_STATE = {
   searchQuery: '',
-  videosInfo: SummaryResult2,
-  videoToWatch: { video: defaultVideo, channel: defaulrChannel },
+  videos: SummaryResult,
+  videoToWatch: defaultVideo,
   isFetching: false,
   errorMessage: undefined,
 };
@@ -23,7 +22,7 @@ const videosReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        videosInfo: action.payload,
+        videos: action.payload,
       };
     case VideosActionTypes.FETCH_VIDEOS_FAILURE:
       return {

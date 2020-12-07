@@ -7,16 +7,11 @@ import './favorites.styles.scss';
 function FavoritesPage() {
   const { favoritesState } = useContext(FavoritesContext);
 
-  const {
-    videosInfo: {
-      videos: { ...videos },
-      channels: { ...channels },
-    },
-  } = favoritesState;
+  const { videos } = favoritesState;
 
   return (
     <div className='favorites-container'>
-      <VideoDirectory videos={videos} channels={channels} />
+      <VideoDirectory videos={videos} />
     </div>
   );
 }

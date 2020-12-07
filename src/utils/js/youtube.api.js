@@ -72,7 +72,7 @@ const fetchChannelsByIds = (ids = [], onSucces, onError, onComplete) => {
 };
 
 export const formatVideosData = (searchData = [], videoData = [], channelData = []) => {
-  const videosDataSummary = { videos: {}, channels: {} };
+  const videosDataSummary = {};
   const videoDictionary = {};
   const channelDictionary = {};
 
@@ -82,33 +82,15 @@ export const formatVideosData = (searchData = [], videoData = [], channelData = 
       snippet: { channelId },
     } = sdItem;
     // Normalizing data for videos
-    if (!videosDataSummary.videos[videoId]) {
+    if (!videosDataSummary[videoId]) {
       if (!videoDictionary[videoId]) {
         videoDictionary[videoId] = videoData.items.find((el) => el.id === videoId);
       }
 
-      // Video object
-      videosDataSummary.videos[videoId] = {
-        videoId,
-        etag: sdItem.etag,
-        channelId: sdItem.snippet.channelId,
-        image: sdItem.snippet.thumbnails.medium.url,
-        title: sdItem.snippet.title,
-        channelTitle: sdItem.snippet.channelTitle,
-        timestamp: formatDateDifference(
-          getDateDiff(new Date(sdItem.snippet.publishedAt))
-        ),
-        views: videoDictionary[videoId]
-          ? formatVideoViews(videoDictionary[videoId].statistics.viewCount)
-          : 0,
-      };
-    }
-
-    // Normalizing data for channels
-    if (!videosDataSummary.channels[channelId]) {
+      //  Data for channel
       let image = '';
       let description = '';
-      let suscribers = 0;
+      let subscribers = 0;
 
       if (!channelDictionary[channelId]) {
         channelDictionary[channelId] = channelData.items.find(
@@ -121,20 +103,33 @@ export const formatVideosData = (searchData = [], videoData = [], channelData = 
 
         image = channel.snippet.thumbnails.medium.url;
         description = channel.snippet.localized.description;
-        suscribers = channel.statistics.subscriberCount;
+        subscribers = channel.statistics.subscriberCount;
       }
 
-      //  Channel object
-      videosDataSummary.channels[channelId] = {
-        channelId,
-        title: sdItem.snippet.channelTitle,
-        image,
-        description,
-        suscribers,
+      // Video object
+      videosDataSummary[videoId] = {
+        videoId,
+        etag: sdItem.etag,
+        image: sdItem.snippet.thumbnails.medium.url,
+        title: sdItem.snippet.title,
+        channelTitle: sdItem.snippet.channelTitle,
+        timestamp: formatDateDifference(
+          getDateDiff(new Date(sdItem.snippet.publishedAt))
+        ),
+        views: videoDictionary[videoId]
+          ? formatVideoViews(videoDictionary[videoId].statistics.viewCount)
+          : 0,
+        //  Channel object
+        channel: {
+          channelId,
+          title: sdItem.snippet.channelTitle,
+          image,
+          description,
+          subscribers,
+        },
       };
     }
   });
-
   return videosDataSummary;
 };
 
