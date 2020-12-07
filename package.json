@@ -2,6 +2,11 @@
   "name": "react-certification-2020",
   "version": "0.1.0",
   "private": true,
+
+  "engines": {
+    "node": "12.19.x",
+    "npm": "6.14.x"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^10.4.9",
