@@ -12,22 +12,29 @@ const URL =
   'https://youtube.googleapis.com/youtube/v3/search?part=snippet&regionCode=US&order=relevance&maxResults=15&type=video';
 
 function VideoCardGrid() {
+  const { query } = useContext(VideoSearchContext);
+  const [queryToSearch, setQueryToSearch] = React.useState('');
   const [searchResultList, setSearchResultList] = React.useState([]);
-  const [erroronRequest, setErrorOnRequest] = React.useState(false);
+  const [erroronRequest, setErrorOnRequest] = React.useState('');
   // const [searchResultList, setSearchResultList] = React.useState(
   //   searchResultMocked.items
   // );
-  const { query } = useContext(VideoSearchContext);
-  console.log(query);
+  useEffect(() => {
+    function updateQueryState(newQuery) {
+      setQueryToSearch(newQuery);
+    }
+    updateQueryState(query);
+  }, [query]);
 
   useEffect(() => {
     async function fetchVideos() {
       try {
-        const response = await fetch(`${URL}&key=${REACT_APP_API_KEY}&q=${query}`);
-        if (response.ok === false) setErrorOnRequest(true);
+        const response = await fetch(
+          `${URL}&key=${REACT_APP_API_KEY}&q=${queryToSearch}`
+        );
+        if (response.status !== 200) setErrorOnRequest(true);
         else {
           const data = await response.json();
-          console.log(data.items);
           setSearchResultList(data.items);
         }
       } catch (error) {
@@ -35,7 +42,7 @@ function VideoCardGrid() {
       }
     }
     fetchVideos();
-  }, [query]);
+  }, [queryToSearch]);
   const largeElements = searchResultList.slice(0, 3);
   const smallElements = searchResultList.slice(3);
 
@@ -45,12 +52,12 @@ function VideoCardGrid() {
         <>
           <LargeCardGrid>
             {largeElements.map((item) => {
-              return <VideoCardLarge searchItem={item} />;
+              return <VideoCardLarge searchItem={item} key={item.id.videoId} />;
             })}
           </LargeCardGrid>
           <SmallCardGrid>
             {smallElements.map((item) => {
-              return <VideoCardSmall searchItem={item} />;
+              return <VideoCardSmall searchItem={item} key={item.id.videoId} />;
             })}
           </SmallCardGrid>
         </>
