@@ -10,4 +10,29 @@ const NavbarWrapper = styled.div`
   flex-direction: row;
 `;
 
-export { NavbarWrapper };
+const SearchBarWrapper = styled.div`
+  display: flex;
+  left: 50%;
+  position: sticky;
+  transform: translate(-50%, 0);
+`;
+
+const Input = styled.input`
+  height: 2.3rem;
+  align-self: center;
+  width: 23rem;
+  border-radius: 5px;
+`;
+
+const TitleLabel = styled.div`
+  position: sticky;
+  left: 3vw;
+`;
+
+const NavbarButtons = styled.div`
+  align-self: center;
+  position: absolute;
+  right: 3vw;
+`;
+
+export { NavbarWrapper, SearchBarWrapper, Input, TitleLabel, NavbarButtons };

@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { NavbarWrapper } from './Navbar.styles';
+import {
+  NavbarWrapper,
+  SearchBarWrapper,
+  Input,
+  TitleLabel,
+  NavbarButtons,
+} from './Navbar.styles';
 import { PrimaryButton } from '../../styledComponents';
 import { useAuth } from '../../providers/Auth';
-import './Navbar.styles.css';
 
 function Navbar() {
+  const [query, setQuery] = React.useState('');
   const history = useHistory();
   const { authenticated, logout } = useAuth();
 
@@ -16,20 +22,31 @@ function Navbar() {
     history.push('/');
   }
 
+  const onInputChange = (event) => {
+    const input = event.target.value;
+    setQuery(input);
+  };
+
+  const onSearchButtonClicked = (event) => {
+    if (event.key === 'Enter') {
+      console.log(query);
+    }
+  };
+
   return (
     <NavbarWrapper>
-      <div className="title-wrapper">
+      <TitleLabel className="title-wrapper">
         <h3>{authenticated ? 'Human, Search!' : 'Search!'}</h3>
-      </div>
-      <div className="searchbar-wrapper">
-        <input />
-        <img
-          className="overlap-icon"
-          src="https://www.flaticon.com/svg/static/icons/svg/622/622669.svg"
-          alt="magnifyng glass icon button to search video"
+      </TitleLabel>
+      <SearchBarWrapper className="searchbar-wrapper">
+        <Input
+          value={query}
+          onChange={onInputChange}
+          onKeyDown={onSearchButtonClicked}
+          placeholder="Search some cool videos"
         />
-      </div>
-      <div className="navbarButtons-wrapper">
+      </SearchBarWrapper>
+      <NavbarButtons className="navbarButtons-wrapper">
         {authenticated ? (
           <>
             <PrimaryButton>
@@ -48,7 +65,7 @@ function Navbar() {
             </PrimaryButton>
           </>
         )}
-      </div>
+      </NavbarButtons>
     </NavbarWrapper>
   );
 }
