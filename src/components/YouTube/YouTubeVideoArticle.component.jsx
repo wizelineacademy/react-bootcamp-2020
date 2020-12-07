@@ -25,9 +25,9 @@ export default function YouTubeVideoArticle(props) {
     <>
       <Row>
         <Col>
-          {/* eslint-disable-next-line react/no-danger */}
           <div
             className="embed-responsive embed-responsive-16by9"
+            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: videos[0].player.embedHtml }}
           />
         </Col>
