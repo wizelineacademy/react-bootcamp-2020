@@ -1,12 +1,3 @@
-.login {
-  width: 300px;
-}
-
-.login h1 {
-  text-align: center;
-  letter-spacing: -1px;
-}
-
 .login-form {
   display: flex;
   flex-direction: column;
@@ -27,21 +18,16 @@
   margin-bottom: 0.4rem;
 }
 
-.form-group input {
-  color: white;
+.dynamic-gradient.input-border {
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.input {
+  color: #aeaeae;
   font-size: 1.2rem;
   width: 100%;
   padding: 0.4rem 0.6rem;
-  border-radius: 3px;
-  border: 1px solid white;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.login-form button[type='submit'] {
-  width: 5rem;
-  margin-top: 1rem;
-  padding: 0.4rem 0.6rem;
-  font-size: 1.2rem;
   border: none;
-  border-radius: 3px;
+  background-color: #eeeeee;
 }
