@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { AuthContext } from '../context/AuthContext';
+import { types } from '../types/types';
+
 import '../styles/navBar.css';
 
 export const NavBar = () => {
   const history = useHistory();
+  const { dispatch } = useContext(AuthContext);
 
   const handleLogout = () => {
     history.replace('/login');
-    // dispatch({
-    //   type: types.logout,
-    // });
+    dispatch({
+      type: types.logout,
+    });
   };
   return (
     <div className='navbar'>

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 
 import { AuthContext } from './context/AuthContext';
+import { authReducer } from './context/authReducer';
 import { AppRouter } from './routers/AppRouter';
 
 export const App = () => {
-  const [user, setUser] = useState({ name: 'wizeline', password: 'wizelinerocks!' });
+  const [user, dispatch] = useReducer(authReducer, {});
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      <AppRouter />;
+    <AuthContext.Provider value={{ user, dispatch }}>
+      <AppRouter />
     </AuthContext.Provider>
   );
 };
