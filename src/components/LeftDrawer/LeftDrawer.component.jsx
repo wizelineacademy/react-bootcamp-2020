@@ -9,9 +9,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import useStyles from './LeftDrawerStyles';
+import { useAuth } from '../../providers/Auth';
 
 function LeftDrawer() {
   const classes = useStyles();
+  const { authenticated } = useAuth();
 
   return (
     <Drawer
@@ -32,14 +34,16 @@ function LeftDrawer() {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
-          <Link to="/favorites" style={{ textDecoration: 'none' }}>
-            <ListItem button key="Favorites">
-              <ListItemIcon>
-                <FavoriteIcon />
-              </ListItemIcon>
-              <ListItemText primary="Favorites" />
-            </ListItem>
-          </Link>
+          {authenticated ? (
+            <Link to="/favorites" style={{ textDecoration: 'none' }}>
+              <ListItem button key="Favorites">
+                <ListItemIcon>
+                  <FavoriteIcon />
+                </ListItemIcon>
+                <ListItemText primary="Favorites" />
+              </ListItem>
+            </Link>
+          ) : null}
         </List>
       </div>
     </Drawer>

@@ -2,6 +2,7 @@ import React from 'react';
 import VideoListItem from '../VideoListItem';
 
 function VideoList(props) {
+  console.log(props.dataId);
   return (
     <div>
       {props.items.map((item) => (

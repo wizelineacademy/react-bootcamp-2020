@@ -3,7 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 import AuthProvider from '../../providers/Auth';
 import Home from '../../pages/Home';
-// import Protected from '../Protected';
+import Login from '../../pages/Login';
+import Protected from '../Protected';
 import Video from '../../pages/Video';
 import Favorites from '../../pages/Favorites';
 import MainAppBar from '../MainAppBar';
@@ -52,9 +53,10 @@ function App() {
             >
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
                 <Route exact path="/player/watch/:id" component={Video} />
-                <Route path="/player/:dataSource/:id" component={Video} />
-                <Route exact path="/favorites" component={Favorites} />
+                <Protected path="/player/:dataSource/:id" component={Video} />
+                <Protected exact path="/favorites" component={Favorites} />
               </Switch>
             </FavoritesContext.Provider>
           </DataContext.Provider>

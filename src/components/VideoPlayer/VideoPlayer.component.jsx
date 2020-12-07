@@ -3,8 +3,10 @@ import YouTube from 'react-youtube';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import FavoritesContext from '../../state/FavoritesContext';
+import { useAuth } from '../../providers/Auth';
 
 function VideoPlayer(props) {
+  const { authenticated } = useAuth();
   const { state, dispatch } = useContext(FavoritesContext);
   console.log(state);
 
@@ -33,7 +35,7 @@ function VideoPlayer(props) {
   return (
     <div>
       <YouTube videoId={props.video.id.videoId} opts={opts} />
-      {!isInFavorite(props.video.id.videoId) && (
+      {!isInFavorite(props.video.id.videoId) && authenticated && (
         <Button variant="outlined" color="primary" onClick={handleAdd}>
           Add to favorites
         </Button>
