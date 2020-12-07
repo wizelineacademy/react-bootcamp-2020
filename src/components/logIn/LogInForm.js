@@ -91,7 +91,7 @@ const LogIn = () => {
           <TextField  error={errorInput} 
                       value={user} 
                       onChange={HandleMail} 
-                      label="Email" 
+                      label="User" 
                       helperText={InputText}/>
           <div></div>
           <br />
