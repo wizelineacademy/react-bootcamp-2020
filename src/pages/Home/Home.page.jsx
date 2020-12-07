@@ -1,38 +1,22 @@
 import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { useAuth } from '../../providers/Auth';
 import './Home.styles.css';
+import reactLogo from '../../assets/react.png';
 
 function HomePage() {
-  const history = useHistory();
   const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
-
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
+    <>
+      <section className="homepage" ref={sectionRef}>
+        <img src={reactLogo} alt="React logo" className="react-logo" />
+        <h1>React certification</h1>
+      </section>
+      <div className="dynamic-gradient enter-button">
+        <Link to="/search"> Enter </Link>
+      </div>
+    </>
   );
 }
 

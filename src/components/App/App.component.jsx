@@ -2,13 +2,15 @@ import React, { useLayoutEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
+import FavoritesPage from '../../pages/Favorites';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
+import SearchPage from '../../pages/Search';
+
 import Private from '../Private';
-import Fortune from '../Fortune';
 import Layout from '../Layout';
+import Shell from '../Shell';
 import { random } from '../../utils/fns';
 
 function App() {
@@ -22,13 +24,13 @@ function App() {
     }
 
     const intervalId = setInterval(rotateBackground, 3000);
-    body.addEventListener('click', rotateBackground);
 
     return () => {
       clearInterval(intervalId);
-      body.removeEventListener('click', rotateBackground);
     };
   }, []);
+
+  console.log('app');
 
   return (
     <BrowserRouter>
@@ -41,14 +43,18 @@ function App() {
             <Route exact path="/login">
               <LoginPage />
             </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
+            <Shell>
+              <Route exact path="/search">
+                <SearchPage />
+              </Route>
+              <Private exact path="/favorites">
+                <FavoritesPage />
+              </Private>
+            </Shell>
             <Route path="*">
               <NotFound />
             </Route>
           </Switch>
-          <Fortune />
         </Layout>
       </AuthProvider>
     </BrowserRouter>

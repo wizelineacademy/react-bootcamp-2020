@@ -1,8 +1,21 @@
 .homepage {
   text-align: center;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .homepage h1 {
   font-size: 3rem;
   letter-spacing: -2px;
+}
+
+.react-logo {
+  height: 100px;
+}
+
+.enter-button {
+  padding: 10px 20px;
+  border-radius: 3px;
 }
