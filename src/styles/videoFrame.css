@@ -7,12 +7,25 @@ iframe {
   height: 500px;
 }
 
+.title_favorites {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #video_title,
-#video_desc {
+#video_desc,
+span {
   color: lightgray;
   margin: 10px;
 }
 
 #video_title {
   font-size: 1.7rem;
+}
+
+span:hover {
+  cursor: pointer;
+  color: grey;
 }

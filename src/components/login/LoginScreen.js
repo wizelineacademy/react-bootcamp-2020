@@ -30,7 +30,7 @@ export const LoginScreen = ({ history }) => {
       dispatch(action);
       history.replace('/');
     } else {
-      console.log(`${user} is not registered or password is not correct.`);
+      console.log(`${user} user is not registered or password is not correct.`);
       reset();
     }
   };

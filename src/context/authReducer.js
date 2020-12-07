@@ -6,6 +6,7 @@ export const authReducer = (state = {}, action) => {
       return {
         ...action.payload,
         logged: true,
+        query: 'wizeline',
       };
     case types.logout:
       return {
@@ -14,6 +15,11 @@ export const authReducer = (state = {}, action) => {
     case types.playVideo:
       return {
         ...action.payload,
+      };
+    case types.search:
+      return {
+        ...action.payload,
+        logged: true,
       };
     default:
       return state;
