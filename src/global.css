@@ -1,4 +1,8 @@
-html {
+body {
+  margin: 0;
+}
+
+/* html {
   font-size: 1.125rem;
   line-height: 1.6;
   font-weight: 400;
@@ -50,4 +54,4 @@ a:active {
 }
 
 hr {
-}
+} */
