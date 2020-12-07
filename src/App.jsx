@@ -26,7 +26,7 @@ import { FAVORITES_LIST, FAVORITES_ID, DARK_MODE } from './utils/constants';
 
 const App = () => {
   //Theme Context States
-  const [light, setLight] = useState(storage.get(DARK_MODE));
+  const [light, setLight] = useState(!storage.get(DARK_MODE));
   // Video Context States
   const [searchTerm, setSearchTerm] = useState('');
   const [videos, setVideos] = useState([]);
@@ -73,8 +73,8 @@ const App = () => {
         storage.set(FAVORITES_LIST, []);
         storage.set(FAVORITES_ID, {});
       }
-      const isDark = storage.get(DARK_MODE);
-      setLight(!isDark);
+
+      setLight(!storage.get(DARK_MODE));
     }
     fetchData();
   }, []);

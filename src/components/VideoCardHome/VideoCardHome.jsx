@@ -42,7 +42,7 @@ const VideoCardHome = ({ video }) => {
   return (
     <ThemeProvider theme={light ? lightTheme : darkTheme}>
       <Link to={`/player/${video.id.videoId}`}>
-        <Card onClick={() => onVideoSelect(video)} raised={true}>
+        <Card onClick={() => onVideoSelect(video)} raised>
           <CardMedia
             image={video.snippet.thumbnails.medium.url}
             style={{ height: 0, paddingTop: '56.25%', color: 'pink' }}

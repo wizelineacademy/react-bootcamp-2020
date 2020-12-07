@@ -51,7 +51,7 @@ const MenuBar = () => {
           />
         </Menu.Item>
         <Menu.Item>
-          <Radio toggle checked={light ? false : true} onChange={handleTheme} />
+          <Radio toggle checked={!light} onChange={handleTheme} />
         </Menu.Item>
         <Menu.Item
           as={Link}
@@ -80,7 +80,7 @@ const MenuBar = () => {
             onKeyPress={handleHitEnter}
           />
           <Menu.Item>
-            <Radio toggle checked={light ? false : true} onChange={handleTheme} />
+            <Radio toggle checked={!light} onChange={handleTheme} />
           </Menu.Item>
         </Menu.Item>
         <Menu.Item
