@@ -8,9 +8,11 @@ You can surf through all the aplication without need of any login, but if you wa
 
 user:cesar
 password:1234
+
 ---------------
 user:matador
 password:12345
+
 ---------------
 user:gustavo
 password:12345
