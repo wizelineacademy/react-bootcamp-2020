@@ -21,7 +21,7 @@ export default function SearchBar() {
 
   useEffect(() => {
     fetchVideos(searchItem);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className={classes.search}>
