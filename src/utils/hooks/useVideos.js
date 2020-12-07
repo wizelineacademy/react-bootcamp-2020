@@ -190,7 +190,7 @@ function useVideos({ a = 'wizeline' }) {
     }
 
     findVideos();
-  }, []);
+  }, [search]);
 
   return { videos };
 }
