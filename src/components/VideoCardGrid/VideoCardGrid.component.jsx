@@ -13,6 +13,7 @@ const URL =
 
 function VideoCardGrid() {
   const [searchResultList, setSearchResultList] = React.useState([]);
+  const [erroronRequest, setErrorOnRequest] = React.useState(false);
   // const [searchResultList, setSearchResultList] = React.useState(
   //   searchResultMocked.items
   // );
@@ -23,9 +24,12 @@ function VideoCardGrid() {
     async function fetchVideos() {
       try {
         const response = await fetch(`${URL}&key=${REACT_APP_API_KEY}&q=${query}`);
-        const data = await response.json();
-        console.log(data.items);
-        setSearchResultList(data.items);
+        if (response.ok === false) setErrorOnRequest(true);
+        else {
+          const data = await response.json();
+          console.log(data.items);
+          setSearchResultList(data.items);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -37,16 +41,25 @@ function VideoCardGrid() {
 
   return (
     <>
-      <LargeCardGrid>
-        {largeElements.map((item) => {
-          return <VideoCardLarge searchItem={item} />;
-        })}
-      </LargeCardGrid>
-      <SmallCardGrid>
-        {smallElements.map((item) => {
-          return <VideoCardSmall searchItem={item} />;
-        })}
-      </SmallCardGrid>
+      {!erroronRequest ? (
+        <>
+          <LargeCardGrid>
+            {largeElements.map((item) => {
+              return <VideoCardLarge searchItem={item} />;
+            })}
+          </LargeCardGrid>
+          <SmallCardGrid>
+            {smallElements.map((item) => {
+              return <VideoCardSmall searchItem={item} />;
+            })}
+          </SmallCardGrid>
+        </>
+      ) : (
+        <>
+          <h1>Sorry for the inconvenience :c</h1>
+          <h2>Error retrieving Youtube videos</h2>
+        </>
+      )}
     </>
   );
 }

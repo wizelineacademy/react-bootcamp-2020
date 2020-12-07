@@ -29,7 +29,6 @@ function Navbar({ onQuery }) {
 
   const onSearchButtonClicked = (event) => {
     if (event.key === 'Enter') {
-      setQuery(query);
       onQuery(query);
     }
   };
