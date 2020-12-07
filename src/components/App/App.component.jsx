@@ -5,12 +5,10 @@ import VideoProvider from '../../providers/Video/Video.provider';
 import UserPreferencesProvider from '../../providers/Preferences/UserPreferences.provider';
 import AppTheme from '../AppTheme/AppTheme';
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 async function initGoogle() {
-  await window.gapi.load('client');
-  sleep(500);
+  await new Promise((res, rej) => {
+    window.gapi.load('client', { callback: res, onerror: rej });
+  });
 
   window.gapi.client.setApiKey('AIzaSyBd_oEaCH4NFOhmrHj4FtjMeaDMxAr-ppg');
 

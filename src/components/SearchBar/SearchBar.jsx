@@ -21,7 +21,6 @@ export default function SearchBar() {
 
   useEffect(() => {
     fetchVideos(searchItem);
-    console.log('here');
   }, []);
 
   return (

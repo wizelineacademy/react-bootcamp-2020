@@ -1,4 +1,4 @@
-const useMock = true;
+const useMock = false;
 
 function mock() {
   return {
@@ -206,6 +206,5 @@ export async function getVideos(searchItem) {
     q: searchItem,
   });
 
-  console.log(result);
   return result.items;
 }

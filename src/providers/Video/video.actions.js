@@ -33,12 +33,9 @@ const fetchVideos = (dispatch) => async (searchItem) => {
       .filter((video) => video.id.kind === 'youtube#video')
       .map(dataFormat);
 
-    console.log(videos);
     dispatch({ type: ACTIONS.FETCH_SUCCESS, payload: { videos } });
     return videos;
   } catch (error) {
-    console.log(error);
-    console.log('error ');
     dispatch({
       type: ACTIONS.FETCH_ERROR,
       payload: { error: error.result.error.message },

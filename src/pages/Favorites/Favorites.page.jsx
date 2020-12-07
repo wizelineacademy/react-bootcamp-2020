@@ -19,7 +19,7 @@ function FavoritesPage() {
           Favorite Videos
         </Typography>
       </Grid>
-      <Grid spacing={2}>
+      <Grid>
         <CardWrapper videos={favorites} setPath={setPath} />
       </Grid>
     </Grid>
