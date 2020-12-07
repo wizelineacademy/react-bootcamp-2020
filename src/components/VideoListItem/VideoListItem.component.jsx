@@ -9,7 +9,7 @@ import useStyles from './VideoListItemStyles';
 function VideoListItem(props) {
   const classes = useStyles();
   return (
-    <Link to={`/player/${props.id}`} style={{ textDecoration: 'none' }}>
+    <Link to={`/player/${props.dataId}/${props.id}`} style={{ textDecoration: 'none' }}>
       <Card className={classes.root}>
         <CardMedia
           className={classes.cover}

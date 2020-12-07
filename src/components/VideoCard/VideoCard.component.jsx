@@ -19,10 +19,11 @@ const useStyles = makeStyles({
 
 function VideoCard(props) {
   const classes = useStyles();
+  const pathId = props.isFav ? 'favorites' : 'watch';
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <Link to={`/player/${props.id}`} style={{ textDecoration: 'none' }}>
+        <Link to={`/player/${pathId}/${props.id}`} style={{ textDecoration: 'none' }}>
           <CardMedia
             className={classes.media}
             component="img"

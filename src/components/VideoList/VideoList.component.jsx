@@ -9,6 +9,7 @@ function VideoList(props) {
           snippet={item.snippet}
           key={item.id.videoId}
           id={item.id.videoId}
+          dataId={props.dataId}
         />
       ))}
     </div>

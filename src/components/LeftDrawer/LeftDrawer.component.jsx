@@ -32,12 +32,14 @@ function LeftDrawer() {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
-          <ListItem button key="Favorites">
-            <ListItemIcon>
-              <FavoriteIcon />
-            </ListItemIcon>
-            <ListItemText primary="Favorites" />
-          </ListItem>
+          <Link to="/favorites" style={{ textDecoration: 'none' }}>
+            <ListItem button key="Favorites">
+              <ListItemIcon>
+                <FavoriteIcon />
+              </ListItemIcon>
+              <ListItemText primary="Favorites" />
+            </ListItem>
+          </Link>
         </List>
       </div>
     </Drawer>

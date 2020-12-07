@@ -1,17 +1,18 @@
 import React, { useContext } from 'react';
 import VideoGrid from '../../components/VideoGrid';
-import useStyles from './HomeStyles';
+import useStyles from './FavoritesStyles';
 import DataContext from '../../state/DataContext';
 
-function Home() {
-  const { items } = useContext(DataContext);
+function Favorites() {
+  const { favItems } = useContext(DataContext);
   const classes = useStyles();
+  const isFav = true;
 
   return (
     <main className={classes.content}>
-      <VideoGrid items={items} />
+      <VideoGrid items={favItems} isFav={isFav} />
     </main>
   );
 }
 
-export default Home;
+export default Favorites;

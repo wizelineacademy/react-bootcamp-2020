@@ -11,7 +11,11 @@ function VideoWatch(props) {
         <VideoPlayer video={props.currentVideo[0]} />
       </Grid>
       <Grid item xs={12} sm={5}>
-        <VideoList items={props.items} currentVideo={props.currentVideo} />
+        <VideoList
+          items={props.items}
+          currentVideo={props.currentVideo}
+          dataId={props.dataId}
+        />
       </Grid>
     </Grid>
   );
