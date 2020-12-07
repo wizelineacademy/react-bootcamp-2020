@@ -16,6 +16,7 @@ import { useQuery } from 'react-query';
 import auth from '../../services/auth';
 import SearchVideos from '../SearchVideos';
 import { AuthContext } from '../../contexts/authContext/authContext';
+import { DialogContext } from '../../contexts/dialogContext/Dialog';
 import logo from '../../assets/images/wla-small.png';
 
 const useStyles = makeStyles((theme) => {
@@ -125,6 +126,7 @@ function storeUser(res, action) {
 export default function TopAppBar() {
   const classes = useStyles();
   const { authState, authActions } = useContext(AuthContext);
+  const { dialogActions } = useContext(DialogContext);
   const { refetch } = useQuery(
     ['/login', { user: 'wizeline', password: 'Rocks!' }],
     auth.signIn,
@@ -152,7 +154,15 @@ export default function TopAppBar() {
           <SearchVideos onSubmit={() => {}} />
           {authState.user && <UserMenu />}
           {!authState.user && (
-            <Button onClick={refetch} size="medium" variant="outlined" color="secondary">
+            <Button
+              onClick={() => {
+                refetch();
+                dialogActions.setOpen('miDialogo', true);
+              }}
+              size="medium"
+              variant="outlined"
+              color="secondary"
+            >
               <AccountCircleIcon /> Sign In
             </Button>
           )}

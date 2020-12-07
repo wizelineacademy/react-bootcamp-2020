@@ -31,7 +31,7 @@ export default function VideoCard(props) {
             showButtons={showButtons}
             component={VideoImage}
             videoId={videoId}
-            readLaterText="read later"
+            readLaterText="watch later"
             addedLaterText="added"
             alt="Contemplative Reptile"
             height="180"

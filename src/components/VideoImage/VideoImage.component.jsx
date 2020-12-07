@@ -14,7 +14,7 @@ const useVideoImageStyle = makeStyles((theme) => ({
   }),
   button: (props) => {
     const { isSelected } = props;
-    const textColor = isSelected ? { color: '#2893E9' } : {};
+    const textColor = isSelected ? { color: '#2893E9' } : { color: 'white' };
     return {
       ...textColor,
       position: 'absolute',
@@ -23,7 +23,6 @@ const useVideoImageStyle = makeStyles((theme) => ({
       backgroundColor: 'black',
       minWidth: 'auto',
       borderRadius: 0,
-      color: 'white',
       '&:hover': {
         backgroundColor: 'black',
       },

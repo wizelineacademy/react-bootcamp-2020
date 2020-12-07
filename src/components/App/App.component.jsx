@@ -11,6 +11,7 @@ import Fortune from '../Fortune';
 import Layout from '../Layout';
 import VideoDetail from '../../pages/VideoDetail';
 import { AuthProvider } from '../../contexts/authContext/authContext';
+import { DialogProvider } from '../../contexts/dialogContext/Dialog';
 
 const youtubeColors = {
   youtubePrimary: '#F9F9F9',
@@ -54,28 +55,30 @@ function App() {
     <BrowserRouter>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <Layout>
-            <Switch>
-              <Route exact path="/video/:videoId">
-                <VideoDetail />
-              </Route>
-              <Route exact path="/">
-                <HomePage />
-              </Route>
-              <Route exact path="/login">
-                <LoginPage />
-              </Route>
-              <Private exact path="/secret">
-                <SecretPage />
-              </Private>
-              <Route path="*">
-                <NotFound />
-              </Route>
-            </Switch>
-            <Fortune />
-          </Layout>
-        </AuthProvider>
+        <DialogProvider>
+          <AuthProvider>
+            <Layout>
+              <Switch>
+                <Route exact path="/video/:videoId">
+                  <VideoDetail />
+                </Route>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route exact path="/login">
+                  <LoginPage />
+                </Route>
+                <Private exact path="/secret">
+                  <SecretPage />
+                </Private>
+                <Route path="*">
+                  <NotFound />
+                </Route>
+              </Switch>
+              <Fortune />
+            </Layout>
+          </AuthProvider>
+        </DialogProvider>
       </ThemeProvider>
     </BrowserRouter>
   );

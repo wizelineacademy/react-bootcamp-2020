@@ -6,7 +6,7 @@ export const baseURL =
 const service = () => {
   const instance = axios.create({
     baseURL,
-    timeout: 1000,
+    timeout: 1500,
   });
 
   const signIn = (key, params) => {
