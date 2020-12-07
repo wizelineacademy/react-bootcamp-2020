@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-// import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './SearchBarStyles';
@@ -9,8 +9,8 @@ import DataContext from '../../state/DataContext';
 
 function SearchBar() {
   const classes = useStyles();
+  const history = useHistory();
   const [searchTerm, setSearchTerm] = useState('');
-  // const [returnToGrid, setReturnToGrid] = useState(false);
   const { setItems } = useContext(DataContext);
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -38,6 +38,7 @@ function SearchBar() {
         .then(() => {
           console.log('Terminé mi request');
         });
+      history.push('/');
     }
   };
   return (
