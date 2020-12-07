@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 import AuthProvider from '../../providers/Auth';
@@ -13,9 +13,21 @@ import useStyles from './AppStyles';
 import { items } from '../../mock/mockedData';
 import { favItems } from '../../mock/mockedFavs';
 import { defaultItems } from '../../mock/mockDefault';
+import FavoritesContext from '../../state/FavoritesContext';
+import reducer from '../../state/FavoritesReducer';
+
+const initialState = {
+  favorites: [],
+  currentFavorite: {},
+};
 
 function App() {
   const classes = useStyles();
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    dispatch({ type: 'LOAD_FROM_STORAGE' });
+  }, []);
 
   return (
     <AuthProvider>
@@ -24,6 +36,7 @@ function App() {
           <CssBaseline />
           <MainAppBar />
           <LeftDrawer />
+
           <DataContext.Provider
             value={{
               items,
@@ -31,11 +44,19 @@ function App() {
               defaultItems,
             }}
           >
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/player/:dataSource/:id" component={Video} />
-              <Route exact path="/favorites" component={Favorites} />
-            </Switch>
+            <FavoritesContext.Provider
+              value={{
+                state,
+                dispatch,
+              }}
+            >
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/player/watch/:id" component={Video} />
+                <Route path="/player/:dataSource/:id" component={Video} />
+                <Route exact path="/favorites" component={Favorites} />
+              </Switch>
+            </FavoritesContext.Provider>
           </DataContext.Provider>
         </div>
       </BrowserRouter>
