@@ -5,7 +5,7 @@ import { API_URL, API_KEY } from '../../constants';
 const YoutubeContext = React.createContext(null);
 
 async function callYoutubeApi(search) {
-  const url = `${API_URL}?key=${API_KEY}&type=video&part=snippet&q=${search}&maxResults=10`; //`${API_URL}/${search}`;
+  const url = `${API_URL}?key=${API_KEY}&type=video&part=snippet&q=${search}&maxResults=10`; // `${API_URL}/${search}`;
   const response = await fetch(url);
   const jsonResponse = await response.json();
   return jsonResponse.items;
