@@ -1,8 +1,17 @@
 .homepage {
+  height: 100%;
+  vertical-align: middle;
   text-align: center;
 }
 
 .homepage h1 {
   font-size: 3rem;
   letter-spacing: -2px;
+}
+
+.link{
+  color: #007bff;
+}
+.link:active{
+  color: blueviolet;
 }

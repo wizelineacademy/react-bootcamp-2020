@@ -5,10 +5,11 @@ import AuthProvider from '../../providers/Auth';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
+import MainPage from '../../pages/Main';
 import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { random } from '../../utils/fns';
 
 function App() {
@@ -35,14 +36,14 @@ function App() {
       <AuthProvider>
         <Layout>
           <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
             <Route exact path="/login">
               <LoginPage />
             </Route>
-            <Private exact path="/secret">
-              <SecretPage />
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Private exact path="/main">
+              <MainPage />
             </Private>
             <Route path="*">
               <NotFound />
