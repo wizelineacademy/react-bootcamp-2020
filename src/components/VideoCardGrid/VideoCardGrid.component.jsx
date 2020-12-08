@@ -1,57 +1,45 @@
 import React, { useContext, useEffect } from 'react';
 
-// import React from 'react';
 import VideoCardLarge from '../VideoCardLarge/VideoCardLarge.componenet';
 import VideoCardSmall from '../VideoCardSmall/VideoCardSmall.component';
 import { LargeCardGrid, SmallCardGrid } from './VideoCardGrid.style';
+
 import VideoSearchContext from '../../state/VideoSearchContext';
+import { useYoutubeSearch } from '../../utils/hooks/useYoutubeSearch';
 
+// --- DEV mocked setup --- ///
 // import searchResultMocked from '../../utils/searchResultMocked.json';
-
-const { REACT_APP_API_KEY } = process.env;
-const URL =
-  'https://youtube.googleapis.com/youtube/v3/search?part=snippet&regionCode=US&order=relevance&maxResults=15&type=video';
+// import React from 'react';
+// --- End of DEV mocked setup --- ///
 
 function VideoCardGrid() {
   const { query } = useContext(VideoSearchContext);
-  const [queryToSearch, setQueryToSearch] = React.useState('');
-  const [searchResultList, setSearchResultList] = React.useState([]);
-  const [erroronRequest, setErrorOnRequest] = React.useState('');
+  const [queryFromContext, setQueryFromContext] = React.useState('');
+
+  // --- DEV mocked setup --- ///
+  // eslint-disable-next-line no-unused-vars
   // const [searchResultList, setSearchResultList] = React.useState(
   //   searchResultMocked.items
   // );
+  // const largeElements = searchResultList.slice(0, 3);
+  // const smallElements = searchResultList.slice(3);
+  // --- End of DEV mocked setup --- ///
 
   useEffect(() => {
     function updateQueryState(newQuery) {
-      setQueryToSearch(newQuery);
+      setQueryFromContext(newQuery);
     }
     updateQueryState(query);
   }, [query]);
 
-  useEffect(() => {
-    async function fetchVideos() {
-      try {
-        const response = await fetch(
-          `${URL}&key=${REACT_APP_API_KEY}&q=${queryToSearch}`
-        );
-        if (response.status !== 200) setErrorOnRequest(true);
-        else {
-          const data = await response.json();
-          setSearchResultList(data.items);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchVideos();
-  }, [queryToSearch]);
+  const { searchListItems, isRequestSuccessful } = useYoutubeSearch(queryFromContext);
 
-  const largeElements = searchResultList.slice(0, 3);
-  const smallElements = searchResultList.slice(3);
+  const largeElements = searchListItems.slice(0, 3);
+  const smallElements = searchListItems.slice(3);
 
   return (
     <>
-      {!erroronRequest ? (
+      {isRequestSuccessful ? (
         <>
           <LargeCardGrid>
             {largeElements.map((item) => {
