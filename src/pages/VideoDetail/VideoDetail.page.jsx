@@ -70,7 +70,14 @@ function VideoDetail() {
           {isSuccess && data.data.items && (
             <div className={classes.videoData}>
               {data.data.items[0].snippet.tags.map((t) => {
-                return <Chip key={t} className={classes.tags} label={t} avatar={<LocalOfferIcon />} />;
+                return (
+                  <Chip
+                    key={t}
+                    className={classes.tags}
+                    label={t}
+                    avatar={<LocalOfferIcon />}
+                  />
+                );
               })}
               <Typography className={classes.title} component="h2">
                 {data.data.items[0].snippet.title}

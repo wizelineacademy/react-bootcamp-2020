@@ -42,7 +42,7 @@ export default function VideoList() {
   const { videoId } = useParams();
   const { data, isLoading } = useQuery(['/videos', { videoId }], youtube.getRelatedVideo);
   if (isLoading) {
-    return <span>Loading...</span>
+    return <span>Loading...</span>;
   }
   return (
     <>
