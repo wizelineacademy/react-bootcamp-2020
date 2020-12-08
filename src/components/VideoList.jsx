@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import youtube from '../services/youtube';
 
 const useStyles = makeStyles(() => ({
@@ -48,27 +48,31 @@ export default function VideoList() {
     <>
       {data.data.items.map((v) => {
         return (
-          <Card key={v.id.videoId} className={classes.root}>
-            <CardMedia
-              className={classes.cover}
-              image={v.snippet.thumbnails.medium.url}
-              title="Live from space album cover"
-            />
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography className={classes.title} component="div">
-                  {v.snippet.title}
-                </Typography>
-                <Typography
-                  className={classes.subTitle}
-                  variant="subtitle1"
-                  color="textSecondary"
-                >
-                  {v.snippet.channelTitle}
-                </Typography>
-              </CardContent>
-            </div>
-          </Card>
+          <>
+            <Link to={`/video/${v.id.videoId}`}>
+              <Card key={v.id.videoId} className={classes.root}>
+                <CardMedia
+                  className={classes.cover}
+                  image={v.snippet.thumbnails.medium.url}
+                  title="Live from space album cover"
+                />
+                <div className={classes.details}>
+                  <CardContent className={classes.content}>
+                    <Typography className={classes.title} component="div">
+                      {v.snippet.title}
+                    </Typography>
+                    <Typography
+                      className={classes.subTitle}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
+                      {v.snippet.channelTitle}
+                    </Typography>
+                  </CardContent>
+                </div>
+              </Card>
+            </Link>
+          </>
         );
       })}
     </>
