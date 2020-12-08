@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Card from '../../components/card/Card';
 import classes from './Home.module.scss';
 import { FavoriteContext } from '../../store/contexts/FavoriteContext';
@@ -6,10 +6,8 @@ import { FavoriteContext } from '../../store/contexts/FavoriteContext';
 const Home = (props) => {
   // eslint-disable-next-line
   const [state, dispatch] = useContext(FavoriteContext);
-  console.log('HOME', state);
 
   const clickedVideoHandler = (id) => {
-    console.log(id);
     props.history.push({ pathname: `detail/${id}` });
   };
 

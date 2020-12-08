@@ -10,8 +10,7 @@ const Login = (props) => {
 
   const loginHandler = async () => {
     try {
-      const user = await loginApi(userName, password);
-
+      await loginApi(userName, password);
       const updatedState = { ...state, isAuth: true };
       dispatch({
         type: 'LOGIN',

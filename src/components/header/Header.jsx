@@ -4,6 +4,7 @@ import classes from './Header.module.scss';
 import { AuthContext } from '../../store/contexts/AuthContext';
 import { FavoriteContext } from '../../store/contexts/FavoriteContext';
 import youtubeService from '../../services/YouTubeService';
+import icon from '../../assets/icon.png';
 
 export default function Header() {
   const [searchTerm, setSearchTerm] = useState('wizeline');
@@ -12,39 +13,38 @@ export default function Header() {
   const [favState, favDispatch] = useContext(FavoriteContext);
 
   useEffect(() => {
-    callApi();
-  }, []);
+    async function fetchData() {
+      const response = await youtubeService.get('/search', {
+        params: {
+          q: searchTerm,
+        },
+      });
+
+      const {
+        data: { items },
+      } = response;
+
+      const videos = items.map((item) => {
+        return {
+          id: item.id.videoId,
+          title: item.snippet.title,
+          description: item.snippet.description,
+          thumbnail: item.snippet.thumbnails.default.url,
+        };
+      });
+
+      favDispatch({
+        type: 'ADD_VIDEOS',
+        payload: { videos },
+      });
+    }
+
+    fetchData();
+  }, [searchTerm]);
 
   const searchBoxHandler = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
-    callApi();
-  };
-
-  const callApi = async () => {
-    const response = await youtubeService.get('/search', {
-      params: {
-        q: searchTerm,
-      },
-    });
-
-    const {
-      data: { items },
-    } = response;
-
-    const videos = items.map((item) => {
-      return {
-        id: item.id.videoId,
-        title: item.snippet.title,
-        description: item.snippet.description,
-        thumbnail: item.snippet.thumbnails.default.url,
-      };
-    });
-
-    favDispatch({
-      type: 'ADD_VIDEOS',
-      payload: { videos },
-    });
   };
 
   const logoutHandler = (event) => {
@@ -58,6 +58,9 @@ export default function Header() {
 
   return (
     <div className={classes.header}>
+      <Link to="/" className={classes.header__icon}>
+        <img height="36" width="36" src={icon} alt="ico" />
+      </Link>
       <div className={classes['header__search-container']}>
         <input
           type="text"

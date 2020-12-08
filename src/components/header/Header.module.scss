@@ -2,9 +2,15 @@
   display: flex;
   background-color: lightcoral;
   font-size: 2rem;
+  align-items: center;
+  padding: 0 2rem;
+
+  &__icon {
+    cursor: pointer;
+  }
 
   &__search-container {
-    flex-basis: 80%;
+    flex-basis: 70%;
     padding: 1rem 2rem;
 
     & > input {
