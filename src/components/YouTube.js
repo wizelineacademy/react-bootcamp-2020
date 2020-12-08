@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 
 const YouTubeStyled = styled.div`
-padding: 200px;
+padding: 120px;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -13,14 +13,32 @@ align-items: flex-start;
     width: 100%;
 }
 
-.videoCard{
-    background-color: red;
+.searchButton{
+    width: 100%;
+}
+
+.cardDisplay{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 400px;
+}
+
+.videoCard{
+    background-color: pink;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 300px;
     height: 200px;
     border: 1px solid black;
+    margin: 20px;
+}
+.title{
+    font-size: 16px;
+}
+
+.channelTitle{
+    font-size: 12px;
 }
 `
 
@@ -52,21 +70,30 @@ function Youtube() {
                 onChange={handleChange}
                 className="SearchBar"
                 />
-                 <button onClick={()=>fetchData()}>Go!</button>
+                 <button 
+                 onClick={()=>fetchData()}
+                 className="searchButton"
+                 >
+                     Go!
+                 </button>
             </div>
 
-        {miniCardData ? (miniCardData.map(item => (
-            <div key={item.id.videoId} className="videoCard">
-                <img src={item.snippet.thumbnails.default.url} alt={item.snippet.title}/>
-                <div className="videoCardInfo">
-                    <p>{item.snippet.title}</p>
-                    <p>{item.snippet.channelTitle}</p>
+            <div className="cardDisplay">
+                {miniCardData ? (miniCardData.map(item => (
+                <div key={item.id.videoId} className="videoCard">
+                    <img src={item.snippet.thumbnails.default.url} alt={item.snippet.title}/>
+                    <div className="videoCardInfo">
+                        <p className="title">{item.snippet.title}</p>
+                        <p className="channelTitle">{item.snippet.channelTitle}</p>
+                    </div>
                 </div>
+            ))) 
+            : 
+            (<p>Loading...</p>)
+            }
             </div>
-        ))) 
-        : 
-        (<p>Loading...</p>)
-        }
+
+
 
         
         </YouTubeStyled>
