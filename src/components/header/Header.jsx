@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import classes from './Header.module.scss';
 import { AuthContext } from '../../store/contexts/AuthContext';
 import { FavoriteContext } from '../../store/contexts/FavoriteContext';
-import youtubeService from '../../services/YouTubeService';
+import { youtubeApi, youtubeApiQuotaExceeded } from '../../services/YouTubeService';
 import icon from '../../assets/icon.png';
 
 const Header = (props) => {
@@ -14,80 +14,40 @@ const Header = (props) => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await youtubeService.get('/search', {
-        params: {
-          q: searchTerm,
-        },
-      });
+      try {
+        const response = await youtubeApi.get('/search', {
+          params: {
+            q: searchTerm,
+          },
+        });
 
-      // Using when quota exceeded
-      // const response = {
-      //   data: {
-      //     items: [
-      //       {
-      //         id: { videoId: 'W0k7yFEL6FY' },
-      //         snippet: {
-      //           title: 'Title 1',
-      //           description:
-      //             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, fugit vitae? Laboriosam omnis facilis, enim quas, explicabo quae quibusdam deleniti eaque tenetur commodi perspiciatis impedit illum soluta iure odit esse.',
-      //           thumbnails: {
-      //             default: {
-      //               url:
-      //                 'https://i.ytimg.com/vi/W0k7yFEL6FY/hqdefault.jpg?sqp=-oaymwEZCOADEI4CSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDrmfw7rqZeYIdSsBxt_C3qNCFboQ',
-      //             },
-      //           },
-      //         },
-      //       },
-      //       {
-      //         id: { videoId: 'Po3VwR_NNGk' },
-      //         snippet: {
-      //           title: 'Title 2',
-      //           description:
-      //             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, fugit vitae? Laboriosam omnis facilis, enim quas, explicabo quae quibusdam deleniti eaque tenetur commodi perspiciatis impedit illum soluta iure odit esse.',
-      //           thumbnails: {
-      //             default: {
-      //               url:
-      //                 'https://i.ytimg.com/vi/Po3VwR_NNGk/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBLy_DdepqJIDW7r0NSC-DjkLRFqA',
-      //             },
-      //           },
-      //         },
-      //       },
-      //       {
-      //         id: { videoId: 'nmXMgqjQzls' },
-      //         snippet: {
-      //           title: 'Title 3',
-      //           description:
-      //             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, fugit vitae? Laboriosam omnis facilis, enim quas, explicabo quae quibusdam deleniti eaque tenetur commodi perspiciatis impedit illum soluta iure odit esse.',
-      //           thumbnails: {
-      //             default: {
-      //               url:
-      //                 'https://i.ytimg.com/vi/nmXMgqjQzls/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCjjE4wKtITJ4Dq7qwHyd3XoctXtw',
-      //             },
-      //           },
-      //         },
-      //       },
-      //     ],
-      //   },
-      // };
+        // TODO: Using when quota exceeded
+        // const response = await youtubeApiQuotaExceeded();
 
-      const {
-        data: { items },
-      } = response;
+        const {
+          data: { items },
+        } = response;
 
-      const videos = items.map((item) => {
-        return {
-          id: item.id.videoId,
-          title: item.snippet.title,
-          description: item.snippet.description,
-          thumbnail: item.snippet.thumbnails.default.url,
-          isFav: false,
-        };
-      });
+        const videos = items.map((item) => {
+          return {
+            id: item.id.videoId,
+            title: item.snippet.title,
+            description: item.snippet.description,
+            thumbnail: item.snippet.thumbnails.default.url,
+            isFav: false,
+          };
+        });
 
-      favDispatch({
-        type: 'ADD_VIDEOS',
-        payload: { videos },
-      });
+        favDispatch({
+          type: 'ADD_VIDEOS',
+          payload: { videos },
+        });
+      } catch (e) {
+        if (e.isAxiosError) {
+          // setErrorMsg(e.response.data.error.message);
+          alert(e.response.data.error.message);
+        }
+      }
     }
 
     fetchData();
