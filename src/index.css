@@ -1,0 +1,19 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* Define 1 rem to 10px */
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+}

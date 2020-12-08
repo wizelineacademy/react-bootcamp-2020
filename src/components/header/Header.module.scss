@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  background-color: lightcoral;
+  font-size: 2rem;
+
+  &__search-container {
+    flex-basis: 80%;
+    padding: 1rem 2rem;
+
+    & > input {
+      outline: none;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: inherit;
+      padding-left: 3px;
+    }
+  }
+
+  &__login {
+    align-self: center;
+
+    & > a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
