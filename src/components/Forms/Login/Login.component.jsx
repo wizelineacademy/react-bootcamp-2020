@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -12,10 +12,12 @@ import logo from '../../../assets/images/wizeline-academy-1.png';
 import logoSmall from '../../../assets/images/wizeline-academy-1-small.jpg';
 import auth from '../../../services/auth';
 import { AuthContext } from '../../../contexts/authContext/authContext';
+import { ResourceContext } from '../../../contexts/resourceContext/Resource';
 
 const useStyles = makeStyles(styles);
 
 function storeUser(res, action) {
+  console.log(res.data[0], 'entre');
   if (res.data.length !== 1) return null;
   action(res.data[0]);
 }
@@ -27,12 +29,25 @@ export default function Login(props) {
   const [password, setPassword] = useState(null);
   const [rememberMe, setRememberMe] = useState(false);
   const { authActions } = useContext(AuthContext);
+  const { resourceActions } = useContext(ResourceContext);
 
-  const { refetch } = useQuery(['/login', { user: userName, password }], auth.signIn, {
-    refetchOnWindowFocus: false,
-    enabled: false,
-    onSuccess: (data) => storeUser(data, authActions.authStateChanged),
-  });
+  const { refetch, status } = useQuery(
+    ['/login', { user: userName, password }],
+    auth.signIn,
+    {
+      refetchOnWindowFocus: false,
+      enabled: false,
+      cacheTime: 0,
+      onSuccess: (data) => {
+        storeUser(data, authActions.authStateChanged);
+        handleClose();
+      },
+    }
+  );
+  useEffect(() => {
+    resourceActions.changeResourceStatus('login', status);
+  }, [status]);
+
   const changeValue = (field, value) => {
     if (field === 'userName') return setUserName(value);
     if (field === 'password') return setPassword(value);
@@ -43,7 +58,6 @@ export default function Login(props) {
     e.preventDefault();
     console.log(userName, password, rememberMe);
     refetch();
-    handleClose();
   };
   return (
     <>

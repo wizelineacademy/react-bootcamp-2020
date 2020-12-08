@@ -6,6 +6,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 import TopAppBar from '../AppBar';
+import SideMenu from '../SideMenu/SideMenu.component';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,6 +52,7 @@ function Layout(props) {
   return (
     <>
       <TopAppBar />
+      <SideMenu />
       <Toolbar id="back-to-top-anchor" />
       {children}
       <ScrollTop {...rest}>

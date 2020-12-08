@@ -12,6 +12,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
+import Avatar from '@material-ui/core/Avatar';
 import SearchVideos from '../SearchVideos';
 import { AuthContext } from '../../contexts/authContext/authContext';
 import { DialogContext } from '../../contexts/dialogContext/Dialog';
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => {
   return {
     appBarRoot: {
       boxShadow: 'none',
+      zIndex: 1300,
     },
     logo: {
       top: 14,
@@ -37,12 +39,17 @@ const useStyles = makeStyles((theme) => {
       minHeight: 56,
       justifyContent: 'space-between',
     },
+    avatar: {
+      width: theme.spacing(4),
+      height: theme.spacing(4),
+    },
   };
 });
 
 function UserMenu() {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
+  const classes = useStyles();
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -80,7 +87,11 @@ function UserMenu() {
         aria-haspopup="true"
         onClick={handleToggle}
       >
-        <AccountCircleIcon />
+        <Avatar
+          alt="Remy Sharp"
+          src="https://material-ui.com/static/images/avatar/1.jpg"
+          className={classes.avatar}
+        />
       </IconButton>
       <Popper
         open={open}

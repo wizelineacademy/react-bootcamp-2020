@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -6,7 +6,9 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import Login from '../../Forms/Login';
+import { ResourceContext } from '../../../contexts/resourceContext/Resource';
 
 const styles = (theme) => ({
   root: {
@@ -44,7 +46,7 @@ const DialogContent = withStyles((theme) => ({
 
 export default function CustomizedDialogs(props) {
   const { open, setOpen, title } = props;
-
+  const { resourceState } = useContext(ResourceContext);
   const handleClose = () => {
     setOpen(false);
   };
@@ -55,6 +57,9 @@ export default function CustomizedDialogs(props) {
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {title}
         </DialogTitle>
+        {resourceState.resources.login === 'loading' && (
+          <LinearProgress color="secondary" />
+        )}
         <DialogContent dividers>
           <Login handleClose={handleClose} />
         </DialogContent>
