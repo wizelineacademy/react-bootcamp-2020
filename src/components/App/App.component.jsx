@@ -6,6 +6,7 @@ import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
+import Reproducer from '../../pages/Reproducer';
 import Private from '../Private';
 import Layout from '../Layout';
 import Navbar from '../Navbar';
@@ -34,6 +35,9 @@ function App() {
               <Private exact path="/favorites">
                 <SecretPage />
               </Private>
+              <Route exact path="/reproducer">
+                <Reproducer />
+              </Route>
               <Route path="*">
                 <NotFound />
               </Route>

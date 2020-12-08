@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import './VideoCardLarge.style.css';
 import {
@@ -9,8 +10,15 @@ import {
 } from './VideoCardLarge.style';
 
 function VideoCardLarge({ searchItem }) {
+  const history = useHistory();
+
+  const onVideoSelected = (event) => {
+    event.preventDefault();
+    history.push('/reproducer');
+  };
+
   return (
-    <LargeVideoCard className="videoLarge-wrapper">
+    <LargeVideoCard className="videoLarge-wrapper" onClick={onVideoSelected}>
       <LargeMultimediaArea className="multimediaArea">
         <img
           src={searchItem.snippet.thumbnails.high.url}
