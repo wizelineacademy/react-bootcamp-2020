@@ -10,6 +10,7 @@ import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
 import { random } from '../../utils/fns';
+import YouTube from '../YouTube.js'
 
 function App() {
   useLayoutEffect(() => {
@@ -34,7 +35,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Layout>
-          <Switch>
+          {/* <Switch>
             <Route exact path="/">
               <HomePage />
             </Route>
@@ -48,7 +49,8 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
-          <Fortune />
+          <Fortune /> */}
+          <YouTube/>
         </Layout>
       </AuthProvider>
     </BrowserRouter>
