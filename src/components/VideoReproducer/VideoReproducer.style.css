@@ -1,0 +1,38 @@
+.reproducer-wrapper .videoInformation p {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  text-align: left;
+}
+
+.reproducer-wrapper .videoInformation p.title {
+  font-size: 1rem;
+  font-weight: bold;
+  height: 4rem;
+  overflow-wrap: break-word;
+}
+
+.reproducer-wrapper .videoInformation .channelName {
+  font-size: 0.7rem;
+}
+
+div.channel {
+  margin-right: 1rem;
+  display: flex;
+  margin-left: 1rem;
+}
+.channel .channelImage {
+  max-width: 3rem;
+}
+
+.reproducer-wrapper .videoInformation .datePublished {
+  font-size: 0.7rem;
+  color: #5d5f61;
+}
+
+.reproducer-wrapper .videoInformation .description {
+  font-size: 0.9rem;
+  overflow: overlay;
+  text-overflow: ellipsis;
+  height: 11rem;
+  white-space: unset;
+}
