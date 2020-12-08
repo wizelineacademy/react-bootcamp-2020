@@ -8,7 +8,7 @@ export const FormInputContainer = styled.div`
     margin-bottom: 5px;
     text-align: left;
     font-size: ${(props) => props.theme.primary_text_size};
-    color: ${(props) => props.theme.primary_text_color};
+    color: #030303;
   }
   input {
     padding: 5px 12px;
@@ -22,6 +22,6 @@ export const FormInputContainer = styled.div`
   }
 
   input:focus {
-    border: ${(props) => props.theme.primary_text_selected_input_border};
+    border: 1px solid #606060;
   }
 `;

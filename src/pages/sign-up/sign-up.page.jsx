@@ -34,8 +34,6 @@ function SignUpPage() {
       return;
     }
 
-    console.log(state, email, password);
-
     try {
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
 

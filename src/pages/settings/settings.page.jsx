@@ -3,26 +3,41 @@ import Switch from '@material-ui/core/Switch';
 import { ThemeContext } from '../../providers/theme';
 import { setTheme } from '../../providers/theme/theme.actions';
 
-import { SettingsContainer } from './settings.styles';
+import {
+  SettingsContainer,
+  Main,
+  Header,
+  Body,
+  SettingContainer,
+} from './settings.styles';
 
 function SettingsPage() {
-  const { themeDispatch } = useContext(ThemeContext);
+  const { themeState, themeDispatch } = useContext(ThemeContext);
+  const { themeName } = themeState;
 
   const handleThemeSwitch = ({ target: { checked } }) => {
-    const theme = checked ? 'dark' : 'light';
-    themeDispatch(setTheme(theme));
+    const themeAux = checked ? 'dark' : 'light';
+    themeDispatch(setTheme(themeAux));
   };
 
   return (
     <SettingsContainer>
-      <h1>Settings</h1>
-      <p>Dark mode</p>
-      <Switch
-        //  checked={toogleState}
-        onChange={handleThemeSwitch}
-        name='checkedA'
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
-      />
+      <Main>
+        <Header>
+          <h1>Settings</h1>
+        </Header>
+        <Body>
+          <SettingContainer>
+            <p>Dark mode</p>
+            <Switch
+              checked={themeName === 'dark'}
+              onChange={handleThemeSwitch}
+              name='checked'
+              inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />
+          </SettingContainer>
+        </Body>
+      </Main>
     </SettingsContainer>
   );
 }

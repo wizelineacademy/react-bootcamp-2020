@@ -21,7 +21,7 @@ const light = {
 const dark = {
   ...commonTheme,
   base_background_color: '#181818',
-  secondary_background_color: '#181818',
+  secondary_background_color: '#2f2f2f',
   primary_text_color: '#fff',
   secondary_text_color: '#aaa',
   primary_border_color: '1px solid rgba(255, 255, 255, 0.1);',
