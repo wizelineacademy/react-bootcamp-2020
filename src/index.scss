@@ -20,3 +20,11 @@ body {
   line-height: 1.7;
   font-family: 'Roboto', sans-serif;
 }
+
+.main {
+  padding: 3rem 6rem;
+
+  @media only screen and (max-width: 900px) {
+    padding: 1rem 2rem;
+  }
+}
