@@ -31,29 +31,38 @@ const Detail = (props) => {
     });
   };
 
-  const buttonText = video.isFav ? 'Remove from fav' : 'Add to fav';
+  let buttonText = '';
+  if (video) {
+    buttonText = video.isFav ? 'Remove from fav' : 'Add to fav';
+  }
 
   return (
     <div className={classes.detail}>
       <div className={classes['detail__video']}>
-        <iframe
-          width="95%"
-          height="400"
-          src={`${VIDEO_URL}${video.id}`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          title="youtubeFrame"
-        ></iframe>
-        <div className={classes['detail__description']}>
-          {authState.isAuth ? (
-            <button className={classes.button} onClick={favHandler}>
-              {buttonText}
-            </button>
-          ) : null}
-          <h2>{video.title}</h2>
-          <p>{video.description}</p>
-        </div>
+        {video ? (
+          <>
+            <iframe
+              width="95%"
+              height="400"
+              src={`${VIDEO_URL}${video.id}`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="youtubeFrame"
+            ></iframe>
+            <div className={classes['detail__description']}>
+              {authState.isAuth ? (
+                <button className={classes.button} onClick={favHandler}>
+                  {buttonText}
+                </button>
+              ) : null}
+              <h2>{video.title}</h2>
+              <p>{video.description}</p>
+            </div>
+          </>
+        ) : (
+          <h1>Video not found</h1>
+        )}
       </div>
       <div className={classes['detail__list']}>
         {favState.videos.map((video) => (
