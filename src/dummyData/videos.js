@@ -477,3 +477,191 @@ export const channels = {
 };
 
 export default videos;
+
+export const relatedVideos = {
+  kind: 'youtube#searchListResponse',
+  etag: 'TXpR5pGBvkkx2mw7uD6MXW-iNx4',
+  nextPageToken: 'CAUQAA',
+  regionCode: 'US',
+  pageInfo: {
+    totalResults: 81,
+    resultsPerPage: 5,
+  },
+  items: [
+    {
+      kind: 'youtube#searchResult',
+      etag: 'I3IJG_VKsK8HEnrL6EpPZh_va7A',
+      id: {
+        kind: 'youtube#video',
+        videoId: '772_6g1rMN8',
+      },
+      snippet: {
+        publishedAt: '2016-09-01T18:14:40Z',
+        channelId: 'UCPGzT4wecuWM0BH9mPiulXg',
+        title: "Spotlight: Meet the Wizeline Mexico Team (We're Hiring!)",
+        description:
+          'Meet a few people from our awesome Wizeline Mexico Team: Dafne, Isabel, Fernando, Alejandro, Vivi, Alejandra, Liusha and Vidal.',
+        thumbnails: {
+          default: {
+            url: 'https://i.ytimg.com/vi/772_6g1rMN8/default.jpg',
+            width: 120,
+            height: 90,
+          },
+          medium: {
+            url: 'https://i.ytimg.com/vi/772_6g1rMN8/mqdefault.jpg',
+            width: 320,
+            height: 180,
+          },
+          high: {
+            url: 'https://i.ytimg.com/vi/772_6g1rMN8/hqdefault.jpg',
+            width: 480,
+            height: 360,
+          },
+        },
+        channelTitle: 'Wizeline',
+        liveBroadcastContent: 'none',
+        publishTime: '2016-09-01T18:14:40Z',
+      },
+    },
+    {
+      kind: 'youtube#searchResult',
+      etag: 'i_E1NQQaS1CUG2VBEvv_MJIU22U',
+      id: {
+        kind: 'youtube#video',
+        videoId: 'cjO2fJy8asM',
+      },
+      snippet: {
+        publishedAt: '2018-09-25T17:35:23Z',
+        channelId: 'UCPGzT4wecuWM0BH9mPiulXg',
+        title: 'A Day in the Life of an Engineering Manager at Wizeline',
+        description:
+          "Fernando Espinoza shares his experience working as an engineering manager at Wizeline and mentoring other engineers. Learn about Fernando's passions and what he values most about his role.",
+        thumbnails: {
+          default: {
+            url: 'https://i.ytimg.com/vi/cjO2fJy8asM/default.jpg',
+            width: 120,
+            height: 90,
+          },
+          medium: {
+            url: 'https://i.ytimg.com/vi/cjO2fJy8asM/mqdefault.jpg',
+            width: 320,
+            height: 180,
+          },
+          high: {
+            url: 'https://i.ytimg.com/vi/cjO2fJy8asM/hqdefault.jpg',
+            width: 480,
+            height: 360,
+          },
+        },
+        channelTitle: 'Wizeline',
+        liveBroadcastContent: 'none',
+        publishTime: '2018-09-25T17:35:23Z',
+      },
+    },
+    {
+      kind: 'youtube#searchResult',
+      etag: 'HiOLbKwHKfCy61XYXZmsgkjH9ZA',
+      id: {
+        kind: 'youtube#video',
+        videoId: 'CH-MZqccTko',
+      },
+      snippet: {
+        publishedAt: '2019-07-09T20:58:40Z',
+        channelId: 'UCPGzT4wecuWM0BH9mPiulXg',
+        title: 'Wizeline Founder & CEO Bismarck Lepe: Scaling our team culture to APAC',
+        description:
+          "We're proud of the culture we've built at Wizeline, the people we've hired to achieve our vision, and the companies we have the opportunity to work with every day. As we look to expand our team and operations in the Asia Pacific region, our founder and CEO, Bismark Lepe, shares why now is prime time to join our team.",
+        thumbnails: {
+          default: {
+            url: 'https://i.ytimg.com/vi/CH-MZqccTko/default.jpg',
+            width: 120,
+            height: 90,
+          },
+          medium: {
+            url: 'https://i.ytimg.com/vi/CH-MZqccTko/mqdefault.jpg',
+            width: 320,
+            height: 180,
+          },
+          high: {
+            url: 'https://i.ytimg.com/vi/CH-MZqccTko/hqdefault.jpg',
+            width: 480,
+            height: 360,
+          },
+        },
+        channelTitle: 'Wizeline',
+        liveBroadcastContent: 'none',
+        publishTime: '2019-07-09T20:58:40Z',
+      },
+    },
+    {
+      kind: 'youtube#searchResult',
+      etag: 'ulNf-XHpuJQoCFaPaAQ2BeZanPI',
+      id: {
+        kind: 'youtube#video',
+        videoId: 'AKVD4O1KFyI',
+      },
+      snippet: {
+        publishedAt: '2020-10-29T16:34:31Z',
+        channelId: 'UCPGzT4wecuWM0BH9mPiulXg',
+        title: 'Wizeline Data Engineering featuring Said Montiel',
+        description:
+          'As a kid, Said enjoyed solving math problems a lot but never considered a career in math. After studying Actuarial Science and working on data science projects for about 6 years, he joined Wizeline as a data engineer.\n\nIn this video, Said shares his experience so far with switching from data science to data engineering and some of the things he likes about being a data engineer. Watch and enjoy!\n\nWant to join our Data team? We’re always hiring. Visit wizeline.com/careers and search our open roles.',
+        thumbnails: {
+          default: {
+            url: 'https://i.ytimg.com/vi/AKVD4O1KFyI/default.jpg',
+            width: 120,
+            height: 90,
+          },
+          medium: {
+            url: 'https://i.ytimg.com/vi/AKVD4O1KFyI/mqdefault.jpg',
+            width: 320,
+            height: 180,
+          },
+          high: {
+            url: 'https://i.ytimg.com/vi/AKVD4O1KFyI/hqdefault.jpg',
+            width: 480,
+            height: 360,
+          },
+        },
+        channelTitle: 'Wizeline',
+        liveBroadcastContent: 'none',
+        publishTime: '2020-10-29T16:34:31Z',
+      },
+    },
+    {
+      kind: 'youtube#searchResult',
+      etag: 'EkXF3omVJRY1IpoCj2Kpre0gtrc',
+      id: {
+        kind: 'youtube#video',
+        videoId: 'gsg9NEgWEpI',
+      },
+      snippet: {
+        publishedAt: '2020-05-23T18:25:34Z',
+        channelId: 'UC6idN3Sru-82B-jEP75RaGA',
+        title: 'Construcciones y proyectos Guadalajara ZMG',
+        description:
+          'Construcciones y proyectos Guadalajara ZMG, Valle real y puerta de hierro.\n\nhttps://legacytower.mx/\nhttps://anteus.mx/\nhttps://www.alba.com.mx/\nhttp://www.venturadistrict.com/\nhttp://www.dospuntas.com.mx\nhttps://www.zentralresidencial.com\nhttps://westpoint.mx\nhttp://elite.mx\nhttp://adana.mx\nhttp://www.frava.com.mx\nhttp://indea.mx\nhttps://aleden.mx\nhttp://www.gds-arch.com/new-gallery-4',
+        thumbnails: {
+          default: {
+            url: 'https://i.ytimg.com/vi/gsg9NEgWEpI/default.jpg',
+            width: 120,
+            height: 90,
+          },
+          medium: {
+            url: 'https://i.ytimg.com/vi/gsg9NEgWEpI/mqdefault.jpg',
+            width: 320,
+            height: 180,
+          },
+          high: {
+            url: 'https://i.ytimg.com/vi/gsg9NEgWEpI/hqdefault.jpg',
+            width: 480,
+            height: 360,
+          },
+        },
+        channelTitle: 'Gsa industrial',
+        liveBroadcastContent: 'none',
+        publishTime: '2020-05-23T18:25:34Z',
+      },
+    },
+  ],
+};

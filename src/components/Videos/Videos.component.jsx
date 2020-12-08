@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import videos from '../../dummyData/videos';
+import { useQuery } from 'react-query';
+import youtube from '../../services/youtube';
 
 import VideoCard from '../VideoCard';
 
@@ -50,6 +51,10 @@ const useStyles = makeStyles({
 
 export default function ImgMediaCard() {
   const classes = useStyles();
+  const { data, isSuccess } = useQuery(
+    ['/videos/current', { term: 'the mandalorian' }],
+    youtube.searchVideos
+  );
   return (
     <Grid
       container
@@ -58,19 +63,20 @@ export default function ImgMediaCard() {
       alignItems="stretch"
       classes={{ root: classes.container }}
     >
-      {videos.items.map((v) => {
-        const videoId = v.id.videoId || v.id.channelId;
-        return (
-          <VideoCard
-            key={videoId}
-            videoId={videoId}
-            thumbnail={v.snippet.thumbnails.high.url}
-            title={v.snippet.title}
-            channel={v.snippet.channelTitle}
-            publishedDate={v.snippet.publishedAt}
-          />
-        );
-      })}
+      {isSuccess &&
+        data.data.items.map((v) => {
+          const videoId = v.id.videoId || v.id.channelId;
+          return (
+            <VideoCard
+              key={videoId}
+              videoId={videoId}
+              thumbnail={v.snippet.thumbnails.high.url}
+              title={v.snippet.title}
+              channel={v.snippet.channelTitle}
+              publishedDate={v.snippet.publishedAt}
+            />
+          );
+        })}
     </Grid>
   );
 }

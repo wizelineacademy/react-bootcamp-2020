@@ -9,7 +9,7 @@ const DialogProvider = (props) => {
   const [dialogState, dispatch] = useReducer(reducer, initialState);
   const dialogActions = useMemo(() => actions(dispatch), []);
   useEffect(() => {
-    dialogActions.registerDialog('miDialogo', true);
+    dialogActions.registerDialog('miDialogo', false);
     dialogActions.registerDialog('otro dialogo', false);
   }, [dialogActions]);
   return (

@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core';
 import Videos from '../../components/Videos';
 
-const useStyles = makeStyles((theme) => {
+export const useStyles = makeStyles((theme) => {
   return {
     root: {
       backgroundColor: theme.palette.youtubePrimary,
