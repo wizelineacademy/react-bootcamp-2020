@@ -1,51 +1,51 @@
-// import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
-import React from 'react';
+// import React from 'react';
 import VideoCardLarge from '../VideoCardLarge/VideoCardLarge.componenet';
 import VideoCardSmall from '../VideoCardSmall/VideoCardSmall.component';
 import { LargeCardGrid, SmallCardGrid } from './VideoCardGrid.style';
-// import VideoSearchContext from '../../state/VideoSearchContext';
+import VideoSearchContext from '../../state/VideoSearchContext';
 
-import searchResultMocked from '../../utils/searchResultMocked.json';
+// import searchResultMocked from '../../utils/searchResultMocked.json';
 
-// const { REACT_APP_API_KEY } = process.env;
-// const URL =
-//   'https://youtube.googleapis.com/youtube/v3/search?part=snippet&regionCode=US&order=relevance&maxResults=15&type=video';
+const { REACT_APP_API_KEY } = process.env;
+const URL =
+  'https://youtube.googleapis.com/youtube/v3/search?part=snippet&regionCode=US&order=relevance&maxResults=15&type=video';
 
 function VideoCardGrid() {
-  // const { query } = useContext(VideoSearchContext);
-  // const [queryToSearch, setQueryToSearch] = React.useState('');
-  // const [searchResultList, setSearchResultList] = React.useState([]);
-  // eslint-disable-next-line no-unused-vars
+  const { query } = useContext(VideoSearchContext);
+  const [queryToSearch, setQueryToSearch] = React.useState('');
+  const [searchResultList, setSearchResultList] = React.useState([]);
   const [erroronRequest, setErrorOnRequest] = React.useState('');
-  // eslint-disable-next-line no-unused-vars
-  const [searchResultList, setSearchResultList] = React.useState(
-    searchResultMocked.items
-  );
-  // useEffect(() => {
-  //   function updateQueryState(newQuery) {
-  //     setQueryToSearch(newQuery);
-  //   }
-  //   updateQueryState(query);
-  // }, [query]);
+  // const [searchResultList, setSearchResultList] = React.useState(
+  //   searchResultMocked.items
+  // );
 
-  // useEffect(() => {
-  //   async function fetchVideos() {
-  //     try {
-  //       const response = await fetch(
-  //         `${URL}&key=${REACT_APP_API_KEY}&q=${queryToSearch}`
-  //       );
-  //       if (response.status !== 200) setErrorOnRequest(true);
-  //       else {
-  //         const data = await response.json();
-  //         setSearchResultList(data.items);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   fetchVideos();
-  // }, [queryToSearch]);
+  useEffect(() => {
+    function updateQueryState(newQuery) {
+      setQueryToSearch(newQuery);
+    }
+    updateQueryState(query);
+  }, [query]);
+
+  useEffect(() => {
+    async function fetchVideos() {
+      try {
+        const response = await fetch(
+          `${URL}&key=${REACT_APP_API_KEY}&q=${queryToSearch}`
+        );
+        if (response.status !== 200) setErrorOnRequest(true);
+        else {
+          const data = await response.json();
+          setSearchResultList(data.items);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchVideos();
+  }, [queryToSearch]);
+
   const largeElements = searchResultList.slice(0, 3);
   const smallElements = searchResultList.slice(3);
 
