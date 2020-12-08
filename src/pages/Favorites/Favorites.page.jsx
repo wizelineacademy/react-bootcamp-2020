@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import CardList from '../../components/Cardlist/CardList.component';
-import { getFavoritesVideos } from '../../utils/favorites';
+import { FavoritesContext } from '../../providers/Favorites';
 
 const H1 = styled.h1`
   font-size: 3rem;
@@ -24,11 +24,7 @@ const FavoritesPageContainer = styled.div`
 `;
 
 function FavoritesPage() {
-  const [favorites, setFavorites] = useState([]);
-
-  useEffect(() => {
-    setFavorites(getFavoritesVideos());
-  }, []);
+  const { favoriteVideos } = useContext(FavoritesContext);
 
   return (
     <FavoritesPageContainer>
@@ -36,7 +32,7 @@ function FavoritesPage() {
         welcome, to your favorites
         <Link to="/"> ← go back</Link>
       </H1>
-      <CardList videos={favorites} isFavorit />
+      <CardList videos={favoriteVideos} isFavorit />
     </FavoritesPageContainer>
   );
 }

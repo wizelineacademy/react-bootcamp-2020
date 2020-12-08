@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
+
 import styled from 'styled-components';
 import Player from '../../components/Player/Player.component';
 import Rowlist from '../../components/Rowlist/RowList.component';
-import { getFavoritesVideos } from '../../utils/favorites';
+import { FavoritesContext } from '../../providers/Favorites';
 
 const PlayerPageContainer = styled.div`
   display: flex;
@@ -19,17 +20,13 @@ const RowlistContainer = styled.div`
 `;
 
 function FavoritesPlayer(props) {
-  const [favorites, setFavorites] = useState([]);
-
-  useEffect(() => {
-    setFavorites(getFavoritesVideos());
-  }, []);
+  const { favoriteVideos } = useContext(FavoritesContext);
 
   return (
     <PlayerPageContainer>
       <Player id={props.id.params.id} />
       <RowlistContainer>
-        <Rowlist videos={favorites} isFavorit />
+        <Rowlist videos={favoriteVideos} isFavorit />
       </RowlistContainer>
     </PlayerPageContainer>
   );

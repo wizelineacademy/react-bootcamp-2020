@@ -2,11 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useAuth } from '../../providers/Auth';
 import { VideoContext } from '../../providers/Video';
-import {
-  addToFavorites,
-  removeFromFavorites,
-  isFavoriteVideo,
-} from '../../utils/favorites';
+import { FavoritesContext } from '../../providers/Favorites';
 
 const PlayerContainer = styled.div`
   width: 70%;
@@ -66,6 +62,11 @@ const FavoritesButton = styled.button`
 
 function Player(props) {
   const { setCurrentVideo, videos, currentVideo } = useContext(VideoContext);
+  const {
+    removeFromFavoritesProvider,
+    addToFavoritesProvider,
+    isFavoriteVideoProvider,
+  } = useContext(FavoritesContext);
   const { authenticated } = useAuth();
   const [isFavorite, setIsFavorite] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
@@ -76,22 +77,22 @@ function Player(props) {
       const video = videos.find((actualVideo) => actualVideo.videoId === videoId);
       if (video !== undefined) {
         setCurrentVideo(video);
-        setIsFavorite(isFavoriteVideo(video));
+        setIsFavorite(isFavoriteVideoProvider(video));
       }
     }
-  }, [videos, setCurrentVideo, props.id]);
+  }, [videos, setCurrentVideo, props.id, isFavoriteVideoProvider]);
 
   const addToFavoritesHandleClick = () => {
     setShowEmoji(true);
     setTimeout(() => setShowEmoji(false), 1000);
-    addToFavorites(currentVideo);
+    addToFavoritesProvider(currentVideo);
     setIsFavorite(true);
   };
 
   const removeFromFavoritesHandleClick = () => {
     setShowEmoji(true);
     setTimeout(() => setShowEmoji(false), 1000);
-    removeFromFavorites(currentVideo);
+    removeFromFavoritesProvider(currentVideo);
     setIsFavorite(false);
   };
 
