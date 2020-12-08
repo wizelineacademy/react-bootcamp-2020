@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -44,9 +44,12 @@ export default function Login(props) {
       },
     }
   );
-  useEffect(() => {
+  const changeResourceStatus = useCallback(() => {
     resourceActions.changeResourceStatus('login', status);
-  }, [status]);
+  }, [status, resourceActions]);
+  useEffect(() => {
+    changeResourceStatus();
+  }, [status, changeResourceStatus]);
 
   const changeValue = (field, value) => {
     if (field === 'userName') return setUserName(value);
