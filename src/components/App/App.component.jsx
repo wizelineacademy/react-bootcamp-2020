@@ -10,7 +10,6 @@ import FavoritesPage from '../../pages/Favorites';
 import FavoritesPlayerPage from '../../pages/FavoritesPlayer';
 import PlayerPage from '../../pages/Player';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
 import Private from '../Private';
 import Layout from '../Layout';
 import Navbar from '../Navbar';
@@ -30,9 +29,6 @@ function App() {
                 <Route exact path="/login">
                   <LoginPage />
                 </Route>
-                <Private exact path="/secret">
-                  <SecretPage />
-                </Private>
                 <Private exact path="/favorites">
                   <FavoritesPage />
                 </Private>

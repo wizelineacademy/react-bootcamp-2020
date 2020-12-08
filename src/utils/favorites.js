@@ -43,12 +43,3 @@ function removeFromFavorites(video) {
 }
 
 export { addToFavorites, removeFromFavorites, getFavoritesVideos, isFavoriteVideo };
-
-// {"favoriteVideos":
-
-// [{"id":"cjO2fJy8asM","image":"https://i.ytimg.com/vi/cjO2fJy8asM/mqdefault.jpg",
-// "title":"A Day in the Life of an Engineering Manager at Wizeline",
-// "description":"Fernando Espinoza shares his experience working as an engineering manager at Wizeline and mentoring other engineers. Learn about Fernando's passions ...",
-// "publishTime":"2018-09-25T17:45:19Z"}],
-
-// "isLightTheme":false}

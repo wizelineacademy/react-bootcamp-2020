@@ -167,6 +167,12 @@ function NavBar() {
     setIsDarkTheme(!isDarkTheme);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+      fetchVideos();
+    }
+  };
+
   return (
     <NavBarHeader>
       <NavBarTitle>Academy project</NavBarTitle>
@@ -180,6 +186,7 @@ function NavBar() {
                 required
                 value={searchTerm}
                 onChange={(event) => handleChangeSearchInput(event.target.value)}
+                onKeyPress={(event) => handleKeyPress(event)}
               />
             </TD>
             <TD id="s-cover">
