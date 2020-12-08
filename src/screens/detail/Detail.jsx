@@ -26,7 +26,7 @@ const Detail = (props) => {
     favDispatch({
       type: 'TOGGLE_FAVORITE',
       payload: {
-        id: video.id,
+        video,
       },
     });
   };

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import classes from './Header.module.scss';
 import { AuthContext } from '../../store/contexts/AuthContext';
 import { FavoriteContext } from '../../store/contexts/FavoriteContext';
 import youtubeService from '../../services/YouTubeService';
 import icon from '../../assets/icon.png';
 
-export default function Header() {
+const Header = (props) => {
   const [searchTerm, setSearchTerm] = useState('wizeline');
   const [state, dispatch] = useContext(AuthContext);
   // eslint-disable-next-line
@@ -105,6 +105,10 @@ export default function Header() {
       type: 'LOGIN',
       payload: updatedState,
     });
+
+    if (props.location.pathname === '/fav') {
+      props.history.replace('/');
+    }
   };
 
   return (
@@ -123,9 +127,14 @@ export default function Header() {
       </div>
       <div className={classes['header__login']}>
         {state.isAuth ? (
-          <a href="/" className="button" onClick={logoutHandler}>
-            Logout
-          </a>
+          <>
+            <a href="/" className="button" onClick={logoutHandler}>
+              Logout
+            </a>
+            <Link to="/fav" className={classes['button-fav']}>
+              Favs
+            </Link>
+          </>
         ) : (
           <Link to="/login" className="button">
             Login
@@ -134,4 +143,6 @@ export default function Header() {
       </div>
     </div>
   );
-}
+};
+
+export default withRouter(Header);

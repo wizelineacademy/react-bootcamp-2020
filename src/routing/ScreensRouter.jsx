@@ -9,6 +9,7 @@ const ScreensRouter = () => {
     <div className="main">
       <Switch>
         <Route path="/detail/:id" component={Detail} />
+        <Route path="/fav" component={Home} />
         <Route path="/" component={Home} />
       </Switch>
     </div>

@@ -6,6 +6,9 @@ import { FavoriteContext } from '../../store/contexts/FavoriteContext';
 const Home = (props) => {
   // eslint-disable-next-line
   const [state, dispatch] = useContext(FavoriteContext);
+  const isFav = props.match.path === '/fav';
+  const videos = isFav ? state.favoriteVideos : state.videos;
+  const title = isFav ? 'Your favorites videos!' : 'Here you will find awesome videos!';
 
   const clickedVideoHandler = (id) => {
     props.history.push({ pathname: `detail/${id}` });
@@ -14,10 +17,10 @@ const Home = (props) => {
   return (
     <div className={classes.home}>
       <div className={classes['home__heading']}>
-        <h1>Here you'll find awesome videos!</h1>
+        <h1>{title}</h1>
       </div>
       <div className={classes['home__list']}>
-        {state.videos.map((video) => (
+        {videos.map((video) => (
           <Card
             isHome={true}
             clicked={() => clickedVideoHandler(video.id)}

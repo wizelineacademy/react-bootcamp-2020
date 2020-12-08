@@ -5,7 +5,7 @@ import { favoriteReducer } from '../reducers/FavoriteReducer';
 
 const FavoritesProvider = (props) => {
   const initialState = {
-    favoriteVideos: [], // List of ids
+    favoriteVideos: [],
     videos: [],
     // videos: [
     //   {

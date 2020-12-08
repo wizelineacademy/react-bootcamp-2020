@@ -13,6 +13,12 @@
     flex-basis: 70%;
     padding: 1rem 2rem;
 
+    @media only screen and (max-width: 600px) {
+      & > input {
+        width: 100%;
+      }
+    }
+
     & > input {
       outline: none;
       border-radius: 0.5rem;
@@ -30,4 +36,10 @@
       color: white;
     }
   }
+}
+
+.button-fav {
+  border-left: 1px solid white;
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
 }
