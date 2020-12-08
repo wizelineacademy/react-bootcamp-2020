@@ -53,7 +53,12 @@ export default function ImgMediaCard() {
   const classes = useStyles();
   const { data, isSuccess } = useQuery(
     ['/videos/current', { term: 'the mandalorian' }],
-    youtube.searchVideos
+    youtube.searchVideos,
+    {
+      refetchOnWindowFocus: false,
+      cacheTime: 10 * 60 * 100,
+      staleTime: 10 * 60 * 100,
+    }
   );
   return (
     <Grid

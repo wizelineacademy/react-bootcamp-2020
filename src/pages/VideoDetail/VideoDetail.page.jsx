@@ -33,7 +33,12 @@ function VideoDetail() {
   const { videoId } = useParams();
   const { data, isSuccess } = useQuery(
     ['/videos/current', { videoId }],
-    youtube.getVideo
+    youtube.getVideo,
+    {
+      refetchOnWindowFocus: false,
+      cacheTime: 10 * 60 * 100,
+      staleTime: 10 * 60 * 100,
+    }
   );
   const [parentWidth, setParentWidht] = useState(0);
   useEffect(() => {

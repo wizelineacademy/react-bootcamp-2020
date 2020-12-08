@@ -3,7 +3,7 @@ import axios from 'axios';
 export const baseURL = 'https://www.googleapis.com/youtube/v3';
 
 const service = () => {
-  const apiKey = 'AIzaSyBtLKqeWXjOCklClPpVd8Ub5XU43G4a3CE';
+  const apiKey = 'AIzaSyCxpoupiS2E_fiFWXR5mfOTG0JNVS_4T1A';
   const instance = axios.create({
     baseURL,
     timeout: 1500,

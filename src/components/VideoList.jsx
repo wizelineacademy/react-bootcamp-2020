@@ -40,9 +40,20 @@ const useStyles = makeStyles(() => ({
 export default function VideoList() {
   const classes = useStyles();
   const { videoId } = useParams();
-  const { data, isLoading } = useQuery(['/videos', { videoId }], youtube.getRelatedVideo);
+  const { data, isLoading, isError } = useQuery(
+    ['/videos', { videoId }],
+    youtube.getRelatedVideo,
+    {
+      refetchOnWindowFocus: false,
+      cacheTime: 10 * 60 * 100,
+      staleTime: 10 * 60 * 100,
+    }
+  );
   if (isLoading) {
     return <span>Loading...</span>;
+  }
+  if (isError) {
+    return <span>Error...</span>;
   }
   return (
     <>
