@@ -11,12 +11,18 @@ const PlayerPageContainer = styled.div`
   width: 100%;
   height: 100%;
   flex-direction: row;
+  padding: 0 10px;
 `;
 
 const RowlistContainer = styled.div`
-  width: 30%;
   height: 100%;
   padding: 3px;
+`;
+
+const PlayerContainer = styled.div`
+  height: 100%;
+  position: relative;
+  padding-top: 3px;
 `;
 
 function PlayerPage(props) {
@@ -24,7 +30,9 @@ function PlayerPage(props) {
 
   return (
     <PlayerPageContainer>
-      <Player id={props.id.params.id} />
+      <PlayerContainer>
+        <Player id={props.id.params.id} />
+      </PlayerContainer>
       <RowlistContainer>
         <Rowlist videos={videos} isFavorit={false} />
       </RowlistContainer>

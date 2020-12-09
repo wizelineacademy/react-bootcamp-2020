@@ -102,7 +102,7 @@ function NavBar() {
   return (
     <NavBarHeader>
       <NavBarTitle>Academy project</NavBarTitle>
-      <SearchBox></SearchBox>
+      <SearchBox />
       <NavBarItem>
         <Link to="/">Home</Link>
       </NavBarItem>

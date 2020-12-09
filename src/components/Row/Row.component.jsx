@@ -7,6 +7,7 @@ const RowDiv = styled.div`
   border: 1px solid lightgray;
   border-radius: 3px;
   cursor: pointer;
+  max-width: 500px;
 `;
 
 const RowImg = styled.img`

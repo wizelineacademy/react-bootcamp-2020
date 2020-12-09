@@ -5,12 +5,12 @@ import { VideoContext } from '../../providers/Video';
 import { FavoritesContext } from '../../providers/Favorites';
 
 const PlayerContainer = styled.div`
-  width: 70%;
   height: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   padding-top: 3px;
+  max-width: 1200px;
 `;
 
 const TextDescription = styled.p`
@@ -20,7 +20,7 @@ const TextDescription = styled.p`
 const ActionsContainer = styled.div`
   display: flex;
   flex-wrap: wrap-reverse;
-  justify-content:center;
+  justify-content:initial;
   align-items:center:
 `;
 
@@ -41,7 +41,7 @@ const FadeOut = keyframes`
 `;
 
 const ButtonsContainer = styled.div`
-  margin-left: 60px;
+  margin-left: 30px;
 `;
 
 const Emoji = styled.h1`
@@ -101,8 +101,8 @@ function Player(props) {
     <PlayerContainer>
       <iframe
         title={props.id}
-        width="1240"
-        height="496"
+        width="100%"
+        height="500"
         src={url}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
