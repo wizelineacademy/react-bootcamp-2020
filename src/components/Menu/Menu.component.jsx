@@ -102,7 +102,7 @@ function Menu() {
           </MenuItem>
           <MenuItem>
             <Link to="/" onClick={deAuthenticate}>
-              logout
+              Logout
             </Link>
           </MenuItem>
         </React.Fragment>
