@@ -14,7 +14,7 @@ function VideoCardLarge({ searchItem }) {
 
   const onVideoSelected = (event) => {
     event.preventDefault();
-    history.push('/reproducer');
+    history.push(`/reproducer?id=${searchItem.id.videoId}`);
   };
 
   return (

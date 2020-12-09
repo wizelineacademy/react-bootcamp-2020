@@ -15,7 +15,7 @@ const Reproducer = styled.iframe`
 `;
 
 const VideoInformation = styled.div`
-  width: 25%;
+  width: 30%;
   background-color: white;
   border-radius: 15px;
 `;
