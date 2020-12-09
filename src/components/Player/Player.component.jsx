@@ -11,6 +11,7 @@ const PlayerContainer = styled.div`
   flex-direction: column;
   padding-top: 3px;
   max-width: 1200px;
+  min-width: 1200px;
 `;
 
 const TextDescription = styled.p`
