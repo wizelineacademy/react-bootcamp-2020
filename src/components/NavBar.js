@@ -1,29 +1,40 @@
 import React, { useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
-import { AuthContext } from '../context/AuthContext';
+// import { AuthContext } from '../context/AuthContext';
 import { types } from '../types/types';
 
 import '../styles/navBar.css';
 import { useForm } from '../hooks/useForm';
+import { GlobalContext } from '../context/GlobalContext';
 
 export const NavBar = () => {
   const history = useHistory();
-  const { user, dispatch } = useContext(AuthContext);
+  const { user, userDispatch, video, videoDispatch, favoriteDispatch } = useContext(
+    GlobalContext
+  );
+
   const [{ query }, handleInputChange] = useForm({ query: user.query });
 
   const handleLogout = () => {
     history.replace('/login');
-    dispatch({
+    userDispatch({
       type: types.logout,
+    });
+    videoDispatch({
+      type: types.videoLogout,
+    });
+    favoriteDispatch({
+      type: types.favoriteLogout,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({
+    videoDispatch({
       type: types.search,
       payload: {
+        ...video,
         query,
       },
     });

@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+// import { AuthContext } from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
 import { types } from '../../types/types';
 
 import '../../styles/login.css';
+import { GlobalContext } from '../../context/GlobalContext';
 
 export const LoginScreen = ({ history }) => {
   const [{ user, password }, handleInputChange, reset] = useForm({
@@ -14,11 +15,11 @@ export const LoginScreen = ({ history }) => {
     { username: 'wizeline', password: 'Rocks!' },
     { username: 'hiram', password: '123' },
   ];
-  const { dispatch } = useContext(AuthContext);
+  const { userDispatch, favoriteDispatch } = useContext(GlobalContext);
 
   const handleLogin = () => {
     const action = {
-      payload: { user },
+      payload: { name: user, logged: true },
       type: types.login,
     };
 
@@ -27,7 +28,11 @@ export const LoginScreen = ({ history }) => {
     );
 
     if (foundUser) {
-      dispatch(action);
+      userDispatch(action);
+      favoriteDispatch({
+        type: types.initFavorite,
+        payload: JSON.parse(localStorage.getItem(`videos_wizeline`)) || [],
+      });
       history.replace('/');
     } else {
       console.log(`${user} user is not registered or password is not correct.`);

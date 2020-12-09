@@ -1,21 +1,29 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+// import { AuthContext } from '../context/AuthContext';
+import { GlobalContext } from '../context/GlobalContext';
 
 import '../styles/videoThumbnails.css';
 import { types } from '../types/types';
 
 export const VideoThumbnail = ({ channelName, title, img, videoId, description }) => {
-  const { user, dispatch } = useContext(AuthContext);
-  const { name, logged, query } = user;
+  const { video, videoDispatch } = useContext(GlobalContext);
+  const { query } = video;
   const history = useHistory();
   const handleClick = () => {
     const action = {
       type: types.playVideo,
-      payload: { name, logged, query, channelName, title, videoId, description },
+      payload: {
+        query,
+        channelName,
+        title,
+        videoId,
+        description,
+        img,
+      },
     };
-    dispatch(action);
+    videoDispatch(action);
     history.push('/video');
   };
   return (
