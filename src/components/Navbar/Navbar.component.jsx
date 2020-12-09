@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuth } from '../../providers/Auth';
-import { ThemeContext } from '../../providers/Theme';
+import { useAuth } from '../../providers/Auth/Auth.provider';
+import { ThemeContext } from '../../providers/Theme/LocalTheme.provider';
 import SearchBox from '../SearchBox/SearchBox.component';
 
 const NavBarHeader = styled.header`

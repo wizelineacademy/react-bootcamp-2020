@@ -1,19 +1,19 @@
 import React from 'react';
 import { Switch, Route, HashRouter } from 'react-router-dom';
 
-import AuthProvider from '../../providers/Auth';
-import VideoProvider from '../../providers/Video';
-import FavoritesProvider from '../../providers/Favorites';
-import LocalThemeProvider from '../../providers/Theme';
-import HomePage from '../../pages/Home';
-import LoginPage from '../../pages/Login';
-import FavoritesPage from '../../pages/Favorites';
-import FavoritesPlayerPage from '../../pages/FavoritesPlayer';
-import PlayerPage from '../../pages/Player';
-import NotFound from '../../pages/NotFound';
-import Private from '../Private';
-import Layout from '../Layout';
-import Navbar from '../Navbar';
+import AuthProvider from '../../providers/Auth/Auth.provider';
+import VideoProvider from '../../providers/Video/Video.provider';
+import FavoritesProvider from '../../providers/Favorites/Favorites.provider';
+import LocalThemeProvider from '../../providers/Theme/LocalTheme.provider';
+import HomePage from '../../pages/Home/Home.page';
+import LoginPage from '../../pages/Login/Login.page';
+import FavoritesPage from '../../pages/Favorites/Favorites.page';
+import FavoritesPlayerPage from '../../pages/FavoritesPlayer/FavoritesPlayer.page';
+import PlayerPage from '../../pages/Player/Player.page';
+import NotFound from '../../pages/NotFound/NotFound.page';
+import Private from '../Private/Private.component';
+import Layout from '../Layout/Layout.component';
+import Navbar from '../Navbar/Navbar.component';
 
 function App() {
   return (

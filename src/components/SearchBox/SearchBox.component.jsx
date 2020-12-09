@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { VideoContext } from '../../providers/Video';
+import { VideoContext } from '../../providers/Video/Video.provider';
 import './Searchbox.styles.css';
 
 import {

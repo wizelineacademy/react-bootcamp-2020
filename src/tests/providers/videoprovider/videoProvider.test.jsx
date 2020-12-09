@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { HashRouter } from 'react-router-dom';
 import { render, within, fireEvent, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import VideoProvider, { VideoContext } from '../../../providers/Video';
+import VideoProvider, { VideoContext } from '../../../providers/Video/Video.provider';
 
-import AuthProvider from '../../../providers/Auth';
+import AuthProvider from '../../../providers/Auth/Auth.provider';
 
 describe('Video provider', () => {
   it('sets initial search term to Wizeline', () => {

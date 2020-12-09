@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { useAuth } from '../../providers/Auth';
-import { VideoContext } from '../../providers/Video';
-import { FavoritesContext } from '../../providers/Favorites';
+import { useAuth } from '../../providers/Auth/Auth.provider';
+import { VideoContext } from '../../providers/Video/Video.provider';
+import { FavoritesContext } from '../../providers/Favorites/Favorites.provider';
 
 const PlayerContainer = styled.div`
   height: 100%;

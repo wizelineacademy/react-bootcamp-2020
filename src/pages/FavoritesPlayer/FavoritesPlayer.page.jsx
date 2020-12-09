@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Player from '../../components/Player/Player.component';
 import Rowlist from '../../components/Rowlist/RowList.component';
-import { FavoritesContext } from '../../providers/Favorites';
+import { FavoritesContext } from '../../providers/Favorites/Favorites.provider';
 
 const PlayerPageContainer = styled.div`
   display: flex;

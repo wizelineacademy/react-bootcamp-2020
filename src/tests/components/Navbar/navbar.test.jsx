@@ -2,19 +2,19 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Switch, Route, HashRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
-import Navbar from '../../../components/Navbar';
-import Layout from '../../../components/Layout';
-import Private from '../../../components/Private';
+import Navbar from '../../../components/Navbar/Navbar.component';
+import Layout from '../../../components/Layout/Layout.component';
+import Private from '../../../components/Private/Private.component';
 
-import VideoProvider from '../../../providers/Video';
-import LocalThemeProvider from '../../../providers/Theme';
-import AuthProvider from '../../../providers/Auth';
-import HomePage from '../../../pages/Home';
-import LoginPage from '../../../pages/Login';
-import FavoritesPage from '../../../pages/Favorites';
-import FavoritesPlayerPage from '../../../pages/FavoritesPlayer';
-import PlayerPage from '../../../pages/Player';
-import NotFound from '../../../pages/NotFound';
+import VideoProvider from '../../../providers/Video/Video.provider';
+import LocalThemeProvider from '../../../providers/Theme/LocalTheme.provider';
+import AuthProvider from '../../../providers/Auth/Auth.provider';
+import HomePage from '../../../pages/Home/Home.page';
+import LoginPage from '../../../pages/Login/Login.page';
+import FavoritesPage from '../../../pages/Favorites/Favorites.page';
+import FavoritesPlayerPage from '../../../pages/FavoritesPlayer/FavoritesPlayer.page';
+import PlayerPage from '../../../pages/Player/Player.page';
+import NotFound from '../../../pages/NotFound/NotFound.page';
 
 describe('Navbar component', () => {
   it('Displays the navbar with information', () => {

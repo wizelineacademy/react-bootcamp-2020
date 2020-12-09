@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Rowlist from '../../components/Rowlist/RowList.component';
 import Player from '../../components/Player/Player.component';
-import { VideoContext } from '../../providers/Video';
+import { VideoContext } from '../../providers/Video/Video.provider';
 
 const PlayerPageContainer = styled.div`
   display: flex;

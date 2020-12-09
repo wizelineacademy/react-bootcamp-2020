@@ -1,9 +1,9 @@
 import React, { useRef, useContext } from 'react';
 import styled from 'styled-components';
 import CardList from '../../components/Cardlist/CardList.component';
-import { VideoContext } from '../../providers/Video';
+import { VideoContext } from '../../providers/Video/Video.provider';
 
-import { useAuth } from '../../providers/Auth';
+import { useAuth } from '../../providers/Auth/Auth.provider';
 
 const H1 = styled.h1`
   font-size: 3rem;

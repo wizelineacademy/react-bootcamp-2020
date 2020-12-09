@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import CardList from '../../components/Cardlist/CardList.component';
-import { FavoritesContext } from '../../providers/Favorites';
+import { FavoritesContext } from '../../providers/Favorites/Favorites.provider';
 
 const H1 = styled.h1`
   font-size: 3rem;

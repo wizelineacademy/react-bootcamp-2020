@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router';
 
 import styled from 'styled-components';
-import { useAuth } from '../../providers/Auth';
+import { useAuth } from '../../providers/Auth/Auth.provider';
 
 const Button = styled.button`
   width: 5rem;
