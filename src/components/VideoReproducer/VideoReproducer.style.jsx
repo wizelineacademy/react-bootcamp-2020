@@ -20,4 +20,10 @@ const VideoInformation = styled.div`
   border-radius: 15px;
 `;
 
-export { ReproducerWrapper, Reproducer, VideoInformation };
+const ActionArea = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+export { ReproducerWrapper, Reproducer, VideoInformation, ActionArea };
