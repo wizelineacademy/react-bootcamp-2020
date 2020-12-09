@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
-import Card from '../../../components/Card';
+import Card from '../../../components/Card/Card.component';
 
 const videoMock = {
   key: 'key',

@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
-import LoginPage from '../../../pages/Login';
-import AuthProvider from '../../../providers/Auth';
+import LoginPage from '../../../pages/Login/Login.page';
+import AuthProvider from '../../../providers/Auth/Auth.provider';
 
 describe('login page', () => {
   it('Displays the login form', () => {

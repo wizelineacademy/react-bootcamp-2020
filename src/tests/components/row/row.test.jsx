@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
-import Row from '../../../components/Row';
+import Row from '../../../components/Row/Row.component';
 
 const videoMock = {
   key: 'key',
