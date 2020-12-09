@@ -2,14 +2,17 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { InputBase, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import { useSearch } from '../../providers/Search';
 import './SearchBar.styles.css';
 
 export default function SearchBar() {
+  const { setQuery } = useSearch();
   const history = useHistory();
 
   const searchVideo = () => {
-    const search = document.getElementById('searchInput').value;
-    history.push(`/?q=${search}`);
+    const q = document.getElementById('searchInput').value;
+    setQuery(q);
+    history.push(`/?q=${q}`);
   };
 
   return (

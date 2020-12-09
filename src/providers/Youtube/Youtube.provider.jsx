@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 
-import { API_URL, API_KEY } from '../../constants';
+import { API_URL } from '../../constants';
 
 const YoutubeContext = React.createContext(null);
 
 async function callYoutubeApi(search) {
-  const url = `${API_URL}?key=${API_KEY}&type=video&part=snippet&q=${search}&maxResults=10`; // `${API_URL}/${search}`;
+  console.log("Calling youtube api");
+  const url = `${API_URL}/${search}`; // `${API_URL}?key=${API_KEY}&type=video&part=snippet&q=${search}&maxResults=10`;
   const response = await fetch(url);
   const jsonResponse = await response.json();
   return jsonResponse.items;
