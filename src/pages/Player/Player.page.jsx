@@ -16,7 +16,7 @@ const PlayerPageContainer = styled.div`
 
 const RowlistContainer = styled.div`
   height: 100%;
-  padding: 3px;
+  padding: 3px 0 0 15px;
 `;
 
 const PlayerContainer = styled.div`

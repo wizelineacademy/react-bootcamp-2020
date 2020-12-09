@@ -40,9 +40,7 @@ function HomePage() {
         <>
           <H2>Good to have you back</H2>
         </>
-      ) : (
-        <> </>
-      )}
+      ) : null}
       <CardList videos={videos} isFavorit={false} />
     </HomePageContainer>
   );
