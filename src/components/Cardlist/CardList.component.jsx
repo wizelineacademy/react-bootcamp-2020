@@ -8,7 +8,7 @@ const CardListDiv = styled.div`
   justify-content: center;
 `;
 
-function CardList({ videos, isFavorit }) {
+function CardList({ videos, isFavorite }) {
   function handleClickOnCard() {}
 
   return (
@@ -21,7 +21,7 @@ function CardList({ videos, isFavorit }) {
           description={video.description}
           imageUrl={video.imageUrl}
           onClick={() => handleClickOnCard(video)}
-          isFavorit={isFavorit}
+          isFavorite={isFavorite}
         />
       ))}
     </CardListDiv>
