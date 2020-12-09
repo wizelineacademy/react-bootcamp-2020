@@ -86,6 +86,7 @@ function VideoReproducer() {
           />
           <VideoInformation className="videoInformation">
             <p className="title">{videoInformation.snippet.title}</p>
+            <p className="channelInfo">{videoInformation.snippet.channelTitle}</p>
             <p className="datePublished">
               {`Published: ${sliceDate(videoInformation.snippet.publishedAt)}`}
             </p>
