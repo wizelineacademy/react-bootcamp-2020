@@ -1,6 +1,6 @@
-// import { data } from './mockdata';
+import { data } from './mockdata';
 
-const key = 'put your key here';
+// const key = 'AIzaSyAoOlpKNbUdgp_U-U3WV4clg-ng5euCWGw'
 
 const mapVideos = (videosFromService) => {
   const mapped = videosFromService.items
@@ -18,10 +18,8 @@ const mapVideos = (videosFromService) => {
 
 const fetchYoutubeVideos = async (searchTerm) => {
   console.log(searchTerm);
-  const response = await fetch(
-    `https://content-youtube.googleapis.com/youtube/v3/search?part=id&part=snippet&maxResults=25&q=${searchTerm}&key=${key}`
-  );
-  const data = await response.json();
+  // const response = await fetch(`https://content-youtube.googleapis.com/youtube/v3/search?part=id&part=snippet&maxResults=25&q=${searchTerm}&key=${key}`);
+  // const data = await response.json();
 
   return mapVideos(data);
 };
