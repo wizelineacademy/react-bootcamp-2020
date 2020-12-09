@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { INITIAL_QUERY } from '../../constants';
 import { useLocation } from 'react-router-dom';
+import { INITIAL_QUERY } from '../../constants';
 import { useSearch } from '../../providers/Search';
 import { useYoutube } from '../../providers/Youtube';
 import AppBar from '../../components/AppBar';

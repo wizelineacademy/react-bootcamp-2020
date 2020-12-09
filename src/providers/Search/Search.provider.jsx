@@ -13,7 +13,11 @@ function useSearch() {
 function SearchProvider({ children }) {
   const [query, setQuery] = useState('');
 
-  return <SearchContext.Provider value={{ query, setQuery }}>{children}</SearchContext.Provider>;
+  return (
+    <SearchContext.Provider value={{ query, setQuery }}>
+      {children}
+    </SearchContext.Provider>
+  );
 }
 
 export { useSearch };
