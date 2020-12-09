@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001'; // 'https://youtube.googleapis.com/youtube/v3/search/';
+const API_URL = '/api'; // 'https://youtube.googleapis.com/youtube/v3/search/';
 const INITIAL_QUERY = 'Wizeline';
 const FAVORITES = false;
 
