@@ -18,9 +18,6 @@ body {
   margin: 0;
   padding: 0;
   text-rendering: optimizeLegibility;
-  background-size: 400% 400%;
-  background-position: var(--bg-position);
-  transition: background-position 2s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,8 +35,5 @@ a {
 }
 
 a:active {
-  color: blueviolet;
-}
-
-hr {
+  color: black;
 }

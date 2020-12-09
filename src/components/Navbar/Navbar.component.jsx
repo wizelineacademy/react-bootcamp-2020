@@ -12,6 +12,7 @@ const NavBarHeader = styled.header`
   font-weight: 300;
   box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.56);
   padding: 5px;
+  flex-wrap: wrap;
 `;
 
 const NavBarTitle = styled.div`
