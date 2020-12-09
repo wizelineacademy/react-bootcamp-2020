@@ -77,7 +77,14 @@ function VideoDetail() {
             </Col>
           </Row>
           <Row gutter={[0, 24]}>
-            <Col xs={12} sm={12} md={18} lg={18} xl={18} className="description-container">
+            <Col
+              xs={12}
+              sm={12}
+              md={18}
+              lg={18}
+              xl={18}
+              className="description-container"
+            >
               {Object.keys(dataVideo).length > 0 ? (
                 <>
                   <h2>{dataVideo.snippet.title}</h2>

@@ -14,7 +14,9 @@ function useAuth() {
 }
 
 function AuthProvider({ children }) {
-  const [authenticated, setAuthenticated] = useState(Boolean(storage.get(AUTH_STORAGE_KEY)) || false);
+  const [authenticated, setAuthenticated] = useState(
+    Boolean(storage.get(AUTH_STORAGE_KEY)) || false
+  );
 
   const login = useCallback((user) => {
     setAuthenticated(true);

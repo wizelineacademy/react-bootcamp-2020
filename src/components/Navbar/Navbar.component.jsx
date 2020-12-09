@@ -1,13 +1,19 @@
 import React from 'react';
-import { Switch } from 'antd';
 import DropdownLogin from '../DropdownLogin/DropdownLogin.component';
 import InputSearch from '../InputSearch/InputSearch';
 import MenuButton from '../MenuButton/MenuButton.component';
+import { useTheme } from '../../providers/Theme/Theme.provider';
 import './Navbar.styles.css';
+import { SwitchStyled } from './Switch.styled';
 
 function Navbar() {
+  const { triggerSetTheme, theme } = useTheme();
   const onChange = (checked) => {
-    console.log(`switch to ${checked}`);
+    if (checked) {
+      triggerSetTheme('dark');
+    } else {
+      triggerSetTheme('light');
+    }
   };
 
   return (
@@ -17,7 +23,11 @@ function Navbar() {
         <InputSearch />
       </div>
       <div className="login-container">
-        <Switch onChange={onChange} className="switch-theme" />
+        <SwitchStyled
+          onChange={onChange}
+          defaultChecked={theme === 'dark'}
+          className="switch-theme"
+        />
         <span className="label-switcher">Dark Mode</span>
         <DropdownLogin />
       </div>

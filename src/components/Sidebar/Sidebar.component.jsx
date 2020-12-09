@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.styles.css';
 import { useAuth } from '../../providers/Auth';
+import { SidebarStyled } from './Sidebar.styled';
 
 const Sidebar = ({ isOpen, toggle }) => {
   const { authenticated } = useAuth();
@@ -18,7 +19,7 @@ const Sidebar = ({ isOpen, toggle }) => {
       onClick={toggle}
       role="presentation"
     >
-      <div className={`sidebar-links ${isOpen ? 'opened' : ''}`}>
+      <SidebarStyled className={`sidebar-links ${isOpen ? 'opened' : ''}`}>
         <div className="sidebar-items">
           <NavLink to="/">Home</NavLink>
         </div>
@@ -27,7 +28,7 @@ const Sidebar = ({ isOpen, toggle }) => {
             <NavLink to="/favorites">Favorites</NavLink>
           </div>
         ) : null}
-      </div>
+      </SidebarStyled>
     </div>,
     domNode
   );

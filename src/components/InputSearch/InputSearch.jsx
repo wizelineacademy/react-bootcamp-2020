@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Input } from 'antd';
 import { useLocation, useHistory } from 'react-router-dom';
 import { SearchOutlined } from '@ant-design/icons';
 import { useSearch } from '../../providers/Search/Search.provider';
+import { InputStyled } from './Input.style';
 
 function InputSearch() {
   const location = useLocation();
@@ -27,7 +27,7 @@ function InputSearch() {
 
   return (
     <>
-      <Input
+      <InputStyled
         className="search-input"
         placeholder="search"
         prefix={<SearchOutlined />}

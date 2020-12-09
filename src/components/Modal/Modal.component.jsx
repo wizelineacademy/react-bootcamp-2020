@@ -1,11 +1,10 @@
 import React from 'react';
-import { Modal } from 'antd';
-import './Modal.styles.css';
+import { ModalStyled } from './Modal.style';
 
 function ModalComponent({ show, toggle, handleSubmit, title, children }) {
   return (
     <>
-      <Modal
+      <ModalStyled
         title={title}
         visible={show}
         onOk={handleSubmit}
@@ -13,7 +12,7 @@ function ModalComponent({ show, toggle, handleSubmit, title, children }) {
         footer={[]}
       >
         {children}
-      </Modal>
+      </ModalStyled>
     </>
   );
 }
