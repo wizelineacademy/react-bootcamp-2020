@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 
 import { useAuth } from '../../providers/Auth/Auth.provider';
@@ -18,8 +18,6 @@ import {
 function LoginPage() {
   const { login } = useAuth();
   const history = useHistory();
-  const inputUserName = useRef(null);
-  const inputPassword = useRef(null);
   const [userName, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorLogin, setErrrorLogin] = useState(false);
@@ -50,7 +48,6 @@ function LoginPage() {
           <Div>
             <FieldLabel htmlFor="username">username </FieldLabel>
             <Input
-              ref={inputUserName}
               required
               type="text"
               id="username"
@@ -60,7 +57,6 @@ function LoginPage() {
           <Div>
             <FieldLabel htmlFor="password">password </FieldLabel>
             <Input
-              ref={inputPassword}
               required
               type="password"
               id="password"
@@ -68,9 +64,7 @@ function LoginPage() {
             />
           </Div>
           {errorLogin ? (
-            <>
-              <ErrorLabel>Incorrect user or password try again</ErrorLabel>
-            </>
+            <ErrorLabel>Incorrect user or password try again</ErrorLabel>
           ) : null}
           <Button type="submit">Login</Button>
         </LoginForm>
