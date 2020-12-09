@@ -7,6 +7,7 @@ import { LargeCardGrid, SmallCardGrid } from './VideoCardGrid.style';
 
 // import VideoSearchContext from '../../state/VideoSearchContext';
 // import { useYoutubeSearch } from '../../utils/hooks/useYoutubeSearch';
+import VideoSelectedContext from '../../state/VideoSelectedContext';
 
 // --- DEV mocked setup --- ///
 import searchResultMocked from '../../utils/searchResultMocked.json';
@@ -15,7 +16,7 @@ import searchResultMocked from '../../utils/searchResultMocked.json';
 function VideoCardGrid() {
   // const { query } = useContext(VideoSearchContext);
   // const [queryFromContext, setQueryFromContext] = React.useState('');
-
+  const [selectedVideo, setSelectedVideo] = React.useState({});
   // --- DEV mocked setup --- ///
   // eslint-disable-next-line no-unused-vars
   const [searchResultList, setSearchResultList] = React.useState(
@@ -38,20 +39,28 @@ function VideoCardGrid() {
   // const largeElements = searchListItems.slice(0, 3);
   // const smallElements = searchListItems.slice(3);
 
+  const updateSelectedVideo = (newVideo) => {
+    setSelectedVideo(newVideo);
+  };
+
   return (
     <>
       {isRequestSuccessful ? (
         <>
-          <LargeCardGrid>
-            {largeElements.map((item) => {
-              return <VideoCardLarge searchItem={item} key={item.id.videoId} />;
-            })}
-          </LargeCardGrid>
-          <SmallCardGrid>
-            {smallElements.map((item) => {
-              return <VideoCardSmall searchItem={item} key={item.id.videoId} />;
-            })}
-          </SmallCardGrid>
+          <VideoSelectedContext.Provider
+            value={{ videoId: selectedVideo, setVideoFn: updateSelectedVideo }}
+          >
+            <LargeCardGrid>
+              {largeElements.map((item) => {
+                return <VideoCardLarge searchItem={item} key={item.id.videoId} />;
+              })}
+            </LargeCardGrid>
+            <SmallCardGrid>
+              {smallElements.map((item) => {
+                return <VideoCardSmall searchItem={item} key={item.id.videoId} />;
+              })}
+            </SmallCardGrid>
+          </VideoSelectedContext.Provider>
         </>
       ) : (
         <>

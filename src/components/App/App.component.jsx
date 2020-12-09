@@ -7,9 +7,11 @@ import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
 import Reproducer from '../../pages/Reproducer';
+
 import Private from '../Private';
 import Layout from '../Layout';
 import Navbar from '../Navbar';
+
 import VideoSearchContext from '../../state/VideoSearchContext';
 
 function App() {

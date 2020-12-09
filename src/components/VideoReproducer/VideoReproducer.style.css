@@ -31,8 +31,9 @@ div.channel {
 
 .reproducer-wrapper .videoInformation .description {
   font-size: 0.9rem;
-  overflow: overlay;
   text-overflow: ellipsis;
   height: 11rem;
-  white-space: unset;
+  white-space: break-spaces;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
