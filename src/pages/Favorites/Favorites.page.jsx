@@ -32,7 +32,7 @@ function FavoritesPage() {
         welcome, to your favorites
         <Link to="/"> ← go back</Link>
       </H1>
-      <CardList videos={favoriteVideos} isFavorit />
+      <CardList videos={favoriteVideos} isFavorite />
     </FavoritesPageContainer>
   );
 }

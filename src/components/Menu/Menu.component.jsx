@@ -78,7 +78,7 @@ function Menu() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <MenuItem>
         <Link to="/">Home</Link>
       </MenuItem>
@@ -96,7 +96,7 @@ function Menu() {
       </MenuItem>
 
       {authenticated ? (
-        <React.Fragment>
+        <>
           <MenuItem>
             <Link to="/favorites">Favorites</Link>
           </MenuItem>
@@ -105,13 +105,13 @@ function Menu() {
               Logout
             </Link>
           </MenuItem>
-        </React.Fragment>
+        </>
       ) : (
         <MenuItem>
           <Link to="/login">Login</Link>
         </MenuItem>
       )}
-    </React.Fragment>
+    </>
   );
 }
 

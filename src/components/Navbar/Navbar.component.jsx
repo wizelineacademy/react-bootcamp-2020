@@ -27,7 +27,7 @@ function NavBar() {
     <NavBarHeader>
       <NavBarTitle>Academy project</NavBarTitle>
       <SearchBox />
-      <Menu></Menu>
+      <Menu />
     </NavBarHeader>
   );
 }

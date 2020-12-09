@@ -1,8 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
 import Menu from '../../../components/Menu/Menu.component';
-import VideoProvider from '../../../providers/Video/Video.provider';
 import LocalThemeProvider from '../../../providers/Theme/LocalTheme.provider';
 import AuthProvider from '../../../providers/Auth/Auth.provider';
 

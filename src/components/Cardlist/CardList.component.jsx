@@ -9,18 +9,15 @@ const CardListDiv = styled.div`
 `;
 
 function CardList({ videos, isFavorite }) {
-  function handleClickOnCard() {}
-
   return (
     <CardListDiv>
-      {videos.map((video) => (
+      {videos.map(({ videoId, title, description, imageUrl }) => (
         <Card
-          key={video.videoId}
-          videoId={video.videoId}
-          title={video.title}
-          description={video.description}
-          imageUrl={video.imageUrl}
-          onClick={() => handleClickOnCard(video)}
+          key={videoId}
+          videoId={videoId}
+          title={title}
+          description={description}
+          imageUrl={imageUrl}
           isFavorite={isFavorite}
         />
       ))}

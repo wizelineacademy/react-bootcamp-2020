@@ -24,13 +24,9 @@ const CardDescription = styled.p`
   padding: 0px 20px;
 `;
 
-function Card({ videoId, title, description, imageUrl, onClick, isFavorite }) {
+function Card({ videoId, title, description, imageUrl, isFavorite }) {
   return (
-    <CardDiv
-      onClick={() => {
-        onClick();
-      }}
-    >
+    <CardDiv>
       <Link to={isFavorite ? `/favorites/${videoId}` : `/player/${videoId}`}>
         <img src={imageUrl} alt={imageUrl} />
         <CardTitle>{title}</CardTitle>
