@@ -5,12 +5,23 @@ import { AuthContext } from '../../store/contexts/AuthContext';
 import { FavoriteContext } from '../../store/contexts/FavoriteContext';
 import { youtubeApi, youtubeApiQuotaExceeded } from '../../services/YouTubeService';
 import icon from '../../assets/icon.png';
+import { useDebounce } from '../../hooks/useDebounce';
 
 const Header = (props) => {
-  const [searchTerm, setSearchTerm] = useState('wizeline');
-  const [state, dispatch] = useContext(AuthContext);
   // eslint-disable-next-line
   const [favState, favDispatch] = useContext(FavoriteContext);
+  const [state, dispatch] = useContext(AuthContext);
+  const [searchTerm, setSearchTerm] = useState('wizeline');
+
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  const createReferenceMap = (videos = []) => {
+    const map = new Map();
+    videos.forEach((video, index) => {
+      map.set(video.id, index);
+    });
+    return map;
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -22,7 +33,7 @@ const Header = (props) => {
         });
 
         // TODO: Using when quota exceeded
-        // const response = await youtubeApiQuotaExceeded();
+        // const response = await youtubeApiQuotaExceeded(searchTerm);
 
         const {
           data: { items },
@@ -42,16 +53,30 @@ const Header = (props) => {
           type: 'ADD_VIDEOS',
           payload: { videos },
         });
+
+        const videosMap = createReferenceMap(videos);
+        // Set isFav from existing ones
+        favState.favoriteVideos.forEach((fav) => {
+          const video = videos[videosMap[fav.id]];
+          if (videosMap.has(fav.id) && video) {
+            favDispatch({
+              type: 'TOGGLE_FAVORITE',
+              payload: { video },
+            });
+          }
+        });
       } catch (e) {
         if (e.isAxiosError) {
-          // setErrorMsg(e.response.data.error.message);
           alert(e.response.data.error.message);
         }
+        console.log(e);
       }
     }
 
-    fetchData();
-  }, [searchTerm]);
+    if (debouncedSearchTerm) {
+      fetchData();
+    }
+  }, [debouncedSearchTerm]);
 
   const searchBoxHandler = (event) => {
     const value = event.target.value;
@@ -60,10 +85,13 @@ const Header = (props) => {
 
   const logoutHandler = (event) => {
     event.preventDefault();
-    const updatedState = { ...state, isAuth: false };
     dispatch({
       type: 'LOGIN',
-      payload: updatedState,
+      payload: { isAuth: false },
+    });
+
+    favDispatch({
+      type: 'RESET_STORAGE',
     });
 
     if (props.location.pathname === '/fav') {
