@@ -1,0 +1,46 @@
+.login {
+  height: 100vh;
+  width: 100vw;
+  background-color: lightcoral;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: white;
+    padding: 0 10rem;
+
+    @media only screen and (max-width: 600px) {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    & > input {
+      outline: none;
+      font-size: 2rem;
+      margin: 1rem 0;
+      padding: 1rem 0;
+      border-radius: 1rem;
+      border: 1px solid lightcoral;
+      padding-left: 0.5rem;
+    }
+
+    & > button {
+      padding: 1rem 0;
+      border-radius: 1rem;
+      border: none;
+      background-color: lightcoral;
+      color: white;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+}

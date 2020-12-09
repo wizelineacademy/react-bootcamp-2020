@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  background-color: lightcoral;
+  font-size: 2rem;
+  align-items: center;
+  padding: 0 2rem;
+
+  &__icon {
+    display: flex;
+  }
+
+  &__search-container {
+    flex-basis: 70%;
+    padding: 1rem 2rem;
+
+    @media only screen and (max-width: 600px) {
+      & > input {
+        width: 100%;
+      }
+    }
+
+    & > input {
+      outline: none;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: inherit;
+      padding-left: 3px;
+    }
+  }
+
+  &__login {
+    align-self: center;
+
+    & > a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+
+.button-fav {
+  border-left: 1px solid white;
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+}
