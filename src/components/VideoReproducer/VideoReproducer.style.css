@@ -11,19 +11,6 @@
   overflow-wrap: break-word;
 }
 
-.reproducer-wrapper .videoInformation .channelName {
-  font-size: 0.7rem;
-}
-
-div.channel {
-  margin-right: 1rem;
-  display: flex;
-  margin-left: 1rem;
-}
-.channel .channelImage {
-  max-width: 3rem;
-}
-
 .reproducer-wrapper .videoInformation .datePublished {
   font-size: 0.7rem;
   color: #5d5f61;

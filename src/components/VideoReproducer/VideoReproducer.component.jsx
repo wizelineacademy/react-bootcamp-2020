@@ -1,4 +1,4 @@
-// import React, { useEffect } from 'react';
+// import React, { useEffect, useContext} from 'react';
 import React from 'react';
 
 import { useHistory } from 'react-router-dom';
@@ -86,14 +86,6 @@ function VideoReproducer() {
           />
           <VideoInformation className="videoInformation">
             <p className="title">{videoInformation.snippet.title}</p>
-            {/* <div className="channel">
-                  <img
-                    className="channelImage"
-                    src="https://yt3.ggpht.com/ytc/AAUvwnhIJZKqH3FkWGKNP-OufNVlj7qHMVzPtIItQ8DYOg=s88-c-k-c0x00ffffff-no-rj"
-                    alt="Channel avatar"
-                  />
-                  <p className="channelName">Warner Brothers</p>
-                </div> */}
             <p className="datePublished">
               {`Published: ${sliceDate(videoInformation.snippet.publishedAt)}`}
             </p>

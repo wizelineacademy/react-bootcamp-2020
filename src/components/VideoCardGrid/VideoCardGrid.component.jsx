@@ -40,7 +40,6 @@ function VideoCardGrid() {
   // const smallElements = searchListItems.slice(3);
 
   const updateSelectedVideo = (newVideo) => {
-    console.log(newVideo);
     setSelectedVideo(newVideo);
   };
 
