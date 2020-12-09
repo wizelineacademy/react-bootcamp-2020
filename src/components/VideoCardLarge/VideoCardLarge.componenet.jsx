@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import './VideoCardLarge.style.css';
@@ -9,12 +9,16 @@ import {
   LargeCardParragraphContent,
 } from './VideoCardLarge.style';
 
+import VideoSelectedContext from '../../state/VideoSelectedContext';
+
 function VideoCardLarge({ searchItem }) {
   const history = useHistory();
+  const { setVideoFn } = useContext(VideoSelectedContext);
 
   const onVideoSelected = (event) => {
     event.preventDefault();
     history.push(`/reproducer?id=${searchItem.id.videoId}`);
+    setVideoFn(searchItem);
   };
 
   return (

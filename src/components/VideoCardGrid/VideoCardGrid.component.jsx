@@ -40,6 +40,7 @@ function VideoCardGrid() {
   // const smallElements = searchListItems.slice(3);
 
   const updateSelectedVideo = (newVideo) => {
+    console.log(newVideo);
     setSelectedVideo(newVideo);
   };
 
@@ -48,7 +49,7 @@ function VideoCardGrid() {
       {isRequestSuccessful ? (
         <>
           <VideoSelectedContext.Provider
-            value={{ videoId: selectedVideo, setVideoFn: updateSelectedVideo }}
+            value={{ video: selectedVideo, setVideoFn: updateSelectedVideo }}
           >
             <LargeCardGrid>
               {largeElements.map((item) => {
