@@ -1,8 +1,8 @@
 import React from 'react';
 
 const VideoSelectedContext = React.createContext({
-  video: {},
-  setVideoFn: () => {},
+  videoId: '',
+  setVideoIdFn: () => {},
 });
 
 export default VideoSelectedContext;

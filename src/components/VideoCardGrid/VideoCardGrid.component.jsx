@@ -6,12 +6,12 @@ import { LargeCardGrid, SmallCardGrid } from './VideoCardGrid.style';
 
 import VideoSearchContext from '../../state/VideoSearchContext';
 import { useYoutubeSearch } from '../../utils/hooks/useYoutubeSearch';
-import VideoSelectedContext from '../../state/VideoSelectedContext';
+// import VideoSelectedContext from '../../state/VideoSelectedContext';
 
 function VideoCardGrid() {
   const { query } = useContext(VideoSearchContext);
   const [queryFromContext, setQueryFromContext] = React.useState('Wizeline');
-  const [selectedVideo, setSelectedVideo] = React.useState({});
+  // const [selectedVideo, setSelectedVideo] = React.useState({});
 
   useEffect(() => {
     function updateQueryState(newQuery) {
@@ -25,28 +25,20 @@ function VideoCardGrid() {
   const largeElements = searchListItems.slice(0, 3);
   const smallElements = searchListItems.slice(3);
 
-  const updateSelectedVideo = (newVideo) => {
-    setSelectedVideo(newVideo);
-  };
-
   return (
     <>
       {isRequestSuccessful ? (
         <>
-          <VideoSelectedContext.Provider
-            value={{ video: selectedVideo, setVideoFn: updateSelectedVideo }}
-          >
-            <LargeCardGrid>
-              {largeElements.map((item) => {
-                return <VideoCardLarge searchItem={item} key={item.id.videoId} />;
-              })}
-            </LargeCardGrid>
-            <SmallCardGrid>
-              {smallElements.map((item) => {
-                return <VideoCardSmall searchItem={item} key={item.id.videoId} />;
-              })}
-            </SmallCardGrid>
-          </VideoSelectedContext.Provider>
+          <LargeCardGrid>
+            {largeElements.map((item) => {
+              return <VideoCardLarge searchItem={item} key={item.id.videoId} />;
+            })}
+          </LargeCardGrid>
+          <SmallCardGrid>
+            {smallElements.map((item) => {
+              return <VideoCardSmall searchItem={item} key={item.id.videoId} />;
+            })}
+          </SmallCardGrid>
         </>
       ) : (
         <>
