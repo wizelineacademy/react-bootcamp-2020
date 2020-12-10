@@ -9,7 +9,7 @@ const videoMock = {
   title: 'Video title',
   description: 'this is a description',
   imageUrl: '',
-  isFavorit: 'false',
+  isFavorite: 'false',
 };
 
 const videoMock2 = {
@@ -18,7 +18,7 @@ const videoMock2 = {
   title: 'Video title',
   description: 'this is a description',
   imageUrl: '',
-  isFavorit: 'true',
+  isFavorite: 'true',
 };
 
 describe('Card component', () => {
@@ -34,7 +34,7 @@ describe('Card component', () => {
           description={videoMock.description}
           imageUrl={videoMock.imageUrl}
           onClick={onClick}
-          isFavorit={videoMock}
+          isFavorite={videoMock.isFavorite}
         />
       </HashRouter>
     );
@@ -42,19 +42,19 @@ describe('Card component', () => {
     expect(screen.getByText('this is a description')).toBeTruthy();
   });
 
-  it('Displays the card with the video information', () => {
+  it('Displays the card with the video information when is favorite', () => {
     const onClick = jest.fn();
 
     render(
       <HashRouter>
         <Card
-          key={videoMock.videoId}
-          videoId={videoMock.videoId}
-          title={videoMock.title}
-          description={videoMock.description}
-          imageUrl={videoMock.imageUrl}
+          key={videoMock2.videoId}
+          videoId={videoMock2.videoId}
+          title={videoMock2.title}
+          description={videoMock2.description}
+          imageUrl={videoMock2.imageUrl}
           onClick={onClick}
-          isFavorit={videoMock2}
+          isFavorite={videoMock2.isFavorit}
         />
       </HashRouter>
     );

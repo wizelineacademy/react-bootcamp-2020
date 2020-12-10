@@ -26,7 +26,7 @@ function SearchBox() {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter' || event.keyCode === 13) {
+    if (event.key === 'Enter') {
       fetchVideos();
     }
   };
@@ -42,7 +42,7 @@ function SearchBox() {
               required
               value={searchTerm}
               onChange={(event) => handleChangeSearchInput(event.target.value)}
-              onKeyPress={(event) => handleKeyPress(event)}
+              onKeyDown={(event) => handleKeyPress(event)}
             />
           </TD>
           <TD id="s-cover">

@@ -22,4 +22,20 @@ describe('Player component', () => {
       })
     ).toBeTruthy();
   });
+  it('Clicks add to favorite button', () => {
+    render(
+      <AuthProvider>
+        <VideoProvider>
+          <FavoritesProvider>
+            <Player />
+          </FavoritesProvider>
+        </VideoProvider>
+      </AuthProvider>
+    );
+    expect(
+      screen.getAllByRole('button', {
+        hidden: true,
+      })
+    ).toBeTruthy();
+  });
 });
