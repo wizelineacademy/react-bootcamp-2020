@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-// import { Image } from 'semantic-ui-react';
-import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import { Card, Image, Typography } from './VideoCardHome.styles';
 
 import moment from 'moment';
 
@@ -42,19 +41,11 @@ const VideoCardHome = ({ video }) => {
   return (
     <ThemeProvider theme={light ? lightTheme : darkTheme}>
       <Link to={`/player/${video.id.videoId}`}>
-        <Card onClick={() => onVideoSelect(video)} raised>
-          <CardMedia
-            image={video.snippet.thumbnails.medium.url}
-            style={{ height: 0, paddingTop: '56.25%', color: 'pink' }}
-          />
-
-          <CardContent>
-            <Typography variant="h6">{video.snippet.title}</Typography>
-
-            <Typography>{moment(video.snippet.publishTime).fromNow()}</Typography>
-
-            <Typography>{video.snippet.description}</Typography>
-          </CardContent>
+        <Card onClick={() => onVideoSelect(video)}>
+          <Image src={video.snippet.thumbnails.medium.url} />
+          <Typography>{video.snippet.title}</Typography>
+          <Typography>{moment(video.snippet.publishTime).fromNow()}</Typography>
+          <Typography>{video.snippet.description}</Typography>
         </Card>
       </Link>
     </ThemeProvider>
