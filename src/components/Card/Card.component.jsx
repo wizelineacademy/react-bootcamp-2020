@@ -1,11 +1,10 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import * as AiIcons from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 import styles from './Card.module.css';
 import { storage } from '../../utils/storage';
 import { isVideoFavorite } from '../../utils/functions';
+import { CardWrapper, CardThumbnail, CardTextContainer, CardTitle, CardDescription, CardDate, CardFavoriteIcon } from './Card.template'
 
 function Card({ video }) {
   const [, setAsFavorite] = useState(false);
@@ -28,27 +27,27 @@ function Card({ video }) {
   };
 
   return (
-    <div className={styles.card}>
-      <div className={styles.card_image_container}>
-        <div className={styles.card_thumbnail}>
-          <img onClick={goToVideo} src={video.thumbnail} alt={video.thumbnail} />
-        </div>
-      </div>
-      <div className={styles.card_text_container}>
-        <h2 onClick={goToVideo} className={styles.card_title}>
+    <CardWrapper>
+      <CardThumbnail onClick={goToVideo} src={video.thumbnail} alt={video.thumbnail} />
+      <CardTextContainer>
+        <CardTitle onClick={goToVideo}>
           {video.title}
-        </h2>
-        <p className={styles.card_description}>{video.description}</p>
-        <p className={styles.card_date}>{video.publishedAt}</p>
-        <div className={styles.card_favorite_icon}>
+        </CardTitle>
+        <CardDescription>
+          {video.description}
+        </CardDescription>
+        <CardDate>
+          {video.publishedAt}
+        </CardDate>
+        <CardFavoriteIcon className={styles.card_favorite_icon}>
           {isVideoFavorite(video.id) ? (
             <AiIcons.AiFillHeart onClick={toggleFavorite} />
           ) : (
             <AiIcons.AiOutlineHeart onClick={toggleFavorite} />
           )}
-        </div>
-      </div>
-    </div>
+        </CardFavoriteIcon>
+        </CardTextContainer>
+    </CardWrapper>
   );
 }
 
