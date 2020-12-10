@@ -6,7 +6,10 @@ import './Login.styles.css';
 
 function LoginPage() {
   const { login, logout, authenticated } = useAuth();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    username: 'wizeline',
+    password: 'Rocks!',
+  });
   const [error, setError] = useState(null);
   const history = useHistory();
 
@@ -45,13 +48,13 @@ function LoginPage() {
             <div className="form-group">
               <label htmlFor="username">
                 <strong>username </strong>
-                <input required type="text" id="username" onChange={handleUser} />
+                <input required type="text" id="username" onChange={handleUser} defaultValue={user.username}/>
               </label>
             </div>
             <div className="form-group">
               <label htmlFor="password">
                 <strong>password </strong>
-                <input required type="password" id="password" onChange={handleUser} />
+                <input required type="password" id="password" onChange={handleUser} defaultValue={user.password}/>
               </label>
             </div>
             <span>{error || null}</span>

@@ -16,8 +16,11 @@ function useAuth() {
 
 function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
+  const mockedData = new Array(16).fill(null);
   const [state, setState] = useState({
     sidenav: true,
+    searchString: 'wizeline',
+    videos: mockedData,
   });
 
   useEffect(() => {

@@ -80,24 +80,6 @@ export const VideoName = styled.h5`
   line-height: 16px;
 `;
 
-export const Avatar = styled.div`
-  cursor: pointer;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  margin-right: 10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--senary);
-
-  img {
-    width: 100%;
-    border-radius: 50%;
-  }
-`;
-
 export const ChannelName = styled.span`
   display: block;
   margin-top: 8px;
@@ -109,7 +91,7 @@ export const ChannelName = styled.span`
   }
 `;
 
-export const Details = styled.span`
+export const Description = styled.span`
   display: block;
   margin-top: 2px;
   color: var(--text-tertiary);

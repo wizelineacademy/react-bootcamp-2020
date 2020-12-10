@@ -16,10 +16,12 @@ function handleSideNav({ state, setState }) {
   window.onresize = () => {
     if (screen.matches) {
       setState({
+        ...state,
         sidenav: false,
       });
     } else {
       setState({
+        ...state,
         sidenav: true,
       });
     }
@@ -31,11 +33,13 @@ function handleSideNav({ state, setState }) {
   window.onload = () => {
     if (screen.matches) {
       setState({
+        ...state,
         sidenav: false,
         searchbar: false,
       });
     } else {
       setState({
+        ...state,
         sidenav: true,
         searchbar: true,
       });
@@ -44,20 +48,22 @@ function handleSideNav({ state, setState }) {
 }
 
 function SideNav() {
-  const { state, setState } = useAuth();
+  const { state, setState, authenticated } = useAuth();
   handleSideNav({ state, setState });
 
   return (
-    <Container active={state.sidenav}>
+    <Container active={state.sidenav}>{console.log(state)}
       <List>
         <ListItem>
           <HomeIcon />
           <h4>Inicio</h4>
         </ListItem>
-        <ListItem>
-          <PlaylistIcon />
-          <h4>Favoritos</h4>
-        </ListItem>
+        {authenticated && (
+          <ListItem>
+            <PlaylistIcon />
+            <h4>Favoritos</h4>
+          </ListItem>
+        )}
         <Footer>
           <span>☺ 2020 Ricardo Labarca</span>
         </Footer>
@@ -68,6 +74,7 @@ function SideNav() {
 
 export function toggleSideNav({ state, setState }) {
   setState({
+    ...state,
     sidenav: !state.sidenav,
   });
 }

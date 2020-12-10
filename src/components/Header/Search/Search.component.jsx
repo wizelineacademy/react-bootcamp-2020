@@ -9,10 +9,33 @@ import {
   SearchBarContainer,
 } from './Search.styles';
 import { useAuth } from '../../../providers/Auth';
+import { storage } from '../../../utils/storage';
 
 const Search = () => {
   const { state, setState } = useAuth();
-  const handleSearchBarState = () => setState({ searchbar: (prevState) => !prevState });
+  const localVideoStoraged = storage.get('localVideoStoraged');
+  const handleSearchBarState = () =>
+    setState({
+      ...state,
+      searchbar: (prevState) => !prevState,
+    });
+
+  const handleSearchString = (event) => {
+    const { value } = event.target;
+    setState({
+      ...state,
+      searchString: value,
+    });
+  };
+
+  const handleSearch = () => {
+    if (localVideoStoraged.searchString !== state.searchString) {
+      setState({
+        ...state,
+        isLoading: true,
+      });
+    }
+  };
 
   return (
     <>
@@ -21,8 +44,12 @@ const Search = () => {
           <BackIcon />
         </IconContainer>
         <SearchBarContainer>
-          <input placeholder="Buscar" />
-          <SearchIconContainer>
+          <input
+            placeholder="Buscar"
+            onChange={handleSearchString}
+            defaultValue={state.searchString}
+          />
+          <SearchIconContainer onClick={handleSearch}>
             <SearchIcon />
           </SearchIconContainer>
         </SearchBarContainer>

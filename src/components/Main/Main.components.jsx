@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
   Container,
@@ -6,27 +6,66 @@ import {
   VideoContainer,
   Videos,
   ThumbnailContainer,
-  Avatar,
   InfoContainer,
   VideoName,
   ChannelName,
-  Details,
+  Description,
 } from './Main.styles';
 import { useAuth } from '../../providers/Auth';
-
+import { storage } from '../../utils/storage';
 import { toggleSideNav } from '../SideNav';
 import thumbnail from '../../images/thumb.jpg';
+import Youtube from '../../utils/Youtube';
 
 function Main() {
   const { state, setState } = useAuth();
-  const mockedVideo = new Array(15).fill(null);
+  const { searchString, sidenav, isLoading, videos } = state;
+  const localVideoStoraged = storage.get('localVideoStoraged');
   let swipeStart;
   let swipeEnd;
 
+  useEffect(() => {
+    async function fetchYoutubeData() {
+      const videoList = await Youtube.get(searchString);
+      const videoListBackup = {
+        videos: videoList,
+        searchString,
+      };
+      storage.set('localVideoStoraged', videoListBackup);
+      setState({
+        ...state,
+        isLoading: false,
+        videos: videoList,
+      });
+    }
+    if (!isLoading && !localVideoStoraged?.videos) {
+      fetchYoutubeData();
+    } else {
+      setState({
+        ...state,
+        videos: localVideoStoraged.videos,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    async function fetchYoutubeData() {
+      const videosFounded = await Youtube.get(searchString);
+      setState({
+        ...state,
+        isLoading: false,
+        videos: videosFounded,
+      });
+    }
+    if (isLoading) fetchYoutubeData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
+
   function handleSwipe() {
-    if (swipeEnd > swipeStart + 100 && !state.sidenav) {
+    if (swipeEnd > swipeStart + 100 && !sidenav) {
       toggleSideNav({ state, setState });
-    } else if (swipeStart > swipeEnd + 100 && state.sidenav) {
+    } else if (swipeStart > swipeEnd + 100 && sidenav) {
       toggleSideNav({ state, setState });
     }
   }
@@ -42,18 +81,21 @@ function Main() {
     handleSwipe();
   }
 
-  const ExampleVideos = () => {
+  const ExampleVideos = (props) => {
     return (
       <VideoContainer>
-        <ThumbnailContainer duration="12:34">
-          <img src={thumbnail} alt="Thumbnail" />
+        <ThumbnailContainer duration={props.video ? props.video.duration : '00:15:30'}>
+          <img src={props.video ? props.video.thumbnail : thumbnail} alt="Thumbnail" />
         </ThumbnailContainer>
         <InfoContainer>
-          <Avatar />
           <div>
-            <VideoName>Video Title</VideoName>
-            <ChannelName>Channel Name</ChannelName>
-            <Details>123 mil visualizaciones • hace 12 horas</Details>
+            <VideoName>{props.video ? props.video.videoTitle : 'videoTitle'}</VideoName>
+            <ChannelName>
+              {props.video ? props.video.ChannelName : 'Channel Name'}
+            </ChannelName>
+            <Description>
+              {props.video ? props.video.description : 'description'}
+            </Description>
           </div>
         </InfoContainer>
       </VideoContainer>
@@ -64,8 +106,8 @@ function Main() {
     <Container onTouchStart={touchStart} onTouchEnd={touchEnd}>
       <Title>Recomendados</Title>
       <Videos>
-        {mockedVideo.map(() => (
-          <ExampleVideos key={Math.random()} /> // temporary key until integration of youtube api
+        {videos.map((video, index) => (
+          <ExampleVideos key={video?.id || index} video={video} /> // temporary key until integration of youtube api
         ))}
       </Videos>
     </Container>
