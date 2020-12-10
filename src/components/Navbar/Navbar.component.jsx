@@ -28,8 +28,9 @@ function Navbar({ onQuery }) {
   };
 
   const onSearchButtonClicked = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && query !== '') {
       onQuery(query);
+      history.push(`/?search=${query}`);
     }
   };
 

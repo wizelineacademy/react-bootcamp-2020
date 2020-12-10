@@ -16,7 +16,7 @@ import VideoSearchContext from '../../state/VideoSearchContext';
 import VideoSelectedContext from '../../state/VideoSelectedContext';
 
 function App() {
-  const [query, setQuery] = React.useState('Wizeline');
+  const [query, setQuery] = React.useState('');
   const [selectedVideoId, setSelectedVideoId] = React.useState();
 
   const queryFn = (newQuery) => {
@@ -25,7 +25,6 @@ function App() {
 
   const selectedVideoFn = (newId) => {
     setSelectedVideoId(newId);
-    console.log(selectedVideoId);
   };
 
   return (

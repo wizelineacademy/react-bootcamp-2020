@@ -21,7 +21,6 @@ function RelatedVideosList({ videoId }) {
   const { searchRelatedItems, isRequestSuccessful, isLoading } = useRelatedVideo(videoId);
   // --- End Prod code ---//
   const [relatedVideoList, setRelatedVideoList] = React.useState([]);
-  console.log(videoId);
   useEffect(() => {
     function updateRelatedVideoList(list) {
       setRelatedVideoList(list);
