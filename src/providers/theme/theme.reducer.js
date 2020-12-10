@@ -12,7 +12,7 @@ const videosReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         theme: Themes[action.payload] ? Themes[action.payload] : Themes.default,
-        themeName: action.payload,
+        themeName: Themes[action.payload] ? action.payload : 'default',
       };
     default:
       return state;
