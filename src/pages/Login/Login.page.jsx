@@ -48,13 +48,25 @@ function LoginPage() {
             <div className="form-group">
               <label htmlFor="username">
                 <strong>username </strong>
-                <input required type="text" id="username" onChange={handleUser} defaultValue={user.username}/>
+                <input
+                  required
+                  type="text"
+                  id="username"
+                  onChange={handleUser}
+                  defaultValue={user.username}
+                />
               </label>
             </div>
             <div className="form-group">
               <label htmlFor="password">
                 <strong>password </strong>
-                <input required type="password" id="password" onChange={handleUser} defaultValue={user.password}/>
+                <input
+                  required
+                  type="password"
+                  id="password"
+                  onChange={handleUser}
+                  defaultValue={user.password}
+                />
               </label>
             </div>
             <span>{error || null}</span>

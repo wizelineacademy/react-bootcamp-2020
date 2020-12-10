@@ -52,7 +52,7 @@ function SideNav() {
   handleSideNav({ state, setState });
 
   return (
-    <Container active={state.sidenav}>{console.log(state)}
+    <Container active={state.sidenav}>
       <List>
         <ListItem>
           <HomeIcon />
