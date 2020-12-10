@@ -91,7 +91,7 @@ function Main() {
           <div>
             <VideoName>{props.video ? props.video.videoTitle : 'videoTitle'}</VideoName>
             <ChannelName>
-              {props.video ? props.video.ChannelName : 'Channel Name'}
+              {props.video ? props.video.channelName : 'Channel Name'}
             </ChannelName>
             <Description>
               {props.video ? props.video.description : 'description'}
