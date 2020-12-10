@@ -25,7 +25,6 @@ function App() {
 
   const selectedVideoFn = (newId) => {
     setSelectedVideoId(newId);
-    console.log(selectedVideoId);
   };
 
   return (

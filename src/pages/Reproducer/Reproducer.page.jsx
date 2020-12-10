@@ -8,7 +8,6 @@ function Reproducer() {
   const [reproductionVideoId, setReproductionVideo] = React.useState();
 
   const setCurrentVideo = (newVideo) => {
-    console.log(newVideo);
     setReproductionVideo(newVideo);
   };
 

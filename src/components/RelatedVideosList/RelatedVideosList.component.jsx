@@ -14,13 +14,13 @@ function RelatedVideosList({ videoId }) {
   const isRequestSuccessful = true;
   const isLoading = false;
   const searchRelatedItems = relatedVideoResultMocked.items;
+  console.log(videoId);
   // --- End of DEV mocked setup --- ///
 
   // --- Prod code ---//
   // const { searchRelatedItems, isRequestSuccessful, isLoading } = useRelatedVideo(videoId);
   // --- End Prod code ---//
   const [relatedVideoList, setRelatedVideoList] = React.useState([]);
-  console.log(videoId);
   useEffect(() => {
     function updateRelatedVideoList(list) {
       setRelatedVideoList(list);
