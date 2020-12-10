@@ -1,8 +1,7 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './RelatedVideo.module.css';
+import { VideoContainer, VideoTitle, VideoThumbnail, VideoDate } from './RelatedVideo.template'
 
 function RelatedVideo({ video }) {
   const history = useHistory();
@@ -12,18 +11,17 @@ function RelatedVideo({ video }) {
   };
 
   return (
-    <div className={styles.video_container}>
-      <img
+    <VideoContainer>
+      <VideoThumbnail
         onClick={goToVideo}
-        className={styles.video_thumbnail}
         src={video.thumbnail}
         alt={video.title}
       />
-      <p onClick={goToVideo} className={styles.video_title}>
+      <VideoTitle onClick={goToVideo}>
         {video.title}
-      </p>
-      <p className={styles.video_upload_date}>{video.publishedAt}</p>
-    </div>
+      </VideoTitle>
+      <VideoDate >{video.publishedAt}</VideoDate>
+    </VideoContainer>
   );
 }
 
