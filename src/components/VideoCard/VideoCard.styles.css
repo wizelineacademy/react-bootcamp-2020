@@ -29,3 +29,16 @@
   font-size: small;
   margin-top: 5px;
 }
+
+.favoriteIcon {
+  float: right;
+  padding: 10px;
+}
+
+.toggleFavorite {
+  background: transparent;
+  border: none !important;
+  font-size: 0;
+  cursor: pointer;
+  outline: none;
+}

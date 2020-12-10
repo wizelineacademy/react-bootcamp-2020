@@ -60,11 +60,13 @@ export default function LoginPage() {
     setErrorMessage('');
 
     try {
-      const user = await login(username, password).catch((e) => {
+      const successfullLogin = await login(username, password).catch((e) => {
         throw e;
       });
-      console.log(user);
-      history.push('/');
+      // console.log(successfullLogin);
+      if (successfullLogin) {
+        history.push('/');
+      }
     } catch (error) {
       console.log('That did not go well.');
       setShowError(true);

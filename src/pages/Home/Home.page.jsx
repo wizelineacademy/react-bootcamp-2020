@@ -40,10 +40,10 @@ function HomePage() {
 export default HomePage;
 */
 import React, { useState } from 'react';
-import Layout from '../../components/Layout/Layout.component';
-import Logo from '../../components/Logo/Logo.component';
-import SearchBar from '../../components/SearchBar/SearchBar.component';
-import SuggestedSearches from '../../components/SuggestedSearches/SuggestedSearches.component';
+import Layout from '../../components/Layout';
+import Logo from '../../components/Logo';
+import SearchBar from '../../components/SearchBar';
+import SuggestedSearches from '../../components/SuggestedSearches';
 
 import './Home.styles.css';
 

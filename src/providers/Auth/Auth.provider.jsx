@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext, useCallback } from 'react';
 import {
   AUTH_STORAGE_KEY_AUTHENTICATED,
   AUTH_STORAGE_KEY_USERINFO_NAME,
+  AUTH_STORAGE_KEY_FAVORITES,
 } from '../../utils/constants';
 
 import { storage } from '../../utils/storage';
@@ -23,18 +24,7 @@ function useAuth() {
   }
   return context;
 }
-/*
-async function loginApi(username, password) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (username === 'wizeline' && password === 'Rocks!') {
-        return resolve(mockedUser);
-      }
-      return reject(new Error('Username or password invalid'));
-    }, 500);
-  });
-}
-*/
+
 function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
@@ -48,22 +38,16 @@ function AuthProvider({ children }) {
     setUserInfo(lastUserInfoState);
   }, []);
 
-  /*
-  const login = useCallback(() => {
-    setAuthenticated(true);
-    storage.set(AUTH_STORAGE_KEY, true);
-  }, []);
-  */
-
   async function login(username, password) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (username === 'wizeline' && password === 'Rocks!') {
           setAuthenticated(true);
-          setUserInfo(mockedUser.name);
+          setUserInfo(mockedUser);
           storage.set(AUTH_STORAGE_KEY_AUTHENTICATED, true);
-          storage.set(AUTH_STORAGE_KEY_USERINFO_NAME, mockedUser.name);
-          return resolve(mockedUser);
+          storage.set(AUTH_STORAGE_KEY_USERINFO_NAME, mockedUser);
+          storage.set(AUTH_STORAGE_KEY_FAVORITES, null);
+          return resolve(true);
         }
         return reject(new Error('Username or password invalid'));
       }, 500);
@@ -75,6 +59,7 @@ function AuthProvider({ children }) {
     setUserInfo(null);
     storage.set(AUTH_STORAGE_KEY_AUTHENTICATED, false);
     storage.set(AUTH_STORAGE_KEY_USERINFO_NAME, null);
+    storage.set(AUTH_STORAGE_KEY_FAVORITES, null);
   }, []);
 
   return (

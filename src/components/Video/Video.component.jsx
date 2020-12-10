@@ -4,7 +4,7 @@ import { useGetVideo } from '../../utils/hooks/useGetVideo';
 import './Video.styles.css';
 
 export default function VideoEmbed({ videoId }) {
-  console.log('VideoId: ', videoId);
+  // console.log('VideoId: ', videoId);
   const video = useGetVideo(videoId);
 
   if (video !== null) {

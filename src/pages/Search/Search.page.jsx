@@ -10,7 +10,7 @@ import './Search.styles.css';
 function SearchPage() {
   // const [searchQuery, setSearchQuery] = React.useState('');
   const { searchQuery } = useParams();
-  console.log(searchQuery);
+  // console.log(searchQuery);
   const [searchParam, setSearchParam] = React.useState(searchQuery);
 
   return (

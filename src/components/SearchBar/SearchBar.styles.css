@@ -13,6 +13,7 @@
 }
 
 .search_input {
+  width: 330px;
   color: #333;
   font-size: 1em;
   padding: 0.5rem 0.5rem;
@@ -27,22 +28,17 @@
 .search {
   margin-bottom: 20px;
   float: left;
-}
-
-@media (min-width: 350px) {
-  .search_input {
-    width: 330px;
-  }
-}
-
-@media (min-width: 700px) {
-  .search_input {
-    width: 660px;
-  }
+  height: 45px;
 }
 
 @media (min-width: 1050px) {
   .search_input {
-    width: 990px;
+    width: 680px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .search_input {
+    width: 1030px;
   }
 }

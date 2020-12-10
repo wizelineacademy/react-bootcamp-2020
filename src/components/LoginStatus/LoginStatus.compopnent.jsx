@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { useAuth } from '../../providers/Auth';
+import { useAuth } from '../../providers/Auth';
+import UserInfo from '../UserInfo';
+import MenuProfile from '../MenuProfile';
 
 import './LoginStatus.styles.css';
 
 export default function LoginStatus() {
-  // const { authenticated } = useAuth();
+  const { authenticated, userInfo } = useAuth();
+  const [showMenu, setShowMenu] = useState(false);
 
-  const LoginButton = (
-    <Link className="LoginButton" to="/login">
-      Login
-    </Link>
-  );
+  let returnValue = '';
+  if (authenticated) {
+    returnValue = (
+      <div
+        className="profile-wrapper"
+        aria-hidden="true"
+        onClick={() => {
+          setShowMenu(!showMenu);
+        }}
+        onKeyPress={() => {
+          setShowMenu(showMenu);
+        }}
+      >
+        <UserInfo userInfo={userInfo} />
+        {showMenu ? <MenuProfile /> : null}
+      </div>
+    );
+  } else {
+    returnValue = (
+      <Link className="LoginButton" to="/login">
+        Login
+      </Link>
+    );
+  }
 
-  return LoginButton;
+  return <div className="LoginStatus">{returnValue}</div>;
 }
