@@ -1,6 +1,7 @@
 import React from 'react';
 
 import VideoReproducer from '../../components/VideoReproducer';
+import RelatedVideoList from '../../components/RelatedVideosList';
 import './Reproducer.style.css';
 
 function Reproducer() {
@@ -9,6 +10,7 @@ function Reproducer() {
   return (
     <section className="reproducer">
       <VideoReproducer />
+      <RelatedVideoList />
     </section>
   );
 }

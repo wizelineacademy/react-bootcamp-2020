@@ -1,0 +1,35 @@
+.relatedVideos .title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.relatedVideos .publishedDate {
+  font-size: 0.7rem;
+  color: #5d5f61;
+  margin-bottom: unset;
+  margin-top: unset;
+  margin-left: 0.5rem;
+}
+
+.relatedVideos .channel {
+  font-size: 0.8rem;
+  margin-bottom: unset;
+  color: #5d5f61;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.relatedVideos .description {
+  height: 5rem;
+  margin-top: unset;
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: unset;
+  margin-right: 0.5rem;
+  max-width: initial;
+}
