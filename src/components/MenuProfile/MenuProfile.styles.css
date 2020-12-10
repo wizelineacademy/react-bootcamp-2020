@@ -1,0 +1,22 @@
+/* hide menu */
+.menu {
+  display: block;
+  clear: both;
+  margin: 20px 0 0 0;
+}
+
+.menu li {
+  font-size: 12px;
+  margin: 0;
+  padding: 10px 4px;
+}
+.menu li a {
+  color: #555;
+}
+.menu li:hover > a {
+  color: #eee;
+}
+
+.menu li:hover {
+  cursor: pointer;
+}
