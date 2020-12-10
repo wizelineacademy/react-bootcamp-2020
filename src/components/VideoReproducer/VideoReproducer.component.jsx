@@ -1,5 +1,5 @@
-// import React, { useEffect, useContext} from 'react';
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
+// import React, { useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../providers/Auth';
@@ -12,12 +12,11 @@ import {
 } from './VideoReproducer.style';
 import { SecondaryButton } from '../../styledComponents';
 
-import VideoSelectedContext from '../../state/VideoSelectedContext';
+// import VideoSelectedContext from '../../state/VideoSelectedContext';
 
 import './VideoReproducer.style.css';
 
 // import { useYoutubeVideo } from '../../utils/hooks/useYoutubeVideo';
-// import { useChannel } from '../../utils/hooks/useChannel';
 
 // --- DEV mocked setup --- ///
 import videoResultMocked from '../../utils/videoResultMocked.json';
@@ -33,7 +32,7 @@ function sliceDate(strDate) {
   return strDate.slice(0, 10);
 }
 
-function VideoReproducer() {
+function VideoReproducer({ setCurrentVideo }) {
   // --- DEV mocked setup --- ///
   // eslint-disable-next-line no-unused-vars
   const [videoInformation, setVideoInformation] = React.useState(
@@ -41,39 +40,36 @@ function VideoReproducer() {
   );
   const isVideoRequestSuccessful = true;
   const isVideoLoading = false;
+
+  const videoSelected = videoResultMocked.items[0];
   // --- End of DEV mocked setup --- ///
 
-  // --- TODO: Call channel endpoint to retrieve name and avatar image
-  //   const [channelId, setChannelId] = React.useState('');
-  //   const [channelInformation, setChannelInformation] = React.useState({});
-  //   const { channelInfo, isChannelRequestSuccessful, isChannelLoading } = useChannel(
-  //     channelId
-  //   );
-  //   useEffect(() => {
-  //     if (!isVideoLoading) {
-  //       console.log(`setting id ${videoInformation.snippet.channelId}`);
-  //       setChannelId(videoInformation.snippet.channeld);
-  //     }
-  //   }, [isVideoLoading, videoInformation]);
-
-  //   useEffect(() => {
-  //     setChannelInformation(channelInfo);
-  //   }, [channelId]);
-  // --- End of TODO ---
   const { authenticated } = useAuth();
-  const { setVideoIdFn } = useContext(VideoSelectedContext);
+  // const { setVideoIdFn } = useContext(VideoSelectedContext);
+
+  // --- PROD code --- //
   // const [videoInformation, setVideoInformation] = React.useState({});
+  // --- DEV + PROD Code --- //
   const history = useHistory();
   const videoIdParam = history.location.search;
   const videoId = getVideoID(videoIdParam);
-  setVideoIdFn(videoId);
+  // --- End DEV + PROD Code --- //
   // const { videoSelected, isVideoRequestSuccessful, isVideoLoading } = useYoutubeVideo(
   //   videoId
   // );
 
+  useEffect(() => {
+    function updateVideoInformation() {
+      setVideoInformation(() => videoSelected);
+      setCurrentVideo(videoSelected.id);
+    }
+    updateVideoInformation();
+  }, [videoSelected, setCurrentVideo]);
+
+  // --- PROD code --- //
   // useEffect(() => {
-  //   setVideoInformation(videoSelected);
-  // }, [videoSelected]);
+  //   setVideoIdFn(videoId);
+  // });
 
   const renderReproducer = () => {
     if (isVideoRequestSuccessful)

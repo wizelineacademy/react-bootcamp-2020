@@ -1,16 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import RelatedVideo from '../RelatedVideo';
 import './RelatedVideosList.style.css';
-import relatedVideoResultMocked from '../../utils/relatedVideoResultMocked.json';
 
-function RelatedVideosList() {
+// import { useRelatedVideo } from '../../utils/hooks/useRelatedVideos';
+
+// --- DEV mocked setup --- ///
+import relatedVideoResultMocked from '../../utils/relatedVideoResultMocked.json';
+// --- End of DEV mocked setup --- ///
+
+function RelatedVideosList({ videoId }) {
+  // --- DEV mocked setup --- ///
+  const isRequestSuccessful = true;
+  const isLoading = false;
+  const searchRelatedItems = relatedVideoResultMocked.items;
+  // --- End of DEV mocked setup --- ///
+
+  // --- Prod code ---//
+  // const { searchRelatedItems, isRequestSuccessful, isLoading } = useRelatedVideo(videoId);
+  // --- End Prod code ---//
+  const [relatedVideoList, setRelatedVideoList] = React.useState([]);
+  console.log(videoId);
+  useEffect(() => {
+    function updateRelatedVideoList(list) {
+      setRelatedVideoList(list);
+    }
+    updateRelatedVideoList(searchRelatedItems);
+  });
+
+  const renderRelatedVideoList = () => {
+    if (isRequestSuccessful)
+      return relatedVideoList.map((video) => {
+        return <RelatedVideo video={video} key={video.id.videoId} />;
+      });
+    return <h1>Unable to retrieve related video list</h1>;
+  };
+
   return (
     <>
       <p className="header">Related videos</p>
-      {relatedVideoResultMocked.items.map((video) => {
-        return <RelatedVideo video={video} ley={video.id} />;
-      })}
+      {!isLoading ? renderRelatedVideoList() : <h1>Loading...</h1>}
     </>
   );
 }

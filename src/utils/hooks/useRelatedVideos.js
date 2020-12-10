@@ -5,9 +5,11 @@ const BASE_API_URL =
 
 const { REACT_APP_API_KEY } = process.env;
 
-function useYoutubeSearch(baseVideoId) {
+function useRelatedVideo(baseVideoId) {
   const [searchRelatedItems, setSearchRelatedItems] = useState([]);
   const [isRequestSuccessful, setIsRequestSuccessful] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  console.log(baseVideoId);
   useEffect(() => {
     async function fetchVideos() {
       try {
@@ -17,15 +19,17 @@ function useYoutubeSearch(baseVideoId) {
         if (response.status !== 200) setIsRequestSuccessful(false);
         else {
           const data = await response.json();
+          console.log(data);
           setSearchRelatedItems(data.items);
         }
       } catch (error) {
         console.log(error);
       }
+      setIsLoading(false);
     }
     fetchVideos();
   }, [baseVideoId]);
-  return { searchRelatedItems, isRequestSuccessful };
+  return { searchRelatedItems, isRequestSuccessful, isLoading };
 }
 
-export { useYoutubeSearch };
+export { useRelatedVideo };
