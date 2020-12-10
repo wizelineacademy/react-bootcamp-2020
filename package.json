@@ -21,7 +21,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./src --ext .js,.jsx",
-    "lint:fix": "eslint ./src --ext .js,.jsx --fix"
+    "lint:fix": "eslint ./src --ext .js,.jsx --fix",
+    "test:coverage": "npm run test -- --coverage --watchAll=false"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^18.2.0",

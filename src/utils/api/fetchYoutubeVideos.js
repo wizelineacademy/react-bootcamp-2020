@@ -1,6 +1,6 @@
 import { data } from './mockdata';
 
-// const key = 'AIzaSyAoOlpKNbUdgp_U-U3WV4clg-ng5euCWGw'
+// const key = ' - - '
 
 const mapVideos = (videosFromService) => {
   const mapped = videosFromService.items
