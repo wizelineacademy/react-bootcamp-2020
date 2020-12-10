@@ -14,13 +14,12 @@ function addToFavorites(video) {
 
 function getFavoritesVideos() {
   const savedFavorites = storage.get(USER_PREFERENCES);
-  console.log('getfav');
   return savedFavorites ? savedFavorites.favoriteVideos : [];
 }
 
 function isFavoriteVideo(video) {
   const savedFavorites = storage.get(USER_PREFERENCES);
-
+  console.log(savedFavorites);
   if (!savedFavorites) {
     return false;
   }
