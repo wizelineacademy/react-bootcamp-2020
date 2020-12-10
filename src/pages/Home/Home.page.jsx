@@ -17,7 +17,7 @@ function Home() {
   const { state } = useAuth();
 
   return (
-    <ThemeProvider theme={state.mode ? theme.light : theme.dark}>
+    <ThemeProvider theme={state.theme === 'light' ? theme.light : theme.dark}>
       <GlobalStyle />
       <BrowserRouter>
         <Switch>

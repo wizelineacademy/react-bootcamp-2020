@@ -4,7 +4,6 @@ import logoLight from '../../images/logoLight.png';
 import { Container, Logo, MenuIcon, IconContainer } from './Header.styles';
 import Search from './Search';
 import Buttons from './Buttons';
-
 import { useAuth } from '../../providers/Auth';
 
 function Header() {
@@ -17,7 +16,7 @@ function Header() {
           <IconContainer onClick={() => setState({ ...state, sidenav: !state.sidenav })}>
             <MenuIcon />
           </IconContainer>
-          <img src={state.mode ? logoDark : logoLight} alt="Logo" />
+          <img src={state.theme === 'light' ? logoLight : logoDark} alt="Logo" />
         </Logo>
         <Search />
         <Buttons />

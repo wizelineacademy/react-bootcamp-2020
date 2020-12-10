@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import {
   Container,
@@ -19,14 +19,26 @@ function Buttons() {
   const logged = storage.get('AUTH_STORAGE_USER');
   const history = useHistory();
 
+  const handleTheme = () => {
+    const newTheme = state.theme === 'light' ? 'dark' : 'light';
+    setState({ ...state, theme: newTheme });
+    storage.set('USER_THEME', newTheme);
+  };
+
+  useEffect(() => {
+    const theme = storage.get('USER_THEME');
+    setState({ ...state, theme });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Container>
       <Avatar onClick={() => history.push('/login')}>
         <img src={authenticated ? logged.avatarUrl : unlogged} alt="Profile" />
       </Avatar>
 
-      <IconContainer onClick={() => setState({ ...state, mode: !state.mode })}>
-        {state.mode ? <IconToggleOff /> : <IconToggleOn />}
+      <IconContainer onClick={handleTheme}>
+        {state.theme === 'light' ? <IconToggleOff /> : <IconToggleOn />}
       </IconContainer>
 
       <IconSearchContainer>

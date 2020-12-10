@@ -85,6 +85,7 @@ export const ChannelName = styled.span`
   margin-top: 8px;
   color: var(--text-tertiary);
   font-size: 14px;
+  font-weight: bold;
 
   &:hover {
     color: var(--text-primary);

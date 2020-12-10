@@ -32,6 +32,12 @@ export const List = styled.ul`
   width: 100%;
 `;
 
+export const CustomLink = styled.div`
+  a {
+    text-decoration: none;
+  }
+`;
+
 export const ListItem = styled.li`
   position: relative;
   display: flex;
@@ -44,7 +50,11 @@ export const ListItem = styled.li`
   padding: 10px 24px;
 
   &:hover {
+    color: red;
     background-color: var(--quaternary);
+    svg {
+      color: red;
+    }
   }
   &:active {
     background-color: var(--quinary);

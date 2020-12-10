@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../providers/Auth';
 import {
   Container,
+  CustomLink,
   List,
   ListItem,
   HomeIcon,
@@ -54,15 +56,23 @@ function SideNav() {
   return (
     <Container active={state.sidenav}>
       <List>
-        <ListItem>
-          <HomeIcon />
-          <h4>Inicio</h4>
-        </ListItem>
+        <CustomLink>
+          <Link to="/">
+            <ListItem>
+              <HomeIcon />
+              <h4>Inicio</h4>
+            </ListItem>
+          </Link>
+        </CustomLink>
         {authenticated && (
-          <ListItem>
-            <PlaylistIcon />
-            <h4>Favoritos</h4>
-          </ListItem>
+          <CustomLink>
+            <Link to="/favorites">
+              <ListItem>
+                <PlaylistIcon />
+                <h4>Favoritos</h4>
+              </ListItem>
+            </Link>
+          </CustomLink>
         )}
         <Footer>
           <span>☺ 2020 Ricardo Labarca</span>
