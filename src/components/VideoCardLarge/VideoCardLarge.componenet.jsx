@@ -13,12 +13,12 @@ import VideoSelectedContext from '../../state/VideoSelectedContext';
 
 function VideoCardLarge({ searchItem }) {
   const history = useHistory();
-  const { setVideoFn } = useContext(VideoSelectedContext);
+  const { setVideoIdFn } = useContext(VideoSelectedContext);
 
   const onVideoSelected = (event) => {
     event.preventDefault();
     history.push(`/reproducer?id=${searchItem.id.videoId}`);
-    setVideoFn(searchItem);
+    setVideoIdFn(searchItem.id.videoId);
   };
 
   return (

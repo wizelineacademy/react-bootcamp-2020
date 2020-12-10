@@ -13,38 +13,49 @@ import Layout from '../Layout';
 import Navbar from '../Navbar';
 
 import VideoSearchContext from '../../state/VideoSearchContext';
+import VideoSelectedContext from '../../state/VideoSelectedContext';
 
 function App() {
   const [query, setQuery] = React.useState('Wizeline');
+  const [selectedVideoId, setSelectedVideoId] = React.useState();
 
   const queryFn = (newQuery) => {
     setQuery(newQuery);
+  };
+
+  const selectedVideoFn = (newId) => {
+    setSelectedVideoId(newId);
+    console.log(selectedVideoId);
   };
 
   return (
     <BrowserRouter>
       <AuthProvider>
         <VideoSearchContext.Provider value={{ query, queryFn }}>
-          <Layout>
-            <Navbar onQuery={queryFn} />
-            <Switch>
-              <Route exact path="/">
-                <HomePage />
-              </Route>
-              <Route exact path="/login">
-                <LoginPage />
-              </Route>
-              <Private exact path="/favorites">
-                <SecretPage />
-              </Private>
-              <Route exact path="/reproducer">
-                <Reproducer />
-              </Route>
-              <Route path="*">
-                <NotFound />
-              </Route>
-            </Switch>
-          </Layout>
+          <VideoSelectedContext.Provider
+            value={({ videoId: selectedVideoId }, { setVideoIdFn: selectedVideoFn })}
+          >
+            <Layout>
+              <Navbar onQuery={queryFn} />
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route exact path="/login">
+                  <LoginPage />
+                </Route>
+                <Private exact path="/favorites">
+                  <SecretPage />
+                </Private>
+                <Route exact path="/reproducer">
+                  <Reproducer />
+                </Route>
+                <Route path="*">
+                  <NotFound />
+                </Route>
+              </Switch>
+            </Layout>
+          </VideoSelectedContext.Provider>
         </VideoSearchContext.Provider>
       </AuthProvider>
     </BrowserRouter>

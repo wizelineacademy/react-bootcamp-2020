@@ -1,5 +1,5 @@
 // import React, { useEffect, useContext} from 'react';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../providers/Auth';
@@ -11,6 +11,8 @@ import {
   ActionArea,
 } from './VideoReproducer.style';
 import { SecondaryButton } from '../../styledComponents';
+
+import VideoSelectedContext from '../../state/VideoSelectedContext';
 
 import './VideoReproducer.style.css';
 
@@ -26,6 +28,7 @@ function getVideoID(search) {
   const videoId = idRegex.exec(search);
   return videoId[1];
 }
+
 function sliceDate(strDate) {
   return strDate.slice(0, 10);
 }
@@ -58,11 +61,12 @@ function VideoReproducer() {
   //   }, [channelId]);
   // --- End of TODO ---
   const { authenticated } = useAuth();
+  const { setVideoIdFn } = useContext(VideoSelectedContext);
   // const [videoInformation, setVideoInformation] = React.useState({});
   const history = useHistory();
   const videoIdParam = history.location.search;
   const videoId = getVideoID(videoIdParam);
-
+  setVideoIdFn(videoId);
   // const { videoSelected, isVideoRequestSuccessful, isVideoLoading } = useYoutubeVideo(
   //   videoId
   // );
