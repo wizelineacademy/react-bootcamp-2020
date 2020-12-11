@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { InputBase, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -6,13 +6,13 @@ import { useSearch } from '../../providers/Search';
 import './SearchBar.styles.css';
 
 export default function SearchBar() {
+  const [searchValue, setSearchValue] = useState('');
   const { setQuery } = useSearch();
   const history = useHistory();
 
   const searchVideo = () => {
-    const q = document.getElementById('searchInput').value;
-    setQuery(q);
-    history.push(`/?q=${q}`);
+    setQuery(searchValue);
+    history.push(`/?q=${searchValue}`);
   };
 
   return (
@@ -22,8 +22,10 @@ export default function SearchBar() {
         className="search-input"
         placeholder="Search…"
         inputProps={{ 'aria-label': 'search video' }}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
+        value={searchValue}
+        onChange={(event) => setSearchValue(event.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
             searchVideo();
           }
         }}

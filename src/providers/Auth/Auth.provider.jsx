@@ -6,7 +6,7 @@ const UserContext = React.createContext(null);
 function useAuth() {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error(`Can't use "useAuth" without an AuthContext!`);
+    throw new Error(`Can't use "useAuth" without an AuthProvider!`);
   }
   return context;
 }

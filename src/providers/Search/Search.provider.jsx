@@ -5,7 +5,7 @@ const SearchContext = React.createContext(null);
 function useSearch() {
   const context = useContext(SearchContext);
   if (!context) {
-    throw new Error(`Can't use "useSearch" without an SearchContext!`);
+    throw new Error(`Can't use "useSearch" without a SearchProvider!`);
   }
   return context;
 }

@@ -17,7 +17,7 @@
     "request": "^2.88.2"
   },
   "scripts": {
-    "start": "node express-server/.",
+    "start": "yarn build && node express-server/.",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

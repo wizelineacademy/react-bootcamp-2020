@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Paper, Divider, Button, Link } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { Grid, Paper, Divider, Button } from '@material-ui/core';
 import './VideoCard.styles.css';
 
 export default function VideoCard({ video }) {
@@ -14,9 +15,7 @@ export default function VideoCard({ video }) {
         />
         <Divider />
         <div className="paperTitle">
-          <Link href={`/watch/${id.videoId}`} target="_self" rel="noopener noreferrer">
-            {snippet.title}
-          </Link>
+          <Link to={`/watch/${id.videoId}`}>{snippet.title}</Link>
         </div>
         <Button variant="contained" color="primary">
           ▶ Watch
