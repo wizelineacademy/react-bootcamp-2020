@@ -109,6 +109,8 @@ const RelatedVideos = styled.div`
 
   @media (max-width: 1200px) {
     grid-column: 1 / 2;
+    padding: 10px;
+    justify-items: center;
   }
 `
 

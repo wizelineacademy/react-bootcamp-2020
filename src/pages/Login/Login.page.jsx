@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import styles from './Login.module.css';
+import { LoginPage, LoginContainer, LoginTitle, LoginForm, FormRow, FormLabel, FormInput, FormButton } from './Login.template'
 import { useAuth } from '../../providers/Auth';
 
 const Login = () => {
@@ -37,14 +38,14 @@ const Login = () => {
   }, []);
 
   return (
-    <section className={styles.login_page}>
-      <div className={styles.login_container}>
-        <h2 className={styles.login_title}>Welcome Back!</h2>
-        <form onSubmit={authenticate}>
-          <div className={styles.form_row}>
-            <label htmlFor="username">
+    <LoginPage>
+      <LoginContainer>
+        <LoginTitle>Welcome Back!</LoginTitle>
+        <LoginForm onSubmit={authenticate}>
+          <FormRow>
+            <FormLabel htmlFor="username">
               Username
-              <input
+              <FormInput
                 required
                 id="username"
                 name="username"
@@ -52,26 +53,26 @@ const Login = () => {
                 onChange={handleUsername}
                 value={username}
               />
-            </label>
-          </div>
-          <div className={styles.form_row}>
-            <label htmlFor="password">
+            </FormLabel>
+          </FormRow>
+          <FormRow>
+            <FormLabel htmlFor="password">
               Password
-              <input
+              <FormInput
                 required
                 id="password"
                 type="password"
                 onChange={handlePassword}
                 value={password}
               />
-            </label>
-          </div>
-          <div className={styles.form_row}>
-            <button type="submit">Log in</button>
-          </div>
-        </form>
-      </div>
-    </section>
+            </FormLabel>
+          </FormRow>
+          <FormRow>
+            <FormButton type="submit">Log in</FormButton>
+          </FormRow>
+        </LoginForm>
+      </LoginContainer>
+    </LoginPage>
   );
 };
 

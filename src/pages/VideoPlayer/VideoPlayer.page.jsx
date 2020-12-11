@@ -57,7 +57,6 @@ const VideoPlayer = ({ match }) => {
           <>
             <PlayerContainer>
               <PlayerFrame
-                className={styles.player_frame}
                 src={video.src}
                 title={id}
                 frameBorder="0"
@@ -83,7 +82,7 @@ const VideoPlayer = ({ match }) => {
                 </VideoFavoriteIcon>
               </PlayerTextContainer>
             </PlayerContainer>
-            <RelatedVideos className={styles.related_videos}>
+            <RelatedVideos>
               <ul>
                 {relatedVideos.map((rVideo) => {
                   return <RelatedVideo video={rVideo} key={rVideo.id} />;
