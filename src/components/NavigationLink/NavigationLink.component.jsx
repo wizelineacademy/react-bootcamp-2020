@@ -16,10 +16,7 @@ const NavigationLink = ({ action, icon, children, show = true }) => {
         <NavListItem role="listitem" theme={theme} onClick={action}>
           <NavLinkContainer>{children}</NavLinkContainer>
           <NavIconContainer>
-            {icon ?
-              <FontAwesomeIcon icon={icon} />
-              : null
-            }
+            {icon ? <FontAwesomeIcon icon={icon} /> : null}
           </NavIconContainer>
         </NavListItem>
       ) : null}

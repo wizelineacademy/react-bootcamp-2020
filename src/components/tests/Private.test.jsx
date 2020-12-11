@@ -1,23 +1,21 @@
 import React, { useEffect } from 'react';
 import { render } from '@testing-library/react';
-import Favorites from '../../pages/Favorites';
 import { BrowserRouter } from 'react-router-dom';
+import Favorites from '../../pages/Favorites';
 import AuthProvider, { useAuth } from '../../providers/Auth';
 import UserData from '../../providers/AppData';
 
 import Private from '../Private';
 
-describe("Private", () => {
+describe('Private', () => {
   it('dosent renders if not auth', () => {
-
     const TestComponent = ({ children }) => {
       const { logout } = useAuth();
       useEffect(() => {
-        logout()
-      }, [logout])
-      return (<div>{children}</div>);
-
-    }
+        logout();
+      }, [logout]);
+      return <div>{children}</div>;
+    };
     const { container } = render(
       <BrowserRouter>
         <UserData>
@@ -27,7 +25,7 @@ describe("Private", () => {
                 <Favorites />
               </Private>
             </TestComponent>
-            </AuthProvider>
+          </AuthProvider>
         </UserData>
       </BrowserRouter>
     );
@@ -38,15 +36,13 @@ describe("Private", () => {
   });
 
   it('it renders if', () => {
-
     const TestComponent = ({ children }) => {
       const { login } = useAuth();
       useEffect(() => {
         login();
-      }, [login])
-      return (<div>{children}</div>);
-
-    }
+      }, [login]);
+      return <div>{children}</div>;
+    };
     const { container } = render(
       <BrowserRouter>
         <UserData>
@@ -65,5 +61,4 @@ describe("Private", () => {
 
     expect(selector).toBeTruthy();
   });
-
-})
+});
