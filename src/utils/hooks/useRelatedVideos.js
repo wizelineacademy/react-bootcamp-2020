@@ -23,7 +23,7 @@ function useRelatedVideo(baseVideoId) {
       } catch (error) {
         console.log(error);
       }
-      setIsLoading(false);
+      if (baseVideoId !== undefined) setIsLoading(false);
     }
     fetchVideos();
   }, [baseVideoId]);

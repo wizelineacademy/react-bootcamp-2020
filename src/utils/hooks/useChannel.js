@@ -25,8 +25,9 @@ function useChannel(channelId) {
         console.log(error);
       }
     }
-
-    fetchVideo();
+    if (channelId !== undefined) {
+      fetchVideo();
+    }
   }, [channelId]);
   return { channelInfo, isChannelRequestSuccessful, isChannelLoading };
 }

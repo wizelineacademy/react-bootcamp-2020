@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useHistory } from 'react-router-dom';
 
 import VideoReproducer from '../../components/VideoReproducer';
 import RelatedVideoList from '../../components/RelatedVideosList';
 import './Reproducer.style.css';
+import VideoSelectedContext from '../../state/VideoSelectedContext';
+
+function getVideoID(search) {
+  const idRegex = new RegExp(/id\s*=\s*([\S\s]+)/);
+  const videoId = idRegex.exec(search);
+  return videoId[1];
+}
 
 function Reproducer() {
-  const [reproductionVideoId, setReproductionVideo] = React.useState();
+  const { setVideoIdFn } = React.useContext(VideoSelectedContext);
 
-  const setCurrentVideo = (newVideo) => {
-    setReproductionVideo(newVideo);
-  };
+  const history = useHistory();
+  const videoIdParam = history.location.search;
+  const videoId = getVideoID(videoIdParam);
 
-  // has to receive video id of selected item
-  // has to fetch video data https://youtube.googleapis.com/youtube/v3/videos?part=player&id=hY7m5jjJ9mM
-  // pass on props from video reproducer to related video list
+  useEffect(() => {
+    function updateVideoIdContext() {
+      setVideoIdFn(videoId);
+    }
+    updateVideoIdContext();
+  }, [videoId, setVideoIdFn]);
+
   return (
     <section className="reproducer">
-      <VideoReproducer setCurrentVideo={setCurrentVideo} />
-      <RelatedVideoList videoId={reproductionVideoId} />
+      <VideoReproducer />
+      <RelatedVideoList />
     </section>
   );
 }

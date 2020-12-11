@@ -1,6 +1,5 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 
-import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../providers/Auth';
 
 import {
@@ -17,26 +16,32 @@ import './VideoReproducer.style.css';
 
 import { useYoutubeVideo } from '../../utils/hooks/useYoutubeVideo';
 
-function getVideoID(search) {
-  const idRegex = new RegExp(/id\s*=\s*([\S\s]+)/);
-  const videoId = idRegex.exec(search);
-  return videoId[1];
-}
-
 function sliceDate(strDate) {
   return strDate.slice(0, 10);
 }
 
-function VideoReproducer({ setCurrentVideo }) {
+// function VideoReproducer({ setCurrentVideo }) {
+//   const { authenticated } = useAuth();
+//   const { setVideoIdFn } = useContext(VideoSelectedContext);
+function VideoReproducer() {
+  // --- DEV mocked setup --- ///
+  // eslint-disable-next-line no-unused-vars
+  // const [videoInformation, setVideoInformation] = React.useState(
+  //   videoResultMocked.items[0]
+  // );
+  // const isVideoRequestSuccessful = true;
+  // const isVideoLoading = false;
+
+  // const videoSelected = videoResultMocked.items[0];
+  // --- End of DEV mocked setup --- ///
+
   const { authenticated } = useAuth();
-  const { setVideoIdFn } = useContext(VideoSelectedContext);
+  const { videoId } = React.useContext(VideoSelectedContext);
 
   // --- PROD code --- //
   const [videoInformation, setVideoInformation] = React.useState({});
   // --- DEV + PROD Code --- //
-  const history = useHistory();
-  const videoIdParam = history.location.search;
-  const videoId = getVideoID(videoIdParam);
+
   // --- End DEV + PROD Code --- //
   const { videoSelected, isVideoRequestSuccessful, isVideoLoading } = useYoutubeVideo(
     videoId
@@ -45,15 +50,9 @@ function VideoReproducer({ setCurrentVideo }) {
   useEffect(() => {
     function updateVideoInformation() {
       setVideoInformation(() => videoSelected);
-      setCurrentVideo(videoSelected.id);
     }
     updateVideoInformation();
-  }, [videoSelected, setCurrentVideo]);
-
-  // --- PROD code --- //
-  useEffect(() => {
-    setVideoIdFn(videoId);
-  });
+  }, [videoSelected]);
 
   const renderReproducer = () => {
     if (isVideoRequestSuccessful)

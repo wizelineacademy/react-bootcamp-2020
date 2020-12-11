@@ -14,8 +14,8 @@ function RelatedVideo({ video }) {
   const history = useHistory();
   const { setVideoIdFn } = useContext(VideoSelectedContext);
 
-  const onVideoSelected = () => {
-    // event.preventDefault();
+  const onVideoSelected = (event) => {
+    event.preventDefault();
     history.push(`/reproducer?id=${video.id.videoId}`);
     setVideoIdFn(video.id.videoId);
   };
