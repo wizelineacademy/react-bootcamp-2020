@@ -10,11 +10,13 @@ import {
 } from './Navbar.styles';
 import { PrimaryButton } from '../../styledComponents';
 import { useAuth } from '../../providers/Auth';
+import VideoSearchContext from '../../state/VideoSearchContext';
 
-function Navbar({ onQuery }) {
+function Navbar() {
   const [query, setQuery] = React.useState('');
   const history = useHistory();
   const { authenticated, logout } = useAuth();
+  const { queryFn } = React.useContext(VideoSearchContext);
 
   function deAuthenticate(event) {
     event.preventDefault();
@@ -29,7 +31,7 @@ function Navbar({ onQuery }) {
 
   const onSearchButtonClicked = (event) => {
     if (event.key === 'Enter' && query !== '') {
-      onQuery(query);
+      queryFn(query);
       history.push(`/?search=${query}`);
     }
   };

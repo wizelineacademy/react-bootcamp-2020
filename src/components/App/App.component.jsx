@@ -20,11 +20,13 @@ function App() {
   const [selectedVideoId, setSelectedVideoId] = React.useState();
 
   const queryFn = (newQuery) => {
-    setQuery(newQuery);
+    console.log(newQuery);
+    setQuery(() => newQuery);
   };
 
   const selectedVideoFn = (newId) => {
-    setSelectedVideoId(newId);
+    console.log(newId);
+    setSelectedVideoId(() => newId);
   };
 
   return (
@@ -32,10 +34,10 @@ function App() {
       <AuthProvider>
         <VideoSearchContext.Provider value={{ query, queryFn }}>
           <VideoSelectedContext.Provider
-            value={({ videoId: selectedVideoId }, { setVideoIdFn: selectedVideoFn })}
+            value={{ videoId: selectedVideoId, setVideoIdFn: selectedVideoFn }}
           >
             <Layout>
-              <Navbar onQuery={queryFn} />
+              <Navbar />
               <Switch>
                 <Route exact path="/">
                   <HomePage />

@@ -27,7 +27,7 @@ function VideoCardGrid() {
 
   // useEffect(() => {
   //   function updateQueryState(newQuery) {
-  //     setQueryFromContext(newQuery);
+  //     setQueryFromContext(() => newQuery);
   //   }
   //   updateQueryState(query);
   // }, [query]);
