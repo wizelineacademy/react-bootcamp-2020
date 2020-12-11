@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as AiIcons from 'react-icons/ai';
 import styles from './VideoPlayer.module.css';
+import { PlayerPage, PlayerContainer, PlayerFrame, PlayerTextContainer, VideoTitle, VideoDescription, VideoDate, VideoFavoriteIcon, RelatedVideos
+} from './VideoPlayer.template'
 import { findOne, getRelated } from '../../utils/api';
 import RelatedVideo from '../../components/RelatedVideo';
 import { isVideoFavorite } from '../../utils/functions';
@@ -50,11 +52,11 @@ const VideoPlayer = ({ match }) => {
 
   return (
     <>
-      <div className={styles.player_page}>
+      <PlayerPage>
         {video ? (
           <>
-            <section className={styles.player_container}>
-              <iframe
+            <PlayerContainer>
+              <PlayerFrame
                 className={styles.player_frame}
                 src={video.src}
                 title={id}
@@ -62,29 +64,35 @@ const VideoPlayer = ({ match }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-              <div className={styles.video_text_container}>
-                <h2 className={styles.video_title}>{video.title}</h2>
-                <p className={styles.video_desc}>{video.description}</p>
-                <p className={styles.video_date}>{video.publishedAt}</p>
-                <div className={styles.video_favorite_icon}>
+              <PlayerTextContainer>
+                <VideoTitle>
+                  {video.title}
+                </VideoTitle>
+                <VideoDescription>
+                  {video.description}
+                </VideoDescription>
+                <VideoDate>
+                  {video.publishedAt}
+                </VideoDate>
+                <VideoFavoriteIcon>
                   {isVideoFavorite(id) ? (
                     <AiIcons.AiFillHeart onClick={toggleFavorite} />
                   ) : (
                     <AiIcons.AiOutlineHeart onClick={toggleFavorite} />
                   )}
-                </div>
-              </div>
-            </section>
-            <section className={styles.related_videos}>
+                </VideoFavoriteIcon>
+              </PlayerTextContainer>
+            </PlayerContainer>
+            <RelatedVideos className={styles.related_videos}>
               <ul>
                 {relatedVideos.map((rVideo) => {
                   return <RelatedVideo video={rVideo} key={rVideo.id} />;
                 })}
               </ul>
-            </section>
+            </RelatedVideos>
           </>
         ) : null}
-      </div>
+      </PlayerPage>
     </>
   );
 };

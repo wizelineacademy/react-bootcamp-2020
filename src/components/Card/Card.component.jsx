@@ -6,7 +6,7 @@ import { storage } from '../../utils/storage';
 import { isVideoFavorite } from '../../utils/functions';
 import { CardWrapper, CardThumbnail, CardTextContainer, CardTitle, CardDescription, CardDate, CardFavoriteIcon } from './Card.template'
 
-function Card({ video }) {
+function Card({ video, isAuthed }) {
   const [, setAsFavorite] = useState(false);
 
   const history = useHistory();
@@ -39,7 +39,7 @@ function Card({ video }) {
         <CardDate>
           {video.publishedAt}
         </CardDate>
-        <CardFavoriteIcon className={styles.card_favorite_icon}>
+        <CardFavoriteIcon isAuthed={false}>
           {isVideoFavorite(video.id) ? (
             <AiIcons.AiFillHeart onClick={toggleFavorite} />
           ) : (

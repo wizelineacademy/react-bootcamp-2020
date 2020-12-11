@@ -3,9 +3,11 @@ import styles from './Home.module.css';
 import Card from '../../components/Card';
 import { useVideos } from '../../providers/Videos';
 import { useDebounce } from '../../utils/hooks/useDebounce';
+import { useAuth } from '../../providers/Auth';
 
 const Home = () => {
   const { videos, searchParams, handleSearchParams, toggleFavorites } = useVideos();
+  const { authenticated } = useAuth();
 
   const [inputSearch, setInputSearch] = useState('');
   const debouncedSearchTerm = useDebounce(inputSearch, 500);
@@ -42,7 +44,7 @@ const Home = () => {
       <div className={styles.card_grid}>
         {Array.isArray(videos) && videos.length > 0
           ? videos.map((video) => {
-              return <Card video={video} key={video.id} />;
+              return <Card video={video} isAuthed={authenticated} key={video.id} />;
             })
           : null}
       </div>
