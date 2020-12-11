@@ -23,7 +23,7 @@ function useYoutubeSearch(query) {
         console.log(error);
       }
     }
-    fetchVideos();
+    if (query !== undefined) fetchVideos();
   }, [query]);
   return { searchListItems, isRequestSuccessful };
 }

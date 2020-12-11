@@ -25,8 +25,7 @@ function useYoutubeVideo(videoId) {
         console.log(error);
       }
     }
-
-    fetchVideo();
+    if (videoId !== undefined) fetchVideo();
   }, [videoId]);
   return { videoSelected, isVideoRequestSuccessful, isVideoLoading };
 }
