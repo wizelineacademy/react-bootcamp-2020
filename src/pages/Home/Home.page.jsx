@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import useFetch from '../../hooks/useFetch';
-// import demoData from '../../utils/response.json';
+import Spinner from '../../components/Spinner/Spinner';
 import YoutubeListItem from '../../components/YoutubeList/YoutubeListItem';
 import GlobalContext from '../../state/GlobalContext';
 
@@ -42,42 +42,7 @@ function HomePage() {
     });
   }
 
-  return (
-    <div>
-      {loading ? (
-        <div className="loadingio-spinner-spin-u1zq1d0hnx">
-          <div className="ldio-zsz4poalow">
-            <div>
-              <div />
-            </div>
-            <div>
-              <div />
-            </div>
-            <div>
-              <div />
-            </div>
-            <div>
-              <div />
-            </div>
-            <div>
-              <div />
-            </div>
-            <div>
-              <div />
-            </div>
-            <div>
-              <div />
-            </div>
-            <div>
-              <div />
-            </div>
-          </div>
-        </div>
-      ) : (
-        list
-      )}
-    </div>
-  );
+  return <div>{loading ? <Spinner className="spinner" /> : list}</div>;
 }
 
 export default HomePage;
