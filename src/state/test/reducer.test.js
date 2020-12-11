@@ -149,6 +149,10 @@ describe('reducer cases', () => {
   });
 
   it('throws default default', () => {
-    expect(() => reducer(initialState, null)).toThrowError();
+    try {
+      reducer(initialState, { type: null });
+    } catch (e) {
+      expect(e.message).toMatch('KNOW_ACTION:');
+    }
   });
 });

@@ -1,15 +1,20 @@
-const { default: loginApi } = require('./login');
+import loginApi from './login';
 
 describe('login', () => {
-  it('logs succesfully', () => {
+  it('logs succesfully', async () => {
     const username = 'wizeline';
     const password = 'Rocks!';
-    loginApi(username, password).then((user) => expect(user.name).toBe(username));
+    const user = await loginApi(username, password);
+    expect(user.name).toEqual(username);
   });
 
-  it('fails if should', () => {
-    const username = 'wizeline';
-    const password = 'Rocks!@';
-    loginApi(username, password).catch((error) => expect(error).rejects);
+  it('fails if should', async () => {
+    try {
+      const username = 'wizeline';
+      const password = 'Rocks!@';
+      await loginApi(username, password);
+    } catch (e) {
+      expect(e.message).toBe('Username or password invalid');
+    }
   });
 });

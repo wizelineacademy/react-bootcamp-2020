@@ -11,7 +11,7 @@ const API_URL_RELATED_VIDEOS = `https://www.googleapis.com/youtube/v3/search?max
 const useRelatedVideos = (idVideo) => {
   const cache = useRef({});
   const { state, dispatch } = useAppDataContext();
-  const [fetched, setFetched] = useState(false);
+  const [fetched, setFetched] = useState();
 
   useEffect(() => {
     async function fetchRelated() {
