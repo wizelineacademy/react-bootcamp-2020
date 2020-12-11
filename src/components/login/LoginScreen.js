@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 // import { AuthContext } from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
 import { types } from '../../types/types';
@@ -7,6 +7,7 @@ import '../../styles/login.css';
 import { GlobalContext } from '../../context/GlobalContext';
 
 export const LoginScreen = ({ history }) => {
+  const inputRef = useRef();
   const [{ user, password }, handleInputChange, reset] = useForm({
     user: '',
     password: '',
@@ -17,7 +18,17 @@ export const LoginScreen = ({ history }) => {
   ];
   const { userDispatch, favoriteDispatch } = useContext(GlobalContext);
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (user === '') {
+      // eslint-disable-next-line no-alert
+      alert('Please enter a Username.');
+      reset();
+      inputRef.current.select();
+      return;
+    }
+
     const action = {
       payload: { name: user, logged: true },
       type: types.login,
@@ -35,12 +46,16 @@ export const LoginScreen = ({ history }) => {
       });
       history.replace('/');
     } else {
-      console.log(`${user} user is not registered or password is not correct.`);
+      // eslint-disable-next-line no-alert
+      alert(`User '${user}' is not registered or password is not correct.`);
       reset();
+      inputRef.current.select();
     }
   };
+
   return (
-    <div className='login'>
+    // <div className='login dark_mode dark_mode_login'>
+    <form className='login dark_mode dark_mode_login' onSubmit={handleLogin}>
       <input
         id='login_user'
         type='text'
@@ -48,6 +63,7 @@ export const LoginScreen = ({ history }) => {
         value={user}
         name='user'
         onChange={handleInputChange}
+        ref={inputRef}
       />
       <input
         id='login_password'
@@ -59,12 +75,13 @@ export const LoginScreen = ({ history }) => {
       />
       <button
         id='login_button'
-        type='button'
+        type='submit'
         className='btn btn-primary'
-        onClick={handleLogin}
+        // onClick={handleLogin}
       >
         Log In
       </button>
-    </div>
+    </form>
+    // </div>
   );
 };

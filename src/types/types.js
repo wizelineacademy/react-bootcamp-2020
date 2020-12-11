@@ -8,4 +8,6 @@ export const types = {
   addFavorite: '[favorites] add',
   deleteFavorite: '[favorites] delete',
   favoriteLogout: '[favorite] logout',
+  darkMode: '[theme] dark',
+  ligthMode: '[theme] ligth',
 };

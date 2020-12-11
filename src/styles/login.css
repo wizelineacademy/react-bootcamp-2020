@@ -3,8 +3,6 @@ body {
 }
 
 .login {
-  background-color: rgba(0, 0, 0, 0.8);
-
   display: flex;
   flex-flow: column wrap;
   justify-content: center;

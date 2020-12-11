@@ -1,3 +1,7 @@
+/* body {
+   background-color: #212121; 
+} */
+
 .navbar {
   font-family: 'Roboto', sans-serif;
   font-weight: 50;
@@ -6,15 +10,21 @@
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  background-color: #323f54;
-  color: #fff;
+  /* background-color: #212121; */
+  /* color: #fff; */
 }
 
 .nav_left {
   margin: 15px;
+  width: 150px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  /* background-color: #212121; */
 }
 .nav_right {
   margin: 15px;
+  /* background-color: #212121; */
 }
 
 span,
@@ -25,13 +35,42 @@ input {
 .link {
   color: #fff;
   text-decoration: none;
+  /* background-color: #212121; */
 }
 
 input {
-  background-color: rgba(240, 240, 240, 0.3);
+  /* background-color: #121212; */
+  outline: none;
+  width: 400px;
   padding: 5px;
   border: none;
-  border-radius: 5px;
-  color: #fff;
+  border-radius: 1.5px;
+  /* color: #e2e2e2; */
   font-size: medium;
+}
+
+input::placeholder {
+  color: #7b7b7b;
+}
+
+form {
+  background-color: transparent;
+}
+
+button {
+  /* background-color: #212121; */
+  border: none;
+  color: #3ea6ff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.dark_mode {
+  background-color: #191919;
+  color: #fff;
+}
+
+.ligth_mode {
+  background-color: #f9f9f9;
+  color: #030303;
 }

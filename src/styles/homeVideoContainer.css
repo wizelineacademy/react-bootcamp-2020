@@ -2,11 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #191919;
 }
 
 .video_container {
   margin: auto;
-  /* border: 1px solid red; */
   width: 80%;
   display: flex;
   flex-flow: row wrap;

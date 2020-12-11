@@ -7,8 +7,12 @@ import '../styles/videoScreen.css';
 export const VideoScreen = () => {
   return (
     <div className='video_screen'>
-      <VideoFrame />
-      <RelatedVideos />
+      <div className='video_frame'>
+        <VideoFrame />
+      </div>
+      <div className='related_videos'>
+        <RelatedVideos />
+      </div>
     </div>
   );
 };

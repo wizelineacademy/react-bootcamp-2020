@@ -5,16 +5,23 @@ import { useHistory, Link } from 'react-router-dom';
 import { types } from '../types/types';
 
 import '../styles/navBar.css';
+import '../styles/themes.css';
 import { useForm } from '../hooks/useForm';
 import { GlobalContext } from '../context/GlobalContext';
 
 export const NavBar = () => {
   const history = useHistory();
-  const { user, userDispatch, video, videoDispatch, favoriteDispatch } = useContext(
-    GlobalContext
-  );
+  const {
+    userDispatch,
+    video,
+    videoDispatch,
+    favoriteDispatch,
+    theme,
+    themeDispatch,
+  } = useContext(GlobalContext);
 
-  const [{ query }, handleInputChange] = useForm({ query: user.query });
+  const [{ query }, handleInputChange] = useForm({ query: video.query });
+  const { isDark } = theme;
 
   const handleLogout = () => {
     history.replace('/login');
@@ -40,28 +47,35 @@ export const NavBar = () => {
     });
     history.push('/');
   };
+
+  const handleTheme = () => {
+    themeDispatch({
+      type: isDark ? types.ligthMode : types.darkMode,
+    });
+  };
   return (
-    <div className='navbar'>
-      <div className='nav_left'>
-        <Link className='link' to='/'>
+    <div className={`navbar ${isDark ? 'dark_mode' : 'ligth_mode'}`}>
+      <div className={`nav_left ${isDark ? 'dark_mode' : 'ligth_mode'}`}>
+        <Link className={`link ${isDark ? 'dark_mode' : 'ligth_mode'}`} to='/'>
           Home
         </Link>
-        <Link className='link' to='/favorites'>
+        <Link className={`link ${isDark ? 'dark_mode' : 'ligth_mode'}`} to='/favorites'>
           Favorites
         </Link>
       </div>
       <form onSubmit={handleSubmit}>
         <input
-          placeholder='Search...'
+          placeholder='Search'
           type='text'
           value={query}
           name='query'
           onChange={handleInputChange}
         />
       </form>
-      <div className='nav_right'>
+      <div className={`nav_rigth ${isDark ? 'dark_mode' : 'ligth_mode'}`}>
+        <input type='checkbox' onClick={handleTheme} />
         <button type='button' onClick={handleLogout}>
-          Logout
+          LOG OUT
         </button>
       </div>
     </div>

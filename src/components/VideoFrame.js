@@ -36,7 +36,7 @@ export const VideoFrame = () => {
     });
   };
   return (
-    <div className='video'>
+    <div className='video_screen_container'>
       <iframe
         src={`https://www.youtube.com/embed/${video.videoId}`}
         title={video.title}

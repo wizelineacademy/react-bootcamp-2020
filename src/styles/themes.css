@@ -1,0 +1,31 @@
+.dark_mode {
+  background-color: #191919;
+  color: #fff;
+}
+.dark_mode_login {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+
+.ligth_mode {
+  background-color: #f9f9f9;
+  color: #030303;
+}
+
+.dark_mode > form > input {
+  background-color: #212121;
+  color: #e2e2e2;
+}
+.ligth_mode > form > input {
+  background-color: #ffffff;
+  color: #030303;
+}
+.dark_mode > input {
+  background-color: #212121;
+  color: #e2e2e2;
+}
+
+.ligth_mode > button {
+  background-color: #ffffff;
+  color: #3ea6ff;
+}
