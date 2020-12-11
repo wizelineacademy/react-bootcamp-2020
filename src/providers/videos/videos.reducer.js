@@ -8,7 +8,7 @@ const INITIAL_STATE = {
   videos: SummaryResult,
   videoToWatch: defaultVideo,
   isFetching: false,
-  errorMessage: undefined,
+  errorMessage: '',
 };
 
 const videosReducer = (state = INITIAL_STATE, action) => {
