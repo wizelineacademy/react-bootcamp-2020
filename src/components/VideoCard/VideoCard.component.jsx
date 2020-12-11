@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from 'styled-components';
-import { useHistory } from 'react-router';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Card,
@@ -12,15 +11,11 @@ import {
 } from './VideoCard.styles';
 
 export default function VideoCard({ video: { id, description, image, title } }) {
-  const { theme } = useContext(ThemeContext);
-  const history = useHistory();
 
-  const openVideoPage = () => {
-    history.push(`/watch/${id}`);
-  };
 
   return (
-    <Card role="listitem" theme={theme} onClick={openVideoPage}>
+    <Link  to={`/watch/${id}`}>
+    <Card role="listitem">
       <CardContainer >
         <CardImage  src={image} alt={title} />
         <CardContent>
@@ -29,5 +24,6 @@ export default function VideoCard({ video: { id, description, image, title } }) 
         </CardContent>
       </CardContainer>
     </Card>
+    </Link>
   );
 }
