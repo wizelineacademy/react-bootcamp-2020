@@ -1,8 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
-// eslint-disable-next-line
-import NotFoundPage from '../NotFound';
 import AppBar from '../../components/AppBar';
 import VideoDisplay from '../../components/VideoDisplay';
 import '../../global.css';

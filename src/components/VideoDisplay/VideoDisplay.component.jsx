@@ -1,9 +1,14 @@
-import React, { useEffect } from 'react';
-import { useYoutube } from '../../providers/Youtube';
+import React, { useEffect, useState } from 'react';
+import { searchVideoById } from '../../api';
 import './VideoDisplay.styles.css';
 
 export default function VideoDisplay({ videoId }) {
-  const { video, getVideo } = useYoutube();
+  const [video, setVideo] = useState(null);
+
+  const getVideo = async () => {
+    const result = await searchVideoById(videoId);
+    setVideo(result);
+  };
 
   useEffect(() => {
     getVideo(videoId);
@@ -11,7 +16,7 @@ export default function VideoDisplay({ videoId }) {
   }, []);
 
   if (!video) {
-    return <h1>Loading</h1>;
+    return <h1>Loading!</h1>;
   }
 
   return (

@@ -1,34 +1,27 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { INITIAL_QUERY } from '../../constants';
+import React, { useEffect, useState } from 'react';
+import { searchVideos } from '../../api';
 import { useSearch } from '../../providers/Search';
-import { useYoutube } from '../../providers/Youtube';
 import AppBar from '../../components/AppBar';
 import VideoGrid from '../../components/VideoGrid';
 
-function useParams() {
-  return new URLSearchParams(useLocation().search);
-}
-
 export default function HomePage() {
-  const params = useParams();
-  const { searchVideos } = useYoutube();
   const { query } = useSearch();
+  const [videos, setVideos] = useState([]);
+
+  const getVideos = async () => {
+    const results = await searchVideos(query);
+    setVideos(results);
+  };
 
   useEffect(() => {
-    let search = params.get('q');
-    if (!search) {
-      search = INITIAL_QUERY;
-    }
-
-    searchVideos(search);
+    getVideos();
     // eslint-disable-next-line
   }, [query]);
 
   return (
     <>
       <AppBar />
-      <VideoGrid />
+      <VideoGrid videos={videos} />
     </>
   );
 }

@@ -5,8 +5,8 @@ const { videos } = require('./videos');
 
 const BUILD_PATH = path.join(`${__dirname}/../build/`);
 const API_KEY = process.env.API_KEY || 'MOCK';
-const port = process.env.PORT || 3001;
 const API_URL = `https://youtube.googleapis.com/youtube/v3/search/?key=${API_KEY}&type=video&part=snippet&maxResults=10`;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 // Serve the static files from the React app
@@ -36,6 +36,6 @@ app.get('*', (req, res) => {
   res.sendFile(`${BUILD_PATH}index.html`);
 });
 
-app.listen(port);
+app.listen(PORT);
 
-console.log(`App running on http://localhost:${port}/`);
+console.log(`App running on http://localhost:${PORT}/`);

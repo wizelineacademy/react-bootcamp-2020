@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { INITIAL_QUERY } from '../../constants';
 
 const SearchContext = React.createContext(null);
 
@@ -11,7 +12,7 @@ function useSearch() {
 }
 
 function SearchProvider({ children }) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(INITIAL_QUERY);
 
   return (
     <SearchContext.Provider value={{ query, setQuery }}>
