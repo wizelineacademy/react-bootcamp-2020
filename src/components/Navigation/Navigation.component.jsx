@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from 'styled-components';
+import React from 'react';
 import { faHome, faStar, faKey } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router';
 import { NavigationBlock } from './Navigation.styles';
@@ -11,12 +10,11 @@ import actions from '../../state/actions';
 
 const Navigation = () => {
   const { state, dispatch } = useAppDataContext();
-  const theme = useContext(ThemeContext);
   const { authenticated, logout } = useAuth();
   const history = useHistory();
 
   return (
-    <NavigationBlock theme={theme} show={state.navigationOpen}>
+    <NavigationBlock  show={state.navigationOpen}>
       <ProfileInformation />
       <ul className="navlist">
         <NavigationLink action={() => history.push('/')} icon={faHome}>
