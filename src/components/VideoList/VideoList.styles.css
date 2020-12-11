@@ -1,5 +1,0 @@
-.videoList__container {
-  display: grid;
-  grid-template-rows: auto;
-  row-gap: 15px;
-}

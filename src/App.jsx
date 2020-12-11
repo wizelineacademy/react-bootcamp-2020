@@ -25,6 +25,9 @@ import { storage } from './utils/storage';
 import { FAVORITES_LIST, FAVORITES_ID, DARK_MODE } from './utils/constants';
 
 const App = () => {
+  //Local Storage
+  let favoritesId = storage.get(FAVORITES_ID);
+
   //Theme Context States
   const [light, setLight] = useState(!storage.get(DARK_MODE));
   // Video Context States
@@ -32,6 +35,7 @@ const App = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [id, setId] = useState('');
+  const [isFav, setIsFav] = useState(favoritesId[`${id}`]);
   // Login Context States
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -107,6 +111,8 @@ const App = () => {
                 setSelectedVideo,
                 id,
                 setId,
+                isFav,
+                setIsFav,
                 onVideoSelect,
                 handleHitEnter,
                 handleOnChange,
