@@ -1,19 +1,15 @@
 import React, { useContext } from "react";
 import { Link, Route, Redirect } from "react-router-dom";
-import ListVideoContainer from "../../components/listVideos/ListVideos";
+import ListVideos from "../../components/listVideos/ListVideos";
 import VideoContext from "../../providers/VideoContext";
 import youtubeApi from "../../utils/Youtube";
 
 const Home = () => {
-  const { videoMetaInfo } = useContext(VideoContext);
+  const { videoMetaInfo, changinggSetChangingg, setFavoritesFlag, setVideoMetaInfo, userSession } = useContext(VideoContext);
   const videosLocal = videoMetaInfo;
-  const { changinggSetChangingg } = useContext(VideoContext);
-  const { setFavoritesFlag } = useContext(VideoContext);
-  const { setVideoMetaInfo } = useContext(VideoContext);
-  const { userSession } = useContext(VideoContext);
 
-  const VideoTendencies = async () => {
-    console.log("do request with params FORMLOIn");
+  /*const VideoTendencies = async () => {
+    console.log("do request with params HOME");
     const params = {
       q: ""
     };
@@ -36,18 +32,18 @@ const Home = () => {
 
   (() => {
     if (videosLocal.length < 1) {
-      //console.log("Hola HOME", videosLocal);
+      console.log("Hola HOME", videosLocal);
       //console.log("Hola HOME", videosLocal.length);
       VideoTendencies();
     } else {
       //console.log("Videos meta info HOME", videoMetaInfo);
     }
   })();
-
+*/
   return (
     <div>
       <Link to="/reproductorPlayer">
-        <ListVideoContainer />
+        <ListVideos />
       </Link>
 
       <Route

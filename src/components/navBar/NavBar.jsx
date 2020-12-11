@@ -9,13 +9,10 @@ import LogOut from "../logOut/LogOut";
 import Favorites from "../favorites/Favorites";
 import youtubeApi from "../../utils/Youtube";
 const NavBar = () => {
-  const { userSession } = useContext(VideoContext);
-  const { changinggSetChangingg } = useContext(VideoContext);
-  const { setFavoritesFlag } = useContext(VideoContext);
-  const { setVideoMetaInfo } = useContext(VideoContext);
-
+  const { userSession, changinggSetChangingg, setFavoritesFlag, setVideoMetaInfo } = useContext(VideoContext);
+ 
   const videoTendencies = async () => {
-    //console.log("do request with params NAVBAR YOUTUBE");
+    
     const params = {
       q: ""
     };

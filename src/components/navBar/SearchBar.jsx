@@ -4,12 +4,12 @@ import VideoContext from "../../providers/VideoContext";
 import "../styles/SearchBar.css";
 const SearchBar = () => {
   const [inputword, setInputWord] = useState("");
-  const { setVideoMetaInfo } = useContext(VideoContext);
-  const { changinggSetChangingg } = useContext(VideoContext);
-  const { setFavoritesFlag } = useContext(VideoContext);
+  const { setVideoMetaInfo,changinggSetChangingg,setFavoritesFlag } = useContext(VideoContext);
 
   const onSearch = async (e) => {
-    console.log("do request with params", inputword);
+    
+    changinggSetChangingg(false);
+    setFavoritesFlag(false);
 
     const params = {
       q: inputword
@@ -19,8 +19,6 @@ const SearchBar = () => {
       params
     });
 
-    changinggSetChangingg(false);
-    setFavoritesFlag(false);
 
     if (
       varResponse &&
@@ -29,7 +27,7 @@ const SearchBar = () => {
     ) {
       setVideoMetaInfo(varResponse.data.items);
     }
-    console.log("Response", varResponse);
+   
     setInputWord("");
     e.stopPropagation();
     e.preventDefault();
@@ -48,8 +46,9 @@ const SearchBar = () => {
         id="video"
         type="text"
         placeholder="Search Video..."
+        role="inputSearch"
       />
-      <button className="button" type="button" onClick={onSearch}>
+      <button className="button" type="button" onClick={onSearch} role="boton" >
         {" "}
         Search
       </button>

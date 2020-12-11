@@ -1,14 +1,11 @@
 import React, { useContext } from "react";
-import VideoCard from "./VideoCard";
+import VideoCard from "../videoCard/VideoCard";
 import VideoContext from "../../providers/VideoContext";
-import "../styles/styleGrids.css";
+import "./ListVideos.style.css";
 
 const ListVideoContainer = (props) => {
-  const { videoMetaInfo } = useContext(VideoContext);
-  const { changingg } = useContext(VideoContext);
-  const { favoritesFlag } = useContext(VideoContext);
+  const { videoMetaInfo, changingg, favoritesFlag, favoritesVideosArrayUser} = useContext(VideoContext);
   const currentVideos = videoMetaInfo;
-  const { favoritesVideosArrayUser } = useContext(VideoContext);
 
   return favoritesFlag ? (
     <div className={changingg ? "gri-container2two" : "grid-container"}>
@@ -16,7 +13,7 @@ const ListVideoContainer = (props) => {
         favoritesVideosArrayUser.map((videoitem) => {
           return (
             <VideoCard
-              key={videoitem.videoId}
+              key={ videoitem.videoId }
               name={videoitem.videoName}
               imagen={videoitem.imageVideo}
               published={videoitem.published.substring(0, 10)}

@@ -5,8 +5,8 @@ import "../styles/styleGrids.css";
 import * as Style2 from "../styles/StyleVideoContainer";
 import ButtonFavorites from "../buttonFavorites/ButtonFavorites";
 const VideoContainer = () => {
-  const { videoPropperties } = useContext(VideoContext);
-  const { userSession } = useContext(VideoContext);
+  const { userSession, videoPropperties } = useContext(VideoContext);
+  
 
   return (
     <div className="grid-item1one">

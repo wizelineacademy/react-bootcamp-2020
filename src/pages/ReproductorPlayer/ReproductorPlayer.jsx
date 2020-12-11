@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
-import ListVideoContainer from "../../components/listVideos/ListVideos";
+import ListVideos from "../../components/listVideos/ListVideos";
 import VideoContainer from "../../components/mainContainer/VideoContainer";
 import { Route, Redirect } from "react-router-dom";
 import VideoContext from "../../providers/VideoContext";
 import "../../components/styles/styleGrids.css";
 const ReproductorPlayer = () => {
-  const { userSession } = useContext(VideoContext);
-  const { changingg } = useContext(VideoContext);
-
+  const { userSession,changingg } = useContext(VideoContext);
+  
   return changingg ? (
     <div className="grid-container2">
       <VideoContainer />
-      <ListVideoContainer />
+      <ListVideos />
       <Route
         render={() =>
           userSession.loggedIn ? (

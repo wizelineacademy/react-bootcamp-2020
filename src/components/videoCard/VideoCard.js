@@ -24,8 +24,8 @@ const VideoCard = (props) => {
   };
 
   return (
-    <div className={changingg ? "" : "grid-item2"}>
-      <div
+    <div className={changingg ? "noClass" : "grid-item2"}>
+      <div role='onclick'
         className="container"
         onClick={() => {
           setVideoPropperties();
@@ -35,7 +35,7 @@ const VideoCard = (props) => {
           <div className="face face1">
             <div className="content">
               <div className="icon">
-                <img src={props.imagen} alt={props.imagen} />
+                <img src={props.imagen} alt={props.name} />
               </div>
             </div>
           </div>

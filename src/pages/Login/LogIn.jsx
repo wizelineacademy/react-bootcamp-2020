@@ -3,7 +3,7 @@ import FormLogIn from "../../components/logIn/FormLogIn";
 
 const LogIn = () => {
   return (
-    <div>
+    <div data-testid="loginn">
       <FormLogIn />
     </div>
   );
