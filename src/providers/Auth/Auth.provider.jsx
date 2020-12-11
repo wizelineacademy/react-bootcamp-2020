@@ -29,6 +29,20 @@ function AuthProvider({ children }) {
     setUser(null);
   }, []);
 
+  const addFavorite = (videoId) => {
+    if (!user.favorites.includes(videoId)) {
+      const newUser = { ...user, favorites: [...user.favorites, videoId] };
+      setUser(newUser);
+      sessionStorage.setItem('session', JSON.stringify(newUser));
+    }
+  };
+
+  const delFavorite = (videoId) => {
+    const newUser = { ...user, favorites: user.favorites.filter((id) => id !== videoId) };
+    setUser(newUser);
+    sessionStorage.setItem('session', JSON.stringify(newUser));
+  };
+
   useEffect(() => {
     const session = sessionStorage.getItem('session');
     if (session) {
@@ -37,7 +51,7 @@ function AuthProvider({ children }) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout, addFavorite, delFavorite }}>
       {children}
     </UserContext.Provider>
   );
