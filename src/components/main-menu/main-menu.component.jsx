@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
-
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -11,10 +10,14 @@ import HomeIcon from '@material-ui/icons/Home';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GradeIcon from '@material-ui/icons/Grade';
 
+import { AuthContext } from '../../providers/auth';
+
 import { MainMenuIcon, Bottom, MainMenuList } from './main-menu.styles';
 
 const MainMenu = ({ history }) => {
   const [mainMenuState, setMainMenuState] = useState(false);
+  const { authState } = useContext(AuthContext);
+  const { currentAuth } = authState;
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -37,12 +40,14 @@ const MainMenu = ({ history }) => {
           </ListItemIcon>
           <ListItemText primary='Home' />
         </ListItem>
-        <ListItem button key='Favorites' onClick={() => history.push(`/favorites`)}>
-          <ListItemIcon>
-            <GradeIcon />
-          </ListItemIcon>
-          <ListItemText primary='Favorites' />
-        </ListItem>
+        {currentAuth ? (
+          <ListItem button key='Favorites' onClick={() => history.push(`/favorites`)}>
+            <ListItemIcon>
+              <GradeIcon />
+            </ListItemIcon>
+            <ListItemText primary='Favorites' />
+          </ListItem>
+        ) : null}
       </List>
       <Bottom>
         <Divider />

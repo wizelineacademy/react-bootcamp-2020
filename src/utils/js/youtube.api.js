@@ -49,6 +49,12 @@ const fetchBySearchInput = (searchInput, onSucces, onError, onComplete) => {
     .then(onComplete);
 };
 
+const decodeHTML = (string) => {
+  const txt = document.createElement('textarea');
+  txt.innerHTML = string;
+  return txt.value;
+};
+
 const fetchVideosByIds = (ids = [], onSucces, onError, onComplete) => {
   const stringIds = ids.join();
   return axios
@@ -102,7 +108,7 @@ export const formatVideosData = (searchData = [], videoData = [], channelData = 
         const channel = channelDictionary[channelId];
 
         image = channel.snippet.thumbnails.medium.url;
-        description = channel.snippet.localized.description;
+        description = decodeHTML(channel.snippet.localized.description);
         subscribers = channel.statistics.subscriberCount;
       }
 
@@ -111,7 +117,7 @@ export const formatVideosData = (searchData = [], videoData = [], channelData = 
         videoId,
         etag: sdItem.etag,
         image: sdItem.snippet.thumbnails.medium.url,
-        title: sdItem.snippet.title,
+        title: decodeHTML(sdItem.snippet.title),
         channelTitle: sdItem.snippet.channelTitle,
         timestamp: formatDateDifference(
           getDateDiff(new Date(sdItem.snippet.publishedAt))

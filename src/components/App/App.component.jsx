@@ -53,15 +53,19 @@ const App = () => {
       <AppMainContainer>
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route path='/settings' component={SettingsPage} />
-          <Route exact path='/favorites' component={FavoritesPage} />
           <Route path='/wv/:videoId' component={WatchVideoPage} />
+          <Route path='/settings' component={SettingsPage} />
+          <Route exact path='/signup' component={SignUpPage} />
+          <Route
+            exact
+            path='/favorites'
+            render={() => (currentAuth ? <FavoritesPage /> : <Redirect to='/' />)}
+          />
           <Route
             exact
             path='/login'
             render={() => (currentAuth ? <Redirect to='/' /> : <LogInPage />)}
           />
-          <Route exact path='/signup' component={SignUpPage} />
         </Switch>
       </AppMainContainer>
     </AppContainer>

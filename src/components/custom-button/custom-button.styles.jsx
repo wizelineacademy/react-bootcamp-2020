@@ -46,10 +46,6 @@ export const CustomButtonContainer = styled.button`
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   border: 1px solid;
   border-radius: 6px;
   text-align: center;
