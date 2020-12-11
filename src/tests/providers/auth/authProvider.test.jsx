@@ -1,18 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { HashRouter } from 'react-router-dom';
-import { render, within, fireEvent, screen } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
-import { useAuth } from '../../../providers/Auth/Auth.provider';
-
-import AuthProvider from '../../../providers/Auth/Auth.provider';
+import { render } from '@testing-library/react';
 
 describe('Auth provider', () => {
-  it('sets  ', () => {
+  it('Throws an error when not using auth provider', () => {
     const TestComponent = () => {
-      const { login } = useAuth();
       return (
         <>
-          <h1 data-testid="value">{searchTerm}</h1>
+          <h1 data-testid="value">{}</h1>
         </>
       );
     };

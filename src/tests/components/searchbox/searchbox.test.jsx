@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import SearchBox from '../../../components/SearchBox/SearchBox.component';
 import VideoProvider from '../../../providers/Video/Video.provider';
-import { act } from 'react-dom/test-utils';
 
 describe('Searchbox component', () => {
   it('Displays the searchbox component', () => {

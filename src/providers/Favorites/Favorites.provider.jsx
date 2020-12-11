@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   getFavoritesVideos,
@@ -11,11 +11,6 @@ const FavoritesContext = React.createContext();
 
 function FavoritesProvider({ children }) {
   const [favoriteVideos, setFavoriteVideos] = useState([]);
-
-  const fetchFavorites = useCallback(() => {
-    const fetchedVideos = getFavoritesVideos();
-    setFavoriteVideos(fetchedVideos);
-  }, []);
 
   const removeFromFavoritesProvider = (video) => {
     removeFromFavorites(video);
@@ -45,7 +40,6 @@ function FavoritesProvider({ children }) {
     <FavoritesContext.Provider
       value={{
         favoriteVideos,
-        fetchFavorites,
         removeFromFavoritesProvider,
         addToFavoritesProvider,
         isFavoriteVideoProvider,
