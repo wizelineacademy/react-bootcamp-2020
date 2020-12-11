@@ -1,7 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
 
-const API_KEY = 'AIzaSyAcgmsZB2M27kvgZju-qtHhKiziG5dzYf8'; // benoit.borrel@gmail.com
-// const API_KEY = 'AIzaSyBfCTxfs9EgNkuHKRjful5zvSVVNymV34g'; // benoit@borrel.com
 const API_URL = 'https://www.googleapis.com/youtube/v3/';
 const API_PARAM_PART = 'snippet';
 const API_PARAM_TYPE = 'video';
@@ -14,7 +12,7 @@ export default function useYouTubeDataAPI(resource, method, parameters) {
   function getFetchUrl(aResource, aMethod, aParameters) {
     const url = new URL(API_URL + aResource);
     const urlSearchParams = new URLSearchParams({
-      key: API_KEY,
+      key: process.env.REACT_APP_YOUTUBE_DATA_API_KEY,
       part: API_PARAM_PART,
       type: API_PARAM_TYPE,
     });
