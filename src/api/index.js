@@ -22,9 +22,6 @@ export async function searchVideoById(videoId) {
 }
 
 export async function searchVideosByIds(videoIds) {
-  const query = videoIds.join(',');
-
-  const videos = await fetchItems(query, 'videos');
-
+  const videos = await fetchItems(videoIds.join(','), 'videos');
   return videos;
 }
