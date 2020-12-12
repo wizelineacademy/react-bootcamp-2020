@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 
-import Button from 'react-bootstrap/Button';
-
 import useFormInput from '../../utils/hooks/useFormInput';
 import { useAuth } from '../../providers/Auth';
 
@@ -19,6 +17,7 @@ export default function LoginForm() {
   function authenticate(event) {
     event.preventDefault();
     login(username, password);
+    // @todo check for login error
     // if (user && !error) {
     history.goBack();
     // }
@@ -51,9 +50,7 @@ export default function LoginForm() {
           Please provide a valid password.
         </div>
       </div>
-      <Button type="submit" className="btn-primary btn-lg">
-        login
-      </Button>
+      <input type="submit" value="login" className="btn-primary btn-lg" />
     </form>
   );
 }
