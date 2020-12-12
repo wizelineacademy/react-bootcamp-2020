@@ -127,4 +127,42 @@ describe('Local theme provider', () => {
     });
     expect(getByText('default')).toBeInTheDocument();
   });
+
+  it('Try to assign a invalid reducer action', () => {
+    const TestComponent = () => {
+      const { themeState, themeDispatch } = useContext(ThemeContext);
+
+      const handleChangeTheme = () => {
+        themeDispatch({
+          type: 'INVALID_ACTION',
+          payload: 'dark',
+        });
+      };
+
+      return (
+        <>
+          <p data-testid='themeName'>{`${themeState.themeName}`}</p>
+          <button
+            type='button'
+            data-testid='changeThemeButton'
+            onClick={handleChangeTheme}
+          ></button>
+        </>
+      );
+    };
+
+    const { getByTestId } = render(
+      <ThemeProvider>
+        <TestComponent />
+      </ThemeProvider>
+    );
+
+    const { getByText } = within(getByTestId('themeName'));
+    expect(getByText('default')).toBeInTheDocument();
+    const changeThemeButton = screen.getByTestId('changeThemeButton');
+    act(() => {
+      fireEvent.click(changeThemeButton);
+    });
+    expect(getByText('default')).toBeInTheDocument();
+  });
 });

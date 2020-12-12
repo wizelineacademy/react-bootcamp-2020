@@ -271,4 +271,67 @@ describe('Videos provider base paths', () => {
     });
     expect(getByText('Error')).toBeInTheDocument();
   });
+
+  it('Try to assign a invalid reducer action', () => {
+    const TestComponent = () => {
+      const { videosState, videosDispatch } = useContext(VideosContext);
+      const { searchQuery, videos, videoToWatch, isFetching, errorMessage } = videosState;
+
+      const handleChangeSearchQuery = () => {
+        videosDispatch({
+          type: 'INVALID_ACTION',
+          payload: 'Wizeline',
+        });
+      };
+
+      return (
+        <>
+          <p data-testid='searchQueryId'>{`${searchQuery}`}</p>
+          <>
+            {Object.keys(videos).map((videoKey) => {
+              const { etag, videoId } = videos[videoKey];
+              return <p data-testid='video-id' key={etag}>{`${videoId}`}</p>;
+            })}
+          </>
+          <p data-testid='videoToWatchId'>{`${videoToWatch.videoId}`}</p>
+          <p data-testid='isFetchingId'>{`${isFetching}`}</p>
+          <p data-testid='errorMessageId'>{`${errorMessage}`}</p>
+          <button
+            type='button'
+            data-testid='changeQueryButton'
+            onClick={handleChangeSearchQuery}
+          ></button>
+        </>
+      );
+    };
+
+    const { getByTestId } = render(
+      <VideosProvider>
+        <TestComponent />
+      </VideosProvider>
+    );
+
+    let searchQueryText = within(getByTestId('searchQueryId')).queryByText('');
+    expect(searchQueryText).toBeInTheDocument();
+
+    const videosIdObjects = screen.queryAllByTestId('video-id');
+    expect(videosIdObjects).toHaveLength(20);
+
+    const videoToWatchText = within(getByTestId('videoToWatchId')).queryByText('');
+    expect(videoToWatchText).not.toBeInTheDocument();
+
+    const isFetchingText = within(getByTestId('isFetchingId')).queryByText('false');
+    expect(isFetchingText).toBeInTheDocument();
+
+    const errorMessageText = within(getByTestId('errorMessageId')).queryByText('');
+    expect(errorMessageText).toBeInTheDocument();
+
+    const changeQueryButton = screen.getByTestId('changeQueryButton');
+    act(() => {
+      fireEvent.click(changeQueryButton);
+    });
+
+    searchQueryText = within(getByTestId('searchQueryId')).queryByText('');
+    expect(searchQueryText).toBeInTheDocument();
+  });
 });

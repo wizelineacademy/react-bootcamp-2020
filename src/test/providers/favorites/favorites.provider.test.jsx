@@ -282,4 +282,54 @@ describe('Favorites provider', () => {
     videosIdObjects = screen.queryAllByTestId('video-id');
     expect(videosIdObjects).toHaveLength(initialStateLength);
   });
+
+  it('Try to assign a invalid reducer action', () => {
+    const TestComponent = () => {
+      const { favoritesState, favoritesDispatch } = useContext(FavoritesContext);
+      const { videos } = favoritesState;
+
+      const handleSetFavoritesVideos = () => {
+        favoritesDispatch({
+          type: 'INVALID_ACTION',
+          payload: videosMock,
+        });
+      };
+
+      return (
+        <>
+          <>
+            {Object.keys(videos).map((videoKey) => {
+              const { etag, videoId } = videos[videoKey];
+              return <p data-testid='video-id' key={etag}>{`${videoId}`}</p>;
+            })}
+          </>
+          <button
+            type='button'
+            data-testid='setFavoritesVideosButton'
+            onClick={handleSetFavoritesVideos}
+          ></button>
+        </>
+      );
+    };
+
+    const { getByTestId } = render(
+      <FavoritesProvider>
+        <TestComponent />
+      </FavoritesProvider>
+    );
+
+    const INITIAL_STATE = JSON.parse(localStorage.getItem('localFavorites')) || {
+      videos: {},
+    };
+    const initialStateLength = Object.keys(INITIAL_STATE.videos).length;
+
+    let videosIdObjects = screen.queryAllByTestId('video-id');
+    expect(videosIdObjects).toHaveLength(initialStateLength);
+    const setFavoritesVideosButton = screen.getByTestId('setFavoritesVideosButton');
+    act(() => {
+      fireEvent.click(setFavoritesVideosButton);
+    });
+    videosIdObjects = screen.queryAllByTestId('video-id');
+    expect(videosIdObjects).toHaveLength(initialStateLength);
+  });
 });
