@@ -38,7 +38,7 @@ const VideoDate = styled.p`
   grid-row: 2 / 3;
   font-size: calc(var(--font-size) * 0.8);
 
-  &::before {
+  &::before{
     content: 'Uploaded ';
   }
 `

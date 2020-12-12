@@ -21,5 +21,5 @@ it('Card renders title', () => {
 
 it(`Card's image has alt attribute`, () => {
   render(<Card video={mockVideo} />);
-  expect(screen.getByRole('img')).toHaveAttribute('alt');
+  expect(screen.getByAltText('THE BABY OTTERS ARE ALL GROWN UP !!')).toBeInTheDocument()
 });
