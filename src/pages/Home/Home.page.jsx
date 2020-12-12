@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HomeSearch, HomeSearchInput, HomeGrid } from './Home.template'
+import { HomeSearch, HomeSearchInput, HomeGrid } from './Home.template';
 import Card from '../../components/Card';
 import { useVideos } from '../../providers/Videos';
 import { useDebounce } from '../../utils/hooks/useDebounce';

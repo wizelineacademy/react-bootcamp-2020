@@ -1,6 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { VideoContainer, VideoTitle, VideoThumbnail, VideoDate } from './RelatedVideo.template'
+import {
+  VideoContainer,
+  VideoTitle,
+  VideoThumbnail,
+  VideoDate,
+} from './RelatedVideo.template';
 
 function RelatedVideo({ video }) {
   const history = useHistory();
@@ -11,15 +16,9 @@ function RelatedVideo({ video }) {
 
   return (
     <VideoContainer>
-      <VideoThumbnail
-        onClick={goToVideo}
-        src={video.thumbnail}
-        alt={video.title}
-      />
-      <VideoTitle onClick={goToVideo}>
-        {video.title}
-      </VideoTitle>
-      <VideoDate >{video.publishedAt}</VideoDate>
+      <VideoThumbnail onClick={goToVideo} src={video.thumbnail} alt={video.title} />
+      <VideoTitle onClick={goToVideo}>{video.title}</VideoTitle>
+      <VideoDate>{video.publishedAt}</VideoDate>
     </VideoContainer>
   );
 }

@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import * as AiIcons from 'react-icons/ai';
-import { PlayerPage, PlayerContainer, PlayerFrame, PlayerTextContainer, VideoTitle, VideoDescription, VideoDate, VideoFavoriteIcon, RelatedVideos
-} from './VideoPlayer.template'
+import {
+  PlayerPage,
+  PlayerContainer,
+  PlayerFrame,
+  PlayerTextContainer,
+  VideoTitle,
+  VideoDescription,
+  VideoDate,
+  VideoFavoriteIcon,
+  RelatedVideos,
+} from './VideoPlayer.template';
 import { findOne, getRelated } from '../../utils/api';
 import RelatedVideo from '../../components/RelatedVideo';
 import { isVideoFavorite } from '../../utils/functions';
@@ -59,15 +68,9 @@ const VideoPlayer = ({ match }) => {
                 allowFullScreen
               />
               <PlayerTextContainer>
-                <VideoTitle>
-                  {video.title}
-                </VideoTitle>
-                <VideoDescription>
-                  {video.description}
-                </VideoDescription>
-                <VideoDate>
-                  {video.publishedAt}
-                </VideoDate>
+                <VideoTitle>{video.title}</VideoTitle>
+                <VideoDescription>{video.description}</VideoDescription>
+                <VideoDate>{video.publishedAt}</VideoDate>
                 <VideoFavoriteIcon>
                   {isVideoFavorite(id) ? (
                     <AiIcons.AiFillHeart onClick={toggleFavorite} />

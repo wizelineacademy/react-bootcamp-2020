@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const LoginPage = styled.section`
   width: 100vw;
@@ -8,21 +8,21 @@ const LoginPage = styled.section`
   justify-content: center;
   align-items: center;
   background: var(--body-background);
-`
+`;
 
 const LoginContainer = styled.div`
   width: 400px;
   text-align: center;
   transform: translate(0, -30%);
-`
+`;
 
 const LoginTitle = styled.h2`
   font-size: 1.4rem;
-`
+`;
 
 const LoginForm = styled.form`
   width: 100%;
-`
+`;
 
 const FormRow = styled.div`
   width: 100%;
@@ -32,13 +32,13 @@ const FormRow = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const FormLabel = styled.label`
   padding: 0.3rem 0;
   font-size: 1.2rem;
   align-self: flex-start;
-`
+`;
 
 const FormInput = styled.input`
   height: 40px;
@@ -49,7 +49,7 @@ const FormInput = styled.input`
   border-radius: var(--border-radius);
   border: 1px solid var(--background);
   box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
-`
+`;
 
 const FormButton = styled.button`
   width: 6rem;
@@ -61,15 +61,15 @@ const FormButton = styled.button`
   border: none;
   border-radius: var(--border-radius);
   background: var(--accent-font-color);
-`
+`;
 
-export  { 
+export {
   LoginPage,
-  LoginContainer, 
-  LoginTitle, 
-  LoginForm, 
+  LoginContainer,
+  LoginTitle,
+  LoginForm,
   FormRow,
   FormLabel,
   FormInput,
-  FormButton
-}
+  FormButton,
+};

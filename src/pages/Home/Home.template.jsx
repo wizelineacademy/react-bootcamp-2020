@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const HomeSearch = styled.div`
   background-color: var(--body-background);
@@ -6,7 +6,7 @@ const HomeSearch = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-`
+`;
 
 const HomeSearchInput = styled.input`
   width: 50%;
@@ -20,15 +20,15 @@ const HomeSearchInput = styled.input`
   transition: border ease-in-out 0.1s;
   position: absolute;
 
-  &:focus{
+  &:focus {
     border-bottom: 3px solid var(--accent-font-color);
     outline: none;
   }
 
-  &:not(:placeholder-shown){
+  &:not(:placeholder-shown) {
     border-bottom: 3px solid var(--accent-font-color);
   }
-`
+`;
 
 const HomeGrid = styled.div`
   background-color: var(--body-background);
@@ -37,10 +37,6 @@ const HomeGrid = styled.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-`
+`;
 
-export {
-  HomeSearch,
-  HomeSearchInput,
-  HomeGrid
-} 
+export { HomeSearch, HomeSearchInput, HomeGrid };

@@ -3,7 +3,15 @@ import * as AiIcons from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 import { storage } from '../../utils/storage';
 import { isVideoFavorite } from '../../utils/functions';
-import { CardWrapper, CardThumbnail, CardTextContainer, CardTitle, CardDescription, CardDate, CardFavoriteIcon } from './Card.template'
+import {
+  CardWrapper,
+  CardThumbnail,
+  CardTextContainer,
+  CardTitle,
+  CardDescription,
+  CardDate,
+  CardFavoriteIcon,
+} from './Card.template';
 
 function Card({ video, isAuthed }) {
   const [, setAsFavorite] = useState(false);
@@ -32,24 +40,18 @@ function Card({ video, isAuthed }) {
         <CardTitle authed={isAuthed} onClick={goToVideo}>
           {video.title}
         </CardTitle>
-        <CardDescription>
-          {video.description}
-        </CardDescription>
-        <CardDate>
-          {video.publishedAt}
-        </CardDate>
-        {
-          isAuthed ? 
+        <CardDescription>{video.description}</CardDescription>
+        <CardDate>{video.publishedAt}</CardDate>
+        {isAuthed ? (
           <CardFavoriteIcon>
             {isVideoFavorite(video.id) ? (
               <AiIcons.AiFillHeart onClick={toggleFavorite} />
             ) : (
               <AiIcons.AiOutlineHeart onClick={toggleFavorite} />
             )}
-            </CardFavoriteIcon> :
-          null
-        }
-        </CardTextContainer>
+          </CardFavoriteIcon>
+        ) : null}
+      </CardTextContainer>
     </CardWrapper>
   );
 }

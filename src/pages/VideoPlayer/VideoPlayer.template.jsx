@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 
 const PlayerPage = styled.div`
   width: 100vw;
@@ -11,7 +11,7 @@ const PlayerPage = styled.div`
   @media (max-width: 1200px) {
     grid-template-columns: 1fr;
   }
-`
+`;
 
 const PlayerContainer = styled.section`
   grid-column: 1 / 3;
@@ -19,19 +19,19 @@ const PlayerContainer = styled.section`
   @media (max-width: 1200px) {
     grid-column: 1 / 2;
   }
-`
+`;
 
 const PlayerFrame = styled.iframe`
   width: 100%;
   height: 650px;
-`
+`;
 
 const PlayerTextContainer = styled.div`
   padding: 10px;
   display: grid;
   grid-template-columns: 90% 10%;
   grid-template-rows: auto auto 20px;
-`
+`;
 
 const VideoTitle = styled.h2`
   margin: 0;
@@ -44,7 +44,7 @@ const VideoTitle = styled.h2`
   overflow: hidden;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-`
+`;
 
 const VideoDescription = styled.p`
   margin: 0;
@@ -55,7 +55,7 @@ const VideoDescription = styled.p`
   overflow: hidden;
   grid-column: 1 / 3;
   grid-row: 2 / 3;
-`
+`;
 
 const VideoDate = styled.p`
   font-size: calc(var(--font-size) * 0.8);
@@ -65,7 +65,7 @@ const VideoDate = styled.p`
   &::before {
     content: 'Uploaded: ';
   }
-`
+`;
 
 const beat = keyframes`
   0% { transform: scale(1); }
@@ -73,7 +73,7 @@ const beat = keyframes`
   50% { transform: scale(0.8); }
   75% { transform: scale(1.2); }
   100% { transform: scale(1); }
-`
+`;
 
 const VideoFavoriteIcon = styled.div`
   position: relative;
@@ -97,7 +97,7 @@ const VideoFavoriteIcon = styled.div`
   &:hover > svg {
     animation: ${beat} 1.5s infinite;
   }
-`
+`;
 
 const RelatedVideos = styled.div`
   grid-column: 3 / 4;
@@ -112,7 +112,7 @@ const RelatedVideos = styled.div`
     padding: 10px;
     justify-items: center;
   }
-`
+`;
 
 export {
   PlayerPage,
@@ -123,5 +123,5 @@ export {
   VideoDescription,
   VideoDate,
   VideoFavoriteIcon,
-  RelatedVideos
-}
+  RelatedVideos,
+};

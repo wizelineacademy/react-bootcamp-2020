@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Header = styled.header`
   font-size: calc(var(--font-size) * 1.5);
@@ -6,7 +6,7 @@ const Header = styled.header`
   width: 100%;
   background-color: var(--body-background);
   padding: 15px;
-`
+`;
 
 const FavoritesGrid = styled.div`
   background-color: var(--body-background);
@@ -19,7 +19,7 @@ const FavoritesGrid = styled.div`
   @media (max-width: 1200px) {
     grid-template-columns: 50% 50%;
   }
-`
+`;
 
 const EmptyFavorites = styled.div`
   width: 100%;
@@ -30,6 +30,6 @@ const EmptyFavorites = styled.div`
   align-items: flex-start;
   font-size: calc(var(--font-size) * 1.5);
   background-color: var(--body-background);
-`
+`;
 
-export { Header, FavoritesGrid, EmptyFavorites }
+export { Header, FavoritesGrid, EmptyFavorites };

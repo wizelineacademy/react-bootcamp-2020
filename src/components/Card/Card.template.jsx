@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const CardWrapper = styled.div`
   border-radius: var(--border-radius);
@@ -8,14 +8,14 @@ const CardWrapper = styled.div`
   overflow: hidden;
   transition: all ease-in-out 0.3s;
   background-color: white;
-`
+`;
 
 const CardThumbnail = styled.img`
   width: 100%;
   height: auto;
   cursor: pointer;
   border-bottom: 1px solid var(--background);
-`
+`;
 
 const CardTextContainer = styled.div`
   display: grid;
@@ -24,7 +24,7 @@ const CardTextContainer = styled.div`
   column-gap: 5px;
   row-gap: 5px;
   padding: 15px;
-`
+`;
 
 const CardTitle = styled.h2`
   margin: 0;
@@ -37,19 +37,18 @@ const CardTitle = styled.h2`
   overflow: hidden;
   grid-row: 1/2;
   justify-self: start;
-  ${props => {
-    console.log(props.authed)
-    if(props.authed) {
-      return `grid-column: 1 / 2;`
-    } else {
-      return `grid-column: 1 / 3;`
+  ${(props) => {
+    console.log(props.authed);
+    if (props.authed) {
+      return `grid-column: 1 / 2;`;
     }
+    return `grid-column: 1 / 3;`;
   }}
 
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 const CardDescription = styled.p`
   margin: 0;
@@ -62,7 +61,7 @@ const CardDescription = styled.p`
   grid-row: 2/3;
   justify-self: stretch;
   text-align: justify;
-`
+`;
 
 const CardDate = styled.p`
   font-size: calc(var(--font-size) * 0.8);
@@ -70,10 +69,10 @@ const CardDate = styled.p`
   grid-row: 3/4;
   justify-self: start;
 
-  &::before{
+  &::before {
     content: 'Uploaded: ';
   }
-`
+`;
 
 const beat = keyframes`
   0% { transform: scale(1); }
@@ -81,7 +80,7 @@ const beat = keyframes`
   50% { transform: scale(0.8); }
   75% { transform: scale(1.2); }
   100% { transform: scale(1); }
-`
+`;
 
 const CardFavoriteIcon = styled.div`
   position: relative;
@@ -105,6 +104,14 @@ const CardFavoriteIcon = styled.div`
   &:hover > svg {
     animation: ${beat} 1.5s infinite;
   }
-`
+`;
 
-export { CardWrapper, CardThumbnail, CardTextContainer, CardTitle, CardDescription, CardDate, CardFavoriteIcon }
+export {
+  CardWrapper,
+  CardThumbnail,
+  CardTextContainer,
+  CardTitle,
+  CardDescription,
+  CardDate,
+  CardFavoriteIcon,
+};
