@@ -6,6 +6,4 @@ export const Menu = styled.div`
   justify-content: space-between;
 `;
 
-export const MenuItem = styled.a`
-  color: white;
-`;
+export const MenuItem = styled.a``;

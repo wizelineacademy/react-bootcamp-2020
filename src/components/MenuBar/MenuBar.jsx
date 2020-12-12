@@ -62,7 +62,7 @@ const MenuBar = () => {
         </MenuItem>
       </MenuItem>
       <MenuItem as={Link} to="/login">
-        Logout
+        Login
       </MenuItem>
     </Menu>
   );

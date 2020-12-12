@@ -14,7 +14,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 
 import { fetchYouTubeApi } from './api/utils/fetchYoutubeApi';
-import { lightTheme, darkTheme, GlobalStyles, typographyTheme } from './styles/index';
+import { lightTheme, darkTheme, GlobalStyles, typographyTheme } from './App.styles';
 import 'semantic-ui-css/semantic.min.css';
 
 import VideosContext from './context/VideosContext';
