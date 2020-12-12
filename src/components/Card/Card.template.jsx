@@ -38,7 +38,6 @@ const CardTitle = styled.h2`
   grid-row: 1/2;
   justify-self: start;
   ${(props) => {
-    console.log(props.authed);
     if (props.authed) {
       return `grid-column: 1 / 2;`;
     }
