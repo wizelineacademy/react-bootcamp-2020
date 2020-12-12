@@ -1,11 +1,10 @@
 import { API_URL } from '../constants';
 
 async function fetchItems(query, searchType = 'search') {
-  console.log('Called api');
   const url = `${API_URL}/${searchType}/${query}`;
   const response = await fetch(url);
-  const jsonResponse = await response.json();
-  return jsonResponse.items;
+  const json = await response.json();
+  return json.items;
 }
 
 export async function searchVideos(search) {
