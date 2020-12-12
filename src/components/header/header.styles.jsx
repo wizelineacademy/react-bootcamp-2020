@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
+import IconButton from '@material-ui/core/IconButton';
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -20,6 +21,10 @@ export const InputContainer = styled.div`
   max-width: 450px;
   border: 0.5px solid #e4e5e8;
   border-radius: 3px;
+`;
+
+export const IconButtonContainer = styled(IconButton)`
+  padding: 0px !important;
 `;
 
 export const SearchButton = styled(SearchIcon)`

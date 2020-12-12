@@ -12,6 +12,7 @@ import {
   SearchButton,
   SearchInput,
   IconsContainer,
+  IconButtonContainer,
 } from './header.styles';
 
 function Header() {
@@ -59,11 +60,15 @@ function Header() {
           onChange={handleInputOnChange}
           value={searchQuery}
         />
-        <SearchButton onClick={handleSearchButtonClick} />
+        <IconButtonContainer onClick={handleSearchButtonClick}>
+          <SearchButton />
+        </IconButtonContainer>
       </InputContainer>
 
       <IconsContainer>
-        <AvatarMenu />
+        <IconButtonContainer>
+          <AvatarMenu />
+        </IconButtonContainer>
       </IconsContainer>
     </HeaderContainer>
   );

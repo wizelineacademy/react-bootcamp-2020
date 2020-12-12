@@ -22,7 +22,7 @@ describe('WatchVideoPage', () => {
     );
 
     expect(
-      screen.queryAllByText('Video Tour | Welcome to Wizeline Guadalajara')
+      screen.getAllByText('Video Tour | Welcome to Wizeline Guadalajara')
     ).toBeTruthy();
   });
 });
