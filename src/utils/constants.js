@@ -3,3 +3,6 @@ export { AUTH_STORAGE_KEY };
 
 const SEARCH_TERM_DEFAULT = 'wizeline';
 export { SEARCH_TERM_DEFAULT };
+
+const SEARCH_PLACEHOLDER = 'Search videos';
+export { SEARCH_PLACEHOLDER };
