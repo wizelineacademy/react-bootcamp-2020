@@ -2,16 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BrowserRouter } from 'react-router-dom';
+
+import { renderWithRouter } from '../../setupTests';
 
 import App from './App.component';
 import { SEARCH_PLACEHOLDER } from '../../utils/constants';
-
-const renderWithRouter = (ui, { route = '/' } = {}) => {
-  window.history.pushState({}, 'Test page', route);
-
-  return render(ui, { wrapper: BrowserRouter });
-};
 
 function isHomePage() {
   const { container } = render(<App />);
