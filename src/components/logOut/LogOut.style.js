@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const PLogOut = styled.p`
+export const PlogOut = styled.p`
   cursor: pointer;
   font-size: 1.5em;
   text-align: center;

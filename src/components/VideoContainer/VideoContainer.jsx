@@ -1,25 +1,24 @@
 import React, { useContext } from "react";
 import VideoContext from "../../providers/VideoContext";
-import * as Style from "../styles/styleSheet.js";
-import "../styles/styleGrids.css";
-import * as Style2 from "../styles/StyleVideoContainer";
-import ButtonFavorites from "../buttonFavorites/ButtonFavorites";
+import "./VideoContainer.style.css";
+import {Title, PublishedDate, ResponsiveIframe} from "./VideoContainer.style";
+import ButtonFavorites from "../ButtonFavorites/ButtonFavorites";
+
 const VideoContainer = () => {
   const { userSession, videoPropperties } = useContext(VideoContext);
   
-
   return (
     <div className="grid-item1one">
-      <Style.ResponsiveIframe
+      <ResponsiveIframe
         title={videoPropperties.videoId}
         src={`https://www.youtube.com/embed/${videoPropperties.videoId}`}
         className="video-iframe "
       />
-      <Style2.Title>{videoPropperties.videoName}</Style2.Title>
+      <Title>{videoPropperties.videoName}</Title>
       <div>
-        <Style2.PublishedDate>
+        <PublishedDate>
           Published on: {videoPropperties.published}
-        </Style2.PublishedDate>
+        </PublishedDate>
         <br />
         {userSession.user === "noSession" ? (
           <React.Fragment />

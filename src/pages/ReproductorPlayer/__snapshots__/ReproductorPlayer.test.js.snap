@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ReproductorPlayer/> Redirect to Home with changing false and loggedIn true   1`] = `null`;
+
+exports[`<ReproductorPlayer/> Redirect to logIn with changing false and loggedIn true 1`] = `null`;

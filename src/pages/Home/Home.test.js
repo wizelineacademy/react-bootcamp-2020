@@ -4,9 +4,8 @@ import '@testing-library/jest-dom/extend-expect';
 import VideoContext from "../../providers/VideoContext";
 import Home from './Home';
 import {BrowserRouter as Route} from "react-router-dom";
-import FormLogIn from "../../components/logIn/FormLogIn";
-import ListVideos from "../../components/listVideos/ListVideos";
-
+import ListVideos from "../../components/ListVideos/ListVideos";
+import LogIn from "../Login/LogIn"
 describe("<Home/>",()=> {
 
     const mockValue = {
@@ -48,10 +47,36 @@ describe("<Home/>",()=> {
          
          expect(<ListVideos/>).toBeTruthy();
         
+        
     })
 
-    
-
+    test("Testing Router Redirect",()=> {
+        
+        const setVideoMetaInfoTest = jest.fn();
+        const changinggSetChanginggTest = jest.fn();
+        const setFavoritesFlagTest = jest.fn();
+        const userSessionTest = {
+            loggedIn:false
+        }
+        const mockTrigger = {
+            userSession: userSessionTest
+        }
+       
+   
+        const { container } = render(
+        <Route>
+            <VideoContext.Provider value={mockTrigger}>
+                <Home />
+            </VideoContext.Provider>
+        </Route>
+        );
+         
+       
+        //container.querySelector('/logIn')
+        //expect(container.firstChild).toMatchSnapshot()
+        
+        
+    })
 
 
 })

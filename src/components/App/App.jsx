@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
-import NavBar from "../navBar/NavBar";
+import NavBar from "../NavBar/NavBar";
 import VideoContext from "../../providers/VideoContext";
 import Home from "../../pages/Home/Home";
 import LogIn from "../../pages/Login/LogIn";

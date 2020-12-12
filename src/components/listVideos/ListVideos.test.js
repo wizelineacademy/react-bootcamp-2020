@@ -1,13 +1,12 @@
 import '@testing-library/jest-dom/extend-expect'
 import {render, screen, fireEvent } from "@testing-library/react"
-import React from 'react';
-import VideoContext from '../../providers/VideoContext';
+import React from 'react'
+import VideoContext from '../../providers/VideoContext'
 import ListVideos from "./ListVideos"
-import VideoCard from "../videoCard/VideoCard"
+import VideoCard from "../VideoCard/VideoCard"
 describe("<ListVideos/>",()=>{
 
-    test("Test favorite flag true and rendering withing components",()=> {
-        
+    test("Test favorite favoritesFlag false and rendering withing components",()=> {
         
         const changingg = true;
         const favoritesFlag= false;
@@ -78,62 +77,44 @@ describe("<ListVideos/>",()=>{
        
     })
 
-    /*test("Test src iframe",()=> {
-
-        const userSessionTest = {
-            user:"noSession"
-        };
-
-        const videoProppertiesTest =  {
-            videoName: "One video Name",
-            published: "Somedate",
-            videoId : "Id1"
-        }
+    test("Test favorite favoritesFlag true and rendering withing components",()=> {
         
-        
-        const mockValue = {
-            userSession : userSessionTest,
-            videoPropperties : videoProppertiesTest,
-        };
-       
-        const { getByDataTestId } = render(
-            <VideoContext.Provider value={mockValue}>
-                <VideoContainer/>
-            </VideoContext.Provider>
-        )
+        const changinggTest = false;
+        const favoritesFlagTest= true;
+        const favoritesVideosArrayUserTest= new Array();
+        const videoTest =   {
          
-        expect(screen.getByTitle(videoProppertiesTest.videoId)).toHaveAttribute('src', "https://www.youtube.com/embed/" + videoProppertiesTest.videoId)
+            videoId : "IdTest",
+            videoName : "nameTest",
+            imageVideo : "imageTest",
+            published : "publishedTest",
+            buttonText : "buttonTextTest"
+          
+      }
 
-    })
+      
+      favoritesVideosArrayUserTest.push(videoTest);
+  
 
-    test("Test expect button text when u have logged in ",()=> {
-       
-       
-        const userSessionTest = {
-            user:"OtherValue"
-        };
-
-        const videoProppertiesTest =  {
-            videoName: "One video Name",
-            published: "Somedate",
-            
-        }
-        
         const mockValue = {
-            userSession : userSessionTest,
-            videoPropperties : videoProppertiesTest,
+            favoritesFlag : favoritesFlagTest,
+            changingg : changinggTest,
+            favoritesVideosArrayUser : favoritesVideosArrayUserTest
         };
        
-        const {getByTestId }  = render(
+        
+       
+        const {container} = render(
             <VideoContext.Provider value={mockValue}>
-                 <VideoContainer/>
+                <ListVideos/>
             </VideoContext.Provider>
         )
-        
-        expect(screen.getByText("Add to favorites")).toBeTruthy();
-
-    })*/
-    
+        expect(container.firstChild.classList.contains('grid-container')).toBe(true)
+        expect(<VideoCard/>).toBeTruthy();
+        expect(favoritesVideosArrayUserTest).toEqual(favoritesVideosArrayUserTest);
+        expect (favoritesFlagTest).toBe(true);
+       
+    })
 
 
 

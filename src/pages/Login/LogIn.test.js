@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect'
 import VideoContext from "../../providers/VideoContext";
 import LogIn from './LogIn';
 import {BrowserRouter as Route} from "react-router-dom";
-import FormLogIn from "../../components/logIn/FormLogIn"
+import FormLogIn from "../../components/FormLogIn/FormLogIn"
 
 describe("<LogIn/>",()=> {
 

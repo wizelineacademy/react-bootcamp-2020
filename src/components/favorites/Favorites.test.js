@@ -57,5 +57,57 @@ describe("<Favorites/>",()=>{
          
         
     })
+
+    test("Test f ",()=> {
+        const setFavoritesFlagTest = jest.fn(); 
+        const changinggSetChanginggTest = jest.fn(); 
+        const favoriteVideosMapUserTest = new Map();
+        //const setFavoritesVideosArrayUserTest = new Array();
+        const userSessionTest = {
+            user:"SomeUser"
+        };
+        const testingMap = new Map();
+        const videoPropertiesTest = {
+            videoName: "VideoNameTest",
+            videoId: "song1",
+            views: "",
+            likes: "",
+            dislikes: "",
+            published: "SomeDate",
+            imageVideo: "someImage",
+            buttonText: "Add to favorites"
+        }
+        testingMap.set(videoPropertiesTest.videoId,videoPropertiesTest);
+        
+        //favoriteVideosMapUserTest.set(userSessionTest.user,testingMap);
+
+        const setFavoritesVideosArrayUserTest = jest.fn();
+        
+        const mockValue = {
+            setFavoritesFlag : setFavoritesFlagTest, 
+            changinggSetChangingg : changinggSetChanginggTest, 
+            userSession : userSessionTest,
+            favoriteVideosMapUser:favoriteVideosMapUserTest,
+            setFavoritesVideosArrayUser:setFavoritesVideosArrayUserTest
+
+        };
+       
+        const { container } = render(
+            <VideoContext.Provider value={mockValue}>
+                <Favorites/>
+            </VideoContext.Provider>
+        )
+         
+        const logOut = screen.getByRole("favbuton");
+        const arrayTest = new Array();
+        arrayTest.push(testingMap.get(videoPropertiesTest.videoId));
+
+        fireEvent.click(logOut)
+        //expect(setFavoritesFlagTest).toBeCalledTimes(0);
+        expect(setFavoritesVideosArrayUserTest).toBeCalledTimes(0);
+        
+         
+        
+    })
  
 })

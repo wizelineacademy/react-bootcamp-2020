@@ -1,11 +1,5 @@
 import styled from "@emotion/styled";
 
-export const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
-`;
-
 export const FormWrapper = styled.div`
   display: flex;
   flex-direction:column;
@@ -13,43 +7,7 @@ export const FormWrapper = styled.div`
   justify-content: center;
 `;
 
-export const GridContainer = styled.div`
-  display: grid;
-  position: center;
-  grid-template-columns: repeat(${(props) => props.columnss}, 1fr);
-  grid-gap: 5px;
-  border: 2px solid;
-  padding: 100px;
-  background-color: #8cffa0;
-`;
-
-export const PlayerContainer = styled.div`
-  text-align: center;
-  border: black 2px solid;
-  margin: auto;
-  max-width: 100%;
-  height: 300px;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 3;
-`;
-
-export const ResponsiveIframe = styled.iframe`
-  position: static;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 90%;
-  height: 495px;
-  margin-bottom: 20px;
-  box-shadow: 4px 4px 14px #000;
-`;
-
-export const VideoPlayer = styled.div``;
-
-export const Boton1 = styled.button`
+export const BotonLogIn = styled.button`
   width: 130px;
   height: 60px;
   border: none;
@@ -130,7 +88,7 @@ export const Boton1 = styled.button`
   }
 `;
 
-export const Input1 = styled.input`
+export const Input = styled.input`
   border: none;
   border-bottom: 4px solid #8842d5;
   margin-top: 100px;

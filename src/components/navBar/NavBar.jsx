@@ -1,25 +1,23 @@
 import React, { useContext } from "react";
-import SearchBar from "./SearchBar";
-
-import "../styles/NavBar.css";
-import "../styles/SearchBar.css";
+import SearchBar from "../SearchBar/SearchBar";
+import "./NavBar.style.css";
 import VideoContext from "../../providers/VideoContext";
 import { ImYoutube2 } from "react-icons/im";
-import LogOut from "../logOut/LogOut";
-import Favorites from "../favorites/Favorites";
-import youtubeApi from "../../utils/Youtube";
+import LogOut from "../LogOut/LogOut";
+import Favorites from "../Favorites/Favorites";
+import * as youtubeAPI from "../../utils/Youtube";
 const NavBar = () => {
   const { userSession, changinggSetChangingg, setFavoritesFlag, setVideoMetaInfo } = useContext(VideoContext);
  
-  const videoTendencies = async () => {
+  const getVideoTendencies = async () => {
     
     const params = {
       q: ""
     };
 
-    const varResponse = await youtubeApi.get("/search", {
+    const varResponse = await youtubeAPI.search(
       params
-    });
+    );
 
     changinggSetChangingg(false);
     setFavoritesFlag(false);
@@ -39,7 +37,8 @@ const NavBar = () => {
         style={{ cursor: "pointer" }}
         size="80"
         className="imYoutube"
-        onClick={videoTendencies}
+        onClick={getVideoTendencies}
+        role = "icon-Yt"
       />
       {userSession.user === "noSession" ? (
         <React.Fragment></React.Fragment>
@@ -53,7 +52,7 @@ const NavBar = () => {
       <div className="user one"></div>
     </div>
   ) : (
-    <div className="navBar ">
+    <div className="navBar">
       <ImYoutube2 size="80" className="imYoutube" />
     </div>
   );

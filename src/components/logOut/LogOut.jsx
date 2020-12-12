@@ -1,23 +1,23 @@
 import React, { useContext } from "react";
 import VideoContext from "../../providers/VideoContext";
-import * as Style from "../styles/StyleLogOut";
+import {PlogOut} from "./LogOut.style";
 const LogOut = () => {
   const { setUserSession, changinggSetChangingg, setSelectedVideoPropperties, setVideoMetaInfo, setFavoritesFlag, setFavoritesVideosArrayUser, userSession } = useContext(VideoContext);
 
-  const loggedOut = () => {
+  const resetValuesLoggedOut = () => {
     changinggSetChangingg(false);
     setFavoritesFlag(false);
     setVideoMetaInfo({});
     setUserSession({});
     setSelectedVideoPropperties({});
     setFavoritesVideosArrayUser([]);
-  };
+  }; 
 
   return (
     <div>
-      <Style.PLogOut onClick={loggedOut} role = "onClickOut">
+      <PlogOut onClick={resetValuesLoggedOut} role = "onClickOut">
         {userSession.user === "noSession" ? "LogIn" : "LogOut"}
-      </Style.PLogOut>
+      </PlogOut>
     </div>
   );
 };

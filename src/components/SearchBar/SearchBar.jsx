@@ -1,25 +1,22 @@
 import React, { useContext, useState } from "react";
-import youtubeApi from "../../utils/Youtube";
+import * as youtubeAPI from "../../utils/Youtube";
 import VideoContext from "../../providers/VideoContext";
-import "../styles/SearchBar.css";
+import "./SearchBar.style.css";
 const SearchBar = () => {
   const [inputword, setInputWord] = useState("");
   const { setVideoMetaInfo,changinggSetChangingg,setFavoritesFlag } = useContext(VideoContext);
 
   const onSearch = async (e) => {
-    
-    changinggSetChangingg(false);
-    setFavoritesFlag(false);
 
     const params = {
       q: inputword
     };
 
-    const varResponse = await youtubeApi.get("/search", {
-      params
-    });
-
-
+    const varResponse = await youtubeAPI.search(params);
+    
+    changinggSetChangingg(false);
+    setFavoritesFlag(false);
+    setInputWord("");
     if (
       varResponse &&
       varResponse.data &&
@@ -27,10 +24,9 @@ const SearchBar = () => {
     ) {
       setVideoMetaInfo(varResponse.data.items);
     }
+
+    e.persist();
    
-    setInputWord("");
-    e.stopPropagation();
-    e.preventDefault();
   };
 
   const onChange = (e) => {

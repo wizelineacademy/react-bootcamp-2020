@@ -1,18 +1,11 @@
 import React, { useContext } from "react";
-import "../styles/VideoCard.css";
+import "./VideoCard.style.css";
 import VideoContext from "../../providers/VideoContext";
-import "../styles/styleGrids.css";
 
 const VideoCard = (props) => {
-  const { changingg, changinggSetChangingg } = useContext(VideoContext);
-  const { videoPropperties, setSelectedVideoPropperties } = useContext(
-    VideoContext
-  );
+  const { changingg, changinggSetChangingg, setSelectedVideoPropperties, videoPropperties } = useContext(VideoContext);
 
-  //console.log("selectedVideoId  ññ", selectedVideoId);
-  //selectedVideoName, setSelectedVideoName
   const setVideoPropperties = () => {
-    //console.log("AQUI VEMOS SI ESTA LOGUEADO", userSession.loggedIn);
     const videoProppertiesaux = { ...videoPropperties };
     videoProppertiesaux.videoId = props.id;
     videoProppertiesaux.videoName = props.name;
@@ -24,6 +17,7 @@ const VideoCard = (props) => {
   };
 
   return (
+    
     <div className={changingg ? "noClass" : "grid-item2"}>
       <div role='onclick'
         className="container"

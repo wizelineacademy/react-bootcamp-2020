@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import VideoContext from "../../providers/VideoContext";
-import * as Style from "./Favorites.style";
+import {Boton} from "./Favorites.style";
 const Favorites = () => {
   const { setFavoritesFlag, changinggSetChangingg, favoriteVideosMapUser, userSession, setFavoritesVideosArrayUser } = useContext(VideoContext);
   
-  const onFavorites = () => {
+  const showVideoFavorites = () => {
+    
     setFavoritesFlag(true);
     changinggSetChangingg(false);
-    const flaglocal = true;
+
     let favoriteVideos = favoriteVideosMapUser.get(userSession.user); 
     const favoriteVideosArray = [];
 
@@ -21,7 +22,7 @@ const Favorites = () => {
 
   return (
     <div>
-      <Style.Boton1 onClick={onFavorites} role="favbuton">Favorites</Style.Boton1>
+      <Boton onClick={showVideoFavorites} role="favbuton">Favorites</Boton>
     </div>
   );
   

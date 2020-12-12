@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import VideoContext from "../../providers/VideoContext";
-import * as Style from "./ButtonFavorites.style";
+import {Boton} from "./ButtonFavorites.style";
 
 const ButtonFavorites = () => {
   const { userSession,favoriteVideosMapUser,videoPropperties } = useContext(VideoContext);
-  const [textButton, setTextButton] = useState("Add to favorites");
+  const [textButton] = useState("Add to favorites");
 
   const addFavorites = () => {
     let favoriteVideoLocalMap = new Map();
@@ -21,7 +21,7 @@ const ButtonFavorites = () => {
     
   };
 
-  return <Style.Boton1 onClick={addFavorites}>{textButton}</Style.Boton1>;
+  return <Boton onClick = {addFavorites} role = "boton" >{textButton}</Boton>;
   
 };
 export default ButtonFavorites;

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import VideoContext from "../../providers/VideoContext";
 import { Route, Redirect } from "react-router-dom";
-import * as Style from "../styles/styleSheet.js";
+import {BotonLogIn,FormWrapper,Input} from "./FormLogIn.style"
 import users from "../../mockUsers/users";
-import youtubeApi from "../../utils/Youtube";
+import * as youtubeAPI from "../../utils/Youtube";
 
 const FormLogIn = () => {
   const [errorUser, setErrorUser] = useState("");
@@ -11,20 +11,16 @@ const FormLogIn = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
-  const { userSession, setUserSession } = useContext(VideoContext);
-  const { changinggSetChangingg } = useContext(VideoContext);
-  const { setFavoritesFlag } = useContext(VideoContext);
-  const { setVideoMetaInfo } = useContext(VideoContext);
-
+  const { userSession, setUserSession, changinggSetChangingg, setFavoritesFlag,setVideoMetaInfo } = useContext(VideoContext);
+  
   var userMap = new Map();
 
-  const onChange = (e) => {
+  const settingUserName = (e) => {
     setUser(e.target.value);
-    //setUserSessionLocal(e.target.value);
   };
-  const onChange2 = (e) => {
+  
+  const settingUserPassword = (e) => {
     setPassword(e.target.value);
-    //setUserPassLocal(e.target.value);
   };
 
   const validate = () => {
@@ -75,15 +71,15 @@ const FormLogIn = () => {
   };
 
   const videoTendencies = async () => {
-    console.log("do request with params FORMLOIn");
+   
     const params = {
       q: ""
     };
 
-    const varResponse = await youtubeApi.get("/search", {
+    const varResponse = await youtubeAPI.search(
       params
-    });
-
+    );
+    
     changinggSetChangingg(false);
     setFavoritesFlag(false);
 
@@ -94,6 +90,7 @@ const FormLogIn = () => {
     ) {
       setVideoMetaInfo(varResponse.data.items);
     }
+   
   };
 
   const onLogIn = () => {
@@ -119,11 +116,11 @@ const FormLogIn = () => {
   };
 
   return (
-    <Style.FormWrapper>
+    <FormWrapper>
       <div>
-        <Style.Input1
+        <Input
           value={user}
-          onChange={onChange}
+          onChange={settingUserName}
           id="userinput"
           type="text"
           placeholder="User..."
@@ -134,9 +131,9 @@ const FormLogIn = () => {
       {errorUser && <p style={{ color: "red" }}>{errorUser}</p>}
 
       <div>
-        <Style.Input1
+        <Input
           value={password}
-          onChange={onChange2}
+          onChange={settingUserPassword}
           id="passwordinput"
           type="password"
           placeholder="Password..."
@@ -146,14 +143,15 @@ const FormLogIn = () => {
       <br />
       <br />
       <div>
-      <Style.Boton1 type="button" onClick={onLogIn}>
+      <BotonLogIn role = "aria-roledescription" type="button" onClick={onLogIn}>
         {" "}
         Log In
-      </Style.Boton1>
-      <Style.Boton1 type="button" onClick={onLogInWithoutSession}>
+      </BotonLogIn>
+
+      <BotonLogIn type="button" onClick={onLogInWithoutSession}   role="onLogWS">
         {" "}
         Without Session
-      </Style.Boton1>
+      </BotonLogIn>
       </div>
       <br />
 
@@ -168,7 +166,7 @@ const FormLogIn = () => {
           }
         />
       }
-    </Style.FormWrapper>
+    </FormWrapper>
   );
 };
 

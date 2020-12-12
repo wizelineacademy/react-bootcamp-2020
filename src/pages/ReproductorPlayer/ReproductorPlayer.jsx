@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import ListVideos from "../../components/listVideos/ListVideos";
-import VideoContainer from "../../components/mainContainer/VideoContainer";
+import ListVideos from "../../components/ListVideos/ListVideos";
+import VideoContainer from "../../components/VideoContainer/VideoContainer";
 import { Route, Redirect } from "react-router-dom";
 import VideoContext from "../../providers/VideoContext";
-import "../../components/styles/styleGrids.css";
+import "./ReproductorPlayer.style.css";
 const ReproductorPlayer = () => {
   const { userSession,changingg } = useContext(VideoContext);
   
@@ -11,21 +11,14 @@ const ReproductorPlayer = () => {
     <div className="grid-container2">
       <VideoContainer />
       <ListVideos />
-      <Route
-        render={() =>
-          userSession.loggedIn ? (
-            <Redirect to="/reproductorPlayer" />
-          ) : (
-            <Redirect to="/logIn" />
-          )
-        }
+      <Route render={() =>  userSession.loggedIn ? <Redirect to='/reproductorPlayer' /> : <Redirect to='/logIn' />}
       />
     </div>
   ) : (
     <React.Fragment>
       <Route
         render={() =>
-          userSession.loggedIn ? <Redirect to="/" /> : <Redirect to="/logIn" />
+          userSession.loggedIn ? <Redirect to='/' /> : <Redirect to='/logIn' />
         }
       />
     </React.Fragment>
