@@ -77,7 +77,6 @@ const beat = keyframes`
 `
 
 const CardFavoriteIcon = styled.div`
-  display: ${(props) => props.isAuthed ? "block" : "none" };
   position: relative;
   font-size: 2.5rem;
   width: 1.4em;

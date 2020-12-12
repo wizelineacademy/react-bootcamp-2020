@@ -39,13 +39,17 @@ function Card({ video, isAuthed }) {
         <CardDate>
           {video.publishedAt}
         </CardDate>
-        <CardFavoriteIcon isAuthed={false}>
-          {isVideoFavorite(video.id) ? (
-            <AiIcons.AiFillHeart onClick={toggleFavorite} />
-          ) : (
-            <AiIcons.AiOutlineHeart onClick={toggleFavorite} />
-          )}
-        </CardFavoriteIcon>
+        {
+          isAuthed ? 
+          <CardFavoriteIcon>
+            {isVideoFavorite(video.id) ? (
+              <AiIcons.AiFillHeart onClick={toggleFavorite} />
+            ) : (
+              <AiIcons.AiOutlineHeart onClick={toggleFavorite} />
+            )}
+            </CardFavoriteIcon> :
+          null
+        }
         </CardTextContainer>
     </CardWrapper>
   );
