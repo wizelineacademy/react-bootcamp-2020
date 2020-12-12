@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styles from './Favorites.module.css';
+import { Header, FavoritesGrid, EmptyFavorites } from './Favorites.template'
 import Card from '../../components/Card';
 import { useVideos } from '../../providers/Videos';
 
@@ -12,16 +12,18 @@ const Favorites = () => {
 
   return (
     <>
-      <header>Favorites</header>
-      <div className={styles.card_grid}>
+      <Header>Favorites</Header>
+      <FavoritesGrid>
         {Array.isArray(videos) && videos.length > 0 ? (
           videos.map((video) => {
-            return <Card video={video} key={video.id} />;
+            return <Card video={video} isAuthed={true} key={video.id} />;
           })
         ) : (
-          <div className={styles.no_favorites}>You do not have any favorites yet! :(</div>
+          <EmptyFavorites>
+            You do not have any favorites yet! :(
+          </EmptyFavorites>
         )}
-      </div>
+      </FavoritesGrid>
     </>
   );
 };
