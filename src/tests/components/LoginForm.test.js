@@ -5,12 +5,6 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 import React from 'react';
 import PageContext from '../../providers/Context/PageContext';
 
-// let container;
-// Enzyme.configure({ adapter: new Adapter() });
-// const setState = jest.isMockFunction();
-// const useStateSpy = jest.spyOn(React,'useState');
-// useStateSpy.mockImplementation(()=> [init,setState]);
-
 
 const setUserLoggedMock = jest.fn();
 const mockValue = {

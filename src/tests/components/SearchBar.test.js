@@ -39,48 +39,6 @@ describe('SearchBar test',()=>{
         expect(screen.getByPlaceholderText('Search..')).toBeInTheDocument();
         expect(container.querySelector("button")).toBeInTheDocument();
     });
-
-    // test('test HandleSearch onchange',()=>{
-    //         render(
-    //             <PageContext.Provider value={mockValue}>
-    //                 <SearchBar />
-    //             </PageContext.Provider>
-    //         );
-    //     const inputVal = screen.getByPlaceholderText('Search..');
-    //     fireEvent.change(inputVal, { target: { value: 'Soda' } })
-    //     expect(mockValue.setSearchText).toBeCalledWith('Soda');
-
-    // });
-
-    test('test onclick search', async ()=>{
-        const param = {...data}
-        mock.onGet("/search").reply(200,param);
-        const {container} = render(
-            <PageContext.Provider value={mockValue}>
-                <SearchBar />
-            </PageContext.Provider>
-        );
-        await waitForExpect(() => {
-            const buttonSearch = container.querySelector("button");
-            fireEvent.click(buttonSearch)
-            expect(setVideoListMock).toBeCalledWith(param.item);
-            expect(mockHistoryPush).toHaveBeenCalledWith('/');
-        });    
-
-    });
-
-    // test('test HandleSearch keyDown enter',  ()=>{ //pendiente 
-    //     mockValue.searchText='cerati'
-    //     render(
-    //         <PageContext.Provider value={mockValue}>
-    //             <SearchBar />
-    //         </PageContext.Provider>
-    //     );
-    //         const inputVal = screen.getByPlaceholderText('Search..');
-    //         fireEvent.keyDown(inputVal, { key: 'Enter', code: 'Enter' })
-    //         expect(setVideoListMock).toBeCalledTimes(2); 
-    // });
-
     
 
 });
