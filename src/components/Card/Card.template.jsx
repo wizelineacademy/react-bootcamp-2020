@@ -63,7 +63,7 @@ const CardDate = styled.p`
   grid-row: 3/4;
   justify-self: start;
 
-  &::before {
+  &::before{
     content: 'Uploaded: ';
   }
 `

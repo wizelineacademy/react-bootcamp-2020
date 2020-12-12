@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import styles from './Login.module.css';
 import { LoginPage, LoginContainer, LoginTitle, LoginForm, FormRow, FormLabel, FormInput, FormButton } from './Login.template'
 import { useAuth } from '../../providers/Auth';
 

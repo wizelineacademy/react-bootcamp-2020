@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import styles from './RelatedVideo.module.css';
 import { VideoContainer, VideoTitle, VideoThumbnail, VideoDate } from './RelatedVideo.template'
 
 function RelatedVideo({ video }) {

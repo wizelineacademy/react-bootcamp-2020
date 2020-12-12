@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as AiIcons from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
-import styles from './Card.module.css';
 import { storage } from '../../utils/storage';
 import { isVideoFavorite } from '../../utils/functions';
 import { CardWrapper, CardThumbnail, CardTextContainer, CardTitle, CardDescription, CardDate, CardFavoriteIcon } from './Card.template'
@@ -28,7 +27,7 @@ function Card({ video, isAuthed }) {
 
   return (
     <CardWrapper>
-      <CardThumbnail onClick={goToVideo} src={video.thumbnail} alt={video.thumbnail} />
+      <CardThumbnail onClick={goToVideo} src={video.thumbnail} alt={video.title} />
       <CardTextContainer>
         <CardTitle onClick={goToVideo}>
           {video.title}
