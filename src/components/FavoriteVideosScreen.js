@@ -9,8 +9,6 @@ export const FavoriteVideosScreen = () => {
 
   return (
     <div>
-      <h1>Favorite Videos</h1>
-      <hr />
       <div className='video_container'>
         {favorite.map((h) => (
           <VideoThumbnail

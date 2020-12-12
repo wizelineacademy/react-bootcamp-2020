@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #191919;
+  /* background-color: transparent; */
 }
 
 .video_container {
@@ -11,14 +11,4 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-}
-
-h1 {
-  /* border: 1px solid red; */
-  margin: auto;
-  text-align: center;
-}
-
-hr {
-  margin: 40px;
 }

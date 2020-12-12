@@ -8,7 +8,9 @@ import { types } from '../types/types';
 
 export const VideoFrame = () => {
   const [isFavorite, setIsFavorite] = useState(true);
-  const { video, favorite, favoriteDispatch } = useContext(GlobalContext);
+  const { video, favorite, favoriteDispatch, theme } = useContext(GlobalContext);
+  const { isDark } = theme;
+  const themeMode = isDark ? 'dark_mode' : 'ligth_mode';
 
   useEffect(() => {
     localStorage.setItem(`videos_wizeline`, JSON.stringify([...favorite]));
@@ -36,20 +38,25 @@ export const VideoFrame = () => {
     });
   };
   return (
-    <div className='video_screen_container'>
+    <div className={`video_screen_container ${themeMode}`}>
       <iframe
         src={`https://www.youtube.com/embed/${video.videoId}`}
         title={video.title}
       />
-      <div className='title_favorites'>
+      <div className={`title_favorites ${themeMode}`}>
         <p id='video_title'>{video.title}</p>
 
         {!isFavorite ? (
-          <span onClick={handleFavoriteAdd} onKeyDown={handleFavoriteAdd}>
+          <span
+            className='addRemoveFav'
+            onClick={handleFavoriteAdd}
+            onKeyDown={handleFavoriteAdd}
+          >
             Add to Favorites
           </span>
         ) : (
           <span
+            className='addRemoveFav'
             onClick={() => handleFavoriteDelete(video.videoId)}
             onKeyDown={() => handleFavoriteDelete(video.videoId)}
           >

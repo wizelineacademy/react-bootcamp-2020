@@ -14,8 +14,8 @@ iframe {
 
 #video_title,
 #video_desc,
-span {
-  color: lightgray;
+.addRemoveFav {
+  /* color: lightgray; */
   margin: 10px;
 }
 
@@ -23,7 +23,7 @@ span {
   font-size: 1.7rem;
 }
 
-span:hover {
+.addRemoveFav:hover {
   cursor: pointer;
   color: grey;
 }

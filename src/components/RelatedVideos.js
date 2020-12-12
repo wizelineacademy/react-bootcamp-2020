@@ -9,8 +9,10 @@ import { VideoRelatedThumbnail } from './VideoRelatedThumbnail';
 import '../styles/relatedVideos.css';
 
 export const RelatedVideos = () => {
-  const { video } = useContext(GlobalContext);
-  console.log(video.query);
+  const { video, theme } = useContext(GlobalContext);
+  const { isDark } = theme;
+  const themeMode = isDark ? 'dark_mode' : 'ligth_mode';
+  // console.log(video.query);
 
   const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${process.env.REACT_APP_ENV_API_KEY}&q=${video.query}&type=video&maxResults=12`;
 
@@ -36,7 +38,11 @@ export const RelatedVideos = () => {
 
   return (
     <div>
-      {loading ? <p>loading</p> : <div className='video_related'>{thumbnails}</div>}
+      {loading ? (
+        <p>loading</p>
+      ) : (
+        <div className={`video_related ${themeMode}`}>{thumbnails}</div>
+      )}
     </div>
   );
 };

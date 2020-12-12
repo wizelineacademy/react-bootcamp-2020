@@ -6,6 +6,7 @@ html {
   box-sizing: border-box;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* background-color: transparent; */
 }
 
 *,

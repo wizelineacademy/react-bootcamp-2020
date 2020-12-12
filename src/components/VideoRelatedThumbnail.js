@@ -14,7 +14,9 @@ export const VideoRelatedThumbnail = ({
   videoId,
   description,
 }) => {
-  const { video, videoDispatch } = useContext(GlobalContext);
+  const { video, videoDispatch, theme } = useContext(GlobalContext);
+  const { isDark } = theme;
+  const themeMode = isDark ? 'dark_mode' : 'ligth_mode';
   const { query } = video;
   const history = useHistory();
   const handleClick = () => {
@@ -36,7 +38,7 @@ export const VideoRelatedThumbnail = ({
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div className='video_relthumb' onClick={handleClick}>
       <img src={img} id='rel_img' alt='videoThumbnail' />
-      <div className='video_relinfo'>
+      <div className={`video_relinfo ${themeMode}`}>
         <p id='rel_title'>{title}</p>
         <p id='rel_channel'>{channelName}</p>
       </div>

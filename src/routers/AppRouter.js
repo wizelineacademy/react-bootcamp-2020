@@ -9,10 +9,12 @@ import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
-  const { user } = useContext(GlobalContext);
+  const { user, theme } = useContext(GlobalContext);
+  const { isDark } = theme;
+  const themeMode = isDark ? 'dark_mode' : 'ligth_mode';
   return (
     <Router>
-      <div>
+      <div className={themeMode} style={{ height: '100vh' }}>
         <Switch>
           <PublicRoute
             exact

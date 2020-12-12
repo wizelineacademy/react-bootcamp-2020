@@ -7,9 +7,10 @@
   font-weight: 50;
   height: 50px;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
   /* background-color: #212121; */
   /* color: #fff; */
 }
@@ -18,27 +19,41 @@
   margin: 15px;
   width: 150px;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-evenly;
+  align-items: center;
   /* background-color: #212121; */
 }
-.nav_right {
+.theme_input {
+  width: 200px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 50px;
+}
+.nav_rigth {
   margin: 15px;
+  width: 300px;
+  margin-right: 100px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
   /* background-color: #212121; */
 }
 
-span,
 input {
   margin: 0px 15px 0px 15px;
 }
 
 .link {
-  color: #fff;
+  /* color: #fff; */
   text-decoration: none;
   /* background-color: #212121; */
 }
 
-input {
+.search_bar {
   /* background-color: #121212; */
   outline: none;
   width: 400px;
@@ -59,18 +74,10 @@ form {
 
 button {
   /* background-color: #212121; */
+  width: 150px;
   border: none;
   color: #3ea6ff;
   cursor: pointer;
   font-size: 0.9rem;
-}
-
-.dark_mode {
-  background-color: #191919;
-  color: #fff;
-}
-
-.ligth_mode {
-  background-color: #f9f9f9;
-  color: #030303;
+  margin-right: 30px;
 }

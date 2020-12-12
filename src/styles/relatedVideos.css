@@ -5,7 +5,7 @@
 
 .video_relthumb {
   /* border: 1px solid red; */
-  background-color: #191919;
+  /* background-color: #191919; */
   display: flex;
   flex-flow: row nowrap;
   font-family: 'Roboto', sans-serif;
