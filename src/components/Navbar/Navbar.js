@@ -13,6 +13,7 @@ import LoginButton from "../LoginButton/LoginButton";
 const Navbar = () => {
   const { sideBar, setSideBar } = useContext(PageContext);
   const { userLogged } = useContext(PageContext);
+
   const showSideBar = () => {
     setSideBar(!sideBar);
   };
@@ -38,12 +39,11 @@ const Navbar = () => {
       <IconContext.Provider value={{ color: "#ffff" }}>
         <div className="navbar">
           <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSideBar} />
+            <FaIcons.FaBars role="showSideBar" onClick={showSideBar} />
           </Link>
           <div>
             <Searchbar />
           </div>
-
           <LoginButton />
         </div>
         <nav className={sideBar ? "menu-active" : "nav-menu"}>

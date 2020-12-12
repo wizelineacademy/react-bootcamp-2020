@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import PageContext from "../../providers/Context/PageContext";
 import { Route, Redirect } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
+import { Input } from '@material-ui/core';
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -30,6 +30,7 @@ const LogIn = () => {
 
   const HandleMail = (e) => {
     setUser(e.target.value);
+
   };
 
   const HandlePassword = (e) => {
@@ -56,7 +57,7 @@ const LogIn = () => {
     return validation;
   }
 
-  const validateInputs = () => { //valida que no tenga campos vacios (mejorar)
+  const validateInputs = () => {
     let validation2=true
     if(!user){
       setUserText("Usuario requerido");
@@ -88,21 +89,33 @@ const LogIn = () => {
     <div>
       <Card className="Root">
         <CardContent>
-          <TextField  error={errorInput} 
+          {/* <Input      id="username"
+                      error={errorInput} 
                       value={user} 
                       onChange={HandleMail} 
                       label="User" 
-                      helperText={InputText}/>
-          <div></div>
+                      helpertext={InputText}/> */}
+          <input 
+                role="user" 
+                value={user} 
+                onChange={HandleMail}
+                placeholder="User" />
+        <div></div>
           <br />
-          <TextField
+          {/* <Input
+            id="password"
             type="password"
             value={pass}
             onChange={HandlePassword}
             label="Password"
             error={errorPass}
-            helperText={passText}
-          />
+            helpertext={passText}
+          /> */}
+          <input  
+            role="pass" 
+            value={pass} 
+            onChange={HandlePassword}
+            placeholder="Password" />
           <div></div>
           <br />
           <CardActions>

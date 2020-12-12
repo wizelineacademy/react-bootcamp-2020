@@ -15,14 +15,14 @@ const LoginButton = () => {
   };
 
   return (
-    <>
+
       <Link to={!userLogged.userStatus ? "/FormLogIn" : "/"}>
         <button className="LoginButton" onClick={loggedOut}>
           {userLogged.userStatus ? "Log Out" : "Log In"}
           <FiLogIn />
         </button>
       </Link>
-    </>
+
   );
 };
 

@@ -23,8 +23,7 @@ const VideoCard = (props) => {
   };
 
   return (
-    <div onClick={SetData}>
-      <Styles.Card>
+      <Styles.Card role="card" onClick={SetData}>
         <Link key={props.id} to="/video-player">
           <img src={props.imagen} alt={props.titulo} />
           <Styles.Descriptions>
@@ -33,7 +32,6 @@ const VideoCard = (props) => {
           </Styles.Descriptions>
         </Link>
       </Styles.Card>
-    </div>
   );
 }
 

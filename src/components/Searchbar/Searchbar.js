@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import * as BiIcons from "react-icons/bi";
 import PageContext from "../../providers/Context/PageContext";
-import apiYoutube from "../../utils/apiYoutube";
+import * as apiYoutube from "../../utils/apiYoutube";
 import { useHistory } from "react-router-dom";
 import "./Searchbar.css";
 
@@ -11,43 +11,34 @@ const Searchbar = () => {
   const { setVideoList } = useContext(PageContext);
 
   const handleSearch = (event) => {
-    const auxText = event.target.value;
-    setSearchText(auxText);
-  };
+    setSearchText(event.target.value);
+  }
 
   const enterSearch = (e) =>{
     if (e.key === 'Enter') {
-      console.log('do validate');
       searchVideo(e);
     }
-
   }
-  const searchVideo = (e) => {
+
+  const searchVideo = async (e) => {
 
     const params = {
       q: searchText
     };
-    apiYoutube
-      .get("/search", { params })
-      .then((response) => {
-        setVideoList(response.data.items);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const varResponse = await apiYoutube.search(
+      params
+    );
+    setVideoList(varResponse.data.items);
 
-    e.stopPropagation();
-    e.preventDefault();
     history.push('/');
-    return setSearchText("");
     
-  };
+  }
 
   return (
-    <>
       <div className="wrap">
         <div className="search">
           <input
+            role="searching"
             className="searchTerm"
             type="text"
             value={searchText}
@@ -61,7 +52,6 @@ const Searchbar = () => {
           </button>
         </div>
       </div>
-    </>
   );
 };
 
