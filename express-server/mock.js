@@ -7,7 +7,6 @@ module.exports.searchEndpoint = function (req, res) {
     return video.snippet.title.includes(query);
   });
 
-  console.log('response:', results);
   res.set('Content-Type', 'application/json');
   res.send(JSON.stringify({ items: results }));
 };
