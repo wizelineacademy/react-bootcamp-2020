@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './Home.module.css';
+import { HomeSearch, HomeSearchInput, HomeGrid } from './Home.template'
 import Card from '../../components/Card';
 import { useVideos } from '../../providers/Videos';
 import { useDebounce } from '../../utils/hooks/useDebounce';
@@ -30,23 +30,22 @@ const Home = () => {
 
   return (
     <>
-      <div className={styles.home_search_container}>
-        <input
+      <HomeSearch>
+        <HomeSearchInput
           placeholder="Search Here..."
           type="text"
-          className={styles.home_search_bar}
           autoComplete="off"
           value={inputSearch}
           onChange={handleInputSearch}
         />
-      </div>
-      <div className={styles.card_grid}>
+      </HomeSearch>
+      <HomeGrid>
         {Array.isArray(videos) && videos.length > 0
           ? videos.map((video) => {
               return <Card video={video} isAuthed={authenticated} key={video.id} />;
             })
           : null}
-      </div>
+      </HomeGrid>
     </>
   );
 };
