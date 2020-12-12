@@ -12,7 +12,6 @@ const Home = () => {
   const [inputSearch, setInputSearch] = useState('');
   const debouncedSearchTerm = useDebounce(inputSearch, 500);
 
-  // Take search params and set it as the input search value
   useEffect(() => {
     toggleFavorites(false);
     setInputSearch(searchParams.join(' '));

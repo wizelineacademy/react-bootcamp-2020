@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import * as AiIcons from 'react-icons/ai';
-import styles from './VideoPlayer.module.css';
 import { PlayerPage, PlayerContainer, PlayerFrame, PlayerTextContainer, VideoTitle, VideoDescription, VideoDate, VideoFavoriteIcon, RelatedVideos
 } from './VideoPlayer.template'
 import { findOne, getRelated } from '../../utils/api';
@@ -9,7 +8,6 @@ import { isVideoFavorite } from '../../utils/functions';
 import { storage } from '../../utils/storage';
 
 const VideoPlayer = ({ match }) => {
-  // uncomment for prod
   const { id } = match.params;
 
   const [video, setVideo] = useState(null);
@@ -28,13 +26,11 @@ const VideoPlayer = ({ match }) => {
   };
 
   const findOneData = async () => {
-    // uncomment for prod
     const response = await findOne(id);
     setVideo(response);
   };
 
   const getRelatedVideosData = async () => {
-    // uncomment for prod
     const relatedVideosData = await getRelated(id);
     setRelatedVideos(relatedVideosData);
   };
@@ -44,7 +40,6 @@ const VideoPlayer = ({ match }) => {
     getRelatedVideosData();
   }, []);
 
-  // uncomment for prod - refreshes whenever id changes.
   useEffect(() => {
     findOneData();
     getRelatedVideosData();

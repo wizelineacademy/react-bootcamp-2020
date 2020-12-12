@@ -27,12 +27,10 @@ const VideoProvider = ({ children }) => {
     setVideos(response);
   };
 
-  // Trigger search function whenever the search params are updated.
   useEffect(() => {
     getSearchData();
   }, [searchParams]);
 
-  // Trigger getFavorites function whenever the favorite toggle is updated
   useEffect(() => {
     if (showFavorites) {
       getFavoritesData();
