@@ -35,9 +35,16 @@ const CardTitle = styled.h2`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  grid-column: 1 / 2;
   grid-row: 1/2;
   justify-self: start;
+  ${props => {
+    console.log(props.authed)
+    if(props.authed) {
+      return `grid-column: 1 / 2;`
+    } else {
+      return `grid-column: 1 / 3;`
+    }
+  }}
 
   &:hover {
     cursor: pointer;

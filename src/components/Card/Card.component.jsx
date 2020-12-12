@@ -29,7 +29,7 @@ function Card({ video, isAuthed }) {
     <CardWrapper>
       <CardThumbnail onClick={goToVideo} src={video.thumbnail} alt={video.title} />
       <CardTextContainer>
-        <CardTitle onClick={goToVideo}>
+        <CardTitle authed={isAuthed} onClick={goToVideo}>
           {video.title}
         </CardTitle>
         <CardDescription>
