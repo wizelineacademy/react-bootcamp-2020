@@ -1,17 +1,26 @@
-const storage = {
+export const storage = {
   get(key) {
     try {
-      const rawValue = window.localStorage.getItem(key);
-      return JSON.parse(rawValue);
+      const item = window.localStorage.getItem(key);
+      return JSON.parse(item);
     } catch (error) {
-      console.error(`Error parsing storage item "${key}".`);
-      return null;
+      console.log(`Error parsing storage key ${key}`);
     }
   },
 
   set(key, value) {
     window.localStorage.setItem(key, JSON.stringify(value));
   },
-};
 
-export { storage };
+  addFavorite(id) {
+    const favorites = new Set(this.get('favorites'));
+    favorites.add(id);
+    this.set('favorites', Array.from(favorites));
+  },
+
+  removeFavorite(id) {
+    const favorites = new Set(this.get('favorites'));
+    favorites.delete(id);
+    this.set('favorites', Array.from(favorites));
+  },
+};

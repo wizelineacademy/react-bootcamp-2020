@@ -1,39 +1,53 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-
+import React, { useState, useEffect } from 'react';
+import { HomeSearch, HomeSearchInput, HomeGrid } from './Home.template';
+import Card from '../../components/Card';
+import { useVideos } from '../../providers/Videos';
+import { useDebounce } from '../../utils/hooks/useDebounce';
 import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
 
-function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+const Home = () => {
+  const { videos, searchParams, handleSearchParams, toggleFavorites } = useVideos();
+  const { authenticated } = useAuth();
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+  const [inputSearch, setInputSearch] = useState('');
+  const debouncedSearchTerm = useDebounce(inputSearch, 500);
+
+  useEffect(() => {
+    toggleFavorites(false);
+    setInputSearch(searchParams.join(' '));
+  }, []);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      handleSearchParams(inputSearch.trim().split(' '));
+    }
+  }, [debouncedSearchTerm]);
+
+  const handleInputSearch = (e) => {
+    e.preventDefault();
+    setInputSearch(e.target.value);
+  };
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
+    <>
+      <HomeSearch>
+        <HomeSearchInput
+          placeholder="Search Here..."
+          type="text"
+          autoComplete="off"
+          value={inputSearch}
+          onChange={handleInputSearch}
+        />
+      </HomeSearch>
+      <HomeGrid>
+        {Array.isArray(videos) && videos.length > 0
+          ? videos.map((video) => {
+              return <Card video={video} isAuthed={authenticated} key={video.id} />;
+            })
+          : null}
+      </HomeGrid>
+    </>
   );
-}
+};
 
-export default HomePage;
+export default Home;
