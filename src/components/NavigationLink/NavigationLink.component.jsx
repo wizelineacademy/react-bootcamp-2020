@@ -14,7 +14,10 @@ const NavigationLink = ({ action, icon, children, show = true }) => {
         <NavListItem role="listitem"  onClick={action}>
           <NavLinkContainer>{children}</NavLinkContainer>
           <NavIconContainer>
-            {icon ? <FontAwesomeIcon icon={icon} /> : null}
+            {icon ?
+              <FontAwesomeIcon icon={icon} />
+              : null
+            }
           </NavIconContainer>
         </NavListItem>
       ) : null}
