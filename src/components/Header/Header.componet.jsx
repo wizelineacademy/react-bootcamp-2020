@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from 'styled-components';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import {
-  HaderStyled,
+  HaderStyle,
   AnimatedButton,
   NavButton,
   ButtonText,
@@ -22,13 +21,12 @@ const Header = () => {
   const changeTheme = () => {
     dispatch({ type: actions.TOGGLE_THEME });
   };
-  const { theme } = useContext(ThemeContext);
 
   const openNav = () => {
     dispatch({ type: actions.TOGGLE_NAV });
   };
   return (
-    <HaderStyled theme={theme}>
+    <HaderStyle>
       <NavButton onClick={openNav} rotate={state.navigationOpen.toString()}>
         <FontAwesomeIcon className="iconFa" icon={faAngleDoubleRight} />
       </NavButton>
@@ -38,7 +36,7 @@ const Header = () => {
         <ButtonText>{'Toggle theme '}</ButtonText>
         <span>{state.theme === DARK_THEME ? `${SUN_EMOJI} ` : `${MOON_EMOJI}`}</span>
       </AnimatedButton>
-    </HaderStyled>
+    </HaderStyle>
   );
 };
 
