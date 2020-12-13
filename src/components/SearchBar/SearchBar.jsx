@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -8,6 +9,8 @@ import useStyles from './SearchBar.styled';
 export default function SearchBar() {
   const { searchItem, setSearchItem, fetchVideos } = useVideo();
   const classes = useStyles();
+  const location = useLocation();
+  const { push } = useHistory();
 
   const handleSearchItemChange = (event) => {
     setSearchItem(event.target.value);
@@ -16,6 +19,9 @@ export default function SearchBar() {
   const onKeyDown = (event) => {
     if (event.key === 'Enter') {
       fetchVideos(searchItem);
+      if (location.pathname !== '/') {
+        push('/');
+      }
     }
   };
 

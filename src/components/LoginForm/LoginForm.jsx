@@ -51,10 +51,10 @@ export default function FormDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.close} color="secondary">
+          <Button onClick={props.close} color="secondary" id="btn-cancel-login">
             Cancel
           </Button>
-          <Button onClick={handleLogin} color="secondary">
+          <Button onClick={handleLogin} color="secondary" id="btn-login">
             Login
           </Button>
         </DialogActions>

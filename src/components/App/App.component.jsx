@@ -10,7 +10,7 @@ async function initGoogle() {
     window.gapi.load('client', { callback: res, onerror: rej });
   });
 
-  window.gapi.client.setApiKey('AIzaSyA5IW0wuDEdax20lHoe0bi2csRdsybvPTw');
+  window.gapi.client.setApiKey('-AIzaSyA5IW0wuDEdax20lHoe0bi2csRdsybvPTw');
 
   const x = await window.gapi.client.load('youtube', 'v3');
   window.gapi.load('client:auth2', x);
