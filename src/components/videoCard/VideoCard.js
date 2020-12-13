@@ -3,7 +3,7 @@ import "./VideoCard.style.css";
 import VideoContext from "../../providers/VideoContext";
 
 const VideoCard = (props) => {
-  const { changingg, changinggSetChangingg, setSelectedVideoPropperties, videoPropperties } = useContext(VideoContext);
+  const { changingg, changinggSetChangingg, setSelectedVideoPropperties, videoPropperties, favoritesFlag,favoriteVideosMapUser,userSession } = useContext(VideoContext);
 
   const setVideoPropperties = () => {
     const videoProppertiesaux = { ...videoPropperties };
@@ -16,11 +16,12 @@ const VideoCard = (props) => {
     changinggSetChangingg(true);
   };
 
+
   return (
     
     <div className={changingg ? "noClass" : "grid-item2"}>
       <div role='onclick'
-        className="container"
+        className="container"  
         onClick={() => {
           setVideoPropperties();
         }}
@@ -35,11 +36,12 @@ const VideoCard = (props) => {
           </div>
           <div className="face face2">
             <div className="content">
-              <p>{props.name}</p>
+              <p >{props.name}</p>
             </div>
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

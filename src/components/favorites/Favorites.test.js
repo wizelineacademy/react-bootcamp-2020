@@ -40,7 +40,7 @@ describe("<Favorites/>",()=>{
 
         };
        
-        const { container } = render(
+        render(
             <VideoContext.Provider value={mockValue}>
                 <Favorites/>
             </VideoContext.Provider>

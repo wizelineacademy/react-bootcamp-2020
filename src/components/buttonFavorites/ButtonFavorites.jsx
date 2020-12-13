@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import VideoContext from "../../providers/VideoContext";
 import {Boton} from "./ButtonFavorites.style";
 
 const ButtonFavorites = () => {
   const { userSession,favoriteVideosMapUser,videoPropperties } = useContext(VideoContext);
   const [textButton] = useState("Add to favorites");
-
+ 
   const addFavorites = () => {
     let favoriteVideoLocalMap = new Map();
     const currentUserSession = { ...userSession };

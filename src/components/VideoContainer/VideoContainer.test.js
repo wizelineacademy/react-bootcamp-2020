@@ -8,7 +8,7 @@ import VideoContext from '../../providers/VideoContext';
 describe("<VideoContainer/>",()=>{
 
     test("Test title iframe and tags containers",()=> {
-        
+               
         const userSessionTest = {
             user:"noSession"
         };

@@ -107,7 +107,7 @@ describe("<ListVideos/>",()=>{
         expect(<VideoCard/>).toBeTruthy();
         expect(favoritesVideosArrayUserTest).toEqual(favoritesVideosArrayUserTest);
         expect (favoritesFlagTest).toBe(true);
-        expect(changinggTest.contains('grid-container')).toBe(true)
+       
      
     })
 
