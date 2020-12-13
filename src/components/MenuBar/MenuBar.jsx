@@ -19,15 +19,17 @@ const MenuBar = () => {
     history.push('/login');
   }
 
-  const menuBar = authenticated ? (
+  return (
     <Menu>
       <MenuItem as={Link} to="/">
         Home
       </MenuItem>
 
-      <MenuItem as={Link} to="/favorites">
-        Favorites
-      </MenuItem>
+      {authenticated && (
+        <MenuItem as={Link} to="/favorites">
+          Favorites
+        </MenuItem>
+      )}
 
       <MenuItem>
         <Input
@@ -40,34 +42,11 @@ const MenuBar = () => {
       <MenuItem>
         <Radio toggle checked={!light} onChange={handleTheme} />
       </MenuItem>
-      <MenuItem as={Link} to="/login" onClick={deAuthenticate}>
-        Logout
-      </MenuItem>
-    </Menu>
-  ) : (
-    <Menu>
-      <MenuItem as={Link} to="/">
-        Home
-      </MenuItem>
-
-      <MenuItem>
-        <Input
-          icon="search"
-          placeholder="Search..."
-          onChange={handleOnChange}
-          onKeyPress={handleHitEnter}
-        />
-        <MenuItem>
-          <Radio toggle checked={!light} onChange={handleTheme} />
-        </MenuItem>
-      </MenuItem>
-      <MenuItem as={Link} to="/login">
-        Login
+      <MenuItem as={Link} to="/login" onClick={authenticated && deAuthenticate}>
+        {authenticated ? 'Logout' : 'Login'}
       </MenuItem>
     </Menu>
   );
-
-  return menuBar;
 };
 
 export default MenuBar;
