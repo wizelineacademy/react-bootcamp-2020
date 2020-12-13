@@ -8,7 +8,7 @@ import { storage } from '../../utils/storage';
 
 function Video() {
   const history = useHistory();
-  const { state, setState } = useAuth();
+  const { state, setState, authenticated } = useAuth();
   const { videos, selectedVideo, currentVideoId } = state;
 
   const handlePlayList = (videoId) => {
@@ -64,8 +64,16 @@ function Video() {
 
   return (
     <Container>
-      <VideoDetail selectedVideo={selectedVideo} handlePlayList={handlePlayList} />
-      <VideoList videos={videos} handleOnChangeVideo={handleOnChangeVideo} />
+      <VideoDetail
+        selectedVideo={selectedVideo}
+        handlePlayList={handlePlayList}
+        authenticated={authenticated}
+      />
+      <VideoList
+        videos={videos}
+        handleOnChangeVideo={handleOnChangeVideo}
+        authenticated={authenticated}
+      />
     </Container>
   );
 }

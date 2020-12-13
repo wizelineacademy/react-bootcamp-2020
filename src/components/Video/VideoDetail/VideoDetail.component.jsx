@@ -14,7 +14,8 @@ import {
   IconLabel,
 } from './VideoDetail.styles';
 
-function VideoDetail({ selectedVideo, handlePlayList }) {
+function VideoDetail({ selectedVideo, handlePlayList, authenticated }) {
+  console.log(authenticated);
   const history = useHistory();
   const currentPath = history.location.pathname;
   const currentVideoId = currentPath.includes('video')
@@ -25,12 +26,14 @@ function VideoDetail({ selectedVideo, handlePlayList }) {
     <VideoContainer>
       <VideoWrapper>
         <Frame src={currentUrl} title={selectedVideo?.title || 'Loading'} />
-        <IconContainer onClick={() => handlePlayList(selectedVideo.videoId)}>
-          <IconLabel>
-            {selectedVideo?.isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-          </IconLabel>
-          {selectedVideo?.isFavorite ? <IconDelete /> : <IconSave />}
-        </IconContainer>
+        {authenticated && (
+          <IconContainer onClick={() => handlePlayList(selectedVideo.videoId)}>
+            <IconLabel>
+              {selectedVideo?.isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+            </IconLabel>
+            {selectedVideo?.isFavorite && authenticated ? <IconDelete /> : <IconSave />}
+          </IconContainer>
+        )}
         <VideoTitle>{selectedVideo?.title || 'Loading'}</VideoTitle>
         <VideoChannel>{selectedVideo?.channelTitle || 'Loading'}</VideoChannel>
         <Divider />
