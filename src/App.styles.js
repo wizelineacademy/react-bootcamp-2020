@@ -1,7 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { createMuiTheme } from '@material-ui/core/styles';
 
-// Component Styling
 export const lightTheme = {
   bg: '#fff',
   text: '#121212',
@@ -19,11 +17,3 @@ export const GlobalStyles = createGlobalStyle`
       transition: 0.5s;
     }
    `;
-
-export const typographyTheme = createMuiTheme({
-  typography: {
-    h6: {
-      fontWeight: 600,
-    },
-  },
-});

@@ -7,10 +7,6 @@ import { Input } from 'semantic-ui-react';
 import MenuBar from './MenuBar';
 
 describe('Testing Styled Components on MenuBar Component', () => {
-  // test('Should render MenuBar component without Errors', () => {
-  //   render(<MenuBar />);
-  //   expect(screen.getByText('Home')).toBeTruthy();
-  // });
   test('Should render the Menu component without crashing', () => {
     render(<Menu />);
   });

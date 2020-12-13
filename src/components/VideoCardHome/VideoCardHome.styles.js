@@ -1,28 +1,4 @@
 import styled from 'styled-components';
-import { createMuiTheme } from '@material-ui/core/styles';
-
-// THEMING
-export const darkTheme = createMuiTheme({
-  palette: {
-    type: 'dark',
-  },
-
-  transitions: {
-    duration: {
-      standard: 500,
-    },
-  },
-});
-
-export const lightTheme = createMuiTheme({
-  transitions: {
-    duration: {
-      standard: 500,
-    },
-  },
-});
-
-// COMPONENTS
 
 export const Card = styled.div`
   display: flex;
@@ -33,4 +9,12 @@ export const Image = styled.img`
   height: 10%;
 `;
 
-export const Typography = styled.p``;
+export const Typography = styled.p`
+  color: ${(props) => props.theme.text};
+`;
+
+export const H1 = styled.h1`
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${(props) => props.theme.text};
+`;

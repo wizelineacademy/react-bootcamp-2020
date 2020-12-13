@@ -15,4 +15,5 @@ export const Image = styled.img`
 
 export const Typography = styled.p`
   font-size: 14px;
+  color: ${(props) => props.theme.text};
 `;

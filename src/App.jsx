@@ -1,9 +1,8 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, HashRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import { ThemeProvider } from 'styled-components';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import AuthProvider from './providers/Auth/Auth.provider';
 import MenuBar from './components/MenuBar/MenuBar';
@@ -117,27 +116,25 @@ const App = () => {
               }}
             >
               <ThemeProvider theme={light ? lightTheme : darkTheme}>
-                <MuiThemeProvider theme={typographyTheme}>
-                  <GlobalStyles />
-                  <Container>
-                    <MenuBar />
-                    <Switch>
-                      <Route exact path="/">
-                        <HomePage />
-                      </Route>
-                      <Route exact path="/player/:vId">
-                        <PlayerPage />
-                      </Route>
-                      <Route exact path="/login">
-                        <LoginPage />
-                      </Route>
-                      <Private exact path="/favorites">
-                        <FavoritesPage />
-                      </Private>
-                      <Route path="*" component={() => <h1>404</h1>} />
-                    </Switch>
-                  </Container>
-                </MuiThemeProvider>
+                <GlobalStyles />
+                <Container>
+                  <MenuBar />
+                  <Switch>
+                    <Route exact path="/">
+                      <HomePage />
+                    </Route>
+                    <Route exact path="/player/:vId">
+                      <PlayerPage />
+                    </Route>
+                    <Route exact path="/login">
+                      <LoginPage />
+                    </Route>
+                    <Private exact path="/favorites">
+                      <FavoritesPage />
+                    </Private>
+                    <Route path="*" component={() => <h1>404</h1>} />
+                  </Switch>
+                </Container>
               </ThemeProvider>
             </VideosContext.Provider>
           </LoginContext.Provider>

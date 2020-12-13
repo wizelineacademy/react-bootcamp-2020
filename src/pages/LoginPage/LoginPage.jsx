@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
+import { H1 } from './LoginPage.styles';
 
 import { useAuth } from '../../providers/Auth/Auth.provider';
 import LoginContext from '../../context/LoginContext';
@@ -26,14 +27,13 @@ const LoginPage = () => {
 
   return (
     <Form onSubmit={authenticate} width={6} inverted={!light}>
-      <h1>Login</h1>
+      <H1>Login</H1>
       <Form.Input
         width={6}
         label="Username"
         placeholder="Username"
         type="text"
         name="username"
-        // value={values.username}
         onChange={handleUsername}
       />
 
@@ -43,7 +43,6 @@ const LoginPage = () => {
         placeholder="Password"
         name="password"
         type="text"
-        // value={values.password}
         onChange={handlePassword}
       />
 
