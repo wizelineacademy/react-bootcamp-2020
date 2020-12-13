@@ -4,7 +4,6 @@ import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import VideoCard from '../VideoCard/VideoCard.component';
 import darktheme from '../../utils/Themes/darkTheme';
-import { BrowserRouter } from 'react-router-dom';
 
 describe('VideoCard', () => {
   const videoProp = {
@@ -16,33 +15,27 @@ describe('VideoCard', () => {
 
   it('renders image', () => {
     render(
-      <BrowserRouter>
-        <ThemeProvider theme={darktheme}>
-          <VideoCard video={videoProp} />
-        </ThemeProvider>
-      </BrowserRouter>
+      <ThemeProvider theme={darktheme}>
+        <VideoCard video={videoProp} />
+      </ThemeProvider>
     );
     const image = screen.queryByRole('listitem').children[0].children[0];
     expect(image).toBeTruthy();
   });
   it('renders descrption', () => {
     render(
-      <BrowserRouter>
-        <ThemeProvider theme={darktheme}>
-          <VideoCard video={videoProp} />
-        </ThemeProvider>
-      </BrowserRouter>
+      <ThemeProvider theme={darktheme}>
+        <VideoCard video={videoProp} />
+      </ThemeProvider>
     );
     const dscription = screen.getByText(videoProp.description);
     expect(dscription).toBeTruthy();
   });
   it('renders title', () => {
     render(
-      <BrowserRouter>
-        <ThemeProvider theme={darktheme}>
-          <VideoCard video={videoProp} />
-        </ThemeProvider>
-      </BrowserRouter>
+      <ThemeProvider theme={darktheme}>
+        <VideoCard video={videoProp} />
+      </ThemeProvider>
     );
     const title = screen.getByText(videoProp.title);
     expect(title).toBeTruthy();

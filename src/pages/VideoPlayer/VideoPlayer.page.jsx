@@ -1,5 +1,6 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { ThemeContext } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -29,12 +30,13 @@ const VideoPlayer = () => {
   useRelatedVideos(idVideo);
   useSingleVideo(idVideo);
 
+  const { theme } = useContext(ThemeContext);
 
   const toggleFavorite = () => {
     dispatch({ type: actions.TOGGLE_FAVORITE, payload: idVideo });
   };
 
-  const { videos, currentVideo ={} } = state;
+  const { videos, currentVideo } = state;
 
   return (
     <PageContent>
@@ -56,17 +58,17 @@ const VideoPlayer = () => {
               type="button"
               onClick={toggleFavorite}
             >
-              <span>{isFavorite ? 'REMOVE' : 'ADD'} FAVORITES</span>
+              {isFavorite ? <span>REMOVE FAVORITES</span> : <span>ADD FAVORITES</span>}
               <FontAwesomeIcon icon={faStar} />
             </button>
           ) : null}
         </div>
         <VideoInformationContainer>
-          <h2> { currentVideo.title || null}</h2>
-          <p> {currentVideo.description || null}</p>
+          <h2> {currentVideo ? currentVideo.title : null}</h2>
+          <p> {currentVideo ? currentVideo.description : null}</p>
         </VideoInformationContainer>
       </VideoContent>
-      <VideoList >
+      <VideoList theme={theme}>
         {videos
           ? videos.map((video) => <VideoCardSmall video={video} key={video.id} />)
           : null}

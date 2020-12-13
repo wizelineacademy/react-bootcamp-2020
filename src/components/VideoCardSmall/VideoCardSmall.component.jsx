@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
+import { useHistory } from 'react-router';
 import {
   CardSmall,
   CardContainerSmall,
@@ -9,21 +10,21 @@ import {
 } from './VideoCardSmall.styles';
 
 export default function VideoCardSmall({ video: { id, channelTitle, image, title } }) {
-  
+  const { theme } = useContext(ThemeContext);
+  const history = useHistory();
+  const openVideoPage = () => {
+    history.push(`/watch/${id}`);
+  };
 
   return (
-    <Link to={`/watch/${id}`}>
-
-    <CardSmall  role="listitem">
-      <CardContainerSmall >
-        <CardImageSmall  src={image} alt={title} />
+    <CardSmall role="listitem" theme={theme}>
+      <CardContainerSmall onClick={openVideoPage}>
+        <CardImageSmall src={image} alt={title} />
         <CardContentSmall>
           <TitleSmall>{title}</TitleSmall>
           <span>{channelTitle}</span>
         </CardContentSmall>
       </CardContainerSmall>
     </CardSmall>
-    </Link>
-
   );
 }

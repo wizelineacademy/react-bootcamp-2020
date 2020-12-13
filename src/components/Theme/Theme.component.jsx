@@ -1,25 +1,36 @@
 import React, { useEffect } from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { useAppDataContext } from '../../providers/AppData';
 import actions from '../../state/actions';
 import darkTheme from '../../utils/Themes/darkTheme';
 import lightTheme from '../../utils/Themes/lightTheme';
 import generalTheme from '../../utils/Themes/generalTheme';
-import { GlobalStyles } from "./Theme.styles";
 
 import { DARK_THEME, LIGHT_THEME, PREFERED_THEME } from '../../utils/constants';
 import { storage } from '../../utils/storage';
 
 const SYSTEM_SCHEME_STRING = '(prefers-color-scheme: dark)';
 
-const chooseTheme = ({theme}) => {
-  if (theme === LIGHT_THEME) {
-    return { ...generalTheme, ...lightTheme }
-  } else {
-    return { ...generalTheme, ...darkTheme }
-  }
+const GlobalStyles = createGlobalStyle`
+
+
+*{
+   box-sizing:border-box;
+   font-family: ${(props) => props.theme.fontFamily};
+
 
 }
+  body {
+     margin: 0;
+     padding: 0;
+    text-decoration: none;
+    background-color: ${(props) => props.theme.bg};
+    transition: 0.5s;
+    outline: none;
+    color: ${(props) => props.theme.text};
+
+  }
+`;
 
 export default function Theme({ children }) {
   const { state, dispatch } = useAppDataContext();
@@ -43,7 +54,13 @@ export default function Theme({ children }) {
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={chooseTheme(state)}>
+    <ThemeProvider
+      theme={
+        state.theme === LIGHT_THEME
+          ? { ...generalTheme, ...lightTheme }
+          : { ...generalTheme, ...darkTheme }
+      }
+    >
       <GlobalStyles />
       {children}
     </ThemeProvider>
