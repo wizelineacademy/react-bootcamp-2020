@@ -17,7 +17,6 @@ const SearchInput = () => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    event.target.reset();
     dispatch({ type: actions.SET_SEARCH_STRING, payload: search });
     history.push('/');
   };
@@ -27,7 +26,7 @@ const SearchInput = () => {
       <button type="submit">
         <FontAwesomeIcon icon={faSearch} />
       </button>
-      <input onChange={handleOnChange} placeholder="type and search..." type="search" />
+      <input onChange={handleOnChange} value={search} placeholder="type and search..." type="search" />
     </SearchForm>
   );
 };
