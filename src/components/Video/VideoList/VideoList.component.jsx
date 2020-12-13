@@ -9,7 +9,7 @@ function VideoList({ videos, handleOnChangeVideo }) {
   const history = useHistory();
   const currentPath = history.location.pathname;
   const videoList =
-    (currentPath === '/favorites'
+    (currentPath.includes('/favorites')
       ? videos.filter((video) => video.isFavorite) ||
         storagedVideos.video.filter((video) => video.isFavorite)
       : videos) || null;
