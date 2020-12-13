@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@styled-icons/bootstrap": "^10.19.0",
+    "@styled-icons/boxicons-regular": "^10.18.0",
     "@styled-icons/material": "^10.18.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^10.4.9",

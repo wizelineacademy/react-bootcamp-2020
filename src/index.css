@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+
+li {
+  list-style: none;
+}
+
+.homepage {
+  text-align: center;
+}
+
+.homepage h1 {
+  font-size: 3rem;
+  letter-spacing: -2px;
+}
+
+:root {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4f4f4f;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

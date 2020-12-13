@@ -60,7 +60,7 @@ function SideNav() {
           <Link to="/">
             <ListItem>
               <HomeIcon />
-              <h4>Inicio</h4>
+              <h4>Home</h4>
             </ListItem>
           </Link>
         </CustomLink>
@@ -69,7 +69,7 @@ function SideNav() {
             <Link to="/favorites">
               <ListItem>
                 <PlaylistIcon />
-                <h4>Favoritos</h4>
+                <h4>Favorites</h4>
               </ListItem>
             </Link>
           </CustomLink>

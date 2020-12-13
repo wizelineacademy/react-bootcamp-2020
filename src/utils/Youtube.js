@@ -2,20 +2,15 @@ const { REACT_APP_YOUTUBE_API_KEY } = process.env;
 const YOUTUBE_VIDEO_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=16&resultsPerPage=15&key=${REACT_APP_YOUTUBE_API_KEY}`;
 const YOUTUBE_VIDEO_DETAILS_URL = `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&key=${REACT_APP_YOUTUBE_API_KEY}&id=`;
 
-function generateResponse(status, messages) {
-  return {
-    status,
-    messages,
-  };
-}
-
 function secondsToString(seconds) {
-  let hour = Math.floor(seconds / 3600);
-  hour = hour < 10 ? `0${hour}` : hour;
+  const hour = Math.floor(seconds / 3600);
   let minute = Math.floor((seconds / 60) % 60);
-  minute = minute < 10 ? `0${minute}` : minute;
   let second = seconds % 60;
   second = second < 10 ? `0${second}` : second;
+  if (seconds < 3600) {
+    return `${minute}:${second}`;
+  }
+  minute = minute < 10 ? `0${minute}` : minute;
   return `${hour}:${minute}:${second}`;
 }
 
@@ -54,11 +49,11 @@ async function generateVideosResponse(items) {
   const videos = items.map((item, index) => {
     return {
       isFavorite: null,
-      id: item.id.videoId,
+      videoId: item.id.videoId,
       duration: videoDuration[index],
       thumbnail: item.snippet.thumbnails.medium.url,
-      videoTitle: item.snippet.title,
-      channelName: item.snippet.channelTitle,
+      title: item.snippet.title.replace(/&#39;/g, "'"),
+      channelTitle: item.snippet.channelTitle,
       description: item.snippet.description,
     };
   });
@@ -70,12 +65,11 @@ async function request(searchString) {
   const response = await fetch(URL);
 
   if (response.status !== 200) {
-    const mockedData = new Array(16).fill(null);
-    return generateResponse(mockedData);
+    return null;
   }
   const result = await response.json();
   const videoList = await generateVideosResponse(result.items);
-  console.log('YouTube Video API Credits has been used');
+  console.log('YouTube Video API Credits has been used 🪙🪙🪙');
   return videoList;
 }
 
