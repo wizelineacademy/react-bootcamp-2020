@@ -1,4 +1,4 @@
-const API_URL = '/api'; // 'https://youtube.googleapis.com/youtube/v3/search/';
+const API_PREFIX = '/api'; // 'https://youtube.googleapis.com/youtube/v3/search/';
 const INITIAL_QUERY = 'Wizeline';
 const FAVORITES = false;
 
@@ -15,4 +15,4 @@ const USERS = {
   },
 };
 
-export { API_URL, INITIAL_QUERY, USERS, FAVORITES };
+export { API_PREFIX, INITIAL_QUERY, USERS, FAVORITES };
