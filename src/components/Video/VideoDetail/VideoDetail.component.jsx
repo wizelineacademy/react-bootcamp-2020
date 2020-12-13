@@ -11,6 +11,7 @@ import {
   IconSave,
   IconDelete,
   IconContainer,
+  IconLabel,
 } from './VideoDetail.styles';
 
 function VideoDetail({ selectedVideo, handlePlayList }) {
@@ -25,6 +26,9 @@ function VideoDetail({ selectedVideo, handlePlayList }) {
       <VideoWrapper>
         <Frame src={currentUrl} title={selectedVideo?.title || 'Loading'} />
         <IconContainer onClick={() => handlePlayList(selectedVideo.videoId)}>
+          <IconLabel>
+            {selectedVideo?.isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+          </IconLabel>
           {selectedVideo?.isFavorite ? <IconDelete /> : <IconSave />}
         </IconContainer>
         <VideoTitle>{selectedVideo?.title || 'Loading'}</VideoTitle>

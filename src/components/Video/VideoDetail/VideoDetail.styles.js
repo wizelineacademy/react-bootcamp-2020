@@ -3,13 +3,11 @@ import { ListPlus, ListMinus } from '@styled-icons/boxicons-regular';
 
 export const VideoContainer = styled.div`
   display: flex;
-  width: 85%;
-  margin-left: calc(94px + 4.5em + 80px);
+  width: 60%;
+  padding-left: 20px;
 
   @media screen and (max-width: 1580px) {
-    width: 95%;
-    margin-left: 0;
-    margin: auto;
+    width: 65%;
   }
 
   @media screen and (max-width: 957px) {
@@ -21,10 +19,11 @@ export const VideoContainer = styled.div`
 `;
 
 export const VideoWrapper = styled.div`
-  max-width: 854px;
-  max-height: 483px;
+  max-width: 1200px;
+  max-height: 800px;
 
   @media screen and (max-width: 1580px) {
+    padding: 10 25px;
     min-width: 640.5px;
     min-height: 362.25px;
   }
@@ -76,23 +75,23 @@ export const Frame = styled.iframe`
 export const IconContainer = styled.div`
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: right;
+  justify-content: flex-end;
   flex-shrink: 0;
 
-  width: 36px;
+  width: 100%;
   height: 36px;
   border-radius: 50%;
   color: var(--text-primary);
-  transition: background-color 0.1s;
-
-  &:active {
-    background-color: var(--text-quinary);
-  }
+  padding-right: 5px;
 
   svg {
     width: 24px;
   }
+`;
+
+export const IconLabel = styled.div`
+  padding: 8px;
 `;
 
 export const IconSave = styled(ListPlus)``;

@@ -4,12 +4,14 @@ export const theme = {
   light: {
     primary: '#ffffff',
     secondary: '#f9f9f9',
+    secondaryAlt: '#e5e5e5',
     textSecondary: '#000',
     quaternary: '#e5e5e5',
   },
   dark: {
     primary: '#222',
     secondary: '#181818',
+    secondaryAlt: '#292929',
     tertiary: '#111',
     quaternary: '#333',
     quinary: '#444',
@@ -49,6 +51,7 @@ body, html, #root {
 :root {
     --primary: ${(props) => props.theme.primary};
     --secondary: ${(props) => props.theme.secondary};
+    --secondary-alt: ${(props) => props.theme.secondaryAlt};
     --tertiary: ${(props) => props.theme.tertiary};
     --quaternary: ${(props) => props.theme.quaternary};
     --quinary: ${(props) => props.theme.quinary};

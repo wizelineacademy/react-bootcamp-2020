@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import VideoItem from '../VideoItem/VideoItem.component';
-import { ListContainer } from './VideoList.styles';
+import { List, ListContainer } from './VideoList.styles';
 import { storage } from '../../../utils/storage';
 
 function VideoList({ videos, handleOnChangeVideo }) {
@@ -20,7 +20,11 @@ function VideoList({ videos, handleOnChangeVideo }) {
       handleOnChangeVideo={handleOnChangeVideo}
     />
   ));
-  return <ListContainer>{list}</ListContainer>;
+  return (
+    <ListContainer>
+      <List>{list}</List>
+    </ListContainer>
+  );
 }
 
 export default React.memo(VideoList);

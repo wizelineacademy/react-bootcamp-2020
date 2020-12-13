@@ -1,18 +1,25 @@
 import styled from 'styled-components';
 
-export const ListContainer = styled.ul`
-  margin: 2em 2px;
-  background-color: #292929;
-  max-height: 480px;
+export const ListContainer = styled.div`
+  width: 34%;
+
+  @media screen and (max-width: 1580px) {
+    width: 34%;
+  }
+`;
+
+export const List = styled.ul`
+  margin: 0 2px;
+  background-color: var(--secondary-alt);
+  max-height: 90%;
   overflow: scroll;
   overflow-x: hidden;
   padding-right: 30px;
+  width: 100%;
 
   @media screen and (max-width: 1580px) {
-    width: 100%;
     margin-left: 3px;
     padding-left: 0;
-    max-height: 362.25px;
   }
 
   @media screen and (max-width: 957px) {
