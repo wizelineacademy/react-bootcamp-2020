@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const HaderStyle = styled('header')`
+const HaderStyled = styled('header')`
   height: 8vh;
   display: flex;
   align-items: center;
@@ -47,4 +47,4 @@ const NavButton = styled(HeaderButton)`
   }
 `;
 
-export { HaderStyle, AnimatedButton, NavButton, ButtonText };
+export { HaderStyled, AnimatedButton, NavButton, ButtonText };
