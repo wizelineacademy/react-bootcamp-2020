@@ -50,8 +50,10 @@ function Youtube() {
             setSearchTerm(event.target.value);
           };
 
+    const YT_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${searchTerm}&type=video&key=AIzaSyDsECTCuUQSdjsST-hja25dLugnGsjKO3M`
+
     const fetchData = () => {
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${searchTerm}&type=video&key=AIzaSyDsECTCuUQSdjsST-hja25dLugnGsjKO3M`)
+        fetch(YT_API)
         .then(res => res.json())
         .then(data => {
             console.log(data)

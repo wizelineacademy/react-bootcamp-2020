@@ -1,16 +1,16 @@
 import React, { useLayoutEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AuthProvider from '../../providers/Auth';
-// import HomePage from '../../pages/Home';
-// import LoginPage from '../../pages/Login';
-// import NotFound from '../../pages/NotFound';
-// import SecretPage from '../../pages/Secret';
-// import Private from '../Private';
-// import Fortune from '../Fortune';
+import HomePage from '../../pages/Home';
+import LoginPage from '../../pages/Login';
+import NotFound from '../../pages/NotFound';
+import SecretPage from '../../pages/Secret';
+import VideoDetail from '../../pages/VideoDetail';
+import Private from '../Private';
+import Fortune from '../Fortune';
 import Layout from '../Layout';
 import { random } from '../../utils/fns';
-import YouTube from '../YouTube.js'
+
 
 function App() {
   useLayoutEffect(() => {
@@ -35,9 +35,12 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Layout>
-          {/* <Switch>
+          <Switch>
             <Route exact path="/">
               <HomePage />
+            </Route>
+            <Route path="/video/:videoId" exact>
+              <VideoDetail />
             </Route>
             <Route exact path="/login">
               <LoginPage />
@@ -49,8 +52,7 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
-          <Fortune /> */}
-          <YouTube/>
+          <Fortune />
         </Layout>
       </AuthProvider>
     </BrowserRouter>
