@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background-color: transparent; */
+}
+
+.video_container {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}

@@ -1,0 +1,83 @@
+/* body {
+   background-color: #212121; 
+} */
+
+.navbar {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 50;
+  height: 50px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  /* background-color: #212121; */
+  /* color: #fff; */
+}
+
+.nav_left {
+  margin: 15px;
+  width: 150px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  /* background-color: #212121; */
+}
+.theme_input {
+  width: 200px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 50px;
+}
+.nav_rigth {
+  margin: 15px;
+  width: 300px;
+  margin-right: 100px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  /* background-color: #212121; */
+}
+
+input {
+  margin: 0px 15px 0px 15px;
+}
+
+.link {
+  /* color: #fff; */
+  text-decoration: none;
+  /* background-color: #212121; */
+}
+
+.search_bar {
+  /* background-color: #121212; */
+  outline: none;
+  width: 400px;
+  padding: 5px;
+  border: none;
+  border-radius: 1.5px;
+  /* color: #e2e2e2; */
+  font-size: medium;
+}
+
+input::placeholder {
+  color: #7b7b7b;
+}
+
+form {
+  background-color: transparent;
+}
+
+button {
+  /* background-color: #212121; */
+  width: 150px;
+  border: none;
+  color: #3ea6ff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 30px;
+}

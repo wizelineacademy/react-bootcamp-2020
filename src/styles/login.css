@@ -1,0 +1,41 @@
+body {
+  background: transparent;
+}
+
+.login {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: auto;
+
+  height: 250px;
+  width: 400px;
+}
+
+#login_user,
+#login_password {
+  background: transparent;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 1px solid grey;
+  outline: none;
+  margin-top: 30px;
+  height: 40px;
+  width: 80%;
+  font-size: medium;
+}
+
+#login_button {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  margin-top: 30px;
+  color: grey;
+  margin-left: 20px;
+}
+
+#login_button:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+}

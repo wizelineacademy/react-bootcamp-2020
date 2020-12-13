@@ -1,0 +1,21 @@
+.video_screen {
+  /* background-color: #191919; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 30px;
+  width: 85%;
+  /* border: 1px solid blue; */
+}
+
+.video_frame {
+  /* border: 1px solid red; */
+  width: 74%;
+}
+
+.related_videos {
+  width: 24%;
+  display: flex;
+  flex-flow: row wrap;
+}
