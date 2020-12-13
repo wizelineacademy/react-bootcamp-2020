@@ -8,7 +8,7 @@ import VideosContext from '../../context/VideosContext';
 
 const IsFavButton = () => {
   let favoritesList = storage.get(FAVORITES_LIST);
-  let favoritesId = storage.get(FAVORITES_ID);
+  const favoritesId = storage.get(FAVORITES_ID);
   const { selectedVideo, id, isFav, setIsFav } = useContext(VideosContext);
 
   const { authenticated } = useAuth();

@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import { Card, Image, Typography, darkTheme, lightTheme } from './VideoCardHome.styles';
 
 import VideosContext from '../../context/VideosContext';
 import ThemeContext from '../../context/ThemeContext';
-
-import moment from 'moment';
 
 const VideoCardHome = ({ video }) => {
   const { onVideoSelect } = useContext(VideosContext);
