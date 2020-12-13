@@ -6,12 +6,12 @@ import {BrowserRouter as Route} from "react-router-dom";
 import App from "./App"
 describe("<App/>",()=> {
    
-    test("testing app rendering",()=> {
+    test("Testing app rendering",()=> {
         render(
          <VideoContext.Provider>
              <App />
          </VideoContext.Provider>
-         );
+         )
         expect(<App/>).toBeTruthy();
      })
 

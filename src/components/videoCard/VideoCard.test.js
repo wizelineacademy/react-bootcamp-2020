@@ -8,26 +8,12 @@ import VideoContext from '../../providers/VideoContext';
 
 describe("<VideoCard/>",()=>{
     const mockValue = {
-        // response: {},
-        // setResponse: jest.fn,
-        // videoMetaInfo: [],
-        // setVideoMetaInfo: jest.fn,
-        // videoPropperties: {},
-        // setSelectedVideoPropperties: jest.fn,
-        // userSession: {},
-        // setUserSession: jest.fn,
         changingg: false,
         changinggSetChangingg: jest.fn(),
-        // favoriteVideosMapUser: new Map(),
-        // setFavoriteVideosMapUser: jest.fn,
-        // favoritesFlag: false,
-        // setFavoritesFlag: jest.fn,
-        // favoritesVideosArrayUser: [],
-        // setFavoritesVideosArrayUser: jest.fn
+       
     }
 
-
-    test("trigger onclick event on VideoCard to set video properties",()=> {
+    test("Trigger onclick event on VideoCard to set video properties wuthin setVideoPropperties function",()=> {
         const setSelectedVideoProppertiesMock = jest.fn();
         const changinggSetChangingg = jest.fn();
         
@@ -55,18 +41,22 @@ describe("<VideoCard/>",()=>{
 
     })
 
-    test("testing name text and alt", () => {
+    test("Testing name text and alt", () => {
         const name = "testingName"
-        render(<VideoContext.Provider value={mockValue}>
-            <VideoCard name={name} imagen='https://i.pinimg.com/564x/fa/c2/cf/fac2cfb7869aa623d830c7f76f4e58dd.jpg' />
-        </VideoContext.Provider>);
+        const image = "https://i.pinimg.com/564x/fa/c2/cf/fac2cfb7869aa623d830c7f76f4e58dd.jpg";
+        
+        render(
+            <VideoContext.Provider value={mockValue}>
+                <VideoCard name={name} imagen={image} />
+            </VideoContext.Provider>
+        );
         
         expect(screen.getByText(name)).toBeInTheDocument()
         expect(screen.getByAltText(name)).toBeInTheDocument()
        
     })
 
-    test ("testing changingg false",()=>{
+    test ("Testing class when changing is false",()=>{
         const changinggTest = false;
         const changinggSetChacnginggTest = jest.fn();
 
@@ -82,10 +72,10 @@ describe("<VideoCard/>",()=>{
         );
        
         expect(container.firstChild).toHaveClass("grid-item2")
-        
+    
+    })
 
-    });
-    test ("testing changingg true",()=>{
+    test ("Testing class when changing is true",()=>{
 
         const changinggTest = true;
         const changinggSetChacnginggTest = jest.fn();

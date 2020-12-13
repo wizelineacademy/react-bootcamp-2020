@@ -6,7 +6,7 @@ import VideoContext from '../../providers/VideoContext';
 
 describe("<LogOut/>",()=>{
 
-    test("Test to be called all function inside onclick function ",()=> {
+    test("Triggering onclick and testing all function inside resetValuesLoggedOut function was called",()=> {
         
         const setUserSessionTest = jest.fn();
         const changinggSetChanginggTest = jest.fn(); 
@@ -14,6 +14,7 @@ describe("<LogOut/>",()=>{
         const setVideoMetaInfoTest = jest.fn(); 
         const setFavoritesFlagTest = jest.fn(); 
         const setFavoritesVideosArrayUserTest = jest.fn(); 
+
         const userSessionTest = {
             user:"noSession"
         };
@@ -45,6 +46,7 @@ describe("<LogOut/>",()=>{
         expect(setFavoritesVideosArrayUserTest).toBeCalledWith(new Array);
         
     })
+
     test("Test expect in p LogIn when u have no Session",()=> {
        
         const userSessionTest = {
@@ -54,17 +56,18 @@ describe("<LogOut/>",()=>{
         const mockValue = {
             userSession : userSessionTest,
         };
-        const { container } = render(
-            
+
+        render(
             <VideoContext.Provider value={mockValue}>
                 <LogOut/>
             </VideoContext.Provider>
         )
+        
         expect(screen.getByText("LogIn")).toBeInTheDocument()
+
     })
     
-
-    test("Test expect in p LogIn when u have Session",()=> {
+    test("Test expect in p LogOut when u have Session",()=> {
        
         const userSessionTest = {
             user:"AnyOtherUser"
@@ -73,14 +76,13 @@ describe("<LogOut/>",()=>{
         const mockValue = {
             userSession : userSessionTest,
         };
-        const { container } = render(
+
+        render(
             <VideoContext.Provider value={mockValue}>
                 <LogOut/>
             </VideoContext.Provider>
         )
         expect(screen.getByText("LogOut")).toBeInTheDocument()
     })
-
-
 
 })

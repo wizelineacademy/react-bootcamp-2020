@@ -12,7 +12,7 @@ import videos from "../../MockVideos/MockVideos";
 describe('<FormLogin/>', () => {
     const mock = new MockAdapter(axios);
 
-  it('fetches successfully data from an API', async () => {
+  it('Fetches successfully data from the Youtube API', async () => {
     const responseMock = {...videos}; 
     const setUserSessionTest= jest.fn();
     const userSessionTest = {
@@ -21,9 +21,11 @@ describe('<FormLogin/>', () => {
         email: "",
         loggedIn: true
     }
+
     const changinggSetChanginggTest = jest.fn();
     const setFavoritesFlagTest = jest.fn();
     const setVideoMetaInfoTest = jest.fn();
+
     const mockValue = {
         setUserSession : setUserSessionTest,
         changinggSetChangingg : changinggSetChanginggTest,
@@ -52,7 +54,7 @@ describe('<FormLogin/>', () => {
     
   })
 
-  it('testing LogOut', async () => {
+  it('Testing LogOut function', async () => {
     
     const setUserSessionTest= jest.fn();
     const userSessionTest = {
@@ -64,6 +66,7 @@ describe('<FormLogin/>', () => {
     const changinggSetChanginggTest = jest.fn();
     const setFavoritesFlagTest = jest.fn();
     const setVideoMetaInfoTest = jest.fn();
+
     const mockValue = {
         setUserSession : setUserSessionTest,
         changinggSetChangingg : changinggSetChanginggTest,
@@ -71,8 +74,6 @@ describe('<FormLogin/>', () => {
         userSession : userSessionTest,
         setVideoMetaInfo : setVideoMetaInfoTest
     }
-
-   
 
     const utils = render(
     <Router>
@@ -84,13 +85,11 @@ describe('<FormLogin/>', () => {
     )
 
     fireEvent.click(screen.getByRole("onLogWS"));
-    
     expect(setUserSessionTest).toBeCalledTimes(1);
-   
 
   })
 
-  it('Testing LogIn', async () => {
+  it('Testing (if) varResponsen from Youtube Api', async () => {
     const responseMock = {...videos}; 
     const setUserSessionTest= jest.fn();
     const userSessionTest = {
@@ -121,7 +120,6 @@ describe('<FormLogin/>', () => {
     
     )
 
-    
     fireEvent.click(screen.getByRole("aria-roledescription"));
     
     await waitForExpect(()=>{
@@ -129,7 +127,6 @@ describe('<FormLogin/>', () => {
         expect(setFavoritesFlagTest).toBeCalledWith(false);
         expect(setVideoMetaInfoTest).toBeCalledWith(responseMock.items);
     });
-    
     
   })
 

@@ -19,7 +19,7 @@ describe("<SeachBar/>",()=> {
        
     }
 
-    test('renders SearhBar in DOM',()=>{
+    test('Render SearhBar and search button in DOM',()=>{
         render(
             <VideoContext.Provider value={mockValue}>
                 <SearchBar/>
@@ -74,7 +74,7 @@ describe("<SeachBar/>",()=> {
       },5000);
 
 
-      test('inspect the empty YoutubeApi Response', async () => {
+      test('Inspect the empty YoutubeApi Response', async () => {
         const responseMock = {};
          
        const setUserSessionTest= jest.fn();
@@ -104,15 +104,13 @@ describe("<SeachBar/>",()=> {
             <VideoContext.Provider value={mockValue}>
                  <SearchBar />
             </VideoContext.Provider>
-       
-        
+    
         )
         fireEvent.click(screen.getByRole("boton"));
 
         await waitForExpect(()=>{
-          
             expect(setVideoMetaInfoTest).toBeCalledTimes(0);
-            
+
         });
          
       },5000);
@@ -125,7 +123,6 @@ describe("<SeachBar/>",()=> {
         const input = utils.getByRole('inputSearch')
         fireEvent.change(input, { target: { value: 'Search youtube video' } })
         expect(input.value).toBe('Search youtube video')
-       
 
     })
 

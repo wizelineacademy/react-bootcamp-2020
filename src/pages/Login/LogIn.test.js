@@ -15,9 +15,8 @@ describe("<LogIn/>",()=> {
         setFavoritesFlag: jest.fn(),
        
     }
-
     
-    test("tendering FormLogIn within LogIn Page",()=> {
+    test("Rendering FormLogIn within LogIn Page",()=> {
         
         const setVideoMetaInfoTest = jest.fn();
         const changinggSetChanginggTest = jest.fn();
@@ -31,13 +30,8 @@ describe("<LogIn/>",()=> {
             setFavoritesFlag:setFavoritesFlagTest,
             userSession: userSessionTest
         }
-        const name = "testing"
-        const image = "https://i.pinimg.com/564x/fa/c2/cf/fac2cfb7869aa623d830c7f76f4e58dd.jpg";
-        const params = {
-            videoName: name,
-            imageVideo: image
-        }
-        const { getAllByTestId, getByTestId } = render(
+ 
+        const { getByTestId } = render(
         <Route>
             <VideoContext.Provider value={mockTrigger}>
                 <LogIn />
@@ -45,13 +39,8 @@ describe("<LogIn/>",()=> {
         </Route>
         );
          const logInn = getByTestId('loginn')
-         const formLogIn = within(logInn).getByText('Without Session')
          expect(<FormLogIn/>).toBeTruthy();
         
     })
-
-    
-
-
 
 })

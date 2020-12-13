@@ -9,13 +9,10 @@ const Home = () => {
   
   return (
     <div>
-
       <Link to="/reproductorPlayer">
           <ListVideos />
       </Link>
-      <Route
-          render={() => userSession.loggedIn ? <Redirect to="/" /> : <Redirect to="/logIn" />}
-        role="routerTest"/>
+      <Route render={() => userSession.loggedIn ? <Redirect to="/" /> : <Redirect to="/logIn" />} role="routerTest"/>
     </div>
   );
 };

@@ -7,10 +7,11 @@ import App from "../src/components/App/App";
 jest.mock('react-dom', ()=> ({render: jest.fn()}))
 
 
-it('rendering App', () => {
+it('Rendering App', () => {
 
   const div = document.createElement('div');
   ReactDOM.render(<App/>, div);
   global.document.getElementById = (id) => id ==='root' && div
   expect(ReactDOM.render).toHaveBeenCalledWith(<App />, div)
+
 });

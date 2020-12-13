@@ -18,19 +18,18 @@ describe("<ReproductorPlayer/>",()=> {
        
     }
 
-    
-    test("rendering components within ReproductorPlayer Page",()=> {
+    test("Rendering components within ReproductorPlayer Page",()=> {
         
         const videoProppertiesTest = {
             videoId : "id1",
             published : "SomeDate"
         }
 
-
         const userSessionTest ={
             loggedIn: true,
             user: "noSession"
-        } ;
+        } 
+
         const changinggTest = true;
 
         const mockTrigger = {
@@ -92,11 +91,11 @@ describe("<ReproductorPlayer/>",()=> {
             published : "SomeDate"
         }
 
-
         const userSessionTest ={
             loggedIn: true,
             user: "noSession"
-        } ;
+        }
+
         const changinggTest = false;
 
         const mockTrigger = {
@@ -115,9 +114,7 @@ describe("<ReproductorPlayer/>",()=> {
        
         container.querySelector('/')
         expect(container.firstChild).toMatchSnapshot()
-       
         
     })
-
 
 })

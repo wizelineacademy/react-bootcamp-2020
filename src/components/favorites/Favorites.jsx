@@ -5,20 +5,19 @@ const Favorites = () => {
   const { setFavoritesFlag, changinggSetChangingg, favoriteVideosMapUser, userSession, setFavoritesVideosArrayUser } = useContext(VideoContext);
   
   const showVideoFavorites = () => {
-    
-    setFavoritesFlag(true);
-    changinggSetChangingg(false);
 
     let favoriteVideos = favoriteVideosMapUser.get(userSession.user); 
     const favoriteVideosArray = [];
+    setFavoritesFlag(true);
+    changinggSetChangingg(false);
 
     if (favoriteVideos) {
-      for (var clave of favoriteVideos.keys()) {
-        favoriteVideosArray.push(favoriteVideos.get(clave));
-      }
-      setFavoritesVideosArrayUser(favoriteVideosArray);
-    } 
-  };
+        for (var clave of favoriteVideos.keys()) {
+          favoriteVideosArray.push(favoriteVideos.get(clave));
+        }
+        setFavoritesVideosArrayUser(favoriteVideosArray);
+      } 
+    }
 
   return (
     <div>

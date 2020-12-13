@@ -6,7 +6,7 @@ import ButtonFavorites from './ButtonFavorites';
 
 describe("<ButtonFavorites/>",()=> {
    
-   test("trigger onclick event on favoriteButton and call methods",()=> {
+   test("Trigger onclick event on ButtonFavorites and call within methods",()=> {
            
         const favoriteVideosMapUserTest = new Map();
 
@@ -52,7 +52,7 @@ describe("<ButtonFavorites/>",()=> {
 
     })
 
-    test("trigger onclick event on favoriteButton and check if validation",()=> {
+    test("Trigger onclick event on ButtonFavorites and check (if favoriteVideosMapUser) validation",()=> {
            
         const favoriteVideosMapUserTest = new Map();
         const userSessionTest = {};

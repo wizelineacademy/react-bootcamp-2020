@@ -7,13 +7,12 @@ const SearchBar = () => {
   const { setVideoMetaInfo,changinggSetChangingg,setFavoritesFlag } = useContext(VideoContext);
 
   const onSearch = async (e) => {
-
+    
     const params = {
       q: inputword
     };
 
     const varResponse = await youtubeAPI.search(params);
-    
     changinggSetChangingg(false);
     setFavoritesFlag(false);
     setInputWord("");
@@ -26,7 +25,6 @@ const SearchBar = () => {
     }
 
     e.persist();
-   
   };
 
   const onChange = (e) => {

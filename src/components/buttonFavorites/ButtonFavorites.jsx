@@ -20,8 +20,6 @@ const ButtonFavorites = () => {
     }
     
   };
-
-  return <Boton onClick = {addFavorites} role = "boton" >{textButton}</Boton>;
-  
+  return <Boton onClick = {addFavorites} role = "boton" >{textButton}</Boton>; 
 };
 export default ButtonFavorites;

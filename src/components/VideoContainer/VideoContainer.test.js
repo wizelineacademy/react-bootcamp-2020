@@ -9,7 +9,6 @@ describe("<VideoContainer/>",()=>{
 
     test("Test title iframe and tags containers",()=> {
         
-       
         const userSessionTest = {
             user:"noSession"
         };
@@ -49,14 +48,13 @@ describe("<VideoContainer/>",()=>{
             published: "Somedate",
             videoId : "Id1"
         }
-        
-        
+     
         const mockValue = {
             userSession : userSessionTest,
             videoPropperties : videoProppertiesTest,
         };
        
-        const { getByDataTestId } = render(
+        render(
             <VideoContext.Provider value={mockValue}>
                 <VideoContainer/>
             </VideoContext.Provider>
@@ -67,7 +65,6 @@ describe("<VideoContainer/>",()=>{
     })
 
     test("Test expect button text when u have logged in ",()=> {
-       
        
         const userSessionTest = {
             user:"OtherValue"
@@ -84,7 +81,7 @@ describe("<VideoContainer/>",()=>{
             videoPropperties : videoProppertiesTest,
         };
        
-        const {getByTestId }  = render(
+        render(
             <VideoContext.Provider value={mockValue}>
                  <VideoContainer/>
             </VideoContext.Provider>
@@ -93,8 +90,5 @@ describe("<VideoContainer/>",()=>{
         expect(screen.getByText("Add to favorites")).toBeTruthy();
 
     })
-    
-
-
 
 })

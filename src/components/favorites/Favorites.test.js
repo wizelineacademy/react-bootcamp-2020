@@ -6,11 +6,11 @@ import VideoContext from '../../providers/VideoContext';
 
 describe("<Favorites/>",()=>{
 
-    test("Test to be called all function inside onclick function ",()=> {
+    test("Test to be called all function within showVideoFavorites function ",()=> {
         const setFavoritesFlagTest = jest.fn(); 
         const changinggSetChanginggTest = jest.fn(); 
         const favoriteVideosMapUserTest = new Map();
-        //const setFavoritesVideosArrayUserTest = new Array();
+
         const userSessionTest = {
             user:"SomeUser"
         };
@@ -58,18 +58,17 @@ describe("<Favorites/>",()=>{
         
     })
 
-    test("Test f ",()=> {
+    test("Testing  (if favoriteVideos) ",()=> {
         const setFavoritesFlagTest = jest.fn(); 
         const changinggSetChanginggTest = jest.fn(); 
         const favoriteVideosMapUserTest = new Map();
-        //const setFavoritesVideosArrayUserTest = new Array();
         const userSessionTest = {
             user:"SomeUser"
         };
         const testingMap = new Map();
         const videoPropertiesTest = {
             videoName: "VideoNameTest",
-            videoId: "song1",
+            videoId: "idTest",
             views: "",
             likes: "",
             dislikes: "",
@@ -77,9 +76,8 @@ describe("<Favorites/>",()=>{
             imageVideo: "someImage",
             buttonText: "Add to favorites"
         }
-        testingMap.set(videoPropertiesTest.videoId,videoPropertiesTest);
         
-        //favoriteVideosMapUserTest.set(userSessionTest.user,testingMap);
+        testingMap.set(videoPropertiesTest.videoId,videoPropertiesTest);
 
         const setFavoritesVideosArrayUserTest = jest.fn();
         
@@ -103,7 +101,7 @@ describe("<Favorites/>",()=>{
         arrayTest.push(testingMap.get(videoPropertiesTest.videoId));
 
         fireEvent.click(logOut)
-        //expect(setFavoritesFlagTest).toBeCalledTimes(0);
+       
         expect(setFavoritesVideosArrayUserTest).toBeCalledTimes(0);
         
          

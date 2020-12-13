@@ -19,8 +19,7 @@ describe("<NavBar/>",()=> {
        
     }
 
-
-    test('testing video tendencies youtube api', async () => {
+    test('Testing video tendencies youtube api', async () => {
         const responseMock = {
             kind: "youtube#searchListResponse",
             etag: "eXcOsewop0DGNDmt_WDK5yl--ZE",
@@ -389,9 +388,5 @@ describe("<NavBar/>",()=> {
         });
          
       },5000);
-
-   
-
-
 
 })

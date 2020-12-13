@@ -4,12 +4,12 @@ import React from 'react'
 import VideoContext from '../../providers/VideoContext'
 import ListVideos from "./ListVideos"
 import VideoCard from "../VideoCard/VideoCard"
+import videos from "../../MockVideos/MockVideos";
+
 describe("<ListVideos/>",()=>{
 
-    test("Test favorite favoritesFlag false and rendering withing components",()=> {
-        
-        const changingg = true;
-        const favoritesFlag= false;
+    test("Testing VideoCard to be called",()=> {
+
         const videoMetaInfoTest= [
             {
               kind: "youtube#searchResult",
@@ -47,8 +47,6 @@ describe("<ListVideos/>",()=>{
               }
             }];
 
-        
-
         const userSessionTest = {
             user:"noSession"
         };
@@ -77,7 +75,7 @@ describe("<ListVideos/>",()=>{
        
     })
 
-    test("Test favorite favoritesFlag true and rendering withing components",()=> {
+    test("Testing functions and values to be called and set",()=> {
         
         const changinggTest = false;
         const favoritesFlagTest= true;
@@ -91,19 +89,15 @@ describe("<ListVideos/>",()=>{
             buttonText : "buttonTextTest"
           
       }
-
       
       favoritesVideosArrayUserTest.push(videoTest);
   
-
         const mockValue = {
             favoritesFlag : favoritesFlagTest,
             changingg : changinggTest,
             favoritesVideosArrayUser : favoritesVideosArrayUserTest
         };
-       
-        
-       
+
         const {container} = render(
             <VideoContext.Provider value={mockValue}>
                 <ListVideos/>
@@ -113,9 +107,8 @@ describe("<ListVideos/>",()=>{
         expect(<VideoCard/>).toBeTruthy();
         expect(favoritesVideosArrayUserTest).toEqual(favoritesVideosArrayUserTest);
         expect (favoritesFlagTest).toBe(true);
-       
+        expect(changinggTest.contains('grid-container')).toBe(true)
+     
     })
-
-
 
 })
