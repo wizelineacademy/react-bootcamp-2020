@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import './NotFound.styles.css';
+import { HomeLink } from './NotFound.styles';
 
 function NotFoundPage() {
   return (
-    <section className="not-found">
+    <HomeLink>
       <Link to="/" className="home-link">
-        home
+        ← home
       </Link>
       <img src="404.gif" alt="page not found" />
-    </section>
+    </HomeLink>
   );
 }
 
