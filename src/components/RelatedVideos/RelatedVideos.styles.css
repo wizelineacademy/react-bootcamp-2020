@@ -1,0 +1,16 @@
+.videosRelated {
+  display: grid;
+  grid-template-columns: 100%;
+  padding-left: 10px;
+}
+
+.title {
+  font-weight: bold;
+  display: block;
+}
+
+@media (min-width: 850px) {
+  .title {
+    display: none;
+  }
+}
