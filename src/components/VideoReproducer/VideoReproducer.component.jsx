@@ -1,5 +1,5 @@
+// import React, { useEffect } from 'react';
 import React, { useEffect } from 'react';
-// import React, { useContext } from 'react';
 
 import { useAuth } from '../../providers/Auth';
 
@@ -12,11 +12,11 @@ import {
 import { SecondaryButton } from '../../styledComponents';
 import VideoSelectedContext from '../../state/VideoSelectedContext';
 import './VideoReproducer.style.css';
-
-// import { useYoutubeVideo } from '../../utils/hooks/useYoutubeVideo';
+import { useYoutubeVideo } from '../../utils/hooks/useYoutubeVideo';
+import FavoritesContext from '../../state/FavoritesContext';
 
 // --- DEV mocked setup --- ///
-import videoResultMocked from '../../utils/videoResultMocked.json';
+// import videoResultMocked from '../../utils/videoResultMocked.json';
 // --- End of DEV mocked setup --- ///
 
 function sliceDate(strDate) {
@@ -26,33 +26,51 @@ function sliceDate(strDate) {
 function VideoReproducer() {
   // --- DEV mocked setup --- ///
   // eslint-disable-next-line no-unused-vars
-  const [videoInformation, setVideoInformation] = React.useState(
-    videoResultMocked.items[0]
-  );
-  const isVideoRequestSuccessful = true;
-  const isVideoLoading = false;
+  // const [videoInformation, setVideoInformation] = React.useState(
+  //   videoResultMocked.items[0]
+  // );
+  // const isVideoRequestSuccessful = true;
+  // const isVideoLoading = false;
 
-  const videoSelected = videoResultMocked.items[0];
+  // const videoSelected = videoResultMocked.items[0];
   // --- End of DEV mocked setup --- ///
 
   const { authenticated } = useAuth();
   const { videoId } = React.useContext(VideoSelectedContext);
+  const { favoriteVideoList, addFavoritesFn } = React.useContext(FavoritesContext);
 
   // --- PROD code --- //
-  // const [videoInformation, setVideoInformation] = React.useState({});
+  const [videoInformation, setVideoInformation] = React.useState({});
   // --- DEV + PROD Code --- //
-
+  const [isVideoFavorite, setIsVideoFavorite] = React.useState(false);
   // --- End DEV + PROD Code --- //
-  // const { videoSelected, isVideoRequestSuccessful, isVideoLoading } = useYoutubeVideo(
-  //   videoId
-  // );
+  const { videoSelected, isVideoRequestSuccessful, isVideoLoading } = useYoutubeVideo(
+    videoId
+  );
 
   useEffect(() => {
     function updateVideoInformation() {
       setVideoInformation(() => videoSelected);
     }
+    function queryIsVideoFavorite() {
+      const isOnFavorites = favoriteVideoList.find((element) => element.id === videoId);
+      console.log(isOnFavorites);
+      if (isOnFavorites === undefined) {
+        setIsVideoFavorite(false);
+      } else {
+        setIsVideoFavorite(true);
+      }
+    }
     updateVideoInformation();
-  }, [videoSelected]);
+    queryIsVideoFavorite();
+  }, [videoSelected, favoriteVideoList, videoId]);
+
+  const addVideoToFavorites = (event) => {
+    event.preventDefault();
+    if (!isVideoFavorite) {
+      addFavoritesFn(videoInformation);
+    } else console.log('Already in favs');
+  };
 
   const renderReproducer = () => {
     if (isVideoRequestSuccessful)
@@ -76,7 +94,13 @@ function VideoReproducer() {
             <p className="description">{videoInformation.snippet.description}</p>
             {authenticated && (
               <ActionArea>
-                <SecondaryButton type="button">Add to favorites</SecondaryButton>
+                <SecondaryButton
+                  disabled={isVideoFavorite}
+                  onClick={addVideoToFavorites}
+                  type="button"
+                >
+                  Add to favorites
+                </SecondaryButton>
               </ActionArea>
             )}
           </VideoInformation>

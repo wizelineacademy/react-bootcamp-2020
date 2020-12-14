@@ -10,6 +10,10 @@ import './RelatedVideo.style.css';
 
 import VideoSelectedContext from '../../state/VideoSelectedContext';
 
+function sliceDate(strDate) {
+  return strDate.slice(0, 10);
+}
+
 function RelatedVideo({ video }) {
   const history = useHistory();
   const { setVideoIdFn } = useContext(VideoSelectedContext);
@@ -26,7 +30,7 @@ function RelatedVideo({ video }) {
       <VideoInformation>
         <p className="title">{video.snippet.title} </p>
         <p className="channel">{video.snippet.channelTitle}</p>
-        <p className="publishedDate">{video.snippet.publishedAt}</p>
+        <p className="publishedDate">{sliceDate(video.snippet.publishedAt)}</p>
         <p className="description">{video.snippet.description}</p>
       </VideoInformation>
     </RelatedVideoWrapper>

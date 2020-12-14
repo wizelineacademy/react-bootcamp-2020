@@ -4,25 +4,24 @@ import RelatedVideo from '../RelatedVideo';
 import './RelatedVideosList.style.css';
 import VideoSelectedContext from '../../state/VideoSelectedContext';
 
-// import { useRelatedVideo } from '../../utils/hooks/useRelatedVideos';
+import { useRelatedVideo } from '../../utils/hooks/useRelatedVideos';
 
 // --- DEV mocked setup --- ///
-import relatedVideoResultMocked from '../../utils/relatedVideoResultMocked.json';
+// import relatedVideoResultMocked from '../../utils/relatedVideoResultMocked.json';
 // --- End of DEV mocked setup --- ///
 
 function RelatedVideosList() {
   // --- DEV mocked setup --- ///
-  const isRequestSuccessful = true;
-  const isLoading = false;
-  const searchRelatedItems = relatedVideoResultMocked.items;
+  // const isRequestSuccessful = true;
+  // const isLoading = false;
+  // const searchRelatedItems = relatedVideoResultMocked.items;
   // --- End of DEV mocked setup --- ///
 
-  // experiment - use context instead of passed on prop
   const { videoId } = React.useContext(VideoSelectedContext);
   console.log(videoId);
 
   // --- Prod code ---//
-  // const { searchRelatedItems, isRequestSuccessful, isLoading } = useRelatedVideo(videoId);
+  const { searchRelatedItems, isRequestSuccessful, isLoading } = useRelatedVideo(videoId);
   // --- End Prod code ---//
   const [relatedVideoList, setRelatedVideoList] = React.useState([]);
   useEffect(() => {

@@ -17,7 +17,10 @@ function VideoCardSmall({ searchItem }) {
 
   const onVideoSelected = (event) => {
     event.preventDefault();
-    history.push(`/reproducer?id=${searchItem.id.videoId}`);
+    console.log(searchItem);
+    // ifelse to make card component reusable on favorites grid
+    if (searchItem.id.videoId) history.push(`/reproducer?id=${searchItem.id.videoId}`);
+    else history.push(`/reproducer?id=${searchItem.id}`);
     setVideoIdFn(searchItem.id.videoId);
   };
 
