@@ -1,0 +1,16 @@
+.title {
+  padding-left: 0.5em;
+  font-weight: bold !important;
+  display: block;
+}
+
+.login {
+  position: relative;
+  margin-left: 0px;
+}
+
+@media only screen and (max-width: 650px) {
+  .title {
+    display: none;
+  }
+}
