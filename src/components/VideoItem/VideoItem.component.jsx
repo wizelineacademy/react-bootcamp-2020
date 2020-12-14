@@ -79,8 +79,7 @@ const ItemPlay = styled.div`
   }
 `;
 
-function VideoItem(props) {
-  const { id, title, author, description, img } = props;
+function VideoItem({ id, title, author, description, img }) {
   const path = '/details/'.concat(id);
   return (
     <ItemContainer>
