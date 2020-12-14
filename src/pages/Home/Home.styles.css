@@ -1,8 +1,18 @@
 .homepage {
   text-align: center;
+  width: 100vw;
+  height: 85vh;
 }
 
 .homepage h1 {
   font-size: 3rem;
   letter-spacing: -2px;
+}
+
+.nav-bar{
+
+}
+
+.nav-bar a {
+    font-size: 24x;
 }
