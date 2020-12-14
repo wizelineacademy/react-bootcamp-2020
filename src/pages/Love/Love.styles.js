@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 const LoveStyled = styled.div`
-  width: 500px;
-  height: 500px;
+  height: 85vh;
 
+  .player {
+    margin-bottom: 40px;
+  }
 `;
 
 export default LoveStyled;

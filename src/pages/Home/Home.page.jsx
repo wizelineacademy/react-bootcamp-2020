@@ -19,7 +19,7 @@ function HomePage() {
   return (
     <section className="homepage" ref={sectionRef}>
       <nav className="nav-bar">
-        <Link to="/love">Loved Videos</Link> <br />
+        <Link to="/love">❤ Videos</Link> <br />
         {authenticated ? (
           <>
             <h4>Good to have you back</h4>

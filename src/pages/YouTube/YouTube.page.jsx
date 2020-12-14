@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import './YouTube.styles.css';
+import YouTubeStyled from './YouTube.styles';
 
 function YouTube() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,9 +23,9 @@ function YouTube() {
   };
 
   return (
-    <div className="body">
+    <YouTubeStyled>
       <div>
-        <h2>YouTube API Test</h2>
+        <h2>YouTube API Fun</h2>
         <input
           type="text"
           placeholder="Search"
@@ -37,7 +37,6 @@ function YouTube() {
           Go!
         </button>
       </div>
-
       <div className="cardDisplay">
         {miniCardData ? (
           miniCardData.map((item) => (
@@ -51,7 +50,7 @@ function YouTube() {
                 <p className="title">{item.snippet.title}</p>
                 <p className="channelTitle">{item.snippet.channelTitle}</p>
 
-                <Link to={`/video/${item.id.videoId}`}>VISIT</Link>
+                <Link to={`/video/${item.id.videoId}`}>WATCH</Link>
               </div>
             </div>
           ))
@@ -59,7 +58,7 @@ function YouTube() {
           <p>Loading...</p>
         )}
       </div>
-    </div>
+    </YouTubeStyled>
   );
 }
 
