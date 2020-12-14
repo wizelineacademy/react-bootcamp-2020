@@ -1,17 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import { Typography, Grid } from '@material-ui/core';
+import AppBar from '../../components/AppBar';
 import './NotFound.styles.css';
 
-function NotFoundPage() {
+export default function NotFoundPage() {
   return (
-    <section className="not-found">
-      <Link to="/" className="home-link">
-        home
-      </Link>
-      <img src="404.gif" alt="page not found" />
-    </section>
+    <>
+      <AppBar />
+      <Grid container className="content">
+        <Grid item>
+          <Typography variant="h1" component="h1">
+            Woops! Nothing Found here.- XoX
+          </Typography>
+        </Grid>
+      </Grid>
+    </>
   );
 }
-
-export default NotFoundPage;

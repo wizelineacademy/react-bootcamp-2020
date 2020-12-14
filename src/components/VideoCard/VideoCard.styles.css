@@ -1,0 +1,14 @@
+.paper {
+  padding: 1em;
+  max-width: 250px;
+}
+
+.paperTitle {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.thumbnail {
+  width: 168px;
+}

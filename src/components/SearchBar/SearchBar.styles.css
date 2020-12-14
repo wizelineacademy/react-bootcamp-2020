@@ -1,0 +1,14 @@
+.search-box {
+  flex-grow: 1;
+  display: inline-flex;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.search-input {
+  flex-grow: 1;
+}
+
+.search-btn {
+  float: right;
+}

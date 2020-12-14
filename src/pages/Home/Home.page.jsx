@@ -1,39 +1,38 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-
+import React, { useEffect, useState } from 'react';
+import { searchVideos, searchVideosByIds } from '../../api';
+import { useSearch } from '../../providers/Search';
+import AppBar from '../../components/AppBar';
+import VideoGrid from '../../components/VideoGrid';
+import { useFavorite } from '../../providers/Favorite';
 import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
 
-function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+export default function HomePage() {
+  const { query } = useSearch();
+  const { favorite } = useFavorite();
+  const { user } = useAuth();
+  const [videos, setVideos] = useState([]);
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+  const getVideos = async () => {
+    let results = [];
+
+    if (user !== null && favorite) {
+      results = await searchVideosByIds(user.favorites);
+    } else {
+      results = await searchVideos(query);
+    }
+
+    setVideos(results);
+  };
+
+  useEffect(() => {
+    getVideos();
+    // eslint-disable-next-line
+  }, [query, favorite, user]);
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
+    <>
+      <AppBar />
+      <VideoGrid videos={videos} />
+    </>
   );
 }
-
-export default HomePage;
