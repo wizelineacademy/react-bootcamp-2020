@@ -5,7 +5,9 @@ import {Title, PublishedDate, ResponsiveIframe} from "./VideoContainer.style";
 import ButtonFavorites from "../ButtonFavorites/ButtonFavorites";
 
 const VideoContainer = () => {
-  const { userSession, videoPropperties} = useContext(VideoContext);
+  const { userSession, videoPropperties,favoriteVideosMapUser} = useContext(VideoContext);
+
+  
   
   return (
     <div className="grid-item1one">
@@ -23,7 +25,7 @@ const VideoContainer = () => {
         {userSession.user === "noSession" ? (
           <React.Fragment />
         ) : (
-            <ButtonFavorites />    
+            <ButtonFavorites />
         )}
       </div>
     </div>

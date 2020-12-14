@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import VideoCard from "../VideoCard/VideoCard";
+import VideoCard from "../videoCard/VideoCard";
 import VideoContext from "../../providers/VideoContext";
 import "./ListVideos.style.css";
 

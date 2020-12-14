@@ -3,7 +3,7 @@ import "./VideoCard.style.css";
 import VideoContext from "../../providers/VideoContext";
 
 const VideoCard = (props) => {
-  const { changingg, changinggSetChangingg, setSelectedVideoPropperties, videoPropperties, favoritesFlag,favoriteVideosMapUser,userSession } = useContext(VideoContext);
+  const { changingg, changinggSetChangingg, setSelectedVideoPropperties, videoPropperties } = useContext(VideoContext);
 
   const setVideoPropperties = () => {
     const videoProppertiesaux = { ...videoPropperties };
