@@ -7,6 +7,7 @@ import LogIn from "../../pages/Login/LogIn";
 import ReproductorPlayer from "../../pages/ReproductorPlayer/ReproductorPlayer";
 
 const App = () => {
+  require('dotenv').config()
   const [response, setResponse] = useState({});
   const [videoMetaInfo, setVideoMetaInfo] = useState([]);
   const [changingg, changinggSetChangingg] = useState(false);
