@@ -1,57 +1,69 @@
-import React, { useLayoutEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import AuthProvider from '../../providers/Auth';
-import HomePage from '../../pages/Home';
-import LoginPage from '../../pages/Login';
-import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
-import Private from '../Private';
-import Fortune from '../Fortune';
-import Layout from '../Layout';
-import { random } from '../../utils/fns';
+import VideoProvider from '../../VideoState/Provider';
+import ThemeContext from '../../providers/ThemeProvider/Provider';
+import AppTheme from '../AppTheme';
+
+const LoadingComponent = styled.div`
+  margin: auto;
+  text-align: center;
+  width: 50%;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  span {
+    margin-left: 10px;
+  }
+`;
 
 function App() {
-  useLayoutEffect(() => {
-    const { body } = document;
+  const [gapiReady, setgapiReady] = useState(false);
 
-    function rotateBackground() {
-      const xPercent = random(100);
-      const yPercent = random(100);
-      body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
+  useEffect(() => {
+    console.log('Component is mounted');
+
+    if (!gapiReady) {
+      const script = document.createElement('script');
+      script.src = 'https://apis.google.com/js/client.js';
+
+      script.onload = () => {
+        window.gapi.load('client', () => {
+          window.gapi.client.setApiKey("AIzaSyAouhxcwwBMVFT6GoNF4ccP0_O7DnwmReY");
+          window.gapi.client.load('youtube', 'v3', () => {
+            setgapiReady(true);
+          });
+        });
+      };
+
+      document.body.appendChild(script);
     }
-
-    const intervalId = setInterval(rotateBackground, 3000);
-    body.addEventListener('click', rotateBackground);
-
-    return () => {
-      clearInterval(intervalId);
-      body.removeEventListener('click', rotateBackground);
-    };
   }, []);
 
+  if (gapiReady) {
+    console.log('ready!!');
+
+    return (
+      <BrowserRouter>
+        <AuthProvider>
+          <VideoProvider>
+            <ThemeContext>
+              <AppTheme />
+            </ThemeContext>
+          </VideoProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    );
+  }
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <Fortune />
-        </Layout>
-      </AuthProvider>
-    </BrowserRouter>
+    <LoadingComponent>
+      <FontAwesomeIcon icon={faPlay} style={{ color: '#18A67B' }} />
+      <span>Loading ...</span>
+    </LoadingComponent>
   );
 }
 

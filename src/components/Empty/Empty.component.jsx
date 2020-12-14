@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSurprise } from '@fortawesome/free-solid-svg-icons';
+import { faFrog, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
   border: 1px solid ${(props) => props.theme.divider};
@@ -21,13 +21,19 @@ const Title = styled.h1`
   color: ${(props) => props.theme.text};
 `;
 
-function NotFound() {
+function Empty(props) {
+  const { container } = props;
+  const isFav = container === '2';
   return (
     <Container>
-      <FontAwesomeIcon icon={faSurprise} style={{ color: '#18A67B' }} size="5x" />
-      <Title>Sorry! Page not found.</Title>
+      <FontAwesomeIcon
+        icon={!isFav ? faFrog : faHeartBroken}
+        style={{ color: '#18A67B' }}
+        size="5x"
+      />
+      <Title>Sorry! no elements found.</Title>
     </Container>
   );
 }
 
-export default NotFound;
+export default Empty;
