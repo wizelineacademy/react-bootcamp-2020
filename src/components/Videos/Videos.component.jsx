@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Video from '../Video';
 
@@ -9,6 +10,12 @@ const VideosSection = styled.section`
 `;
 
 function Videos({ videos }) {
+  const history = useHistory();
+  const handleClick = (event) => {
+    event.preventDefault();
+    history.push(`/video/${event.target.id}`);
+  };
+
   return (
     <VideosSection>
       {videos &&
@@ -20,6 +27,7 @@ function Videos({ videos }) {
               channelTitle={video.snippet.channelTitle}
               id={video.id.videoId}
               img={video.snippet.thumbnails.medium.url}
+              onClick={handleClick}
             />
           ) : (
             <h1>No disponible</h1>

@@ -1,15 +1,15 @@
 import React from 'react';
 import './Video.styles.css';
 
-function Video({ id, title, channelTitle, img }) {
+function Video({ id, title, channelTitle, img, onClick }) {
   return (
-    <div className="video">
+    <botton className="video" onClick={onClick} id={id}>
       <img width="250" src={img} alt={title} id={id} />
-      <div>
-        <h3>{title}</h3>
-        <p>{channelTitle}</p>
+      <div id={id}>
+        <h3 id={id}>{title}</h3>
+        <p id={id}>{channelTitle}</p>
       </div>
-    </div>
+    </botton>
   );
 }
 

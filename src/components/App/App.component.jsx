@@ -10,10 +10,9 @@ import Favorites from '../../pages/Favorites';
 import NotFound from '../../pages/NotFound';
 import Sidebar from '../Sidebar';
 import Private from '../Private';
-// import Videos from '../Videos';
 import Layout from '../Layout';
 import Navbar from '../Navbar';
-// import VideoPage from '../../pages/Video';
+import VideoPage from '../../pages/Video';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -58,7 +57,7 @@ function App() {
                 <LoginPage />
               </Route>
               <Route exact path="/video/:idVideo">
-                <LoginPage />
+                <VideoPage/>
               </Route>
               <Private exact path="/favorites">
                 <Favorites />
