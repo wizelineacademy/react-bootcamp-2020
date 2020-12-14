@@ -5,6 +5,7 @@
     "prettier/prettier": "error",
     "react/jsx-filename-extension": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/no-unresolved": ["off", { "ignore": [".css$"] }],
     "import/prefer-default-export": "off",
     "react/destructuring-assignment": "off",

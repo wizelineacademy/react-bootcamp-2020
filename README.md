@@ -1,5 +1,12 @@
 # React Certification 2020
 
+## App deploy
+
+The developed app is currently deployed at https://react-bootcamp-wizeline.web.app/
+
+Username: wizeline
+Password: Rocks!
+
 ## Introduction
 
 Thank you for participating in the React Certification 2020! Here, you'll find instructions to complete your certification.
