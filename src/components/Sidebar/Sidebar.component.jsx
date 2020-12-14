@@ -79,7 +79,7 @@ function Sidebar() {
             .filter((item) => !item.needsAuth || (item.needsAuth && authenticated))
             .map((item) => {
               return (
-                <ItemContainer key={item.name} className={item.active ? 'active' : ''}>
+                <ItemContainer key={item.name} className={item.active && 'active'}>
                   <Link to={item.route} onClick={() => setActive(item.name)}>
                     <SidebarItem>
                       <FontAwesomeIcon

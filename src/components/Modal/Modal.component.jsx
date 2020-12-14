@@ -108,7 +108,7 @@ const Error = styled.h1`
 
 function Modal(props) {
   const [user, setUser] = useState('');
-  const [password, setpassword] = useState('');
+  const [password, setPassword] = useState('');
   const [errorLabel, setErrorLabel] = useState('');
 
   const { show, handleClose, handleLogin } = props;
@@ -123,7 +123,7 @@ function Modal(props) {
   };
 
   const handlePassword = (e) => {
-    setpassword(e.target.value);
+    setPassword(e.target.value);
   };
 
   useEffect(() => {
@@ -133,14 +133,14 @@ function Modal(props) {
   useEffect(() => {
     if (show) {
       setUser('');
-      setpassword('');
+      setPassword('');
       setErrorLabel('');
     }
   }, [show]);
 
   const close = () => {
     setUser('');
-    setpassword('');
+    setPassword('');
     setErrorLabel('');
     handleClose();
   };

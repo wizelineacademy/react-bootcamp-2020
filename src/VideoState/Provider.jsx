@@ -18,8 +18,8 @@ const VideoProvider = ({ children }) => {
     dptch({ type: ACTIONS.FETCH_VIDEOS });
     try {
       const results = await getVideos(search);
-      const filterVideos = results.filter((video) => video.id.kind === 'youtube#video');
-      const videos = filterVideos.map((item) => {
+      const filteredVideos = results.filter((video) => video.id.kind === 'youtube#video');
+      const videos = filteredVideos.map((item) => {
         const { snippet, id } = item;
         return {
           id: id.videoId,
@@ -30,7 +30,6 @@ const VideoProvider = ({ children }) => {
           url: `https://www.youtube.com/watch?v=${id.videoId}`,
         };
       });
-      console.log(videos);
       dptch({ type: ACTIONS.FETCH_SUCCESS, payload: { videos } });
       return videos;
     } catch (error) {
@@ -45,7 +44,6 @@ const VideoProvider = ({ children }) => {
   };
 
   const setFavorites = (dptch, states) => async (video) => {
-    console.log(video);
     const { favorites } = states;
     const index = favorites.findIndex((item) => item.id === video.id);
     if (index === -1) {
@@ -55,7 +53,6 @@ const VideoProvider = ({ children }) => {
   };
 
   const removeFavorites = (dptch, states) => async (video) => {
-    console.log(video);
     const { favorites } = states;
     const index = favorites.findIndex((item) => item.id === video.id);
     if (index >= 0) {
