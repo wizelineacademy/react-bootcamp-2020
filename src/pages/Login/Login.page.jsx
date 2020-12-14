@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../../providers/Auth';
-import './Login.styles.css';
+import { Login, LoginWrapper, H1, LoginForm, FormGroup } from './Login.styles';
 
 function LoginPage() {
   const { login, logout, authenticated } = useAuth();
@@ -39,13 +39,13 @@ function LoginPage() {
   }
 
   return (
-    <section className="login">
-      <div className="login-wrapper">
-        <h1>Welcome back!</h1>
+    <Login>
+      <LoginWrapper>
+        <H1>Welcome back!</H1>
         {!authenticated ? (
           <>
-            <form onSubmit={authenticate} className="login-form">
-              <div className="form-group">
+            <LoginForm onSubmit={authenticate}>
+              <FormGroup>
                 <label htmlFor="username">
                   <strong>username </strong>
                   <input
@@ -56,8 +56,8 @@ function LoginPage() {
                     defaultValue={user.username}
                   />
                 </label>
-              </div>
-              <div className="form-group">
+              </FormGroup>
+              <FormGroup>
                 <label htmlFor="password">
                   <strong>password </strong>
                   <input
@@ -68,10 +68,10 @@ function LoginPage() {
                     defaultValue={user.password}
                   />
                 </label>
-              </div>
+              </FormGroup>
               <span>{error || null}</span>
               <button type="submit">login</button>
-            </form>
+            </LoginForm>
           </>
         ) : (
           <>
@@ -85,8 +85,8 @@ function LoginPage() {
             </div>
           </>
         )}
-      </div>
-    </section>
+      </LoginWrapper>
+    </Login>
   );
 }
 
