@@ -1,38 +1,26 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+import CardWrapper from '../../components/CardWrapper/CardWrapper';
+import { useStyles } from './HomePage.styled';
+import { useVideo } from '../../providers/Video/Video.provider';
 
 function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+  const { videos } = useVideo();
+  const classes = useStyles();
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+  const setPath = (video) => `/${video.id}`;
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
+    <Grid container className={classes.root} spacing={3}>
+      {videos.length === 0 ? (
+        <div>No results found</div>
       ) : (
-        <Link to="/login">let me in →</Link>
+        <Grid>
+          <CardWrapper videos={videos} setPath={setPath} />
+        </Grid>
       )}
-    </section>
+    </Grid>
   );
 }
 

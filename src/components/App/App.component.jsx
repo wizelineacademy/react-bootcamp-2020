@@ -1,57 +1,41 @@
-import React, { useLayoutEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
-import AuthProvider from '../../providers/Auth';
-import HomePage from '../../pages/Home';
-import LoginPage from '../../pages/Login';
-import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
-import Private from '../Private';
-import Fortune from '../Fortune';
-import Layout from '../Layout';
-import { random } from '../../utils/fns';
+import AuthProvider from '../../providers/Auth/Auth.provider';
+import VideoProvider from '../../providers/Video/Video.provider';
+import UserPreferencesProvider from '../../providers/Preferences/UserPreferences.provider';
+import AppTheme from '../AppTheme/AppTheme';
+import { initGoogle } from '../../api/gapi';
 
 function App() {
-  useLayoutEffect(() => {
-    const { body } = document;
+  const [loadDependencies, setLoadDependencies] = useState(false);
 
-    function rotateBackground() {
-      const xPercent = random(100);
-      const yPercent = random(100);
-      body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
-    }
-
-    const intervalId = setInterval(rotateBackground, 3000);
-    body.addEventListener('click', rotateBackground);
-
-    return () => {
-      clearInterval(intervalId);
-      body.removeEventListener('click', rotateBackground);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log(window.gapi.client.youtube.search);
+      } catch (e) {
+        await initGoogle().then(() => {
+          setLoadDependencies(true);
+        });
+      }
     };
+    fetchData();
   }, []);
 
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <Fortune />
-        </Layout>
-      </AuthProvider>
-    </BrowserRouter>
+    <div>
+      {loadDependencies === true ? (
+        <AuthProvider>
+          <VideoProvider>
+            <UserPreferencesProvider>
+              <AppTheme />
+            </UserPreferencesProvider>
+          </VideoProvider>
+        </AuthProvider>
+      ) : (
+        <div>cargando</div>
+      )}
+    </div>
   );
 }
 
