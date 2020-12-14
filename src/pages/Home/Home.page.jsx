@@ -19,9 +19,10 @@ function HomePage() {
   return (
     <section className="homepage" ref={sectionRef}>
       <nav className="nav-bar">
+        <Link to="/love">Loved Videos</Link> <br />
         {authenticated ? (
           <>
-            <h2>Good to have you back</h2>
+            <h4>Good to have you back</h4>
             <span>
               <Link to="/" onClick={deAuthenticate}>
                 ← logout
@@ -34,7 +35,6 @@ function HomePage() {
           <Link to="/login">Log in Rocker→</Link>
         )}
       </nav>
-
       <YouTube />
     </section>
   );

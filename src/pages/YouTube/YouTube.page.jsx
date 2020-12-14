@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import './YouTube.styles.css'
-
+import './YouTube.styles.css';
 
 function YouTube() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -51,6 +50,7 @@ function YouTube() {
               <div className="videoCardInfo">
                 <p className="title">{item.snippet.title}</p>
                 <p className="channelTitle">{item.snippet.channelTitle}</p>
+
                 <Link to={`/video/${item.id.videoId}`}>VISIT</Link>
               </div>
             </div>

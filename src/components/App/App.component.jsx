@@ -6,11 +6,11 @@ import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
 import VideoDetail from '../../pages/VideoDetail';
+import Love from '../../pages/Love';
 import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
 import { random } from '../../utils/fns';
-
 
 function App() {
   useLayoutEffect(() => {
@@ -39,9 +39,8 @@ function App() {
             <Route exact path="/">
               <HomePage />
             </Route>
-            <Route path="/video/:videoId" exact>
-              <VideoDetail />
-            </Route>
+            <Route exact path="/video/:videoId" component={VideoDetail} />
+            <Route exact path="/love" component={Love} />
             <Route exact path="/login">
               <LoginPage />
             </Route>
