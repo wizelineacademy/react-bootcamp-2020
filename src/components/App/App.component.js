@@ -29,6 +29,7 @@ function App() {
           <Container>
             <NavBar />
             <Switch>
+              <Route exact path="/" component={HomePage} />
               <Route exact path="/home/:searchText?" component={HomePage} />
               <Route path="/login" component={LoginPage} />
               <Route path="/video/:id" component={VideoPlayerPage} />
