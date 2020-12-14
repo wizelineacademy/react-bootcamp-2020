@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const KEY = "AIzaSyBd8dZ1ifnfs2BoYmUmembIydMfctl2lRU";
+const KEY = process.env.REACT_APP_YOUTUBE_KEY;
 
 export const search = params => {
   const axiosInstance = axios.create({

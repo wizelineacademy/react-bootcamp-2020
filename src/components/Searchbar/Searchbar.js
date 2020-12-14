@@ -3,7 +3,7 @@ import * as BiIcons from "react-icons/bi";
 import PageContext from "../../providers/Context/PageContext";
 import * as apiYoutube from "../../utils/apiYoutube";
 import { useHistory } from "react-router-dom";
-import "./Searchbar.css";
+import styles from "./Searchbar.module.css";
 
 const Searchbar = () => {
   const history = useHistory();
@@ -35,11 +35,11 @@ const Searchbar = () => {
   }
 
   return (
-      <div className="wrap">
-        <div className="search">
+      <div className={styles.wrap}>
+        <div className={styles.search}>
           <input
             role="searching"
-            className="searchTerm"
+            className={styles.searchTerm}
             type="text"
             value={searchText}
             name="search"
@@ -47,7 +47,7 @@ const Searchbar = () => {
             onChange={handleSearch}
             onKeyDown ={enterSearch}
           />
-          <button type="submit" className="searchButton" onClick={searchVideo}>
+          <button type="submit" className={styles.searchButton} onClick={searchVideo}>
             <BiIcons.BiSearch />
           </button>
         </div>
