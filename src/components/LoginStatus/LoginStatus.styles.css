@@ -1,0 +1,12 @@
+.LoginButton {
+  font-size: 1.2em;
+}
+
+.LogoutButton {
+  font-size: 1.2em;
+}
+
+.LoginStatus {
+  float: right;
+  line-height: 45px;
+}

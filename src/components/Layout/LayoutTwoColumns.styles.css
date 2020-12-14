@@ -1,0 +1,12 @@
+.wrapper-twocolumns {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+}
+
+@media (min-width: 850px) {
+  .wrapper-twocolumns {
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+}
