@@ -1,10 +1,10 @@
-export const videos = {
+export const data = {
   kind: "youtube#searchListResponse",
   etag: "gQa4Kq-EF4IYjl56Vh2tCVHAz4w",
   nextPageToken: "CBQQAA",
   regionCode: "MX",
   pageInfo: {
-    totalResults: 1000000,
+    totalResults: 100,
     resultsPerPage: 20
   },
   items: [

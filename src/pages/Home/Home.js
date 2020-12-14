@@ -1,26 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext , useEffect} from "react";
 import VideoList from "../../components/VideoList/VideoList";
 import PageContext from "../../providers/Context/PageContext";
-import apiYoutube from "../../utils/apiYoutube";
+import * as apiYoutube from "../../utils/apiYoutube";
 
 
 const Home = () => {
   
   const { videoList , setVideoList } = useContext(PageContext);
   const { userLogged } = useContext(PageContext);
-  //IFEE function;
-  (() => {
-    if(videoList.length < 1){
-      apiYoutube
-      .get("/search")
-      .then((response) => {
-        setVideoList(response.data.items);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    };
-  })()
+
+  const loadData = async () =>{
+      if(videoList.length < 1){
+        const varResponse = await apiYoutube.search();
+        setVideoList(varResponse.data.items);
+      }
+  }
+  useEffect(() => {
+    loadData();
+  });
+
   return (
     <>
       <h3>{userLogged.userStatus ? `Bienvenido ${userLogged.user}` : ""}</h3>

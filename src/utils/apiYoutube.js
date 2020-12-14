@@ -1,12 +1,16 @@
 import axios from "axios";
 
-const KEY = "AIzaSyCxX3tGJbGYtOEzIf5JOlNU4qvKf_RSN10";
-export default axios.create({
-  baseURL: "https://www.googleapis.com/youtube/v3/",
-  params: {
-    maxResults: "20",
-    part: "snippet",
-    type: "video",
-    key: KEY
-  }
-});
+const KEY = process.env.REACT_APP_YOUTUBE_KEY;
+
+export const search = params => {
+  const axiosInstance = axios.create({
+    baseURL: "https://www.googleapis.com/youtube/v3/",
+    params: {
+      part: "snippet",
+      maxResults: 20,
+      type: "video",
+      key: KEY
+    }
+  });
+  return axiosInstance.get("/search", { params });
+}

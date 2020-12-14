@@ -6,13 +6,13 @@ import { SidebarData } from "./SidebarData";
 import { IconContext } from "react-icons";
 import PageContext from "../../providers/Context/PageContext";
 import Searchbar from "../Searchbar/Searchbar";
-
-import "./Navbar.css";
+import styles from "./Navbar.module.css";
 import LoginButton from "../LoginButton/LoginButton";
 
 const Navbar = () => {
   const { sideBar, setSideBar } = useContext(PageContext);
   const { userLogged } = useContext(PageContext);
+
   const showSideBar = () => {
     setSideBar(!sideBar);
   };
@@ -20,7 +20,7 @@ const Navbar = () => {
   const pages = SidebarData.map((data) => {
     const navItems = (
       <li key={data.text} className={data.estilo}>
-        <Link to={data.path} className="menu-bars">
+        <Link to={data.path} className={styles.menubars}>
           {data.icons}
           <span>{data.text}</span>
         </Link>
@@ -36,20 +36,19 @@ const Navbar = () => {
   return (
     <div>
       <IconContext.Provider value={{ color: "#ffff" }}>
-        <div className="navbar">
-          <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSideBar} />
+        <div className={styles.navbar}>
+          <Link to="#" className={styles.menubars}>
+            <FaIcons.FaBars role={styles.showSideBar} onClick={showSideBar} />
           </Link>
           <div>
             <Searchbar />
           </div>
-
           <LoginButton />
         </div>
-        <nav className={sideBar ? "menu-active" : "nav-menu"}>
-          <ul className="nav-menu-items" onClick={showSideBar}>
-            <li className="navbar-toogle">
-              <Link to="#" className="menu-bars">
+        <nav className={sideBar ? styles.menuactive : styles.navmenu}>
+          <ul className={styles.navmenuitems} onClick={showSideBar}>
+            <li className={styles.navbartoogle}>
+              <Link to="#" className={styles.menubars}>
                 <AiIcons.AiOutlineClose onClick={showSideBar} />
               </Link>
             </li>

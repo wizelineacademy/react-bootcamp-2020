@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RiHeartAddLine } from "react-icons/ri";
 import PageContext from "../../providers/Context/PageContext";
 import './styles/VideoFrame.css';
@@ -6,17 +6,14 @@ import './styles/VideoFrame.css';
 import * as Styles from "./styles/VideoFrameStyles";
 
 const VideoFrame = () => {
-  const { video } = useContext(PageContext);
-  const { objVideo } = useContext(PageContext);
-  const { userLogged } = useContext(PageContext);
-  const { mapFavs } = useContext(PageContext);
+  const { video, objVideo, userLogged, mapFavs} = useContext(PageContext);
 
   const handlerAddFavs = () => {
     let flag = true;
     let Arr = [];
     let auxArr = mapFavs.get(userLogged.user);
     if( mapFavs.get(userLogged.user)){
-      for (let i = 0; i < auxArr.length; i++) {
+      for (let i = 0; i < auxArr.length; i++) { 
         if(auxArr[i].id.videoId === objVideo.id.videoId){
           flag = false;
         }
@@ -29,11 +26,19 @@ const VideoFrame = () => {
       Arr.push(objVideo);
       mapFavs.set(userLogged.user,Arr);
     }
-  
-  };
+  }
+
+  const handlerRemoveFavs = () => {
+    let auxArr = mapFavs.get(userLogged.user);
+    for (let i = 0; i < auxArr.length; i++) { 
+      if(auxArr[i].id.videoId === objVideo.id.videoId){
+        auxArr.splice(i,1);
+      }
+    }
+  }
+
 
   return (
-    <div>
       <Styles.Container>
         <Styles.ResponsiveIframe
           id="videoPlayer"
@@ -47,12 +52,11 @@ const VideoFrame = () => {
             <p>{video.publishedDate}</p>
           </div>
           <div>
-          <button className={userLogged.user ? 'favs active' : 'favs'} onClick={handlerAddFavs} variant="outlined" color="primary"><b><RiHeartAddLine/>Favs</b></button>
+          <button className={userLogged.user ? 'favs active' : 'favs'} onClick={handlerAddFavs} variant="outlined" color="primary"><b><RiHeartAddLine/>Add</b></button>
+          <button className={userLogged.user ? 'favs active' : 'favs'} onClick={handlerRemoveFavs} variant="outlined" color="primary"><b><RiHeartAddLine/>Remove</b></button>
           </div>
-          
         </Styles.Info>
       </Styles.Container>
-    </div>
   );
 };
 

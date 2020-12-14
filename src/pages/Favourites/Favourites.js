@@ -3,9 +3,7 @@ import VideoList from "../../components/VideoList/VideoList";
 import PageContext from "../../providers/Context/PageContext";
 import { Route, Redirect } from "react-router-dom";
 const Favourites = () => {
-  const { mapFavs } = useContext(PageContext);
-  const { userLogged } = useContext(PageContext);
-
+  const { mapFavs, userLogged } = useContext(PageContext);
 
   return (
     <>

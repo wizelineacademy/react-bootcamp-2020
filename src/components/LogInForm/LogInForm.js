@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import PageContext from "../../providers/Context/PageContext";
 import { Route, Redirect } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -13,10 +12,8 @@ const LogIn = () => {
   const { userLogged, setUserLogged } = useContext(PageContext);
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
-  const [InputText, setUserText] = useState("");
-  const [passText, setPassText] = useState("");
-  const [errorInput, setError] = useState(false);
-  const [errorPass, setErrorPass] = useState(false);
+  const [helper, setHelper] = useState("");
+  const [helper2, setHelper2] = useState("");
 
   let mapUsers = new Map();
 
@@ -30,42 +27,38 @@ const LogIn = () => {
 
   const HandleMail = (e) => {
     setUser(e.target.value);
+
   };
 
   const HandlePassword = (e) => {
     setPass(e.target.value);
   };
 
-  const validate = () => { //verifica que el user y el password coincidan con los puestos en el input
+  const validate = () => {
     let validation = false;
     if(mapUsers.get(user)){
-      setUserText("");
-      setError(false);
+      setHelper("");
       if(mapUsers.get(user).password === pass){
         validation = true;
       }
       else{
-        setPassText("Password incorrecto");
-        setErrorPass(true);
+        setHelper2("Password incorrecto");
       }
     }
     else{
-      setUserText("Usuario no existe");
-      setError(true);
+      setHelper("Usuario no existe");
     }
     return validation;
   }
 
-  const validateInputs = () => { //valida que no tenga campos vacios (mejorar)
+  const validateInputs = () => {
     let validation2=true
     if(!user){
-      setUserText("Usuario requerido");
-      setError(true);
+      setHelper("Usuario requerido");
       validation2 = false;
     }
     if(!pass){
-      setPassText("Password requerido");
-      setErrorPass(true);
+      setHelper2("Password requerido");
       validation2 = false;
     }
     return validation2;
@@ -88,21 +81,22 @@ const LogIn = () => {
     <div>
       <Card className="Root">
         <CardContent>
-          <TextField  error={errorInput} 
-                      value={user} 
-                      onChange={HandleMail} 
-                      label="User" 
-                      helperText={InputText}/>
-          <div></div>
+          <input 
+                role="user" 
+                value={user} 
+                onChange={HandleMail}
+                placeholder="User" />
+                <p style={{color: "red"}}>{helper}</p>
+        <div></div>
           <br />
-          <TextField
-            type="password"
-            value={pass}
+        
+          <input
+            type="password" 
+            role="pass" 
+            value={pass} 
             onChange={HandlePassword}
-            label="Password"
-            error={errorPass}
-            helperText={passText}
-          />
+            placeholder="Password" />
+            <p style={{color: "red"}}>{helper2}</p>
           <div></div>
           <br />
           <CardActions>
