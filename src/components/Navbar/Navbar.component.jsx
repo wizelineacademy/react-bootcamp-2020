@@ -36,9 +36,14 @@ function Navbar() {
     }
   };
 
+  const onHomeClick = (event) => {
+    event.preventDefault();
+    history.push('/');
+  };
+
   return (
     <NavbarWrapper>
-      <TitleLabel className="title-wrapper">
+      <TitleLabel className="title-wrapper" onClick={onHomeClick}>
         <h3>{authenticated ? 'Human, Search!' : 'Search!'}</h3>
       </TitleLabel>
       <SearchBarWrapper className="searchbar-wrapper">

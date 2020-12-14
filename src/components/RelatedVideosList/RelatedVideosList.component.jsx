@@ -18,7 +18,6 @@ function RelatedVideosList() {
   // const searchRelatedItems = relatedVideoResultMocked.items;
   // --- End of DEV mocked setup --- ///
 
-  // experiment - use context instead of passed on prop
   const { videoId } = React.useContext(VideoSelectedContext);
   console.log(videoId);
 

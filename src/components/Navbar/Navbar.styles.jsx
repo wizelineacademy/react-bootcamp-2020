@@ -27,6 +27,10 @@ const Input = styled.input`
 const TitleLabel = styled.div`
   position: sticky;
   left: 3vw;
+  cursor: pointer;
+  &:hover {
+    color: #ffa62b;
+  }
 `;
 
 const NavbarButtons = styled.div`

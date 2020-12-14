@@ -33,3 +33,9 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.videoInformation button:disabled {
+  background-color: #5d5f61;
+  color: #9e9493;
+  cursor: unset;
+}
