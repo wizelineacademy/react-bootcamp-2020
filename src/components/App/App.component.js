@@ -10,8 +10,10 @@ import Container from './App.styled';
 import NavBar from '../NavBar';
 import Protected from '../Protected/Protected.component';
 import VideoPlayerPage from '../../pages/VideoPlayer';
-import { VideoContext, initialState } from '../../state/videoContext';
+import VideoContext from '../../state/videoContext';
 import reducer from '../../state/videoReducer';
+import initialState from '../../state/videoContext';
+
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
