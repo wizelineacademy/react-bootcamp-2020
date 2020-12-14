@@ -1,7 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { StateContext } from '../../utils/State';
-import { ListContainer, ListItem, ListItemText, PlayerContainer, PlayerVideoContainer, VideoDescription, VideoTitle } from './Player.styled';
+import { VideoContext } from '../../utils/VideoState';
+import { ConfigContext } from '../../utils/ConfigState';
+import { ListContainer, ListItem, ListItemText, PlayerContainer, 
+  PlayerVideoContainer, VideoDescription, VideoTitle } from './Player.styled';
 import { useFetch } from '../../utils/hooks/useFetch';
 import { StarOutlined, StarTwoTone } from '@ant-design/icons';
 import { Tooltip } from 'antd';
@@ -11,8 +14,12 @@ const Player = () => {
 
   const history = useHistory();
   const { pathname } = useLocation();
-  const { Video: { description, image, publishTime, title, videoId: VideoID }, Sesion, FavoriteVideos, 
-  setFavoriteVideos, setVideo, DarkMode, Theme: { TextColor } } = useContext(StateContext);
+
+  const { state: { Theme: { TextColor }, DarkMode } } = useContext(ConfigContext)
+  const { state: { Sesion } } = useContext(StateContext)
+  const { state: { CurrentVideo: { description, image, publishTime, title, videoId: VideoID }, FavoriteVideos },
+    dispatchV } = useContext(VideoContext);
+
   const { VideoList } = useFetch();
   const [IsFavorite, setIsFavorite] = useState(null);
 
@@ -35,27 +42,34 @@ const Player = () => {
   }, [Sesion, history, pathname])
 
   const addFavoriteVideo = () => {
-    setFavoriteVideos([ ...FavoriteVideos, {
-      description,
-      image,
-      publishTime,
-      title,
-      videoId: VideoID
-    }]);
+    dispatchV({
+      type: "SET_FAVORITE_VIDEOS",
+      payload: [ ...FavoriteVideos, {
+        description,
+        image,
+        publishTime,
+        title,
+        videoId: VideoID
+      }]
+    });
   };
 
   const removeFavoriteVideo = () => {
-    setFavoriteVideos(
-      FavoriteVideos.filter(({ videoId }) => videoId !== VideoID )
-    );
+    dispatchV({
+      type: "SET_FAVORITE_VIDEOS",
+      payload: FavoriteVideos.filter(({ videoId }) => videoId !== VideoID )
+    });
   };
 
   const selectOtherVideo = (video) => {
-    setVideo(video);
+    dispatchV({
+      type: "SET_CURRENT_VIDEO",
+      payload: video
+    });
     if(!pathname.includes("/favorites")){
-      history.push(`/player`);
+      history.push(`/player/${video.videoId}`);
     } else {
-      history.push("/favorites/player");
+      history.push(`/favorites/player/${video.videoId}`);
     }
     
   };
@@ -65,6 +79,7 @@ const Player = () => {
     <PlayerContainer>
       <PlayerVideoContainer>
         <iframe 
+          data-testid="Iframe"
           src={`http://www.youtube.com/embed/${VideoID}`} 
           frameBorder="0" 
           title="Video" 
@@ -73,6 +88,7 @@ const Player = () => {
           allowFullScreen
         />
         <VideoTitle
+          data-testid="VideoTitle"
           color={TextColor}
         >
           <div>
@@ -82,6 +98,7 @@ const Player = () => {
             (Sesion) && 
               <Tooltip 
                 title={IsFavorite ? "Remove from favorites" : "Add to favorites"} 
+                data-testid="Tooltip"
               >
                 {
                   (IsFavorite) ? (
@@ -89,18 +106,22 @@ const Player = () => {
                       style={{ cursor: "pointer", fontSize: "30px" }}
                       twoToneColor="#ffd700"
                       onClick={removeFavoriteVideo}
+                      data-testid="StarTwo"
                     />
                   ) : (
                     <StarOutlined 
                       style={{ cursor: "pointer", fontSize: "30px" }}
                       onClick={addFavoriteVideo}
+                      data-testid="StartOut"
                     />
                   )
                 }
               </Tooltip>
           }
         </VideoTitle>
-      <VideoDescription>
+      <VideoDescription
+        data-testid="VideoDesc"
+      >
         {description}
       </VideoDescription>
     </PlayerVideoContainer>
@@ -109,6 +130,7 @@ const Player = () => {
         (FavoriteVideos && pathname.includes("/favorites")) && (
           FavoriteVideos.map(({ description, image, publishTime, title, videoId }) => 
             <ListItem
+              data-testid="ListFavItem"
               color={DarkMode ? "grey" : "white"}
               colorTxt={TextColor}
               key={videoId}
@@ -126,7 +148,9 @@ const Player = () => {
                 width="120"
                 height="100"
               />
-              <ListItemText>
+              <ListItemText
+                data-testid="ListFavItemTitle"
+              >
                 {title}
               </ListItemText>
             </ListItem>
@@ -138,6 +162,7 @@ const Player = () => {
           VideoList.map(({ snippet: {title, description, publishTime, thumbnails: { medium: { url } }}, 
             id: { videoId }}) => 
             <ListItem
+              data-testid="ListVidItem"
               color={DarkMode ? "grey" : "white"}
               colorTxt={ TextColor }
               key={videoId}
@@ -155,7 +180,9 @@ const Player = () => {
                 width="120"
                 height="100"
               />
-              <ListItemText>
+              <ListItemText
+                data-testid="ListVidItemTitle"
+              >
                 {title}
               </ListItemText>
             </ListItem>

@@ -1,36 +1,44 @@
 import React, { useContext } from 'react';
 import { CardVideo, Description, Img, InfoContainer, Title } from './VideoItem.styled';
-import { StateContext } from '../../utils/State';
+import { ConfigContext } from '../../utils/ConfigState';
+import { VideoContext } from '../../utils/VideoState';
 
 const VideoItem = ({ videoInfo: { title, description, publishTime, thumbnails: { medium: { url } } }, videoID: { videoId }, viewVideo }) => {
 
-    const { setVideo, Theme: { PrimaryColor }, DarkMode } = useContext(StateContext);
+    const { state: { Theme: { PrimaryColor }, DarkMode } } = useContext(ConfigContext);
+    const { dispatchV } = useContext(VideoContext);
 
     const onClickVideo = () => {
-        viewVideo();
-        setVideo({
-            title,
-            description,
-            publishTime,
-            image: url,
-            videoId
+        viewVideo(videoId);
+        dispatchV({
+            type: "SET_CURRENT_VIDEO",
+            payload: {
+                title,
+                description,
+                publishTime,
+                image: url,
+                videoId
+            }
         });
-    }
+    };
 
     return (
-        <CardVideo 
+        <CardVideo
+            data-testid="CardVideo"
             onClick={onClickVideo}
         >
-            <Img background={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`} />
+            <Img data-testid="Img" background={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`} />
             <InfoContainer
+                data-testid="InfoCont"
                 color={PrimaryColor}
             >
                 <Title
+                    data-testid="Title"
                     color={DarkMode ? "white" : "black"}
                 >
                     {title}
                 </Title>
-                <Description>
+                <Description data-testid="Description">
                     {description}
                 </Description>
             </InfoContainer>

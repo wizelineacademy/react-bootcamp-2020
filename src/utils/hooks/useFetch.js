@@ -1,12 +1,12 @@
 /* global gapi */
 import { useState, useEffect, useContext } from 'react';
-import { StateContext } from '../State';
+import { VideoContext } from '../VideoState';
 
 // Custom Hook
 const useFetch = () => {
   
   const [VideoList, setVideoList] = useState(null);
-  const { SearchVideo } = useContext(StateContext);
+  const { state: { SearchVideo } } = useContext(VideoContext);
 
   useEffect(() => {
       try {

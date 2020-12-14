@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
-import { StateContext } from '../../utils/State';
+import { ConfigContext } from '../../utils/ConfigState';
 import { LayoutStyle } from './Layout.styled';
 
 const Layout= ({ children }) => {
 
-  const { Theme } = useContext(StateContext);
+  const { state: { Theme: { PrimaryColor } } } = useContext(ConfigContext);
 
   return (
     <LayoutStyle
-      mode={Theme}
+      data-testid="Layout"
+      mode={PrimaryColor}
     >
       {children}
     </LayoutStyle>

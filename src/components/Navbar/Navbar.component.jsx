@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { StateContext } from '../../utils/State';
+import { ConfigContext } from '../../utils/ConfigState';
+import { VideoContext } from '../../utils/VideoState';
 import { NavBar, InputStyled, SwitchStyled, LoginButton, BaseButton, InputContainer, LoginContainer, DarkModeStyled } from './Navbar.styled';
 import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
@@ -9,31 +11,37 @@ import { useHistory } from 'react-router';
 
 const Navbar = () => {
 
-    const { DarkMode, setDarkMode, Sesion, setSesion, SearchVideo, setSearchVideo, 
-        Theme: { SecondaryColor, TextColor } } = useContext(StateContext);
-    const [SearchVideoNav, setSearchVideoNav] = useState(SearchVideo)
-    const [OpenModal, setOpenModal] = useState("");
+    const { state: { Theme: { SecondaryColor, TextColor }, DarkMode }, dispatchC } = useContext(ConfigContext)
+    const { state: { SearchVideo }, dispatchV } = useContext(VideoContext);
+    const { state: { Sesion }, dispatchS } = useContext(StateContext);
+    
+    const [SearchVideoNav, setSearchVideoNav] = useState(SearchVideo)    
+    const [OpenModal, setOpenModal] = useState(false);
     const history = useHistory();
 
     const onChangeSesion = () => {
         if(Sesion){
-            setSesion(null);
+            dispatchS({
+                type: "SET_SESION",
+                payload: null
+            });
         } else {
-            setOpenModal("Login");
+            setOpenModal(true);
         }
     }
 
-    const Modals = {
-        "Login": <Login onClose={() => setOpenModal("")} />
-    };
-
     return (
         <NavBar
+            data-testid="NavBar"
             color={SecondaryColor}
         >
-            { Modals[OpenModal] }
+            <Login 
+                onClose={() => setOpenModal(false)} 
+                visible={OpenModal}
+            />
             <InputContainer>
                 <BaseButton
+                    data-testid="ButtonHome"
                     color={TextColor}
                     back={DarkMode ? "grey" : "white" }
                     onClick={() => history.push("/")}
@@ -43,6 +51,7 @@ const Navbar = () => {
                 {
                     (Sesion) && (
                         <BaseButton
+                            data-testid="ButtonFavorites"
                             color={TextColor}
                             back={DarkMode ? "grey" : "white" }
                             onClick={() => history.push("/favorites")}
@@ -52,23 +61,33 @@ const Navbar = () => {
                     )
                 }
                 <InputStyled 
+                    data-testid="InputNavBar"
                     value={SearchVideoNav}
                     onChange={({target: { value }}) => setSearchVideoNav(value)}
                     placeholder="Search..." 
-                    onPressEnter={() => setSearchVideo(SearchVideoNav)}
+                    onPressEnter={() => dispatchV({
+                        type: "SET_SEARCH_VIDEO",
+                        payload: SearchVideoNav
+                    })}
                 />
             </InputContainer>
             <LoginContainer>
                 <SwitchStyled 
+                    data-testid="SwitchNavBar"
                     checked={DarkMode} 
-                    onChange={setDarkMode} 
+                    onChange={(value) => dispatchC({
+                        type: "SET_DARK_MODE",
+                        payload: value
+                    })} 
                 />
                 <DarkModeStyled
+                    data-testid="DarkMode"
                     color={TextColor}
                 >
                     Dark mode
                 </DarkModeStyled>
                 <LoginButton
+                    data-testid="LoginButton"
                     onClick={onChangeSesion}
                 >
                     <Tooltip 
@@ -76,11 +95,13 @@ const Navbar = () => {
                     >
                         {
                             (Sesion) ? (
-                                <LogoutOutlined 
+                                <LogoutOutlined
+                                    data-testid="LogoutIcon"
                                     style={{ color: "white", fontSize: "1.8rem" }} 
                                 />
                             ) : (
                                 <LoginOutlined 
+                                    data-testid="LoginIcon"
                                     style={{ color: "white", fontSize: "1.8rem" }} 
                                 />
                             )

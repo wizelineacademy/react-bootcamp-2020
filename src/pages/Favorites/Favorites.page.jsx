@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { StateContext } from '../../utils/State';
+import { VideoContext } from '../../utils/VideoState';
 import VideoItem from '../../components/VideoItem';
 import { FavoritesContainer } from './Favorites.styled';
 import { useHistory } from 'react-router';
@@ -7,7 +8,9 @@ import { useHistory } from 'react-router';
 const FavoritesPage = () => {
 
   const history = useHistory();
-  const { FavoriteVideos, Sesion } = useContext(StateContext);
+
+  const { state: { Sesion } } = useContext(StateContext);
+  const { state: { FavoriteVideos }} = useContext(VideoContext);
 
   useEffect(() => {
     if(!Sesion){
@@ -31,7 +34,7 @@ const FavoritesPage = () => {
               videoID={{
                 videoId
               }} 
-              viewVideo={() => history.push(`/favorites/player`) }
+              viewVideo={(idVideo) => history.push(`/favorites/player/${idVideo}`) }
             />
           )
         ) 

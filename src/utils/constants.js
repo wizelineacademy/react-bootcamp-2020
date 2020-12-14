@@ -1,7 +1,7 @@
-const APP_STATE = 'AppState';
+const APP_STATE = 'Sesion';
 const SEARCH_VIDEO = 'SearchVideo';
-const VIDEO = 'Video';
+const CURRENT_VIDEO = 'CurrentVideo';
 const FAVORITE_VIDEOS = "FavoriteVideos";
 const DARK_MODE = "DarkMode";
 
-export { APP_STATE, SEARCH_VIDEO, VIDEO, FAVORITE_VIDEOS, DARK_MODE };
+export { APP_STATE, SEARCH_VIDEO, CURRENT_VIDEO, FAVORITE_VIDEOS, DARK_MODE };

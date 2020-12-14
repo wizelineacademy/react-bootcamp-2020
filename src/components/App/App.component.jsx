@@ -22,12 +22,12 @@ const App = () => {
           />
           <Private 
             exact 
-            path="/favorites/player"
+            path="/favorites/player/:idVideo"
             component={Player}
           />
           <Route 
             exact
-            path="/player"
+            path="/player/:idVideo"
             component={Player}
           />
           <Route path="/">
