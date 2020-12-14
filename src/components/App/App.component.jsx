@@ -1,17 +1,18 @@
 import React from 'react';
-// import React, { useLayoutEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 
+import Private from '../Private';
 import AuthProvider from '../../providers/Auth';
 import HomePage from '../../pages/Home';
 import SearchPage from '../../pages/Search';
 import WatchPage from '../../pages/Watch';
 import LoginPage from '../../pages/Login';
+import Favorites from '../../pages/Favorites';
 import NotFound from '../../pages/NotFound';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <Switch>
           <Route exact path="/">
@@ -26,12 +27,15 @@ function App() {
           <Route exact path="/login">
             <LoginPage />
           </Route>
+          <Private exact path="/favorites">
+            <Favorites />
+          </Private>
           <Route path="*">
             <NotFound />
           </Route>
         </Switch>
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

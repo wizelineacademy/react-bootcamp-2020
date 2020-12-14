@@ -1,16 +1,42 @@
 .videoCard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 330px;
+  /* width: 330px; */
   padding: 4px;
   background-color: darkgrey;
 }
+
+/*
+.video-responsive{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+
+.video-responsive iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
+}
+*/
 
 .videoThumbnail {
   text-align: center;
 }
 
+.videoThumbnail a img {
+  width: 100%;
+}
+
 .videoInfo {
   padding: 2px 16px;
+  color: white;
+}
+
+.videoInfoRelated {
+  padding: 2px 5px;
   color: white;
 }
 
@@ -21,6 +47,7 @@
 
 .videoDescription {
   font-size: small;
+  text-overflow: ellipsis;
 }
 
 .videoChannel {
@@ -41,4 +68,8 @@
   font-size: 0;
   cursor: pointer;
   outline: none;
+}
+
+.lineSepRelatedVideos {
+  margin: 5px;
 }

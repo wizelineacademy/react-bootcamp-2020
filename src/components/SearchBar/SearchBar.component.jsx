@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import './SearchBar.styles.css';
 
-export default function SearchBar({ initSearchQuery, onChange, homepage }) {
+export default function SearchBar({ initSearchQuery, onChange, isHomepage }) {
   const [searchQuery, setSearchQuery] = useState(initSearchQuery);
   // eslint-disable-next-line prefer-const
   let history = useHistory();
@@ -27,34 +27,16 @@ export default function SearchBar({ initSearchQuery, onChange, homepage }) {
     }
   };
 
-  let InputSearchBar;
-  if (homepage) {
-    InputSearchBar = (
-      <div className="search_homepage">
-        <input
-          type="text"
-          className="full_search_input"
-          placeholder="eg. React Tutorials"
-          value={searchQuery}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-        />
-      </div>
-    );
-  } else {
-    InputSearchBar = (
-      <div className="search">
-        <input
-          type="text"
-          className="search_input"
-          placeholder="Search"
-          value={searchQuery}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-        />
-      </div>
-    );
-  }
-
-  return InputSearchBar;
+  return (
+    <div className={isHomepage ? `search_homepage` : `search`}>
+      <input
+        type="text"
+        className={isHomepage ? `full_search_input` : `search_input`}
+        placeholder={isHomepage ? `eg. React Tutorials` : `Search`}
+        value={searchQuery}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+      />
+    </div>
+  );
 }

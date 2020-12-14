@@ -1,3 +1,69 @@
-.VideoPlayer {
-  background-color: white;
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.videoStatistics {
+  font-size: small;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  padding: 3px 10px;
+}
+
+.videoTitle {
+  padding: 5px 0px;
+}
+
+.lineSeparator {
+  margin: 0px;
+}
+
+.videoDescription {
+  white-space: pre-line;
+  padding-top: 10px;
+}
+
+.hideContent {
+  overflow: hidden;
+  line-height: 1em;
+  height: 5em;
+}
+
+.showContent {
+  line-height: 1em;
+  height: auto;
+}
+
+.error {
+  font-weight: bold;
+  font-size: 3em;
+  width: 100%;
+  clear: both;
+}
+
+.linkShow {
+  background: transparent;
+  border: none !important;
+  padding: 0 !important;
+  outline: none;
+  font-family: arial, sans-serif;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+  float: right;
+}
+
+.hideLink {
+  display: none;
 }

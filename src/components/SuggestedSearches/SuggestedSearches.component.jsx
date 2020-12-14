@@ -7,8 +7,6 @@ export default function Sugestedsearches() {
   const randomSuggestedSearches = GetSuggestedSearches();
   const { authenticated, userInfo } = useAuth();
 
-  // console.log(authenticated);
-  // console.log(userInfo);
   return (
     <div className="suggested_searches">
       <p>{authenticated ? `Welcome back ${userInfo.name}. ` : ''}Try this searches:</p>

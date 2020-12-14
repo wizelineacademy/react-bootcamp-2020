@@ -24,8 +24,6 @@ function toggleFavorite(e) {
     e.target.src = favoriteIconEnabled;
   }
   storage.set(AUTH_STORAGE_KEY_FAVORITES, favoriteVideos);
-
-  console.log(favoriteVideos);
 }
 
 function isFavorite(videoId) {
@@ -36,7 +34,6 @@ function isFavorite(videoId) {
       returnValue = true;
     }
   }
-  console.log(favoriteVideos);
   return returnValue;
 }
 
@@ -44,36 +41,48 @@ function showMsgAuthenticatedFirst() {
   alert('You must Login in order to mark the video as favorite.');
 }
 
-export default function Video({ videoid, video }) {
+export default function Video({ videoid, video, isRelated }) {
   const { authenticated } = useAuth();
 
+  if (!video) return '';
+
+  const { title, description, channelTitle } = video;
+  const { url } = video.thumbnails.medium;
+
   return (
-    <div className="videoCard">
-      <div className="videoThumbnail">
-        <Link to={`/watch/${videoid}`}>
-          <img src={video.thumbnails.medium.url} alt={video.title} />
-        </Link>
+    <>
+      <div className="videoCard">
+        <div className="videoThumbnail">
+          <Link to={`/watch/${videoid}`}>
+            <img src={url} alt={title} />
+          </Link>
+        </div>
+        {isRelated ? (
+          ''
+        ) : (
+          <div className="favoriteIcon">
+            <button
+              type="button"
+              className="toggleFavorite"
+              onClick={authenticated ? toggleFavorite : showMsgAuthenticatedFirst}
+            >
+              <img
+                src={isFavorite(videoid) ? favoriteIconEnabled : favoriteIconDisabled}
+                height="28px"
+                width="28px"
+                alt="Favorite icon"
+                data-videoid={videoid}
+              />
+            </button>
+          </div>
+        )}
+        <div className={isRelated ? 'videoInfoRelated' : 'videoInfo'}>
+          <div className="videoTitle">{title}</div>
+          {isRelated ? '' : <div className="videoDescription">{description}</div>}
+          <div className="videoChannel">{channelTitle}</div>
+        </div>
       </div>
-      <div className="favoriteIcon">
-        <button
-          type="button"
-          className="toggleFavorite"
-          onClick={authenticated ? toggleFavorite : showMsgAuthenticatedFirst}
-        >
-          <img
-            src={isFavorite(videoid) ? favoriteIconEnabled : favoriteIconDisabled}
-            height="28px"
-            width="28px"
-            alt="Favorite icon"
-            data-videoid={videoid}
-          />
-        </button>
-      </div>
-      <div className="videoInfo">
-        <div className="videoTitle">{video.title}</div>
-        <div className="videoDescription">{video.description}</div>
-        <div className="videoChannel">{video.channelTitle}</div>
-      </div>
-    </div>
+      {isRelated ? <hr className="lineSepRelatedVideos" /> : ''}
+    </>
   );
 }

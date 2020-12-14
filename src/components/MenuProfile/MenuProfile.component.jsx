@@ -17,7 +17,7 @@ export default function MenuProfile() {
   return (
     <ul className="menu">
       <li>
-        <a href="/favorites">Favorites</a>
+        <a href="/#/favorites">Favorites</a>
       </li>
       <li>
         <Link className="LogoutButton" to="/" onClick={deAuthenticate}>
