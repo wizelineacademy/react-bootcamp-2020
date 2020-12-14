@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import VideoCard from '../VideoCard';
+import { useFavorites } from '../../FavoritesContext'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -15,6 +16,24 @@ const useStyles = makeStyles((theme) => ({
 
 function Videos(props) {
   const classes = useStyles();
+  const { favorites, addFavorite, removeFavorite } = useFavorites()
+
+  const isFavorite = (videoID)=> {
+
+    
+
+    for (let i=0; i < favorites.length; i ++)
+    {
+      //console.log(favorites[i].id.videoId)
+      if (favorites[i].id.videoId === videoID)
+      {
+        return true
+      }
+      
+    }
+    return false
+    
+  }
 
 
   return (
@@ -34,6 +53,7 @@ function Videos(props) {
             thumbnail={video.snippet.thumbnails.medium.url}
             id={video.id.videoId}
             video={video}
+            isFavorite = {isFavorite(video.id.videoId)}
            
 
           />
@@ -46,3 +66,4 @@ function Videos(props) {
 }
 
 export default Videos;
+

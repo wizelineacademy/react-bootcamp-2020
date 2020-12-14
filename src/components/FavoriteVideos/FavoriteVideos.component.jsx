@@ -26,6 +26,11 @@ function FavoriteVideos() {
           <FavoriteVideoCard
             key= {video.id.videoId}
             video={video}
+            title={video.snippet.title}
+            thumbnail={video.snippet.thumbnails.medium.url}
+            id={video.id.videoId}
+          
+
 
           />
          

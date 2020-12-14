@@ -108,7 +108,7 @@ const GoHome= () => {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase onChange= {(e)=> context.searchVideos(e.target.value)}
+            <InputBase onChange= {(e)=> context.getVideos(e.target.value)}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,

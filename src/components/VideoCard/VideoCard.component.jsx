@@ -2,10 +2,8 @@ import React from 'react';
 import { Grid, Paper, Divider, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useFavorites } from '../../FavoritesContext'
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import SaveIcon from '@material-ui/icons/Save';
 import { useHistory } from 'react-router-dom'
-import Icon from '@material-ui/core/Icon';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -14,6 +12,14 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '250px',
     height: 230,
     backgroundColor: '#cfd8dc',
+  },
+
+  paperFavorite: {
+    padding: '1em',
+    maxWidth: '250px',
+    minWidth: '250px',
+    height: 230,
+    backgroundColor: '#F0B27A',
   },
 
   paperTitle: {
@@ -27,22 +33,32 @@ const useStyles = makeStyles((theme) => ({
 
   button: {
     margin: theme.spacing(1),
+    
   },
 }));
 
 function VideoCard(props) {
   const classes = useStyles();
   const history =useHistory()
-  const { addFavorite, removeFavorite } = useFavorites()
+  const { favorites, addFavorite, removeFavorite } = useFavorites()
+  let isFavorite = props.isFavorite
 
   const goToWatch = () => {
       history.push(`/watch/${props.id}`)
   }
 
+  let favorite_Button;
+
+  if (isFavorite) {
+    favorite_Button = <Button onClick = {()=> addFavorite(props.video)} className={classes.button} size="small" variant="contained" color="primary">Remove</Button>;
+  } else {
+    favorite_Button = <Button onClick = {()=> addFavorite(props.video)} className={classes.button} size="small" variant="contained" color="primary">Favorite</Button>;
+  }
+
 
   return (
     <Grid item>
-      <Paper className={classes.paper}>
+      <Paper className={isFavorite ? classes.paperFavorite : classes.paper}>
         <img
           style={{ justifyContent: 'center', display: 'flex' }}
           src={props.thumbnail}
@@ -51,17 +67,20 @@ function VideoCard(props) {
         />
         <Divider />
         <div className={classes.paperTitle}>
-          <a href={`/watch/${props.id}`} target="_self" rel="noopener noreferrer">
+        
+          <Link href={`/watch/${props.id}`} target="_self" rel="noopener noreferrer">
             {props.title}
-          </a>
+          </Link>
           <br></br>
           
         <Button onClick ={goToWatch} className={classes.button}  size="small"  variant="contained" color="primary">
             Watch
         </Button>
-        <Button onClick = {()=> addFavorite(props.video)} className={classes.button} size="small" variant="contained" color="primary">
-            Favorite
-        </Button>
+        
+        
+        {favorite_Button}
+        
+        
         </div>
       </Paper>
     </Grid>

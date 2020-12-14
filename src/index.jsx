@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
 import HomePage from './pages/Home';
 import WatchPage from './pages/Watch';
 import './global.css';
@@ -8,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Favorites from './pages/Favorites'
 import SignIn from './pages/Login/Login'
 import AuthProvider from './AuthContext'
+import FavoritesWatch from './pages/FavoritesWatch'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +20,9 @@ ReactDOM.render(
       <Route path="/favorites">
           <Favorites />
         </Route>
+        <Route path="/favorite_watch/:id">
+          <FavoritesWatch />
+      </Route>
         <Route path="/watch/:id">
           <WatchPage />
         </Route>

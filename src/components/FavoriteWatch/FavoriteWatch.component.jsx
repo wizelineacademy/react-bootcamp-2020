@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function VideoWatch(props) {
+function FavoriteWatch(props) {
   const classes = useStyles();
 
   return (
@@ -25,4 +25,4 @@ function VideoWatch(props) {
   );
 }
 
-export default VideoWatch;
+export default FavoriteWatch;

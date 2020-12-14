@@ -4,8 +4,10 @@ import Grid from '@material-ui/core/Grid';
 import Bar from '../../components/Bar';
 import Videos from '../../components/Videos';
 import MyContext, { initialSearch } from '../../MyContext'
-import youtube from '../../utils/youtube'
 import FavoritesProvider from '../../FavoritesContext'
+import { searchVideos } from '../../api'
+
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,17 +26,17 @@ function HomePage() {
 
  
   const [videos, setVideos] = useState([]);
-  async function searchVideos(search) {
-    const videos = await youtube(search);
+  async function getVideos(search) {
+    const videos = await searchVideos(search);
     setVideos(videos);
   }
   useEffect(() => {
-    searchVideos(initialSearch)
+    getVideos(initialSearch)
   }, [])
 
   return (
     <div>
-    <MyContext.Provider value = {{videos, searchVideos}}>
+    <MyContext.Provider value = {{videos, getVideos}}>
     <FavoritesProvider>
       <Bar />
         <Grid container className={classes.VideoWatch} justify="center">

@@ -43,6 +43,13 @@ function useFavorites() {
             const fav = [...favorites, video]
             saveFavorites(fav)
         }
+        else {
+
+          
+          removeFavorite(video)
+
+
+        }
     }
 
     function saveFavorites(favorites) {
