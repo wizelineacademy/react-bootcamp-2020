@@ -20,7 +20,7 @@ function VideoDetail({ match }) {
   return (
     <div className="body">
         <Link to="/">← Back</Link>
-        <Link to="/love">❤️ Videos</Link> <br />
+        <Link to="/love"> ❤ Videos</Link> <br />
       <ReactPlayer
         url={`https://www.youtube.com/watch?v=${match.params.videoId}`}
         loop="true"
