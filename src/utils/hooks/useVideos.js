@@ -190,7 +190,6 @@ function useVideos({ a = 'wizeline' }) {
     }
 
     findVideos();
-    console.log(process.env);
   }, [search]);
 
   return { videos };
