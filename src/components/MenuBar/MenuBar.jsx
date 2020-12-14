@@ -45,7 +45,7 @@ const MenuBar = () => {
           placeholder="Search..."
           onChange={handleOnChange}
           onKeyPress={handleHitEnter}
-        ></InputItem>
+        />
         <RadioItem toggle checked={!light} onChange={handleTheme} />
 
         <MenuItem as={Link} to="/login" onClick={authenticated && deAuthenticate}>

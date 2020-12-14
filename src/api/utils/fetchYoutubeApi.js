@@ -5,7 +5,7 @@ export const fetchYouTubeApi = async (search) => {
     params: {
       part: 'snippet',
       maxResults: 16,
-      key: 'AIzaSyDhq3WUDZYl7SHpmy3BS0lQu7yWCmY6qvI',
+      key: process.env.REACT_APP_YOUTUBE_API_KEY,
       q: search,
     },
   });

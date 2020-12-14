@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const Button = styled.a`
   display: inline-block;
-  padding: 0.35em 1.2em;
+  padding: 1em 1.6em;
   border: 0.1em solid ${(props) => props.theme.text};
   margin: 0 0.3em 0.3em 0;
-  border-radius: 0.12em;
+  border-radius: 0.22em;
   box-sizing: border-box;
   text-decoration: none;
   font-weight: 300;

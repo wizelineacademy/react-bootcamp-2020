@@ -13,7 +13,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 
 import { fetchYouTubeApi } from './api/utils/fetchYoutubeApi';
-import { lightTheme, darkTheme, GlobalStyles, typographyTheme } from './App.styles';
+import { lightTheme, darkTheme, GlobalStyles } from './App.styles';
 import 'semantic-ui-css/semantic.min.css';
 
 import VideosContext from './context/VideosContext';
@@ -65,17 +65,20 @@ const App = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const temp = await fetchYouTubeApi('Wizeline');
-      const res = temp.data.items.filter((e) => e.id.videoId);
-      setVideos(res);
-      setSelectedVideo(res[0]);
-      console.log(res);
-      if (storage.get(FAVORITES_ID) === null) {
-        storage.set(FAVORITES_LIST, []);
-        storage.set(FAVORITES_ID, {});
-      }
+      try {
+        const temp = await fetchYouTubeApi('Wizeline');
+        const res = temp.data.items.filter((e) => e.id.videoId);
+        setVideos(res);
+        setSelectedVideo(res[0]);
+        if (storage.get(FAVORITES_ID) === null) {
+          storage.set(FAVORITES_LIST, []);
+          storage.set(FAVORITES_ID, {});
+        }
 
-      setLight(!storage.get(DARK_MODE));
+        setLight(!storage.get(DARK_MODE));
+      } catch (error) {
+        throw new Error(error);
+      }
     }
     fetchData();
   }, []);
