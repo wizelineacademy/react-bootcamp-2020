@@ -37,8 +37,10 @@ function isFavorite(videoId) {
   return returnValue;
 }
 
-function showMsgAuthenticatedFirst() {
-  alert('You must Login in order to mark the video as favorite.');
+function showFavoriteButton(isRelated, authenticated) {
+  if (isRelated) return false;
+  if (authenticated) return true;
+  return false;
 }
 
 export default function Video({ videoid, video, isRelated }) {
@@ -57,15 +59,9 @@ export default function Video({ videoid, video, isRelated }) {
             <img src={url} alt={title} />
           </Link>
         </div>
-        {isRelated ? (
-          ''
-        ) : (
+        {showFavoriteButton(isRelated, authenticated) ? (
           <div className="favoriteIcon">
-            <button
-              type="button"
-              className="toggleFavorite"
-              onClick={authenticated ? toggleFavorite : showMsgAuthenticatedFirst}
-            >
+            <button type="button" className="toggleFavorite" onClick={toggleFavorite}>
               <img
                 src={isFavorite(videoid) ? favoriteIconEnabled : favoriteIconDisabled}
                 height="28px"
@@ -75,6 +71,8 @@ export default function Video({ videoid, video, isRelated }) {
               />
             </button>
           </div>
+        ) : (
+          ''
         )}
         <div className={isRelated ? 'videoInfoRelated' : 'videoInfo'}>
           <div className="videoTitle">{title}</div>

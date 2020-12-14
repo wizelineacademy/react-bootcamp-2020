@@ -2,15 +2,11 @@ import React from 'react';
 
 import './UserInfo.styles.css';
 
-export default function UserInfo() {
+export default function UserInfo(userInfo) {
   return (
     <>
-      <img
-        className="userAvatar"
-        src="https://media.glassdoor.com/sqll/868055/wizeline-squarelogo-1473976610815.png"
-        alt="User avatar"
-      />
-      <span>Wizeline</span>
+      <img className="userAvatar" src={userInfo.userInfo.avatarUrl} alt="User avatar" />
+      <span>{userInfo.userInfo.name}</span>
     </>
   );
 }

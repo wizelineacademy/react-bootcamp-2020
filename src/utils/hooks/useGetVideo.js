@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 import { BASE_API_URL_VIDEO } from '../constants';
 
+function HasFindVideo(videoInfo, errorStatus) {
+  if (videoInfo === null) return false;
+  if (errorStatus) return false;
+  if (videoInfo.pageInfo.totalResults === 0) return false;
+  return true;
+}
+
 function useGetVideo(videoId) {
   const [videoInfo, setVideoInfo] = useState(null);
   const [loadingStatus, setLoadingStatus] = useState(false);
@@ -33,7 +40,7 @@ function useGetVideo(videoId) {
     getVideo();
   }, [videoId]);
 
-  if (videoInfo !== null && !errorStatus) {
+  if (HasFindVideo(videoInfo, errorStatus)) {
     return [videoInfo.items[0], loadingStatus, errorStatus];
   }
   return [null, loadingStatus, errorStatus];

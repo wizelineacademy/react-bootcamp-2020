@@ -9,7 +9,7 @@ function numericFormat(stringNumber) {
 
 function getMonthName(monthNumber) {
   const monthNames = [
-    'item-0',
+    'item-0-index',
     'jan',
     'feb',
     'mar',
@@ -52,7 +52,7 @@ export default function VideoEmbed({ videoId }) {
   };
 
   if (loadingStatus) {
-    return <div className="VideoPlayer">Loading videos.</div>;
+    return <div className="VideoPlayer">Loading video...</div>;
   }
   if (errorStatus) {
     return (
@@ -76,6 +76,7 @@ export default function VideoEmbed({ videoId }) {
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
+        data-testid={videoId}
       />
     );
     return (
