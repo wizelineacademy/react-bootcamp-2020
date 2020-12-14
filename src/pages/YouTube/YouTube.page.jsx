@@ -11,7 +11,7 @@ function YouTube() {
     setSearchTerm(event.target.value);
   };
 
-  const YT_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${searchTerm}&type=video&key=AIzaSyDsECTCuUQSdjsST-hja25dLugnGsjKO3M`;
+  const YT_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${searchTerm}&type=video&key=${process.env.REACT_APP_YT_KEY}`;
 
   const fetchData = () => {
     fetch(YT_API)

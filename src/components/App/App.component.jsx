@@ -11,6 +11,7 @@ import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
 import { random } from '../../utils/fns';
+import { MyContext } from '../../contexts/MyContext';
 
 function App() {
   useLayoutEffect(() => {
@@ -33,27 +34,29 @@ function App() {
 
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/video/:videoId" component={VideoDetail} />
-            <Route exact path="/love" component={Love} />
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <Fortune />
-        </Layout>
-      </AuthProvider>
+      <MyContext.Provider value={[]}>
+        <AuthProvider>
+          <Layout>
+            <Switch>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
+              <Route exact path="/video/:videoId" component={VideoDetail} />
+              <Route exact path="/love" component={Love} />
+              <Route exact path="/login">
+                <LoginPage />
+              </Route>
+              <Private exact path="/secret">
+                <SecretPage />
+              </Private>
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+            <Fortune />
+          </Layout>
+        </AuthProvider>
+      </MyContext.Provider>
     </BrowserRouter>
   );
 }
