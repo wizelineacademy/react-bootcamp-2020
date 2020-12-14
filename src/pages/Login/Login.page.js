@@ -9,12 +9,13 @@ import { LoginForm } from './Login.page.styled';
 import { useAuth } from '../../providers/Auth';
 
 function LoginPage() {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useAuth();
   const history = useHistory();
 
   const onClickHandle = () => {
-    if (password === 'password') {
+    if (username === 'admin' && password === 'pa$$w0rd') {
       login();
       history.push('/home');
     }
@@ -28,7 +29,10 @@ function LoginPage() {
           Email
         </Form.Label>
         <Col sm="9">
-          <Form.Control plaintext readOnly defaultValue="routing@wizeline.com" />
+          <Form.Control
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
         </Col>
       </Form.Group>
 
