@@ -44,7 +44,7 @@ const Search = () => {
         </IconContainer>
         <SearchBarContainer>
           <input
-            placeholder="Buscar"
+            placeholder="Search"
             onChange={handleSearchString}
             defaultValue={state.searchString}
           />
