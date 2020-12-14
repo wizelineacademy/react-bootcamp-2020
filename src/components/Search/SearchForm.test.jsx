@@ -8,16 +8,19 @@ import { SEARCH_TERM_DEFAULT } from '../../utils/constants';
 afterEach(cleanup);
 
 describe('Search form', () => {
-  it('renders a search box', () => {
+  it('renders a search box with default value', () => {
     render(<App />);
 
     expect(screen.getByRole('searchbox')).toBeInTheDocument();
+    expect(screen.getByRole('searchbox')).toHaveDisplayValue(SEARCH_TERM_DEFAULT);
   });
 
   it('updates search input value on typing', () => {
     render(<App />);
 
     userEvent.type(screen.getByRole('searchbox'), ' academy');
-    expect(screen.getByRole('searchbox')).toHaveValue(`${SEARCH_TERM_DEFAULT} academy`);
+    expect(screen.getByRole('searchbox')).toHaveDisplayValue(
+      `${SEARCH_TERM_DEFAULT} academy`
+    );
   });
 });
