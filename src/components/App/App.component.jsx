@@ -1,58 +1,50 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import SearchContext from '../../state/SearchContext';
+import { ThemeContext, themes } from '../../state/ThemeContext';
 import AuthProvider from '../../providers/Auth';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
+import FavoritesPage from '../../pages/Favorites';
+import VideoPage from '../../pages/Video';
 import Private from '../Private';
-import Fortune from '../Fortune';
 import Layout from '../Layout';
-import { random } from '../../utils/fns';
 
-function App() {
-  useLayoutEffect(() => {
-    const { body } = document;
+import { SEARCH_TERM_DEFAULT } from '../../utils/constants';
 
-    function rotateBackground() {
-      const xPercent = random(100);
-      const yPercent = random(100);
-      body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
-    }
-
-    const intervalId = setInterval(rotateBackground, 3000);
-    body.addEventListener('click', rotateBackground);
-
-    return () => {
-      clearInterval(intervalId);
-      body.removeEventListener('click', rotateBackground);
-    };
-  }, []);
+export default function App() {
+  const [searchTerm, setSearchTerm] = useState(SEARCH_TERM_DEFAULT);
+  const [theme, setTheme] = useState(themes.light);
 
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <Fortune />
-        </Layout>
-      </AuthProvider>
-    </BrowserRouter>
+    <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <BrowserRouter>
+          <AuthProvider>
+            <Layout>
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route exact path="/login">
+                  <LoginPage />
+                </Route>
+                <Private exact path="/favorites">
+                  <FavoritesPage />
+                </Private>
+                <Route exact path="/video/:id">
+                  <VideoPage />
+                </Route>
+                <Route path="*">
+                  <NotFound />
+                </Route>
+              </Switch>
+            </Layout>
+          </AuthProvider>
+        </BrowserRouter>
+      </ThemeContext.Provider>
+    </SearchContext.Provider>
   );
 }
-
-export default App;

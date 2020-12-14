@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-import './Layout.styles.css';
+import Container from 'react-bootstrap/Container';
 
-function Layout({ children }) {
-  return <main className="container">{children}</main>;
+import { ThemeContext } from '../../state/ThemeContext';
+import Navigation from '../Navigation/Navigation.component';
+
+export default function Layout({ children }) {
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <Container fluid className={theme} style={{ transition: '0.25s' }}>
+      <header>
+        <Navigation />
+      </header>
+      <main className="main" role="main">
+        {children}
+      </main>
+    </Container>
+  );
 }
-
-export default Layout;
