@@ -1,0 +1,15 @@
+.LoginButton {
+  margin-right: 10px;
+  height: 35px;
+  border: 1px solid #fdfdfd;
+  background-color: rgb(11, 49, 71);;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  list-style: none;
+}
+
+.LoginButton:hover {
+  background-color: #187e8b;
+}
