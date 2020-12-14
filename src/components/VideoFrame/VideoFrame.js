@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RiHeartAddLine } from "react-icons/ri";
 import PageContext from "../../providers/Context/PageContext";
 import './styles/VideoFrame.css';
@@ -26,8 +26,17 @@ const VideoFrame = () => {
       Arr.push(objVideo);
       mapFavs.set(userLogged.user,Arr);
     }
-  
-  };
+  }
+
+  const handlerRemoveFavs = () => {
+    let auxArr = mapFavs.get(userLogged.user);
+    for (let i = 0; i < auxArr.length; i++) { 
+      if(auxArr[i].id.videoId === objVideo.id.videoId){
+        auxArr.splice(i,1);
+      }
+    }
+  }
+
 
   return (
       <Styles.Container>
@@ -43,7 +52,8 @@ const VideoFrame = () => {
             <p>{video.publishedDate}</p>
           </div>
           <div>
-          <button className={userLogged.user ? 'favs active' : 'favs'} onClick={handlerAddFavs} variant="outlined" color="primary"><b><RiHeartAddLine/>Favs</b></button>
+          <button className={userLogged.user ? 'favs active' : 'favs'} onClick={handlerAddFavs} variant="outlined" color="primary"><b><RiHeartAddLine/>Add</b></button>
+          <button className={userLogged.user ? 'favs active' : 'favs'} onClick={handlerRemoveFavs} variant="outlined" color="primary"><b><RiHeartAddLine/>Remove</b></button>
           </div>
         </Styles.Info>
       </Styles.Container>

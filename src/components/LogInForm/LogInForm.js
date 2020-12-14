@@ -13,10 +13,8 @@ const LogIn = () => {
   const { userLogged, setUserLogged } = useContext(PageContext);
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
-  const [InputText, setUserText] = useState("");
-  const [passText, setPassText] = useState("");
-  const [errorInput, setError] = useState(false);
-  const [errorPass, setErrorPass] = useState(false);
+  const [helper, setHelper] = useState("");
+  const [helper2, setHelper2] = useState("");
 
   let mapUsers = new Map();
 
@@ -37,22 +35,19 @@ const LogIn = () => {
     setPass(e.target.value);
   };
 
-  const validate = () => { //verifica que el user y el password coincidan con los puestos en el input
+  const validate = () => {
     let validation = false;
     if(mapUsers.get(user)){
-      setUserText("");
-      setError(false);
+      setHelper("");
       if(mapUsers.get(user).password === pass){
         validation = true;
       }
       else{
-        setPassText("Password incorrecto");
-        setErrorPass(true);
+        setHelper2("Password incorrecto");
       }
     }
     else{
-      setUserText("Usuario no existe");
-      setError(true);
+      setHelper("Usuario no existe");
     }
     return validation;
   }
@@ -60,13 +55,11 @@ const LogIn = () => {
   const validateInputs = () => {
     let validation2=true
     if(!user){
-      setUserText("Usuario requerido");
-      setError(true);
+      setHelper("Usuario requerido");
       validation2 = false;
     }
     if(!pass){
-      setPassText("Password requerido");
-      setErrorPass(true);
+      setHelper2("Password requerido");
       validation2 = false;
     }
     return validation2;
@@ -89,33 +82,22 @@ const LogIn = () => {
     <div>
       <Card className="Root">
         <CardContent>
-          {/* <Input      id="username"
-                      error={errorInput} 
-                      value={user} 
-                      onChange={HandleMail} 
-                      label="User" 
-                      helpertext={InputText}/> */}
           <input 
                 role="user" 
                 value={user} 
                 onChange={HandleMail}
                 placeholder="User" />
+                <p style={{color: "red"}}>{helper}</p>
         <div></div>
           <br />
-          {/* <Input
-            id="password"
-            type="password"
-            value={pass}
-            onChange={HandlePassword}
-            label="Password"
-            error={errorPass}
-            helpertext={passText}
-          /> */}
-          <input  
+        
+          <input
+            type="password" 
             role="pass" 
             value={pass} 
             onChange={HandlePassword}
             placeholder="Password" />
+            <p style={{color: "red"}}>{helper2}</p>
           <div></div>
           <br />
           <CardActions>
