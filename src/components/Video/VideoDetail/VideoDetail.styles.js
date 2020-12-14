@@ -13,6 +13,7 @@ export const VideoContainer = styled.div`
   @media screen and (max-width: 957px) {
     width: 90%;
     flex-direction: column;
+    flex-shrink: 0;
     margin-left: 0;
     margin: auto;
   }

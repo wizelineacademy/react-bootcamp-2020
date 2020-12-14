@@ -6,6 +6,11 @@ export const ListContainer = styled.div`
   @media screen and (max-width: 1580px) {
     width: 34%;
   }
+
+  @media screen and (max-width: 957px) {
+    margin-top: 15px;
+    width: 100%;
+  }
 `;
 
 export const List = styled.ul`
@@ -24,6 +29,6 @@ export const List = styled.ul`
 
   @media screen and (max-width: 957px) {
     width: 100%;
-    padding-left: 0;
+    padding: 0 15%;
   }
 `;

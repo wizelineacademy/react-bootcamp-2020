@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-
 import { useAuth } from '../../providers/Auth';
 import './Login.styles.css';
 
@@ -41,51 +40,52 @@ function LoginPage() {
 
   return (
     <section className="login">
-      <h1>Welcome back!</h1>
-      {!authenticated ? (
-        <>
-          <form onSubmit={authenticate} className="login-form">
-            <div className="form-group">
-              <label htmlFor="username">
-                <strong>username </strong>
-                <input
-                  required
-                  type="text"
-                  id="username"
-                  onChange={handleUser}
-                  defaultValue={user.username}
-                />
-              </label>
+      <div className="login-wrapper">
+        <h1>Welcome back!</h1>
+        {!authenticated ? (
+          <>
+            <form onSubmit={authenticate} className="login-form">
+              <div className="form-group">
+                <label htmlFor="username">
+                  <strong>username </strong>
+                  <input
+                    required
+                    type="text"
+                    id="username"
+                    onChange={handleUser}
+                    defaultValue={user.username}
+                  />
+                </label>
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">
+                  <strong>password </strong>
+                  <input
+                    required
+                    type="password"
+                    id="password"
+                    onChange={handleUser}
+                    defaultValue={user.password}
+                  />
+                </label>
+              </div>
+              <span>{error || null}</span>
+              <button type="submit">login</button>
+            </form>
+          </>
+        ) : (
+          <>
+            <div>
+              <Link to="/">← Home</Link>
             </div>
-            <div className="form-group">
-              <label htmlFor="password">
-                <strong>password </strong>
-                <input
-                  required
-                  type="password"
-                  id="password"
-                  onChange={handleUser}
-                  defaultValue={user.password}
-                />
-              </label>
+            <div>
+              <Link to="/" onClick={DeAuthenticate}>
+                ← logout
+              </Link>
             </div>
-            <span>{error || null}</span>
-            <button type="submit">login</button>
-          </form>
-        </>
-      ) : (
-        <>
-          <h2>Good to have you back</h2>
-          <div>
-            <Link to="/">← Home</Link>
-          </div>
-          <div>
-            <Link to="/" onClick={DeAuthenticate}>
-              ← logout
-            </Link>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </section>
   );
 }
