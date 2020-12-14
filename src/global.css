@@ -1,3 +1,5 @@
+/*
+
 html {
   font-size: 1.125rem;
   line-height: 1.6;
@@ -13,10 +15,12 @@ html {
 *::after {
   box-sizing: inherit;
 }
+*/
 
 body {
   margin: 0;
   padding: 0;
+  /*
   text-rendering: optimizeLegibility;
   background-image: linear-gradient(
     120deg,
@@ -31,8 +35,12 @@ body {
   transition: background-position 2s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  */
+
+  
 }
 
+/*
 .separator::before {
   content: '•';
   color: white;
@@ -51,3 +59,4 @@ a:active {
 
 hr {
 }
+*/

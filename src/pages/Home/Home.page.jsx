@@ -1,38 +1,53 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Bar from '../../components/Bar';
+import Videos from '../../components/Videos';
+import MyContext, { initialSearch } from '../../MyContext'
+import FavoritesProvider from '../../FavoritesContext'
+import { searchVideos } from '../../api'
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+
+
+
+const useStyles = makeStyles((theme) => ({
+  VideoWatch: {
+    padding: '1em',
+    flexGrow: 1,
+        align: "center",
+    
+
+  },
+}));
 
 function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+  const classes = useStyles();
+  
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
+ 
+  const [videos, setVideos] = useState([]);
+  async function getVideos(search) {
+    const videos = await searchVideos(search);
+    setVideos(videos);
   }
+  useEffect(() => {
+    getVideos(initialSearch)
+  }, [])
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
+    <div>
+    <MyContext.Provider value = {{videos, getVideos}}>
+    <FavoritesProvider>
+      <Bar />
+        <Grid container className={classes.VideoWatch} justify="center">
+          <Grid item xs={12} sm={10} lg={8}>
+            <Videos videos={videos}/>        
+          </Grid> 
+        </Grid>
+        </FavoritesProvider>
+        </MyContext.Provider>
+       
+    </div>
   );
 }
 
