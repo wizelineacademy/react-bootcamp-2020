@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { useAuth } from '../../providers/Auth';
 import {
   Container,
@@ -50,28 +50,25 @@ function handleSideNav({ state, setState }) {
 }
 
 function SideNav() {
+  const history = useHistory();
   const { state, setState, authenticated } = useAuth();
   handleSideNav({ state, setState });
 
   return (
     <Container active={state.sidenav}>
       <List>
-        <CustomLink>
-          <Link to="/">
-            <ListItem>
-              <HomeIcon />
-              <h4>Home</h4>
-            </ListItem>
-          </Link>
+        <CustomLink onClick={() => history.push('/')}>
+          <ListItem>
+            <HomeIcon />
+            <h4>Home</h4>
+          </ListItem>
         </CustomLink>
         {authenticated && (
-          <CustomLink>
-            <Link to="/favorites">
-              <ListItem>
-                <PlaylistIcon />
-                <h4>Favorites</h4>
-              </ListItem>
-            </Link>
+          <CustomLink onClick={() => history.push('/favorites')}>
+            <ListItem>
+              <PlaylistIcon />
+              <h4>Favorites</h4>
+            </ListItem>
           </CustomLink>
         )}
         <Footer>

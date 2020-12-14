@@ -21,6 +21,7 @@ function AuthProvider({ children }) {
   const localVideoStoraged = storage.get('localVideoStoraged');
   const storagedTheme = storage.get('USER_THEME');
   const [state, setState] = useState({
+    searchbar: true,
     sidenav: true,
     searchString: 'wizeline',
     theme: storagedTheme || 'dark',

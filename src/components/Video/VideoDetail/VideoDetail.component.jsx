@@ -15,7 +15,6 @@ import {
 } from './VideoDetail.styles';
 
 function VideoDetail({ selectedVideo, handlePlayList, authenticated }) {
-  console.log(authenticated);
   const history = useHistory();
   const currentPath = history.location.pathname;
   const currentVideoId = currentPath.includes('video')

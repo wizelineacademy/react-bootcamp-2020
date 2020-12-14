@@ -48,7 +48,7 @@ async function generateVideosResponse(items) {
   const videoDuration = await getVideoDuration(videosId.join());
   const videos = items.map((item, index) => {
     return {
-      isFavorite: null,
+      isFavorite: false,
       videoId: item.id.videoId,
       duration: videoDuration[index],
       thumbnail: item.snippet.thumbnails.medium.url,
@@ -79,4 +79,6 @@ function get(searchString) {
 
 export default {
   get,
+  YTDurationToSeconds,
+  secondsToString,
 };
