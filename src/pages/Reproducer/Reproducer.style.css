@@ -1,0 +1,7 @@
+.reproducer {
+  text-align: center;
+  width: 100%;
+  overflow-y: auto;
+  margin-top: 9rem;
+  overflow-x: hidden;
+}

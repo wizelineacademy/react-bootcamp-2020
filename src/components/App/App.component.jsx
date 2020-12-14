@@ -1,55 +1,76 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
+import Favorites from '../../pages/Favorites';
+import Reproducer from '../../pages/Reproducer';
+
 import Private from '../Private';
-import Fortune from '../Fortune';
 import Layout from '../Layout';
-import { random } from '../../utils/fns';
+import Navbar from '../Navbar';
+
+import VideoSearchContext from '../../state/VideoSearchContext';
+import VideoSelectedContext from '../../state/VideoSelectedContext';
+import FavoritesContext from '../../state/FavoritesContext';
 
 function App() {
-  useLayoutEffect(() => {
-    const { body } = document;
+  const [query, setQuery] = React.useState('');
+  const [selectedVideoId, setSelectedVideoId] = React.useState();
+  const [favoriteVideoList, setFavoriteVideoList] = React.useState([]);
 
-    function rotateBackground() {
-      const xPercent = random(100);
-      const yPercent = random(100);
-      body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
-    }
+  const queryFn = (newQuery) => {
+    setQuery(() => newQuery);
+  };
 
-    const intervalId = setInterval(rotateBackground, 3000);
-    body.addEventListener('click', rotateBackground);
+  const selectedVideoFn = (newId) => {
+    setSelectedVideoId(() => newId);
+  };
 
-    return () => {
-      clearInterval(intervalId);
-      body.removeEventListener('click', rotateBackground);
-    };
-  }, []);
+  const addFavoritesFn = (newVideo) => {
+    setFavoriteVideoList((list) => list.concat(newVideo));
+  };
+
+  const removeFavoritesFn = (videoRemove) => {
+    const indexToRemove = favoriteVideoList.indexOf(videoRemove);
+    setFavoriteVideoList((prev) => prev.splice(indexToRemove, 1));
+  };
 
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <Fortune />
-        </Layout>
+        <VideoSearchContext.Provider value={{ query, queryFn }}>
+          <VideoSelectedContext.Provider
+            value={{ videoId: selectedVideoId, setVideoIdFn: selectedVideoFn }}
+          >
+            <FavoritesContext.Provider
+              value={{ favoriteVideoList, addFavoritesFn, removeFavoritesFn }}
+            >
+              <Layout>
+                <Navbar />
+                <Switch>
+                  <Route exact path="/">
+                    <HomePage />
+                  </Route>
+                  <Route exact path="/login">
+                    <LoginPage />
+                  </Route>
+                  <Private exact path="/favorites">
+                    <Favorites />
+                  </Private>
+                  <Route exact path="/reproducer">
+                    <Reproducer />
+                  </Route>
+                  <Route path="*">
+                    <NotFound />
+                  </Route>
+                </Switch>
+              </Layout>
+            </FavoritesContext.Provider>
+          </VideoSelectedContext.Provider>
+        </VideoSearchContext.Provider>
       </AuthProvider>
     </BrowserRouter>
   );
