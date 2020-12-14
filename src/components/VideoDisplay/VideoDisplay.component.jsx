@@ -1,22 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { searchVideoById } from '../../api';
+import React from 'react';
+import { Typography } from '@material-ui/core';
 import './VideoDisplay.styles.css';
 
-export default function VideoDisplay({ videoId }) {
-  const [video, setVideo] = useState(null);
-
-  const getVideo = async () => {
-    const result = await searchVideoById(videoId);
-    setVideo(result);
-  };
-
-  useEffect(() => {
-    getVideo(videoId);
-    // eslint-disable-next-line
-  }, []);
-
+export default function VideoDisplay({ video }) {
   if (!video) {
-    return <h1>Loading!</h1>;
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -26,6 +14,9 @@ export default function VideoDisplay({ videoId }) {
         src={`https://www.youtube.com/embed/${video.id.videoId}`}
         title={video.snippet.title}
       />
+      <Typography variant="body2" color="textSecondary" component="p">
+        {video.snippet.title}
+      </Typography>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { Button, Avatar } from '@material-ui/core';
 import { useAuth } from '../../providers/Auth';
 

@@ -1,1 +1,1 @@
-export { default } from './FavoritesToggle';
+export { default } from './FavoritesToggle.component';

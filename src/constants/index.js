@@ -1,6 +1,7 @@
 const API_PREFIX = '/api'; // 'https://youtube.googleapis.com/youtube/v3/search/';
-const INITIAL_QUERY = 'Wizeline';
+const INITIAL_QUERY = 'a'; // Wizeline
 const FAVORITES = false;
+const MOCK = true;
 
 const USERS = {
   wizeline: {
@@ -15,4 +16,4 @@ const USERS = {
   },
 };
 
-export { API_PREFIX, INITIAL_QUERY, USERS, FAVORITES };
+export { API_PREFIX, INITIAL_QUERY, USERS, FAVORITES, MOCK };

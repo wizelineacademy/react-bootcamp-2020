@@ -1,26 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Grid, Paper, Divider } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import {
+  Grid,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  CardActionArea,
+} from '@material-ui/core';
 import FavoriteButton from '../FavoriteButton';
 import './VideoCard.styles.css';
 
 export default function VideoCard({ video }) {
-  const { id, snippet } = video;
+  const history = useHistory();
+
+  const watchVideo = () => {
+    history.push(`/watch/${video.id.videoId}`);
+  };
 
   return (
-    <Grid item>
-      <Paper className="paper">
-        <img
-          src={snippet.thumbnails.medium.url}
-          alt={snippet.title}
-          className="thumbnail"
+    <Grid item key={video.id.videoId} xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Card>
+        <CardMedia
+          label={`thumbnail-${video.id.videoId}`}
+          className="card-media"
+          image={video.snippet.thumbnails.medium.url}
+          title={video.snippet.title}
+          onClick={watchVideo}
         />
-        <Divider />
-        <div className="paperTitle">
-          <Link to={`/watch/${id.videoId}`}>{snippet.title}</Link>
-        </div>
-        <FavoriteButton videoId={id.videoId} />
-      </Paper>
+        <CardContent onClick={watchVideo} className="card-content">
+          <Typography variant="body2" color="textSecondary" component="p">
+            {video.snippet.title}
+          </Typography>
+        </CardContent>
+        <CardActionArea>
+          <FavoriteButton videoId={video.id.videoId} />
+        </CardActionArea>
+      </Card>
     </Grid>
   );
 }
