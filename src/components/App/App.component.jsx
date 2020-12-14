@@ -22,25 +22,19 @@ function App() {
   const [favoriteVideoList, setFavoriteVideoList] = React.useState([]);
 
   const queryFn = (newQuery) => {
-    console.log(newQuery);
     setQuery(() => newQuery);
   };
 
   const selectedVideoFn = (newId) => {
-    console.log(newId);
     setSelectedVideoId(() => newId);
   };
 
   const addFavoritesFn = (newVideo) => {
-    console.log(newVideo);
     setFavoriteVideoList((list) => list.concat(newVideo));
-    console.log(favoriteVideoList);
   };
 
   const removeFavoritesFn = (videoRemove) => {
     const indexToRemove = favoriteVideoList.indexOf(videoRemove);
-    console.log(indexToRemove);
-    console.log(favoriteVideoList);
     setFavoriteVideoList((prev) => prev.splice(indexToRemove, 1));
   };
 
