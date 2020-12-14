@@ -1,0 +1,41 @@
+.favs{
+    position: relative;
+    border: none;
+    font-size: 12pt;
+    color: #3c90b8;
+    padding: 20px;
+    width: 100%;
+    border: #3c90b8 1px solid;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    display: none;
+}
+
+.favs.active{
+  display: inline;
+}
+
+.favs:after {
+    content: "";
+    background: #012733;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+
+  .favs:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+
