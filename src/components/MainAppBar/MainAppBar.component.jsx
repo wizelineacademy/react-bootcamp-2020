@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar';
 import RightSideMenu from '../RightSideMenu';
 import useStyles from './MainAppBarStyles';
 
-function MainAppBar() {
+function MainAppBar({ setMode }) {
   const classes = useStyles();
 
   return (
@@ -17,7 +17,7 @@ function MainAppBar() {
         </Typography>
         <SearchBar />
         <div className={classes.grow} />
-        <RightSideMenu />
+        <RightSideMenu setMode={setMode} />
       </Toolbar>
     </AppBar>
   );

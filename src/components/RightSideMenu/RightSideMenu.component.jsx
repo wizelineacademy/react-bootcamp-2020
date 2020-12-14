@@ -8,7 +8,7 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import useStyles from './RightSideStyles';
 import { useAuth } from '../../providers/Auth';
 
-function RighSideMenu() {
+function RighSideMenu({ setMode }) {
   const { authenticated, logout } = useAuth();
   const classes = useStyles();
 
@@ -46,7 +46,7 @@ function RighSideMenu() {
   );
   return (
     <div className={classes.sectionDesktop}>
-      <IconButton color="inherit">
+      <IconButton color="inherit" onClick={() => setMode()}>
         <Brightness4Icon />
       </IconButton>
       <IconButton edge="end" onClick={handleProfileMenuOpen} color="inherit">
