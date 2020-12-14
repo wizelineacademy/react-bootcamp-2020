@@ -8,6 +8,7 @@ import { storage } from '../../utils/storage';
 
 function Video() {
   const history = useHistory();
+  const currentPath = history.location.pathname;
   const { state, setState, authenticated } = useAuth();
   const { videos, selectedVideo, currentVideoId } = state;
 
@@ -36,7 +37,12 @@ function Video() {
       ...state,
       currentVideoId: newVideoId,
     });
-    history.push(`/video/${newVideoId}`);
+
+    if (currentPath.includes('/favorites')) {
+      history.push(`/favorites/${newVideoId}`);
+    } else {
+      history.push(`/video/${newVideoId}`);
+    }
   };
 
   useEffect(() => {
