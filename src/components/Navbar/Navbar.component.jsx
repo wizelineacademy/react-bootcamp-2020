@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Search from './../Search';
 import './Navbar.styles.css';
 import src from '../../logo.svg';
 
-function Navbar({ children }) {
+function Navbar() {
   return (
     <nav>
       <ul>
@@ -12,7 +13,9 @@ function Navbar({ children }) {
             <img src={src} width="80" alt="logo" />
           </Link>
         </li>
-        <li>{children}</li>
+        <li>
+          <Search/>
+        </li>
         <li className="item-right">
           <Link to="/login" className="avatar">
             <img

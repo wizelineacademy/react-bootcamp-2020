@@ -1,19 +1,19 @@
 import React from 'react';
 import './Video.styles.css';
 
-function Video({ id, title, description }) {
+function Video({ id, title, channelTitle, img }) {
   return (
     <div className="video">
-      <iframe
-        title="youtube-player"
-        id="player"
-        type="text/html"
+      <img
         width="250"
-        src={`http://www.youtube.com/embed/${id}?enablejsapi=1`}
-        frameBorder="0"
+        src={img}
+        alt={title}
+        id={id}
       />
-      <h3>{title}</h3>
-      <h5>{description}</h5>
+      <div>
+        <h3>{title}</h3>
+        <p>{channelTitle}</p>
+      </div>
     </div>
   );
 }

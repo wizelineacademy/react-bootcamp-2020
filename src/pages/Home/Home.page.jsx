@@ -1,12 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Videos from '../../components/Videos';
 import { useAuth } from '../../providers/Auth';
+import { VideoContext } from '../../providers/Video';
+
 import './Home.styles.css';
 
 function HomePage() {
   const history = useHistory();
   const sectionRef = useRef(null);
+  const { videos } = useContext(VideoContext);
   const { authenticated, logout } = useAuth();
 
   function deAuthenticate(event) {
@@ -14,12 +17,12 @@ function HomePage() {
     logout();
     history.push('/');
   }
-
+  
   return (
     <section className="homepage" ref={sectionRef}>
       {authenticated ? (
         <>
-          <h2>Good to have you back</h2>
+          <h1>Good to have you back </h1>
           <span>
             <Link to="/" onClick={deAuthenticate}>
               ← logout
@@ -29,9 +32,9 @@ function HomePage() {
           </span>
         </>
       ) : (
-        <h1>Bienvenidos al challenge 2020</h1>
+        <h1>Welcome to the challenge 2020</h1>
       )}
-      <Videos />
+      <Videos videos={videos}/>
     </section>
   );
 }
