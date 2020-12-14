@@ -66,17 +66,17 @@
       "pre-commit": "lint-staged"
   "jest": {
     "coveragePathIgnorePatterns": [
-    "/node_modules/",
-    "/src/serviceWorker.js",
-    "/src/index.js"
-  ],
-  "coverageThreshold": {
-    "global": {
-      "statements": 70,
-      "branches": 70,
-      "lines": 70,
-      "functions": 70
+      "/node_modules/",
+      "/src/serviceWorker.js",
+      "/src/index.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 70,
+        "branches": 70,
+        "lines": 70,
+        "functions": 70
+      }
     }
   }
-}
 }
