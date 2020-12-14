@@ -9,19 +9,24 @@ function Search() {
   const searchVideos = () => {
     getVideos();
     history.push('/');
-  }
-  return (<>
-  <input
+  };
+  return (
+    <>
+      <input
         type="text"
         placeholder="Search"
         required
         value={searchSentence}
         onChange={(event) => setSearchSentence(event.target.value)}
-        onKeyDown={(event) => { if (event.key === 'Enter') searchVideos() }}
-    />
-    <button type="submit" onClick={searchVideos}>
-      Buscar
-    </button></>)
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') searchVideos();
+        }}
+      />
+      <button type="submit" onClick={searchVideos}>
+        Buscar
+      </button>
+    </>
+  );
 }
 
 export default Search;

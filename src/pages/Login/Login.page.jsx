@@ -12,7 +12,7 @@ function LoginPage() {
 
   function authenticate(event) {
     event.preventDefault();
-    login(username,password);
+    login(username, password);
     history.push('/');
   }
 

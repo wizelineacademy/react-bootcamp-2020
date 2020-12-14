@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useRef, useEffect } from 'react';
 import youtube from '../../utils/api/youtube.api';
+
 const VideoContext = React.createContext();
 
 function VideoProvider({ children }) {
@@ -17,9 +18,9 @@ function VideoProvider({ children }) {
 
   useEffect(() => {
     async function fetchData() {
-        const { data } = await youtube.search('');
-        setVideos(data.items);
-        setCurrentVideo({});
+      const { data } = await youtube.search('');
+      setVideos(data.items);
+      setCurrentVideo({});
     }
     fetchData();
   }, []);

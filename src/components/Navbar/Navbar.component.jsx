@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Search from './../Search';
+import Search from '../Search';
 import './Navbar.styles.css';
 import src from '../../logo.svg';
 
@@ -14,7 +14,7 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Search/>
+          <Search />
         </li>
         <li className="item-right">
           <Link to="/login" className="avatar">

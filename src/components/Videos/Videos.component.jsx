@@ -8,7 +8,7 @@ const VideosSection = styled.section`
   justify-content: space-evenly;
 `;
 
-function Videos({videos}) {
+function Videos({ videos }) {
   return (
     <VideosSection>
       {videos &&

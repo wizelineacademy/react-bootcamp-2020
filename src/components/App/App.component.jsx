@@ -48,7 +48,7 @@ function App() {
         <VideosProvider>
           <GlobalStyle />
           <Navbar />
-          <Sidebar/>
+          <Sidebar />
           <Layout>
             <Switch>
               <Route exact path="/">
@@ -67,7 +67,7 @@ function App() {
                 <NotFound />
               </Route>
             </Switch>
-        </Layout>
+          </Layout>
         </VideosProvider>
       </AuthProvider>
     </BrowserRouter>

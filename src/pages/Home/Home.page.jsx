@@ -17,7 +17,7 @@ function HomePage() {
     logout();
     history.push('/');
   }
-  
+
   return (
     <section className="homepage" ref={sectionRef}>
       {authenticated ? (
@@ -34,7 +34,7 @@ function HomePage() {
       ) : (
         <h1>Welcome to the challenge 2020</h1>
       )}
-      <Videos videos={videos}/>
+      <Videos videos={videos} />
     </section>
   );
 }
