@@ -16,7 +16,7 @@ function LoginPage() {
   const onClickHandle = () => {
     if (password === 'password') {
       login();
-      history.push('/');
+      history.push('/home');
     }
   };
 

@@ -1,42 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState, useEffect } from 'react';
+import VideoContext from '../../state/videoContext';
+import { mockVideos } from '../../mockedData';
 
-const API_URL =
-  'https://youtube.googleapis.com/youtube/v3/search?key=AIzaSyB-e-DiiSf7jlGCcmMPCzSRkDkKt0yP8Z4&part=snippet&q=blackpink&maxResults=20';
+const API_URL = 'https://youtube.googleapis.com/youtube/v3/search?';
 
-function useYoutubeAPI() {
-  const [videoItems, setVideoItems] = useState(null);
+function UseYoutubeAPI(queryParam) {
+  const { state, dispatch } = useContext(VideoContext);
 
   useEffect(() => {
     function start() {
       window.gapi.client
         .init({
           apiKey: process.env.REACT_APP_API_KEY,
-          // clientId and scope are optional if auth is not required.
-          // 'clientId': 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com',
-          // 'scope': 'profile',
         })
         .then(function () {
-          // 3. Initialize and make the API request.
           return window.gapi.client.request({
             path: API_URL,
+            params: { part: 'snippet', q: queryParam, maxResults: 20, type: 'video' },
           });
         })
         .then(
           function (response) {
-            console.log(response.result);
-            setVideoItems(response.result.items);
+            const items = response.result.items;
+            dispatch({ type: 'SET_VIDEO_LIST', payload: items });
           },
           function (reason) {
             console.log('Error: ' + reason.result.error.message);
+            dispatch({ type: 'SET_VIDEO_LIST', payload: mockVideos });
           }
         );
     }
 
     window.gapi.load('client', start);
-  }, []);
+  }, [queryParam]);
 
-  return { videoItems };
+  return {};
 }
 
-export { useYoutubeAPI };
+export { UseYoutubeAPI };

@@ -1,32 +1,42 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
+import FavoritesPage from '../../pages/Favorites';
 import Container from './App.styled';
 import NavBar from '../NavBar';
-import Private from '../Private/Private.component';
-
+import Protected from '../Protected/Protected.component';
+import VideoPlayerPage from '../../pages/VideoPlayer';
+import { VideoContext, initialState } from '../../state/videoContext';
+import reducer from '../../state/videoReducer';
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Container>
-          <NavBar />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
-            <Private>
-              <Route path="/secret" component={SecretPage} />
-            </Private>
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </Container>
-      </BrowserRouter>
-    </AuthProvider>
+    <VideoContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
+      <AuthProvider>
+        <BrowserRouter>
+          <Container>
+            <NavBar />
+            <Switch>
+              <Route exact path="/home/:searchText?" component={HomePage} />
+              <Route path="/login" component={LoginPage} />
+              <Route path="/video/:id" component={VideoPlayerPage} />
+              <Protected path="/favorites" component={FavoritesPage} />
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </Container>
+        </BrowserRouter>
+      </AuthProvider>
+    </VideoContext.Provider>
   );
 }
 

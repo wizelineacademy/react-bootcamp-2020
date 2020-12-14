@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +10,11 @@ import { LogoutSpan } from './NavBar.component.styled';
 
 function NavBar() {
   const { authenticated, logout } = useAuth();
+  const [inputValue, setInputValue] = useState('');
+
+  const handleSearchInput = (event) => {
+    setInputValue(event.target.value);
+  };
 
   const handleLogout = () => {
     logout();
@@ -16,14 +22,32 @@ function NavBar() {
 
   return (
     <Navbar variant="dark">
-      <Link to="/" className="navbar-brand">
-        Blackpink
+      <Link to="/home" className="navbar-brand">
+        Youtube
       </Link>
       <Nav className="mr-auto">
-        <Link to="/" className="nav-link">
+        <Link to="/home" className="nav-link">
           Home
         </Link>
+        {authenticated ? (
+          <Link to="/favorites" className="nav-link">
+            Favorites
+          </Link>
+        ) : null}{' '}
+        }
       </Nav>
+      <Form inline>
+        <FormControl
+          type="text"
+          value={inputValue}
+          onChange={handleSearchInput}
+          placeholder="Search"
+          className=" mr-sm-2"
+        />
+        <Link to={{ pathname: `/home/${inputValue}` }} className="btn btn-primary">
+          Search
+        </Link>
+      </Form>
       <Form inline>
         <Nav className="mr-auto">
           {authenticated ? (

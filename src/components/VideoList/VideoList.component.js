@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import MainPane from '../MainPane';
 import VideoItem from '../VideoItem';
 import { VideoListPane } from './VideoList.component.styled';
-import { videos } from '../../mockedData';
-import { useYoutubeAPI } from '../../utils/hooks/useYoutubeAPI';
+import VideoContext from '../../state/videoContext';
 
-function VideoList() {
-  const { videoItems } = useYoutubeAPI();
+function VideoList(props) {
+  const { dispatch } = useContext(VideoContext);
+
+  const handleClick = (video) => () => {
+    dispatch({ type: 'SET_VIDEO', payload: video });
+  };
+
+  console.log(props);
+  const videos = props.videosParam;
 
   return (
     <MainPane>
       <VideoListPane>
-        {videoItems &&
-          videoItems.map((video, index) => (
+        {videos &&
+          videos.map((video, index) => (
             <VideoItem
               title={video.snippet.title}
               covers={video.snippet.thumbnails.default.url}
               id={index}
               key={video.etag}
+              onVideoClick={handleClick(video)}
             />
           ))}
       </VideoListPane>
