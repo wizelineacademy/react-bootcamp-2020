@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NotFound from '../../pages/NotFound';
 import AppNavbar from '../Navbar';
 import FavoritesPage from '../../pages/Favorites';
-import UserContext from '../../state/GlobalContext';
+import GlobalContext from '../../state/GlobalContext';
 import DetailPage from '../../pages/Detail';
 import ScrollTop from '../../utils/scrolltop';
 import HomePage from '../../pages/Home/Home.page';
@@ -46,7 +46,7 @@ function App() {
     <BrowserRouter>
       <ScrollTop />
       <Container fluid>
-        <UserContext.Provider
+        <GlobalContext.Provider
           value={{
             showLogin,
             setShowLogin,
@@ -86,7 +86,7 @@ function App() {
               </Switch>
             </Col>
           </Row>
-        </UserContext.Provider>
+        </GlobalContext.Provider>
       </Container>
     </BrowserRouter>
   );

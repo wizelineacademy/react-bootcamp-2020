@@ -3,6 +3,8 @@ import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import GlobalContext from '../../state/GlobalContext';
 
+const Entities = require('html-entities').AllHtmlEntities;
+
 function YoutubeListItem(props) {
   const history = useHistory();
   const { setActiveVideo } = useContext(GlobalContext);
@@ -20,6 +22,7 @@ function YoutubeListItem(props) {
       history.push(`/favorites/${props.videoId}`);
     }
   };
+  const entities = new Entities();
 
   return (
     <Card
@@ -29,7 +32,7 @@ function YoutubeListItem(props) {
     >
       <Card.Img variant="top" src={props.imageUrl} />
       <Card.Body>
-        <Card.Title>{props.title}</Card.Title>
+        <Card.Title>{entities.decode(props.title)}</Card.Title>
         <Card.Text>{props.description}</Card.Text>
       </Card.Body>
     </Card>
