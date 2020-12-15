@@ -3,16 +3,16 @@ import { Link, withRouter } from 'react-router-dom';
 import classes from './Header.module.scss';
 import { AuthContext } from '../../store/contexts/AuthContext';
 import { FavoriteContext } from '../../store/contexts/FavoriteContext';
-import { youtubeApi, youtubeApiQuotaExceeded } from '../../services/YouTubeService';
+import useSearch from '../../hooks/useSearch';
 import icon from '../../assets/icon.png';
 import { useDebounce } from '../../hooks/useDebounce';
 
 const Header = (props) => {
   // eslint-disable-next-line
-  const [favState, favDispatch] = useContext(FavoriteContext);
   const [state, dispatch] = useContext(AuthContext);
+  const [favState, favDispatch] = useContext(FavoriteContext);
   const [searchTerm, setSearchTerm] = useState('wizeline');
-
+  const { videos, error } = useSearch(searchTerm);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   const createReferenceMap = (videos = []) => {
@@ -24,59 +24,27 @@ const Header = (props) => {
   };
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await youtubeApi.get('/search', {
-          params: {
-            q: searchTerm,
-          },
-        });
+    if (error) {
+      alert(error);
+    }
 
-        // TODO: Using when quota exceeded
-        // const response = await youtubeApiQuotaExceeded(searchTerm);
+    favDispatch({
+      type: 'ADD_VIDEOS',
+      payload: { videos },
+    });
 
-        const {
-          data: { items },
-        } = response;
-
-        const videos = items.map((item) => {
-          return {
-            id: item.id.videoId,
-            title: item.snippet.title,
-            description: item.snippet.description,
-            thumbnail: item.snippet.thumbnails.default.url,
-            isFav: false,
-          };
-        });
-
+    const videosMap = createReferenceMap(videos);
+    // Set isFav from existing ones
+    favState.favoriteVideos.forEach((fav) => {
+      const video = videos[videosMap[fav.id]];
+      if (videosMap.has(fav.id) && video) {
         favDispatch({
-          type: 'ADD_VIDEOS',
-          payload: { videos },
+          type: 'TOGGLE_FAVORITE',
+          payload: { video },
         });
-
-        const videosMap = createReferenceMap(videos);
-        // Set isFav from existing ones
-        favState.favoriteVideos.forEach((fav) => {
-          const video = videos[videosMap[fav.id]];
-          if (videosMap.has(fav.id) && video) {
-            favDispatch({
-              type: 'TOGGLE_FAVORITE',
-              payload: { video },
-            });
-          }
-        });
-      } catch (e) {
-        if (e.isAxiosError) {
-          alert(e.response.data.error.message);
-        }
-        console.log(e);
       }
-    }
-
-    if (debouncedSearchTerm) {
-      fetchData();
-    }
-  }, [debouncedSearchTerm]);
+    });
+  }, [debouncedSearchTerm, videos]);
 
   const searchBoxHandler = (event) => {
     const value = event.target.value;
