@@ -1,39 +1,48 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+import React, { useContext, useEffect } from 'react';
+import useFetch from '../../hooks/useFetch';
+import Spinner from '../../components/Spinner/Spinner';
+import YoutubeListItem from '../../components/YoutubeList/YoutubeListItem';
+import GlobalContext from '../../state/GlobalContext';
 
 function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+  const { query, responseList, setResponseList } = useContext(GlobalContext);
+  const list = [];
+  const params = {
+    part: 'snippet',
+    key: process.env.REACT_APP_YOUTUBE_API_KEY,
+    maxResults: 35,
+    type: 'video',
+    videoSyndicated: 'true',
+  };
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
+  const url =
+    query &&
+    `https://youtube.googleapis.com/youtube/v3/search?part=${params.part}&key=${params.key}&maxResults=${params.maxResults}&type=${params.type}&videoSyndicated=${params.videoSyndicated}&q=${query}`;
+
+  const { loading, data } = useFetch(url);
+
+  useEffect(() => {
+    setResponseList(data.items);
+  });
+
+  if (responseList === undefined) {
+    list.push(<h1 key="welcome">Welcome Stranger!</h1>);
+  }
+  if (responseList) {
+    responseList.forEach((element) => {
+      list.push(
+        <YoutubeListItem
+          key={element.id.videoId}
+          title={element.snippet.title}
+          description={element.snippet.description}
+          imageUrl={element.snippet.thumbnails.medium.url}
+          videoId={element.id.videoId}
+        />
+      );
+    });
   }
 
-  return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
-  );
+  return <div>{loading ? <Spinner className="spinner" /> : list}</div>;
 }
 
 export default HomePage;
