@@ -3,8 +3,7 @@ import styled from 'styled-components';
 export const SettingsContainer = styled.div`
   display: flex;
   margin-top: 24px;
-  min-height: 100vh;
-  min-width: 100vw;
+  width: 100vw;
 `;
 
 export const Main = styled.div`
