@@ -50,17 +50,16 @@ export default function CustomizedDialogs(props) {
   const handleClose = () => {
     setOpen(false);
   };
-
   return (
     <div>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <DialogTitle data-testid="loginDialogTitle" onClose={handleClose}>
           {title}
         </DialogTitle>
         {resourceState.resources.login === 'loading' && (
-          <LinearProgress color="secondary" />
+          <LinearProgress data-testid="loginDialogLoading" color="secondary" />
         )}
-        <DialogContent dividers>
+        <DialogContent data-testid="loginDialogContent" dividers>
           <Login handleClose={handleClose} />
         </DialogContent>
       </Dialog>

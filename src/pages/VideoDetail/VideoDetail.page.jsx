@@ -8,8 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import { useStyles as homeStyles } from '../Home/Home.page';
-import VideoList from '../../components/VideoList';
+import VideoList from '../../components/VideoList/VideoList';
 import youtube from '../../services/youtube';
+import VideoDetailCard from '../../components/VideoDetailCard/VideoDetailCard.component';
+import { ageFrom } from '../../utils/dates';
 
 const useStyles = makeStyles(() => ({
   tags: { marginRight: 8, height: 26 },
@@ -18,6 +20,10 @@ const useStyles = makeStyles(() => ({
     fontWeight: 400,
     lineHeight: '24px',
     marginTop: 12,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#606060',
   },
   videoData: {
     marginTop: 8,
@@ -54,6 +60,37 @@ function VideoDetail() {
     }
   }, [parentRef, childrenRef]);
 
+  const renderVideo = () => {
+    const nada = false;
+    if (isSuccess && data.data.items) {
+      const v = data.data.items[0];
+      return (
+        <div className={classes.videoData}>
+          {nada &&
+            v.snippet.tags.map((t) => {
+              return (
+                <Chip
+                  key={t}
+                  className={classes.tags}
+                  label={t}
+                  avatar={<LocalOfferIcon />}
+                />
+              );
+            })}
+          <Typography className={classes.title} component="h2">
+            {v.snippet.title}
+          </Typography>
+          <Typography className={classes.subtitle} component="p">
+            {v.snippet.title.length}K Views • {ageFrom(v.snippet.publishedAt)}
+          </Typography>
+          <VideoDetailCard video={v} />
+        </div>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <Container
       classes={{ root: homeClasses.root, maxWidthXl: homeClasses.maxWidthXl }}
@@ -72,23 +109,7 @@ function VideoDetail() {
             height={(parentWidth * 56.214) / 100}
             src={`https://www.youtube.com/embed/${videoId}`}
           />
-          {isSuccess && data.data.items && (
-            <div className={classes.videoData}>
-              {data.data.items[0].snippet.tags.map((t) => {
-                return (
-                  <Chip
-                    key={t}
-                    className={classes.tags}
-                    label={t}
-                    avatar={<LocalOfferIcon />}
-                  />
-                );
-              })}
-              <Typography className={classes.title} component="h2">
-                {data.data.items[0].snippet.title}
-              </Typography>
-            </div>
-          )}
+          {renderVideo()}
         </Grid>
         <Grid item style={{ width: 400 }}>
           <VideoList />

@@ -1,63 +1,37 @@
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import WatchLaterIcon from '@material-ui/icons/WatchLater';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import useLocalStorage from '../../utils/hooks/useLocalStorage';
-
-const useVideoImageStyle = makeStyles((theme) => ({
-  root: (props) => ({
-    height: `${props.height}px`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    position: 'relative',
-  }),
-  button: (props) => {
-    const { isSelected } = props;
-    const textColor = isSelected ? { color: '#2893E9' } : { color: 'white' };
-    return {
-      ...textColor,
-      position: 'absolute',
-      top: theme.spacing(1) / 2,
-      right: theme.spacing(1) / 2,
-      backgroundColor: 'black',
-      minWidth: 'auto',
-      borderRadius: 0,
-      '&:hover': {
-        backgroundColor: 'black',
-      },
-      '&:hover span[data-testid=buttonText]': {
-        maxHeight: 20,
-        width: 'auto',
-        marginRight: 4,
-      },
-    };
-  },
-  icon: {
-    // marginLeft: theme.spacing(1),
-  },
-  text: {
-    display: 'inline-block',
-    width: 0,
-    overflow: 'hidden',
-    maxHeight: 0,
-    transition: 'max-width 0.5s, width  0.5s, max-height 0.5s',
-  },
-}));
+import { AuthContext } from '../../contexts/authContext/authContext';
+import useStyles from './VideoImage.styles';
 
 const VideoImage = (props) => {
-  const userId = 'SDFEWRTW234234';
-  const { readLaterText, addedLaterText, videoId, showButtons, ...rest } = props;
-  const storageKey = `${userId}-lookLater-${videoId}`;
-  const [isSelected, setSelectedVideo] = useLocalStorage(storageKey, false);
-  const classes = useVideoImageStyle({ ...props, isSelected });
+  const { readLaterText, addedLaterText, video, showButtons, className, ...rest } = props;
+  const { authState } = useContext(AuthContext);
+  const userId = authState.user && authState.user.id ? authState.user.id : null;
+  const storageKey = `${userId}-lookLater-${video.id.videoId}`;
+  const [, setSelectedVideo, getValue] = useLocalStorage(storageKey, false);
+  const isSelected = getValue();
+  const classes = useStyles({ ...props, isSelected });
+  const [visibleButtons, setVisibleButtons] = useState(false);
+  const hideShowButtons = (state) => {
+    if (showButtons === undefined) return setVisibleButtons(state);
+    return null;
+  };
   return (
-    <div {...rest} className={classes.root}>
-      {showButtons && (
+    <div
+      {...rest}
+      className={`${classes.root} ${className}`}
+      onMouseEnter={() => hideShowButtons(true)}
+      onMouseLeave={() => hideShowButtons(false)}
+    >
+      {((showButtons === undefined && visibleButtons && userId) ||
+        (showButtons && userId)) && (
         <Button
           onClick={(e) => {
             e.preventDefault();
-            setSelectedVideo(!isSelected);
+            setSelectedVideo(!isSelected ? video : false);
           }}
           variant="contained"
           size="small"

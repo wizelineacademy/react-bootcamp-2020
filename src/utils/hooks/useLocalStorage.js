@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 // Hook
 export default function useLocalStorage(key, initialValue) {
-  const [storedValue, setStoredValue] = useState(() => {
+  const getValue = () => {
     try {
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
@@ -10,7 +10,11 @@ export default function useLocalStorage(key, initialValue) {
       console.log(error);
       return initialValue;
     }
-  });
+  };
+  const getAllValues = () => {
+    return { ...window.localStorage };
+  };
+  const [storedValue, setStoredValue] = useState(getValue);
 
   const setValue = (value) => {
     try {
@@ -22,5 +26,5 @@ export default function useLocalStorage(key, initialValue) {
     }
   };
 
-  return [storedValue, setValue];
+  return [storedValue, setValue, getValue, getAllValues];
 }

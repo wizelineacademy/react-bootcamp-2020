@@ -14,13 +14,15 @@ import useStyles from './VideoCard.styles';
 export default function VideoCard(props) {
   const classes = useStyles();
   const [showButtons, setShowButtons] = useState(false);
-  const { videoId, thumbnail, title, channel, publishedDate } = props;
+  const { video, thumbnail, title, channel, publishedDate } = props;
+  const videoId = video.id.videoId || video.id.channelId;
   return (
     <Grid key={videoId} item classes={{ item: classes.item }}>
       <Card
         className={classes.root}
         onMouseEnter={() => setShowButtons(true)}
         onMouseLeave={() => setShowButtons(false)}
+        data-testid="videoCardBody"
       >
         <ButtonBase
           to={`/video/${videoId}`}
@@ -30,13 +32,13 @@ export default function VideoCard(props) {
           <CardMedia
             showButtons={showButtons}
             component={VideoImage}
-            videoId={videoId}
+            video={video}
             readLaterText="watch later"
             addedLaterText="added"
             alt="Contemplative Reptile"
             height="180"
             image={thumbnail}
-            title="Contemplative Reptile"
+            title={title}
           />
           <CardHeader
             classes={{

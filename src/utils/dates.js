@@ -5,7 +5,8 @@ export function ageFrom(date) {
   const from = dayjs(date);
   const now = dayjs(Date.now());
   const units = [
-    { unit: 's', amount: '60', string: 'seconds' },
+    { unit: 'm', amount: '60', string: 'minutes' },
+    { unit: 'h', amount: '24', string: 'hours' },
     { unit: 'd', amount: '30', string: 'days' },
     { unit: 'M', amount: '12', string: 'months' },
     { unit: 'y', amount: '1000', string: 'years' },

@@ -13,12 +13,13 @@ import logoSmall from '../../../assets/images/wizeline-academy-1-small.jpg';
 import auth from '../../../services/auth';
 import { AuthContext } from '../../../contexts/authContext/authContext';
 import { ResourceContext } from '../../../contexts/resourceContext/Resource';
+import useLocalStorage from '../../../utils/hooks/useLocalStorage';
 
 const useStyles = makeStyles(styles);
 
-function storeUser(res, action) {
-  console.log(res.data[0], 'entre');
+function storeUser(res, action, saveOnStorage) {
   if (res.data.length !== 1) return null;
+  saveOnStorage(res.data[0]);
   action(res.data[0]);
 }
 
@@ -30,6 +31,7 @@ export default function Login(props) {
   const [rememberMe, setRememberMe] = useState(false);
   const { authActions } = useContext(AuthContext);
   const { resourceActions } = useContext(ResourceContext);
+  const setUser = useLocalStorage('user', null)[1];
 
   const { refetch, status } = useQuery(
     ['/login', { user: userName, password }],
@@ -39,7 +41,7 @@ export default function Login(props) {
       enabled: false,
       cacheTime: 0,
       onSuccess: (data) => {
-        storeUser(data, authActions.authStateChanged);
+        storeUser(data, authActions.authStateChanged, setUser);
         handleClose();
       },
     }
@@ -70,6 +72,7 @@ export default function Login(props) {
           src={logo}
           placeholder={logoSmall}
           alt="Wizeline"
+          data-testid="loginFormLogo"
         />
         <div className={classes.paper}>
           <form className={classes.form} onSubmit={submitData} noValidate>
@@ -105,6 +108,7 @@ export default function Login(props) {
                   onChange={() => changeValue('remember', !rememberMe)}
                   value="remember"
                   color="secondary"
+                  name="remember"
                 />
               }
               label="Remember me"

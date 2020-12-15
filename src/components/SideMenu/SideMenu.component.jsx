@@ -1,5 +1,4 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useContext } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -12,74 +11,15 @@ import MailIcon from '@material-ui/icons/Mail';
 import HomeIcon from '@material-ui/icons/Home';
 import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import { useLocation } from 'react-router-dom';
-
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerContainer: {
-    overflow: 'auto',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  listItemPrimary: {
-    fontSize: 14,
-  },
-  listSubheaderRoot: {
-    textTransform: 'uppercase',
-    fontSize: 14,
-    color: theme.palette.youtubeIconColor,
-  },
-  listItemIconRoot: {
-    color: theme.palette.youtubeIconColor,
-    minWidth: 48,
-  },
-  listItemGutters: {
-    paddingLeft: 24,
-    paddingTop: 6,
-    paddingBottom: 5,
-  },
-  listItemSelected: {
-    '& svg': {
-      color: 'red',
-    },
-  },
-}));
+import { useLocation, useHistory } from 'react-router-dom';
+import { AuthContext } from '../../contexts/authContext/authContext';
+import useStyles from './SideMenu.styles';
 
 export default function SideMenu() {
   const classes = useStyles();
   const location = useLocation();
-  console.log(location.pathname);
-  const evaluateSelected = (key, exact = false) => {
-    const p1 = location.pathname.split('/');
-    const p2 = key.split('/');
-    if (exact && p1.length !== p2.length) return false;
-    try {
-      for (let p2c = 0; p2c < p2.length; p2c += 1) {
-        // console.log(p2[p2c], p1[p2c], p2c);
-        if (p2[p2c].charAt(0) === ':' && p2c < p1.length) return true;
-        if (p2[p2c] !== p1[p2c]) return false;
-      }
-      return true;
-    } catch (e) {
-      return false;
-    }
-  };
+  const history = useHistory();
+  const { authState } = useContext(AuthContext);
   return (
     <Drawer
       className={classes.drawer}
@@ -94,6 +34,7 @@ export default function SideMenu() {
           <ListItem
             selected={location.pathname === '/'}
             button
+            onClick={() => history.push('/')}
             classes={{
               gutters: classes.listItemGutters,
               selected: classes.listItemSelected,
@@ -104,22 +45,25 @@ export default function SideMenu() {
             </ListItemIcon>
             <ListItemText classes={{ primary: classes.listItemPrimary }} primary="Home" />
           </ListItem>
-          <ListItem
-            selected={evaluateSelected('/video/:id', true)}
-            button
-            classes={{
-              gutters: classes.listItemGutters,
-              selected: classes.listItemSelected,
-            }}
-          >
-            <ListItemIcon classes={{ root: classes.listItemIconRoot }}>
-              <WatchLaterIcon />
-            </ListItemIcon>
-            <ListItemText
-              classes={{ primary: classes.listItemPrimary }}
-              primary="Watch Later"
-            />
-          </ListItem>
+          {authState.user && (
+            <ListItem
+              selected={location.pathname === '/viewlater'}
+              onClick={() => history.push('/viewlater')}
+              button
+              classes={{
+                gutters: classes.listItemGutters,
+                selected: classes.listItemSelected,
+              }}
+            >
+              <ListItemIcon classes={{ root: classes.listItemIconRoot }}>
+                <WatchLaterIcon />
+              </ListItemIcon>
+              <ListItemText
+                classes={{ primary: classes.listItemPrimary }}
+                primary="Watch Later"
+              />
+            </ListItem>
+          )}
         </List>
         <Divider />
         <List

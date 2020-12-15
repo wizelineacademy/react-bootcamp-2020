@@ -17,6 +17,7 @@ import SearchVideos from '../SearchVideos';
 import { AuthContext } from '../../contexts/authContext/authContext';
 import { DialogContext } from '../../contexts/dialogContext/Dialog';
 import logo from '../../assets/images/wla-small.png';
+import useLocalStorage from '../../utils/hooks/useLocalStorage';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -49,7 +50,9 @@ const useStyles = makeStyles((theme) => {
 function UserMenu() {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
+  const setUser = useLocalStorage('user', null)[1];
   const classes = useStyles();
+  const { authActions, authState } = useContext(AuthContext);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -59,7 +62,6 @@ function UserMenu() {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -79,6 +81,11 @@ function UserMenu() {
       setOpen(false);
     }
   }
+  function logout(event) {
+    authActions.authStateChanged(null);
+    setUser(null);
+    handleClose(event);
+  }
   return (
     <div>
       <IconButton
@@ -88,8 +95,8 @@ function UserMenu() {
         onClick={handleToggle}
       >
         <Avatar
-          alt="Remy Sharp"
-          src="https://material-ui.com/static/images/avatar/1.jpg"
+          alt={authState.user.user_name}
+          src={authState.user.avatar}
           className={classes.avatar}
         />
       </IconButton>
@@ -116,7 +123,7 @@ function UserMenu() {
                 >
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                   <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  <MenuItem onClick={logout}>Logout</MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

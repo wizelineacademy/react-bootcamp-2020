@@ -1,41 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from 'react-query';
 import { useParams, Link } from 'react-router-dom';
-import youtube from '../services/youtube';
-
-const useStyles = makeStyles(() => ({
-  root: {
-    display: 'flex',
-    boxShadow: 'none',
-    backgroundColor: 'transparent',
-    margin: '4px 8px',
-  },
-  details: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  content: {
-    flex: '1 0 auto',
-  },
-  cover: {
-    width: 168,
-    minWidth: 168,
-  },
-  title: {
-    fontSize: 14,
-    lineHeight: '16px',
-  },
-  subTitle: {
-    fontSize: 14,
-    lineHeight: '16px',
-    marginTop: 4,
-  },
-}));
+import youtube from '../../services/youtube';
+// import { relatedVideos } from '../dummyData/videos';
+import { ageFrom } from '../../utils/dates';
+import VideoImage from '../VideoImage';
+import useStyles from './VideoList.styles';
 
 export default function VideoList() {
   const classes = useStyles();
@@ -58,14 +32,21 @@ export default function VideoList() {
   return (
     <>
       {data.data.items.map((v) => {
+        if (!v.snippet) return null;
         return (
-          <>
-            <Link to={`/video/${v.id.videoId}`}>
-              <Card key={v.id.videoId} className={classes.root}>
+          <div key={v.id.videoId}>
+            <Link to={`/video/${v.id.videoId}`} className={classes.link}>
+              <Card className={classes.root}>
                 <CardMedia
                   className={classes.cover}
                   image={v.snippet.thumbnails.medium.url}
-                  title="Live from space album cover"
+                  title={v.snippet.title}
+                  component={VideoImage}
+                  video={v}
+                  readLaterText="watch later"
+                  addedLaterText="added"
+                  alt="Contemplative Reptile"
+                  height="94"
                 />
                 <div className={classes.details}>
                   <CardContent className={classes.content}>
@@ -77,13 +58,14 @@ export default function VideoList() {
                       variant="subtitle1"
                       color="textSecondary"
                     >
-                      {v.snippet.channelTitle}
+                      {v.snippet.channelTitle} <br /> {v.snippet.title.length}K Views •{' '}
+                      {ageFrom(v.snippet.publishTime)}
                     </Typography>
                   </CardContent>
                 </div>
               </Card>
             </Link>
-          </>
+          </div>
         );
       })}
     </>

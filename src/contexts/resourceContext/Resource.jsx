@@ -5,7 +5,8 @@ import actions from './actions';
 const ResourceContext = React.createContext({});
 
 const ResourceProvider = (props) => {
-  const [resourceState, dispatch] = useReducer(reducer, initialState);
+  const { children, value } = props;
+  const [resourceState, dispatch] = useReducer(reducer, value || initialState);
   const resourceActions = useMemo(() => actions(dispatch), []);
 
   return (
@@ -15,7 +16,7 @@ const ResourceProvider = (props) => {
         resourceActions,
       }}
     >
-      {props.children}
+      {children}
     </ResourceContext.Provider>
   );
 };
