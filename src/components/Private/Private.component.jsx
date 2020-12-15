@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { useAuth } from '../../providers/Auth';
+import { AuthContext } from '../../contexts/authContext/authContext';
 
 function Private({ children, ...rest }) {
-  const { authenticated } = useAuth();
+  const { authState } = useContext(AuthContext);
 
   return (
-    <Route {...rest} render={() => (authenticated ? children : <Redirect to="/" />)} />
+    <Route
+      {...rest}
+      render={() =>
+        authState.user && authState.user.id ? children : <Redirect to="/" />
+      }
+    />
   );
 }
 

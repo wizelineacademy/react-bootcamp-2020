@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core';
-import Videos from '../../components/Videos';
+import ViewLaterList from '../../components/ViewLaterList/ViewLaterList.component';
 
 export const useStyles = makeStyles((theme) => {
   return {
@@ -15,16 +15,16 @@ export const useStyles = makeStyles((theme) => {
   };
 });
 
-function HomePage() {
+function ViewLaterPage() {
   const classes = useStyles();
   return (
     <Container
       classes={{ root: classes.root, maxWidthXl: classes.maxWidthXl }}
       maxWidth="xl"
     >
-      <Videos />
+      <ViewLaterList />
     </Container>
   );
 }
 
-export default HomePage;
+export default ViewLaterPage;
