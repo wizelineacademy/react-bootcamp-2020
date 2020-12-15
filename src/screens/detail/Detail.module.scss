@@ -1,0 +1,35 @@
+.detail {
+  display: flex;
+
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+  }
+
+  &__video {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70%;
+    width: 95%;
+  }
+
+  &__description {
+    margin-top: 1rem;
+  }
+
+  &__list {
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 1rem;
+  border-radius: 2rem;
+  border: none;
+  background-color: lightcoral;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
