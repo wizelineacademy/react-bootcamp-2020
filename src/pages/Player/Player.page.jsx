@@ -23,6 +23,8 @@ const PlayerContainer = styled.div`
   height: 100%;
   position: relative;
   padding-top: 3px;
+  max-width: 60%;
+  min-width: 60%;
 `;
 
 function PlayerPage(props) {

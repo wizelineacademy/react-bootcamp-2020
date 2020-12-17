@@ -148,4 +148,5 @@ For deploy
 
 npm run build
 netlify deploy
+select ./build
 npm run lint:fix

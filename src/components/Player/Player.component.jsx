@@ -10,8 +10,8 @@ const PlayerContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 3px;
-  max-width: 1200px;
-  min-width: 1200px;
+  max-width: 100%;
+  min-width: 100%;
 `;
 
 const TextDescription = styled.p`
@@ -120,10 +120,16 @@ function Player(props) {
               🖤
             </span>
           </Emoji>
-          <FavoritesButton hidden={isFavorite} onClick={addToFavoritesHandleClick}>
+          <FavoritesButton
+            hidden={isFavorite || showEmoji}
+            onClick={addToFavoritesHandleClick}
+          >
             Add to favorites 👍🏼
           </FavoritesButton>
-          <FavoritesButton hidden={!isFavorite} onClick={removeFromFavoritesHandleClick}>
+          <FavoritesButton
+            hidden={!isFavorite || showEmoji}
+            onClick={removeFromFavoritesHandleClick}
+          >
             Remove from favorites
           </FavoritesButton>
         </ButtonsContainer>
