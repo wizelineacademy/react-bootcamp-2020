@@ -1,13 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 function SecretPage() {
   return (
     <section>
-      <pre>
-        welcome, voyager...
-        <Link to="/"> ← go back</Link>
-      </pre>
+      <pre>welcome, voyager...</pre>
       <iframe
         width="800"
         height="450"
