@@ -8,7 +8,7 @@ Thank you for participating in the React Certification 2020! Here, you'll find i
 
 The purpose of the challenge is for you to demonstrate your React skills. This is your chance to show off everything you've learned during the course and to earn your certification!
 
-You will build and deliver a **whole** React application on your own. We don't want to limit you by providing some fill-in-the-blanks exercises. Instead, we want you to build it from scratch. 
+You will build and deliver a **whole** React application on your own. We don't want to limit you by providing some fill-in-the-blanks exercises. Instead, we want you to build it from scratch.
 
 We hope you find this exercise challenging and engaging.
 
@@ -143,3 +143,10 @@ For submitting your work, you should follow these steps:
 3. Fill out this form and provide the requested information: https://forms.gle/mKnwdbxwzhFDUKJf6
 
 > \*_Important:_ Don't forget to include any additional information that might be necessary for running your code (for example, test user credentials, etc).
+
+For deploy
+
+npm run build
+netlify deploy
+select ./build
+npm run lint:fix

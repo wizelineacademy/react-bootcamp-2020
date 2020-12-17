@@ -1,38 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 
-import { useAuth } from '../../providers/Auth';
-import './Login.styles.css';
+import { useAuth } from '../../providers/Auth/Auth.provider';
+
+import {
+  Button,
+  Input,
+  H1,
+  Div,
+  FieldLabel,
+  LoginForm,
+  Login,
+  ErrorLabel,
+  LoginPageContainer,
+} from './LoginPage.styles';
 
 function LoginPage() {
   const { login } = useAuth();
   const history = useHistory();
+  const [userName, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorLogin, setErrrorLogin] = useState(false);
 
-  function authenticate(event) {
+  function onChangeUserName(value) {
+    setUsername(() => value);
+  }
+
+  function onChangePassword(value) {
+    setPassword(() => value);
+  }
+
+  async function authenticate(event) {
     event.preventDefault();
-    login();
-    history.push('/secret');
+    try {
+      await login(userName, password);
+      history.push('/favorites');
+    } catch (error) {
+      setErrrorLogin(true);
+    }
   }
 
   return (
-    <section className="login">
-      <h1>Welcome back!</h1>
-      <form onSubmit={authenticate} className="login-form">
-        <div className="form-group">
-          <label htmlFor="username">
-            <strong>username </strong>
-            <input required type="text" id="username" />
-          </label>
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">
-            <strong>password </strong>
-            <input required type="password" id="password" />
-          </label>
-        </div>
-        <button type="submit">login</button>
-      </form>
-    </section>
+    <LoginPageContainer>
+      <Login>
+        <H1>Welcome back!</H1>
+        <LoginForm onSubmit={authenticate}>
+          <Div>
+            <FieldLabel htmlFor="username">username </FieldLabel>
+            <Input
+              required
+              type="text"
+              id="username"
+              onChange={(event) => onChangeUserName(event.target.value)}
+            />
+          </Div>
+          <Div>
+            <FieldLabel htmlFor="password">password </FieldLabel>
+            <Input
+              required
+              type="password"
+              id="password"
+              onChange={(event) => onChangePassword(event.target.value)}
+            />
+          </Div>
+          {errorLogin ? (
+            <ErrorLabel>Incorrect user or password try again</ErrorLabel>
+          ) : null}
+          <Button type="submit">Login</Button>
+        </LoginForm>
+      </Login>
+    </LoginPageContainer>
   );
 }
 
