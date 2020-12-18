@@ -21,7 +21,7 @@ const Player = () => {
     dispatchV } = useContext(VideoContext);
 
   const { VideoList } = useFetch();
-  const [IsFavorite, setIsFavorite] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(null);
 
   useEffect(() => {
     if(!VideoID){
@@ -80,7 +80,7 @@ const Player = () => {
       <PlayerVideoContainer>
         <iframe 
           data-testid="Iframe"
-          src={`http://www.youtube.com/embed/${VideoID}`} 
+          src={`https://www.youtube.com/embed/${VideoID}`} 
           frameBorder="0" 
           title="Video" 
           width="100%" 
@@ -97,11 +97,11 @@ const Player = () => {
           {
             (Sesion) && 
               <Tooltip 
-                title={IsFavorite ? "Remove from favorites" : "Add to favorites"} 
+                title={isFavorite ? "Remove from favorites" : "Add to favorites"} 
                 data-testid="Tooltip"
               >
                 {
-                  (IsFavorite) ? (
+                  (isFavorite) ? (
                     <StarTwoTone 
                       style={{ cursor: "pointer", fontSize: "30px" }}
                       twoToneColor="#ffd700"

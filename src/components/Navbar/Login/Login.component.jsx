@@ -4,7 +4,7 @@ import { UserInput, PasswordInput, ButtonStyle } from './Login.styled';
 import { StateContext } from '../../../utils/State';
 import { ConfigContext } from '../../../utils/ConfigState';
 
-const SesionInfo = {
+const sesionInfo = {
     User: "User",
     Password: "123"
 };
@@ -19,13 +19,13 @@ const Login = ({ onClose, visible }) => {
     const { state: { Theme: { PrimaryColor, TextColor }, DarkMode } } = useContext(ConfigContext)
     const { dispatchS } = useContext(StateContext);
 
-    const [User, setUser] = useState("");
-    const [Password, setPassword] = useState("");
+    const [user, setUser] = useState("");
+    const [password, setPassword] = useState("");
 
     const onSubmit = () => {
-        if(User !== SesionInfo.User) return message.error("Wrong user");
-        if(Password !== SesionInfo.Password) return message.error("Wrong password");
-        dispatchS({ type: "SET_SESION", payload: SesionInfo });
+        if(user !== sesionInfo.User) return message.error("Wrong user");
+        if(password !== sesionInfo.Password) return message.error("Wrong password");
+        dispatchS({ type: "SET_SESSION", payload: sesionInfo });
         message.success(" Welcome user :) ")
         onClose();
     }
@@ -43,13 +43,13 @@ const Login = ({ onClose, visible }) => {
             <UserInput 
                 data-testid="UserInput"
                 placeholder="User"
-                value={User}
+                value={user}
                 onChange={onTextChange(setUser)}
             />
             <PasswordInput 
                 data-testid="PassInput"
                 placeholder="Password"
-                value={Password}
+                value={password}
                 onChange={onTextChange(setPassword)}
             />
             <Row justify="space-between">

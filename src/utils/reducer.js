@@ -33,7 +33,7 @@ const reducer = (state, action) => {
                 ...state,
                 FavoriteVideos: action.payload,
             };
-        case "SET_SESION":
+        case "SET_SESSION":
             saveToLocalStorage(APP_STATE, action.payload);
             return {
                 ...state,

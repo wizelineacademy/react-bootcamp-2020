@@ -8,6 +8,10 @@ import { Tooltip } from 'antd';
 import Login from './Login'
 import { useHistory } from 'react-router';
 
+const onTextChange = (callback) => (event) => {
+    const { value } = event.target;
+    callback(value);
+};
 
 const Navbar = () => {
 
@@ -22,7 +26,7 @@ const Navbar = () => {
     const onChangeSesion = () => {
         if(Sesion){
             dispatchS({
-                type: "SET_SESION",
+                type: "SET_SESSION",
                 payload: null
             });
         } else {
@@ -63,7 +67,7 @@ const Navbar = () => {
                 <InputStyled 
                     data-testid="InputNavBar"
                     value={SearchVideoNav}
-                    onChange={({target: { value }}) => setSearchVideoNav(value)}
+                    onChange={onTextChange(setSearchVideoNav)}
                     placeholder="Search..." 
                     onPressEnter={() => dispatchV({
                         type: "SET_SEARCH_VIDEO",
