@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ConfigContext } from '../../utils/ConfigState';
+import { LayoutStyle } from './Layout.styled';
 
-import './Layout.styles.css';
+const Layout= ({ children }) => {
 
-function Layout({ children }) {
-  return <main className="container">{children}</main>;
-}
+  const { state: { Theme: { PrimaryColor } } } = useContext(ConfigContext);
+
+  return (
+    <LayoutStyle
+      data-testid="Layout"
+      mode={PrimaryColor}
+    >
+      {children}
+    </LayoutStyle>
+  );
+}           
 
 export default Layout;
