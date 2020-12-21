@@ -9,8 +9,10 @@ const PlayerPageContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  min-height: 91vh;
+  height: 100%;
   flex-direction: row;
+  min-height: 91vh;
+  padding: 0 10px;
 `;
 
 const RowlistContainer = styled.div`
@@ -19,12 +21,22 @@ const RowlistContainer = styled.div`
   padding: 3px;
 `;
 
+const PlayerContainer = styled.div`
+  height: 100%;
+  position: relative;
+  padding-top: 3px;
+  max-width: 60%;
+  min-width: 60%;
+`;
+
 function FavoritesPlayer(props) {
   const { favoriteVideos } = useContext(FavoritesContext);
 
   return (
     <PlayerPageContainer>
-      <Player id={props.id.params.id} />
+      <PlayerContainer>
+        <Player id={props.id.params.id} />
+      </PlayerContainer>
       <RowlistContainer>
         <Rowlist videos={favoriteVideos} isFavorit />
       </RowlistContainer>
