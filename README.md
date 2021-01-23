@@ -1,11 +1,13 @@
 # React Certification 2020
 
+> \*_NOTE:_ check my live version: [here](https://goofy-jepsen-309396.netlify.app/#/)\*
+
 ## Introduction
 
 Thank you for participating in the React Certification 2020! Here, you'll find instructions to complete your certification.
 
 ## The challenge
-
+ 
 The purpose of the challenge is for you to demonstrate your React skills. This is your chance to show off everything you've learned during the course and to earn your certification!
 
 You will build and deliver a **whole** React application on your own. We don't want to limit you by providing some fill-in-the-blanks exercises. Instead, we want you to build it from scratch. 
