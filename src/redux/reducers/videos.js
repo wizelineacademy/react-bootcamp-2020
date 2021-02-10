@@ -2,6 +2,7 @@ import {
   SET_VIDEOS,
   ADD_TO_FAVORITES,
   SET_FAVORITE_VIDEOS,
+  REMOVE_FROM_FAVORITES,
 } from '../actions/actionTypes';
 import { storage } from '../../utils/storage';
 import { APP_STATE_KEY } from '../../utils/constants';
@@ -33,6 +34,19 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         favoriteVideos: [...state.favoriteVideos, action.video],
+      };
+    case REMOVE_FROM_FAVORITES:
+      storage.set(APP_STATE_KEY, {
+        ...state,
+        favoriteVideos: state.favoriteVideos.filter(
+          (video) => video.id.videoId !== action.videoId.videoId
+        ),
+      });
+      return {
+        ...state,
+        favoriteVideos: state.favoriteVideos.filter(
+          (video) => video.id.videoId !== action.videoId.videoId
+        ),
       };
     default:
       return state;

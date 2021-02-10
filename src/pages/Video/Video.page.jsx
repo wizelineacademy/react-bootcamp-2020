@@ -15,7 +15,7 @@ import RelatedVideo from './RelatedVideo.styled';
 import RelatedVideoImg from './RelatedVideoImg.styled';
 import RelatedVideoData from './RelatedVideoData.styled';
 import { getVideoId } from '../../utils/getVideoId';
-import { addToFavorites } from '../../redux/actions/videos';
+import { addToFavorites, removeFromFavorites } from '../../redux/actions/videos';
 
 class VideoPage extends Component {
   constructor(props) {
@@ -57,8 +57,6 @@ class VideoPage extends Component {
     fetchRelatedVideos();
   }
 
-  removeFromFavorites = () => {};
-
   render() {
     const { video, relatedVideos } = this.state;
     const { authenticated, favoriteVideos } = this.props;
@@ -86,7 +84,7 @@ class VideoPage extends Component {
                 }) ? (
                   <HeartButton
                     type="button"
-                    onClick={() => this.removeFromFavorites(id)}
+                    onClick={() => this.props.removeFromFavorites(id)}
                     data-testid="removeFromFavorites"
                   >
                     <HeartFill size="20" />
@@ -139,6 +137,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addToFavorites: (video) => dispatch(addToFavorites(video)),
+  removeFromFavorites: (videoId) => dispatch(removeFromFavorites(videoId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(VideoPage));
