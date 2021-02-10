@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { useAuth } from '../../providers/Auth';
-
-function Private({ children, ...rest }) {
-  const { authenticated } = useAuth();
-
-  return (
-    <Route {...rest} render={() => (authenticated ? children : <Redirect to="/" />)} />
-  );
+class Private extends Component {
+  render() {
+    const { authenticated, children, ...props } = this.props;
+    return (
+      <Route
+        {...props}
+        render={() =>
+          authenticated ? children : <Redirect to="/" data-testid="redirect" />
+        }
+      />
+    );
+  }
 }
 
-export default Private;
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
+});
+
+export default connect(mapStateToProps)(Private);

@@ -1,0 +1,6 @@
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+
+export const SET_VIDEOS = 'SET_VIDEOS';
+export const SET_FAVORITE_VIDEOS = 'SET_FAVORITE_VIDEOS';
+export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
