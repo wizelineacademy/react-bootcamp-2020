@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
+    "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-headroom": "^3.1.0",
@@ -31,7 +32,8 @@
     "test:coverage": "yarn test -- --coverage --collectCoverageFrom='src/**/*.{js,jsx}' --watchAll=false --coverageThreshold='{\"global\":{\"statements\":50}}'",
     "eject": "react-scripts eject",
     "lint": "eslint ./src --ext .js,.jsx",
-    "lint:fix": "eslint ./src --ext .js,.jsx --fix"
+    "lint:fix": "eslint ./src --ext .js,.jsx --fix",
+    "start:ssr": "node server"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^18.2.0",

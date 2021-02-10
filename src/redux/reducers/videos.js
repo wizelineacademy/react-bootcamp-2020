@@ -4,8 +4,10 @@ import {
   SET_FAVORITE_VIDEOS,
   REMOVE_FROM_FAVORITES,
 } from '../actions/actionTypes';
+
 import { storage } from '../../utils/storage';
 import { APP_STATE_KEY } from '../../utils/constants';
+import { getVideoId } from '../../utils/getVideoId';
 
 const initialState = {
   videos: [],
@@ -38,15 +40,17 @@ const reducer = (state = initialState, action) => {
     case REMOVE_FROM_FAVORITES:
       storage.set(APP_STATE_KEY, {
         ...state,
-        favoriteVideos: state.favoriteVideos.filter(
-          (video) => video.id.videoId !== action.videoId.videoId
-        ),
+        favoriteVideos: state.favoriteVideos.filter((video) => {
+          const currentVideoId = getVideoId(video);
+          return currentVideoId !== action.videoId;
+        }),
       });
       return {
         ...state,
-        favoriteVideos: state.favoriteVideos.filter(
-          (video) => video.id.videoId !== action.videoId.videoId
-        ),
+        favoriteVideos: state.favoriteVideos.filter((video) => {
+          const currentVideoId = getVideoId(video);
+          return currentVideoId !== action.videoId;
+        }),
       };
     default:
       return state;
