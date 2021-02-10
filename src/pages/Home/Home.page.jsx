@@ -1,39 +1,49 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import VideosGrid from '../../components/VideosGrid/VideosGrid.component';
+import { getVideos } from '../../services/getVideos';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+class Home extends Component {
+    state = {
+        videos: [],
+        loading: true,
+    };
 
-function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+    fillVideos = async (searchVideosText) => {
+        this.setState({ loading: true });
+        const videos = await getVideos(searchVideosText);
+        this.setState({ videos, loading: false });
+    };
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+    componentDidMount() {
+        this.fillVideos(this.props.video.searchVideosText);
+    }
 
-  return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
-  );
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.video.searchVideosText !== this.props.video.searchVideosText) {
+            this.fillVideos(this.props.video.searchVideosText);
+        }
+    }
+
+    render() {
+        const { videos, loading } = this.state;
+        return (
+            <div className="home-page-container min-h-screen bg-white dark:bg-gray-800 pt-3">
+                <h1 className="text-4xl md:text-6xl text-center	text-black dark:text-white uppercase mt-0 mb-4">
+                    Welcome to the Challenge!
+                </h1>
+                {!loading && <VideosGrid listType="full" videos={videos} />}
+            </div>
+        );
+    }
 }
 
-export default HomePage;
+function mapStateToProps(state, ownProps) {
+    return {
+        video: state.video,
+    };
+}
+
+const HomeWithReduxStates = connect(mapStateToProps, null)(Home);
+
+export default HomeWithReduxStates;
