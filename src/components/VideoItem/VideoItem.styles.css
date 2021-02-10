@@ -1,0 +1,13 @@
+.thumbnail-container.h-90 {
+    height: 90px;
+}
+.thumbnail-container.h-140 {
+    height: 140px;
+}
+.thumbnail-container.w-120 {
+    width: 120px;
+}
+
+.flex-basis-100 {
+    flex-basis: 100%;
+}
