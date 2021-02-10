@@ -1,0 +1,27 @@
+.miniVideo {
+    width: 40%;
+}
+
+.miniImg {
+    width: 100%;
+    height: 160px;
+    padding-right: 9px;
+}
+
+.inline {
+    display: "inline"
+}
+
+.root {
+    width: "100%";
+    max-width: "36ch";
+    background-color: white;
+}
+
+.listElement{
+    height: 170px;
+}
+
+.text {
+    color: black;
+}
