@@ -10,7 +10,21 @@ const storage = {
   },
 
   set(key, value) {
-    window.localStorage.setItem(key, JSON.stringify(value));
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.log(`Error setting storage item "${key}`);
+      return null;
+    }
+  },
+
+  delete(key) {
+    try {
+      window.localStorage.removeItem(key);
+    } catch (error) {
+      console.log(`Error deleting storage item "${key}`);
+      return null;
+    }
   },
 };
 

@@ -1,58 +1,80 @@
-import React, { useLayoutEffect } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { connect } from 'react-redux';
 
-import AuthProvider from '../../providers/Auth';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
+import VideoPage from '../../pages/Video';
+import FavoritesPage from '../../pages/Favorites';
 import Private from '../Private';
-import Fortune from '../Fortune';
 import Layout from '../Layout';
-import { random } from '../../utils/fns';
+import { authSuccess } from '../../redux/actions/auth';
+import { setVideos, setFavoriteVideos } from '../../redux/actions/videos';
+import { storage } from '../../utils/storage';
+import { AUTH_STORAGE_KEY, USER_STORAGE_KEY, APP_STATE_KEY } from '../../utils/constants';
 
-function App() {
-  useLayoutEffect(() => {
-    const { body } = document;
+const theme = {
+  colors: {
+    green: '#6ab993',
+    lightgreen: '#c5e2d4',
+    darkgreen: '#082b2b',
+  },
+  fonts: {
+    heading: 'Tinos',
+    body: 'Lato',
+  },
+};
 
-    function rotateBackground() {
-      const xPercent = random(100);
-      const yPercent = random(100);
-      body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
+class App extends Component {
+  componentDidMount() {
+    const lastAuthState = storage.get(AUTH_STORAGE_KEY);
+    const isAuthenticated = Boolean(lastAuthState);
+    const lastUserState = storage.get(USER_STORAGE_KEY) || null;
+    const lastAppState = storage.get(APP_STATE_KEY) || null;
+    if (isAuthenticated && lastUserState) {
+      this.props.authSuccess(lastUserState);
     }
+    if (lastAppState) {
+      this.props.setVideos(lastAppState?.videos || []);
+      this.props.setFavoriteVideos(lastAppState?.favoriteVideos || []);
+    }
+  }
 
-    const intervalId = setInterval(rotateBackground, 3000);
-    body.addEventListener('click', rotateBackground);
-
-    return () => {
-      clearInterval(intervalId);
-      body.removeEventListener('click', rotateBackground);
-    };
-  }, []);
-
-  return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <Fortune />
-        </Layout>
-      </AuthProvider>
-    </BrowserRouter>
-  );
+  render() {
+    return (
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Switch>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
+              <Route exact path="/login">
+                <LoginPage />
+              </Route>
+              <Private exact path="/favorites">
+                <FavoritesPage />
+              </Private>
+              <Route path="/video/:id">
+                <VideoPage />
+              </Route>
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+          </Layout>
+        </ThemeProvider>
+      </BrowserRouter>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  authSuccess: (user) => dispatch(authSuccess(user)),
+  setVideos: (videos) => dispatch(setVideos(videos)),
+  setFavoriteVideos: (videos) => dispatch(setFavoriteVideos(videos)),
+});
+
+export default connect(null, mapDispatchToProps)(App);

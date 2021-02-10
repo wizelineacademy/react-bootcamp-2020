@@ -12,6 +12,7 @@
     "react/prop-types": "off",
     "array-callback-return": "off",
     "consistent-return": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "react/prefer-stateless-function": "off"
   }
 }

@@ -1,39 +1,65 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+import VideoGrid from '../../components/VideoGrid';
+import Container from '../../components/Container';
+import SearchInput from './SearchInput.styled';
+import Title from '../../components/Title';
+import { fetchVideos } from '../../redux/actions/videos';
 
-function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
-
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
+class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: '',
+    };
   }
 
-  return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
-  );
+  componentDidMount() {
+    if (this.props.videos.length <= 0) {
+      this.props.fetchVideos('majestic casual');
+    }
+  }
+
+  handleSearchChange = (event) => {
+    event.persist();
+    this.setState({ query: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.fetchVideos(this.state.query);
+  };
+
+  render() {
+    return (
+      <Container>
+        {this.props.authenticated && (
+          <Title data-testid="homepageTitle">
+            Welcome, {`${this.props.user.name || 'User'}!`}
+          </Title>
+        )}
+        <form onSubmit={this.handleSubmit}>
+          <SearchInput
+            placeholder="Buscar..."
+            value={this.state.query}
+            onChange={this.handleSearchChange}
+          />
+        </form>
+        {this.props.videos.length > 0 && <VideoGrid videos={this.props.videos} />}
+      </Container>
+    );
+  }
 }
 
-export default HomePage;
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
+  videos: state.videos.videos,
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchVideos: (query) => dispatch(fetchVideos(query)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -1,39 +1,76 @@
-import React from 'react';
-import { useHistory } from 'react-router';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import { useAuth } from '../../providers/Auth';
-import './Login.styles.css';
+import TextInput from '../../components/TextInput';
+import Button from '../../components/Button';
+import Container from './Container.styled';
+import FormWrapper from './FormWrapper.styled';
+import Box from './Box.styled';
+import { login } from '../../redux/actions/auth';
 
-function LoginPage() {
-  const { login } = useAuth();
-  const history = useHistory();
-
-  function authenticate(event) {
-    event.preventDefault();
-    login();
-    history.push('/secret');
+class LoginPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    };
   }
 
-  return (
-    <section className="login">
-      <h1>Welcome back!</h1>
-      <form onSubmit={authenticate} className="login-form">
-        <div className="form-group">
-          <label htmlFor="username">
-            <strong>username </strong>
-            <input required type="text" id="username" />
-          </label>
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">
-            <strong>password </strong>
-            <input required type="password" id="password" />
-          </label>
-        </div>
-        <button type="submit">login</button>
-      </form>
-    </section>
-  );
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const { username, password } = this.state;
+    this.props
+      .login(username, password)
+      .then(() => {
+        this.props.history.push('/');
+      })
+      .catch((e) => console.log(e));
+  };
+
+  handleUsernameChange = (event) => {
+    this.setState({ username: event.target.value });
+  };
+
+  handlePasswordChange = (event) => {
+    this.setState({ password: event.target.value });
+  };
+
+  render() {
+    return (
+      <Container>
+        <FormWrapper>
+          <h1>Sing In</h1>
+          <form onSubmit={this.handleSubmit}>
+            <Box>
+              <TextInput
+                placeholder="Username"
+                value={this.state.username}
+                onChange={this.handleUsernameChange}
+                data-testid="username"
+              />
+            </Box>
+            <Box>
+              <TextInput
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handlePasswordChange}
+                password
+              />
+            </Box>
+            <Box align="center">
+              <Button>Login</Button>
+            </Box>
+          </form>
+        </FormWrapper>
+      </Container>
+    );
+  }
 }
 
-export default LoginPage;
+const mapDispatchToProps = (dispatch) => ({
+  login: (username, password) => dispatch(login(username, password)),
+});
+
+export default connect(null, mapDispatchToProps)(withRouter(LoginPage));

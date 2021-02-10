@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Header from '../Header';
 
-import './Layout.styles.css';
-
-function Layout({ children }) {
-  return <main className="container">{children}</main>;
+class Layout extends Component {
+  render() {
+    return (
+      <>
+        <Header />
+        <main>{this.props.children}</main>
+      </>
+    );
+  }
 }
 
 export default Layout;
