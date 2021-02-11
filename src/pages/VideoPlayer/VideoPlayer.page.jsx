@@ -39,8 +39,8 @@ class VideoPlayerPage extends Component {
       <div className="videoPlayer">
         <div className="vPlayer">
           <ReactPlayer width='100%' height='100%' url={`https://www.youtube.com/embed${history.location.pathname}`} />
-          {!history.location.state.video.favorite  ?<Button color="primary" className='btn' onClick={() => {this.addFavorite(history.location.state.video);}}>ADD TO FAVORITES</Button>
-          :<Button color="primary" className='btn' onClick={() => {this.removeFavorite(history.location.state.video);}}>REMOVE FROM FAVORITES</Button>}
+          {this.props.logged === 'logged' ? (!history.location.state.video.favorite  ?<Button color="primary" className='btn' onClick={() => {this.addFavorite(history.location.state.video);}}>ADD TO FAVORITES</Button>
+          :<Button color="primary" className='btn' onClick={() => {this.removeFavorite(history.location.state.video);}}>REMOVE FROM FAVORITES</Button>) : ''}
         </div>
         <div className="vList">
           <VideoList videoList={this.props.videos.items}/>
@@ -53,7 +53,8 @@ class VideoPlayerPage extends Component {
 function mapStateToProps(state) {
   return {
     videos: state.videos,
-    favorites: state.favorites
+    favorites: state.favorites,
+    logged: state.logged
   };
 }
 
