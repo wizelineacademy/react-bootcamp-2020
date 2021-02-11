@@ -15,7 +15,8 @@ html {
 }
 
 body {
-  margin: 0;
+  background-color: #EFEDEC;
+  /* margin: 0;
   padding: 0;
   text-rendering: optimizeLegibility;
   background-image: linear-gradient(
@@ -30,7 +31,7 @@ body {
   background-position: var(--bg-position);
   transition: background-position 2s ease;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
 }
 
 .separator::before {
@@ -50,4 +51,18 @@ a:active {
 }
 
 hr {
+}
+
+.container {
+  background-color: #EFEDEC;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-top: 10px;
+  height: fit-content;
+}
+
+.content {
+  background-color: #EFEDEC;
+  padding: .5rem;
+  
 }

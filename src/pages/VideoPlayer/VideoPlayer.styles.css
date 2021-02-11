@@ -1,0 +1,16 @@
+.vPlayer {
+  width: 65%;
+  height: 700px;
+  float: left;
+  position: relative;
+}
+
+.vList {
+  width: 35%;
+  float: right;
+  position: relative;
+}
+
+.videoPlayer {
+  width: 100%;
+}

@@ -7,7 +7,7 @@
 }
 
 .home-link::before {
-  content: '←';
+  /* content: '←'; */
   padding-right: 0.2rem;
   display: inline-block;
 }
