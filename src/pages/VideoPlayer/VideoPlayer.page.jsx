@@ -45,7 +45,7 @@ const VideoPlayer = () => {
           type="text/html"
           width="100%"
           height="100%"
-          src={`http://www.youtube.com/embed/${idVideo}?enablejsapi=1`}
+          src={`https://www.youtube.com/embed/${idVideo}?enablejsapi=1`}
           frameBorder="0"
         />
         <div className="fav-bar" />
