@@ -1,0 +1,41 @@
+.search {
+    flex: 0 0 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media only screen and (max-width: 31.25em) {
+        order: 1;
+        flex: 0 0 100%;
+        background-color: #f4f2f2;
+    }
+}
+
+.input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: #f4f2f2;
+    border: none;
+    border-radius: 5px;
+    width: 90%;
+    transition: all .2s;
+    margin-right: -2.0rem;
+}
+
+.input:focus {
+    outline: none;
+    width: 100%;
+    background-color: #f0eeee;
+}
+
+.input::-webkit-input-placeholder {
+    font-weight: 100;
+    color: #ccc;
+}
+
+.iconSvg {
+    height: 1.25rem;
+    width: 1.25rem;
+    fill: #000;
+}
