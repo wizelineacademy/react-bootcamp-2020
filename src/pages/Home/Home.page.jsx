@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
+import ContainerCard from './../../components/ContainerCard/index';
+
 import { useAuth } from '../../providers/Auth';
+
 import './Home.styles.css';
 
 function HomePage() {
@@ -17,7 +20,7 @@ function HomePage() {
 
   return (
     <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
+      <ContainerCard></ContainerCard>
       {authenticated ? (
         <>
           <h2>Good to have you back</h2>

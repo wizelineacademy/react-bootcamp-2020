@@ -1,0 +1,10 @@
+.iconSvg {
+    height: 1.25rem;
+    width: 1.25rem;
+    fill: #000;
+}
+
+.icon-box {
+    position: relative;
+    margin-top: 5px;
+}
