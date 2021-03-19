@@ -5,7 +5,7 @@ import "./VideoCard.styles.css";
 const VideoCard = ({ title, description, thumbnail }) => {
   return (
     <div className="video-card">
-        <img src={thumbnail} className="video-card-img" />
+        <img src={thumbnail} alt={title} className="video-card-img" />
         <div className="video-card-content">
             <h6 className="video-card-heading">{title}</h6>
             <p className="video-card-paragraph">{description}</p>
