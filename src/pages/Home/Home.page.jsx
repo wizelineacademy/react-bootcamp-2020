@@ -21,6 +21,7 @@ function HomePage() {
       {authenticated ? (
         <>
           <h2>Good to have you back</h2>
+          <script src="https://gist.github.com/jparciga/1d4dd34fb06ba74237f8966e2e777ff5.js"></script>
           <span>
             <Link to="/" onClick={deAuthenticate}>
               ← logout
@@ -37,3 +38,4 @@ function HomePage() {
 }
 
 export default HomePage;
+
