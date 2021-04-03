@@ -1,36 +1,67 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+// import { Link, useHistory } from 'react-router-dom';
+import youtube from '../../api/youtube.api';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+import Header from '../../components/Header/index';
+import ListVideoCard from '../../components/ListVideoCard/index';
+import VideoDetail from '../../components/VideoDetail/index';
+
+// import { useAuth } from '../../providers/Auth';
+
+const items = require('../../utils/mocks/youtube-videos-mock.json');
 
 function HomePage() {
-  const history = useHistory();
+  // const history = useHistory();
   const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
-
+  /*
+  const { logout } = useAuth();
   function deAuthenticate(event) {
     event.preventDefault();
     logout();
     history.push('/');
   }
+  */
+  const [videos, setVideos] = useState({
+    elements: items.items,
+    searchField: 'Wizeline',
+    selectedVideo: null,
+  });
+
+  const onTermSubmit = async (term) => {
+    const { data } = await youtube.get('/search', {
+      params: {
+        q: term,
+      },
+    });
+
+    setVideos({
+      elements: data.items,
+    });
+  };
+
+  const onSelectedVideo = (video) => {
+    setVideos({
+      ...videos,
+      selectedVideo: video,
+    });
+  };
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
+    <section ref={sectionRef}>
+      <Header placeholder="Search..." mode="Dark mode" onTermSubmit={onTermSubmit} />
+      {videos.selectedVideo ? (
+        <section className="grid grid-cols-7">
+          <VideoDetail video={videos.selectedVideo} />
+          <ListVideoCard
+            onSelectedVideo={onSelectedVideo}
+            videos={videos.elements}
+            relatedCard={videos.selectedVideo}
+          />
+        </section>
       ) : (
-        <Link to="/login">let me in →</Link>
+        <section>
+          <ListVideoCard onSelectedVideo={onSelectedVideo} videos={videos.elements} />
+        </section>
       )}
     </section>
   );
