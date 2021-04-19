@@ -20,6 +20,8 @@ const SearchBox = ({ placeholder, onTermSubmit }) => {
     event.preventDefault();
     onTermSubmit(searchField.term);
     dispatch({ type: '@set/search_result', payload: searchField.term });
+    dispatch({ type: '@get/videos', payload: [] });
+    dispatch({ type: '@set/current_video', payload: null });
   };
 
   return (
