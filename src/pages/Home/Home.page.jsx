@@ -1,14 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useContext } from 'react';
 // import { Link, useHistory } from 'react-router-dom';
-import youtube from '../../api/youtube.api';
 
 import Header from '../../components/Header/index';
 import ListVideoCard from '../../components/ListVideoCard/index';
 import VideoDetail from '../../components/VideoDetail/index';
 
 // import { useAuth } from '../../providers/Auth';
+import useVideoApi from '../../api/youtube.hook';
 
-const items = require('../../utils/mocks/youtube-videos-mock.json');
+import { VideoContext } from '../../context/context';
 
 function HomePage() {
   // const history = useHistory();
@@ -21,46 +21,35 @@ function HomePage() {
     history.push('/');
   }
   */
-  const [videos, setVideos] = useState({
-    elements: items.items,
-    searchField: 'Wizeline',
-    selectedVideo: null,
-  });
+
+  const { state, dispatch } = useContext(VideoContext);
+  const { loading, error } = useVideoApi(state.searchQuery);
+  console.log(loading, error);
+  console.log(state);
 
   const onTermSubmit = async (term) => {
-    const { data } = await youtube.get('/search', {
-      params: {
-        q: term,
-      },
-    });
-
-    setVideos({
-      elements: data.items,
-    });
+    console.log(term);
   };
 
   const onSelectedVideo = (video) => {
-    setVideos({
-      ...videos,
-      selectedVideo: video,
-    });
+    dispatch({ type: '@set/current_video', payload: video });
   };
 
   return (
     <section ref={sectionRef}>
-      <Header placeholder="Search..." mode="Dark mode" onTermSubmit={onTermSubmit} />
-      {videos.selectedVideo ? (
+      <Header placeholder="Search..." mode="light" onTermSubmit={onTermSubmit} />
+      {state.currentVideo ? (
         <section className="grid grid-cols-7">
-          <VideoDetail video={videos.selectedVideo} />
+          <VideoDetail video={state.currentVideo} />
           <ListVideoCard
             onSelectedVideo={onSelectedVideo}
-            videos={videos.elements}
-            relatedCard={videos.selectedVideo}
+            videos={state.videos}
+            relatedCard={state.currentVideo}
           />
         </section>
       ) : (
         <section>
-          <ListVideoCard onSelectedVideo={onSelectedVideo} videos={videos.elements} />
+          <ListVideoCard onSelectedVideo={onSelectedVideo} videos={state.videos} />
         </section>
       )}
     </section>
