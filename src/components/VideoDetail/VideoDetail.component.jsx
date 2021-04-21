@@ -1,4 +1,5 @@
 import React from 'react';
+import AddToFavorites from '../AddToFavorites/index';
 
 const VideoDetail = ({ video }) => {
   if (!video) {
@@ -19,7 +20,14 @@ const VideoDetail = ({ video }) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         />
       </div>
-      <h4 className="ml-2 m-4 text-lg">{snippet.title}</h4>
+      <div className="grid sm:grid-cols-1 md:grid-flow-col md:grid-cols-3 gap-4">
+        <div className="md:col-span-2">
+          <h4 className="ml-2 m-4 text-lg">{snippet.title}</h4>
+        </div>
+        <div className="md:mt-2 sm:px-8 sm:mx-auto">
+          <AddToFavorites video={video} />
+        </div>
+      </div>
       <p className="ml-2 m-4 text-sm font-hairline text-gray-500">
         {snippet.description}
       </p>

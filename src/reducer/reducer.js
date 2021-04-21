@@ -26,6 +26,18 @@ export default function reducer(state, action) {
         status: 'error',
         error: action.payload,
       };
+    case '@set/favourites_videos':
+      return {
+        ...state,
+        status: 'add_favourites',
+        favouriteVideos: [...state.favouriteVideos, action.payload],
+      };
+    case '@set/remove_favourites_videos':
+      return {
+        ...state,
+        status: 'remove_favourites_videos',
+        favouriteVideos: action.payload,
+      };
     default:
       return state;
   }

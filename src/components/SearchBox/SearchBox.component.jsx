@@ -1,10 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 
-import { VideoContext } from '../../context/context';
+import { useVideosContext } from '../../context/context';
 import Icon from '../Icon/index';
 
-const SearchBox = ({ placeholder, onTermSubmit }) => {
-  const { dispatch } = useContext(VideoContext);
+const SearchBox = ({ placeholder }) => {
+  const { dispatch } = useVideosContext();
+  const history = useHistory();
 
   const [searchField, setsearchField] = useState({
     term: 'Wizeline',
@@ -18,10 +20,10 @@ const SearchBox = ({ placeholder, onTermSubmit }) => {
 
   const onFormSubmit = async (event) => {
     event.preventDefault();
-    onTermSubmit(searchField.term);
     dispatch({ type: '@set/search_result', payload: searchField.term });
     dispatch({ type: '@get/videos', payload: [] });
     dispatch({ type: '@set/current_video', payload: null });
+    history.push('/');
   };
 
   return (

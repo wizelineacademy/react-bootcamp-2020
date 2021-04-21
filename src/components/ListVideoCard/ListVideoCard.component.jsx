@@ -1,18 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import parse from 'html-react-parser';
 
-import { VideoContext } from '../../context/context';
+// import { useVideosContext } from '../../context/context';
 
 import VideoCard from '../VideoCard';
 import RelatedCard from '../RelatedCard';
 
-const ListVideoCard = ({ relatedCard, onSelectedVideo }) => {
-  const { state } = useContext(VideoContext);
+const ListVideoCard = ({ relatedCard, onSelectedVideo, videos }) => {
+  // const { state } = useVideosContext();
+  // const { videos } = state;
   return (
     <>
       {relatedCard ? (
         <div className="col-start-6 col-end-8">
-          {state.videos.map((video) => (
+          {videos.map((video) => (
             <RelatedCard
               id={video.etag}
               key={video.etag}
@@ -26,9 +27,9 @@ const ListVideoCard = ({ relatedCard, onSelectedVideo }) => {
       ) : (
         <div className="container my-12 mx-auto px-4 md:px-12">
           <div className="flex flex-wrap -mx-1 lg:-mx-4">
-            {state.videos.map((video) => (
+            {videos.map((video) => (
               <VideoCard
-                id={video.etag}
+                id={video.id.videoId}
                 key={video.etag}
                 title={parse(video.snippet.title)}
                 description={parse(video.snippet.description)}

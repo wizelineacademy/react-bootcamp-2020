@@ -9846,6 +9846,11 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
 
+"react-modern-drawer@^0.1.0":
+  "integrity" "sha512-G+ReW7E4fjkWy9POIng9jCjNBp6pBF0E0BKIyH/0OLdWHNAvqZ4+qiNB/EktbjypKnwdCvk8cetcAxAN+/MRQQ=="
+  "resolved" "https://registry.npmjs.org/react-modern-drawer/-/react-modern-drawer-0.1.0.tgz"
+  "version" "0.1.0"
+
 "react-property@1.0.1":
   "integrity" "sha512-1tKOwxFn3dXVomH6pM9IkLkq2Y8oh+fh/lYW3MJ/B03URswUTqttgckOlbxY2XHF3vPG6uanSc4dVsLW/wk3wQ=="
   "resolved" "https://registry.npmjs.org/react-property/-/react-property-1.0.1.tgz"
@@ -9951,7 +9956,7 @@
   optionalDependencies:
     "fsevents" "^2.1.3"
 
-"react@*", "react@^0.14 || ^15 || ^16 || ^17", "react@^0.14.0 || ^15.0.0 || ^16.0.0", "react@^16.13.1", "react@^16.14.0", "react@>= 16", "react@>= 16.8.0", "react@>=15":
+"react@*", "react@^0.14 || ^15 || ^16 || ^17", "react@^0.14.0 || ^15.0.0 || ^16.0.0", "react@^16.0.0", "react@^16.13.1", "react@^16.14.0", "react@>= 16", "react@>= 16.8.0", "react@>=15":
   "integrity" "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
   "version" "16.14.0"

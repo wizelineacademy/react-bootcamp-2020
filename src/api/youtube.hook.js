@@ -1,24 +1,30 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import youtube from './youtube.api';
 
-import { VideoContext } from '../context/context';
+import { useVideosContext } from '../context/context';
 
 const useVideoApi = (searchQuery) => {
+  const cache = useRef({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { state, setVideos } = useContext(VideoContext);
+  const { state, setVideos } = useVideosContext();
 
   const onTermSubmit = useCallback(async () => {
     setLoading(true);
-    try {
-      const { data } = await youtube.get('/search', {
-        params: {
-          q: searchQuery,
-        },
-      });
-      setVideos(data.items);
-    } catch (err) {
-      setError(err);
+    if (cache.current[searchQuery]) {
+      setVideos(cache.current[searchQuery]);
+    } else {
+      try {
+        const { data } = await youtube.get('/search', {
+          params: {
+            q: searchQuery,
+          },
+        });
+        cache.current[searchQuery] = data.items;
+        setVideos(data.items);
+      } catch (err) {
+        setError(err);
+      }
     }
     setLoading(false);
   }, [setVideos, searchQuery]);
