@@ -17,8 +17,8 @@ function VideoDetailPage({ toggleDrawer, isOpen, isFavourite }) {
 
   const { state, dispatch } = useVideosContext();
   useVideoApi(state.searchQuery);
-  const { videos, currentVideo } = state;
-  const favourites = JSON.parse(localStorage.getItem('favouriteVideos'));
+  const { videos, favouriteVideos, currentVideo } = state;
+  // const favourites = JSON.parse(localStorage.getItem('favouriteVideos'));
   let videoCurrent = currentVideo;
   if (!currentVideo) {
     videoCurrent = JSON.parse(localStorage.getItem('currentVideo'));
@@ -41,7 +41,7 @@ function VideoDetailPage({ toggleDrawer, isOpen, isFavourite }) {
         <VideoDetail video={videoCurrent} isLogged={isLogged} />
         <ListVideoCard
           onSelectedVideo={onSelectedVideo}
-          videos={isFavourite ? favourites : videos}
+          videos={isFavourite ? favouriteVideos : videos}
           relatedCard={videoCurrent}
         />
       </section>
