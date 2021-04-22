@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-// import { useParams } from 'react-router-dom';
 
 import Header from '../../components/Header/index';
 import ListVideoCard from '../../components/ListVideoCard/index';
@@ -8,13 +7,11 @@ import { useVideosContext } from '../../context/context';
 
 function FavouritesPage({ toggleDrawer, isOpen }) {
   const sectionRef = useRef(null);
-  // const { id } = useParams();
 
-  const { state, dispatch } = useVideosContext();
-  // const { loading, error } = useVideoApi(state.searchQuery);
+  const { dispatch, state } = useVideosContext();
   const { favouriteVideos } = state;
-  console.log(favouriteVideos, state, 'Favourites Page');
-
+  // const favourites = JSON.parse(localStorage.getItem('favouriteVideos'));
+  // console.log('videosFavourites', favouriteVideos, state);
   const onSelectedVideo = (video) => {
     dispatch({ type: '@set/current_video', payload: video });
   };

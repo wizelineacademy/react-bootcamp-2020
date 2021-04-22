@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { useVideosContext } from '../../context/context';

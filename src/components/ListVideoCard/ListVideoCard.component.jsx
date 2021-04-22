@@ -1,14 +1,10 @@
 import React from 'react';
 import parse from 'html-react-parser';
 
-// import { useVideosContext } from '../../context/context';
-
 import VideoCard from '../VideoCard';
 import RelatedCard from '../RelatedCard';
 
 const ListVideoCard = ({ relatedCard, onSelectedVideo, videos }) => {
-  // const { state } = useVideosContext();
-  // const { videos } = state;
   return (
     <>
       {relatedCard ? (

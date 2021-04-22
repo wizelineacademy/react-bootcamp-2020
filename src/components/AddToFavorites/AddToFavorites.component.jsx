@@ -4,23 +4,22 @@ import { useVideosContext } from '../../context/context';
 
 const AddToFavorites = ({ video }) => {
   const { state, dispatch } = useVideosContext();
-  // const { loading, error } = useVideoApi(state.searchQuery);
   const { favouriteVideos } = state;
-  console.log(favouriteVideos);
-  // Remove from favorites
+
   const favourites = () => {
     const videoInFavourites = favouriteVideos.includes(video);
     dispatch({ type: '@set/favourites_videos', payload: video });
+    // localStorage.setItem('favouriteVideos', JSON.stringify(favouriteVideos));
     if (videoInFavourites) {
       const favouritesWithoutVideo = favouriteVideos.filter(
-        (fav) => fav.id.videoId !== video.id.videoId
+        (favorite) => favorite.id.videoId !== video.id.videoId
       );
       dispatch({
         type: '@set/remove_favourites_videos',
         payload: favouritesWithoutVideo,
       });
+      // localStorage.setItem('favouriteVideos', JSON.stringify(favouriteVideos));
     }
-    // return dispatch();
   };
 
   return (
@@ -29,7 +28,7 @@ const AddToFavorites = ({ video }) => {
       type="button"
       onClick={favourites}
     >
-      {favouriteVideos.find((fav) => fav.id.videoId === video.id.videoId)
+      {favouriteVideos.find((favorite) => favorite.id.videoId === video.id.videoId)
         ? 'Remove from favorites'
         : 'Add to Favorites'}
     </button>

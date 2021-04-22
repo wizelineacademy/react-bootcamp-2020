@@ -1,7 +1,7 @@
 import React from 'react';
 import AddToFavorites from '../AddToFavorites/index';
 
-const VideoDetail = ({ video }) => {
+const VideoDetail = ({ video, isLogged }) => {
   if (!video) {
     return <div>Loading...</div>;
   }
@@ -25,7 +25,7 @@ const VideoDetail = ({ video }) => {
           <h4 className="ml-2 m-4 text-lg">{snippet.title}</h4>
         </div>
         <div className="md:mt-2 sm:px-8 sm:mx-auto">
-          <AddToFavorites video={video} />
+          {isLogged && <AddToFavorites video={video} />}
         </div>
       </div>
       <p className="ml-2 m-4 text-sm font-hairline text-gray-500">
