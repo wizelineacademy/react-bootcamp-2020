@@ -1,37 +1,49 @@
 import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+// import { Link, useHistory } from 'react-router-dom';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+import Header from '../../components/Header/index';
+import ListVideoCard from '../../components/ListVideoCard/index';
 
-function HomePage() {
-  const history = useHistory();
+// import { useAuth } from '../../providers/Auth';
+import useVideoApi from '../../api/youtube.hook';
+
+import { useVideosContext } from '../../context/context';
+
+function HomePage({ toggleDrawer, isOpen }) {
+  // const history = useHistory();
   const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
-
+  /*
+  const { logout } = useAuth();
   function deAuthenticate(event) {
     event.preventDefault();
     logout();
     history.push('/');
   }
+  */
+
+  const { state, dispatch } = useVideosContext();
+  const { loading, error } = useVideoApi(state.searchQuery);
+  const { videos } = state;
+  console.log(loading, error);
+  if (videos.lenght <= 0) {
+    return <div>Loading...</div>;
+  }
+
+  const onSelectedVideo = (video) => {
+    dispatch({ type: '@set/current_video', payload: video });
+  };
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
+    <section ref={sectionRef}>
+      <Header
+        toggleDrawer={toggleDrawer}
+        isOpen={isOpen}
+        placeholder="Search..."
+        mode="light"
+      />
+      <section>
+        <ListVideoCard onSelectedVideo={onSelectedVideo} videos={videos} />
+      </section>
     </section>
   );
 }
