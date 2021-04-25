@@ -3,8 +3,11 @@ import Icon from '../Icon/index';
 import Checkboxtoggle from '../CheckboxToggle/index';
 import SearchBox from '../SearchBox/index';
 import User from '../User/index';
+import { useVideosContext } from '../../context/context';
 
-const Header = ({ placeholder, mode, toggleDrawer }) => {
+const Header = ({ placeholder, toggleDrawer }) => {
+  const { state } = useVideosContext();
+  const { theme } = state;
   return (
     <nav className="flex items-center flex-wrap bg-blue-900 shadow-lg dark:bg-blue-800">
       <button
@@ -18,7 +21,7 @@ const Header = ({ placeholder, mode, toggleDrawer }) => {
         <SearchBox placeholder={placeholder} />
       </div>
       <div className="flex-initial text-right px-4 m-2">
-        <Checkboxtoggle mode={mode} />
+        <Checkboxtoggle mode={theme} />
       </div>
       <div className="flex-initial text-right px-4 m-2 hidden md:block">
         <User />

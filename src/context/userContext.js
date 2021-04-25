@@ -1,11 +1,7 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import getFavs from '../services/getFavourites';
 
-const initialState = {
-  isActive: false,
-  user: null,
-};
-
-const UserContext = createContext(initialState);
+const UserContext = createContext({});
 
 function useUserContext() {
   const context = useContext(UserContext);
@@ -16,11 +12,20 @@ function useUserContext() {
 }
 
 const UserProvider = ({ children }) => {
+  const [favorites, setFavorites] = useState([]);
+  // localStorage.setItem('videosFavourites', JSON.stringify(favorites));
   const [jwt, setJWT] = useState(() => window.sessionStorage.getItem('jwt'));
+
+  useEffect(() => {
+    if (!jwt) return setFavorites([]);
+    getFavs({ jwt }).then(setFavorites);
+  }, [jwt]);
 
   return (
     <UserContext.Provider
       value={{
+        favorites,
+        setFavorites,
         jwt,
         setJWT,
       }}

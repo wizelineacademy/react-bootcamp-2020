@@ -1,24 +1,23 @@
 import React, { useRef } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
-import Header from '../../components/Header/index';
 import ListVideoCard from '../../components/ListVideoCard/index';
 import VideoDetail from '../../components/VideoDetail/index';
 
-import useVideoApi from '../../api/youtube.hook';
+import useVideoApi from '../../hooks/youtube.hook';
 
 import { useVideosContext } from '../../context/context';
 import useUser from '../../hooks/userUser';
 
-function VideoDetailPage({ toggleDrawer, isOpen, isFavourite }) {
+function VideoDetailPage({ isFavourite }) {
   const sectionRef = useRef(null);
-  // const { id } = useParams();
+  const history = useHistory();
   const { isLogged } = useUser();
 
   const { state, dispatch } = useVideosContext();
   useVideoApi(state.searchQuery);
-  const { videos, favouriteVideos, currentVideo } = state;
-  // const favourites = JSON.parse(localStorage.getItem('favouriteVideos'));
+  const { videos, currentVideo } = state;
+  const favourites = JSON.parse(localStorage.getItem('videosFavourites'));
   let videoCurrent = currentVideo;
   if (!currentVideo) {
     videoCurrent = JSON.parse(localStorage.getItem('currentVideo'));
@@ -27,21 +26,18 @@ function VideoDetailPage({ toggleDrawer, isOpen, isFavourite }) {
   const onSelectedVideo = (video) => {
     localStorage.setItem('currentVideo', JSON.stringify(video));
     dispatch({ type: '@set/current_video', payload: video });
+    return isFavourite
+      ? history.push(`/favourites/video/${video.id.videoId}`)
+      : history.push(`/video/${video.id.videoId}`);
   };
 
   return (
     <section ref={sectionRef}>
-      <Header
-        toggleDrawer={toggleDrawer}
-        isOpen={isOpen}
-        placeholder="Search..."
-        mode="light"
-      />
       <section className="grid grid-cols-7">
         <VideoDetail video={videoCurrent} isLogged={isLogged} />
         <ListVideoCard
           onSelectedVideo={onSelectedVideo}
-          videos={isFavourite ? favouriteVideos : videos}
+          videos={isFavourite ? favourites : videos}
           relatedCard={videoCurrent}
         />
       </section>

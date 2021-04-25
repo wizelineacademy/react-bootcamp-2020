@@ -7,6 +7,7 @@ const initialState = {
   currentVideo: null,
   searchQuery: 'Wizeline',
   favouriteVideos: [],
+  theme: 'light',
 };
 
 const VideoContext = createContext(null);

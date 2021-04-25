@@ -1,15 +1,15 @@
 import React, { useRef } from 'react';
 // import { Link, useHistory } from 'react-router-dom';
 
-import Header from '../../components/Header/index';
+// import Header from '../../components/Header/index';
 import ListVideoCard from '../../components/ListVideoCard/index';
 
 // import { useAuth } from '../../providers/Auth';
-import useVideoApi from '../../api/youtube.hook';
+import useVideoApi from '../../hooks/youtube.hook';
 
 import { useVideosContext } from '../../context/context';
 
-function HomePage({ toggleDrawer, isOpen }) {
+function HomePage() {
   // const history = useHistory();
   const sectionRef = useRef(null);
   /*
@@ -21,28 +21,17 @@ function HomePage({ toggleDrawer, isOpen }) {
   }
   */
 
-  const { state, dispatch } = useVideosContext();
-  const { loading, error } = useVideoApi(state.searchQuery);
+  const { state } = useVideosContext();
+  useVideoApi(state.searchQuery);
   const { videos } = state;
-  console.log(loading, error);
   if (videos.lenght <= 0) {
     return <div>Loading...</div>;
   }
 
-  const onSelectedVideo = (video) => {
-    dispatch({ type: '@set/current_video', payload: video });
-  };
-
   return (
     <section ref={sectionRef}>
-      <Header
-        toggleDrawer={toggleDrawer}
-        isOpen={isOpen}
-        placeholder="Search..."
-        mode="light"
-      />
       <section>
-        <ListVideoCard onSelectedVideo={onSelectedVideo} videos={videos} />
+        <ListVideoCard videos={videos} />
       </section>
     </section>
   );

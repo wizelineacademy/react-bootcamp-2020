@@ -38,6 +38,12 @@ export default function reducer(state, action) {
         status: 'remove_favourites_videos',
         favouriteVideos: action.payload,
       };
+    case '@set/theme':
+      return {
+        ...state,
+        status: 'set_theme',
+        theme: action.payload,
+      };
     default:
       return state;
   }
