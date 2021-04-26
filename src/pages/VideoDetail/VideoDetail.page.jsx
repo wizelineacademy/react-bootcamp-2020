@@ -16,14 +16,14 @@ function VideoDetailPage({ isFavourite }) {
   const { state, dispatch } = useVideosContext();
   useVideoApi(state.searchQuery);
   const { videos, currentVideo } = state;
-  const favourites = JSON.parse(localStorage.getItem('videosFavourites'));
+  const favourites = JSON.parse(window.localStorage.getItem('videosFavourites'));
   let videoCurrent = currentVideo;
   if (!currentVideo) {
-    videoCurrent = JSON.parse(localStorage.getItem('currentVideo'));
+    videoCurrent = JSON.parse(window.localStorage.getItem('currentVideo'));
   }
 
   const onSelectedVideo = (video) => {
-    localStorage.setItem('currentVideo', JSON.stringify(video));
+    window.localStorage.setItem('currentVideo', JSON.stringify(video));
     dispatch({ type: '@set/current_video', payload: video });
     return isFavourite
       ? history.push(`/favourites/video/${video.id.videoId}`)

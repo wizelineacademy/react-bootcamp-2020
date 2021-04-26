@@ -11,7 +11,7 @@ const Modal = ({ isOpened, closeModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login({ username, password });
+    login({ username, password, closeModal });
   };
 
   return isOpened && !isLogged
@@ -41,7 +41,7 @@ const Modal = ({ isOpened, closeModal }) => {
                     </h1>
                   </div>
                   <form
-                    className="mb-4 md:flex md:flex-wrap md:justify-between"
+                    className="mb-4 dark:text-white md:flex md:flex-wrap md:justify-between"
                     onSubmit={handleSubmit}
                     method="post"
                   >

@@ -6,23 +6,26 @@ import { useVideosContext } from '../../context/context';
 const AddToFavorites = ({ video }) => {
   const { dispatch } = useVideosContext();
   const { addFavourite } = useUser();
-  const favouritesLocal = JSON.parse(localStorage.getItem('videosFavourites'));
+  const favouritesLocal = JSON.parse(window.localStorage.getItem('videosFavourites'));
 
   const isFavourite = favouritesLocal.some(
     (favorite) => favorite.id.videoId === video.id.videoId
   );
 
   const favourites = () => {
-    const videoInFavourites = JSON.parse(localStorage.getItem('videosFavourites')).some(
-      (favorite) => favorite.id.videoId === video.id.videoId
-    );
+    const videoInFavourites = JSON.parse(
+      window.localStorage.getItem('videosFavourites')
+    ).some((favorite) => favorite.id.videoId === video.id.videoId);
     dispatch({ type: '@set/favourites_videos', payload: video });
 
     if (videoInFavourites) {
       const favouritesWithoutVideo = JSON.parse(
-        localStorage.getItem('videosFavourites')
+        window.localStorage.getItem('videosFavourites')
       ).filter((favorite) => favorite.id.videoId !== video.id.videoId);
-      localStorage.setItem('videosFavourites', JSON.stringify(favouritesWithoutVideo));
+      window.localStorage.setItem(
+        'videosFavourites',
+        JSON.stringify(favouritesWithoutVideo)
+      );
       dispatch({
         type: '@set/remove_favourites_videos',
         payload: favouritesWithoutVideo,
