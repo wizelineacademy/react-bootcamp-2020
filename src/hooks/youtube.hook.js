@@ -14,9 +14,9 @@ const useVideoApi = (searchQuery) => {
     const videosCache = window.localStorage.getItem('videosCache')
       ? JSON.parse(window.localStorage.getItem('videosCache'))
       : null;
-    if (videosCache[searchQuery]) {
+    if (videosCache) {
       // console.log('simulation cache', searchQuery);
-      setVideos(JSON.parse(window.localStorage.getItem('videosCache'))[searchQuery]);
+      setVideos(videosCache[searchQuery]);
     } else {
       // console.log('I don't have videosCache');
       try {
