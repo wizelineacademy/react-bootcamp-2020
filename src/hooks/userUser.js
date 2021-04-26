@@ -8,12 +8,13 @@ export default function useUser() {
   const [state, setState] = useState({ loading: false, error: false });
 
   const login = useCallback(
-    ({ username, password }) => {
+    ({ username, password, closeModal }) => {
       setState({ loading: true, error: false });
       loginApi({ username, password })
         .then((resp) => {
           window.sessionStorage.setItem('jwt', resp);
           setState({ loading: false, error: false });
+          closeModal();
           setJWT(resp);
         })
         .catch((err) => {

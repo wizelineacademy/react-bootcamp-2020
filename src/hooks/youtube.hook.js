@@ -11,10 +11,10 @@ const useVideoApi = (searchQuery) => {
 
   const onTermSubmit = useCallback(async () => {
     setLoading(true);
-    const videosCache = JSON.parse(localStorage.getItem('videosCache'));
+    const videosCache = JSON.parse(window.localStorage.getItem('videosCache'));
     if (videosCache[searchQuery]) {
       // console.log('simulation cache', searchQuery);
-      setVideos(JSON.parse(localStorage.getItem('videosCache'))[searchQuery]);
+      setVideos(JSON.parse(window.localStorage.getItem('videosCache'))[searchQuery]);
     } else {
       // console.log('I don't have videosCache');
       try {
@@ -24,7 +24,7 @@ const useVideoApi = (searchQuery) => {
           },
         });
         videosCache[searchQuery] = data.items;
-        localStorage.setItem('videosCache', JSON.stringify(videosCache));
+        window.localStorage.setItem('videosCache', JSON.stringify(videosCache));
         // cache.current[searchQuery] = data.items;
         setVideos(data.items);
       } catch (err) {
