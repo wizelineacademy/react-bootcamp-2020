@@ -11,7 +11,9 @@ const useVideoApi = (searchQuery) => {
 
   const onTermSubmit = useCallback(async () => {
     setLoading(true);
-    const videosCache = JSON.parse(window.localStorage.getItem('videosCache'));
+    const videosCache = window.localStorage.getItem('videosCache')
+      ? JSON.parse(window.localStorage.getItem('videosCache'))
+      : null;
     if (videosCache[searchQuery]) {
       // console.log('simulation cache', searchQuery);
       setVideos(JSON.parse(window.localStorage.getItem('videosCache'))[searchQuery]);
