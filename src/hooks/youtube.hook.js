@@ -16,7 +16,7 @@ const useVideoApi = (searchQuery) => {
       // console.log('simulation cache', searchQuery);
       setVideos(JSON.parse(localStorage.getItem('videosCache'))[searchQuery]);
     } else {
-      // console.log('no te tengo en el cache solo debo entrar una vez');
+      // console.log('I don't have videosCache');
       try {
         const { data } = await youtube.get('/search', {
           params: {
