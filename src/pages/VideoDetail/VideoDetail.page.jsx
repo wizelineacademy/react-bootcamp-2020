@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router';
 
 import ListVideoCard from '../../components/ListVideoCard/index';
@@ -10,7 +10,6 @@ import { useVideosContext } from '../../context/context';
 import useUser from '../../hooks/userUser';
 
 function VideoDetailPage({ isFavourite }) {
-  const sectionRef = useRef(null);
   const history = useHistory();
   const { isLogged } = useUser();
 
@@ -32,16 +31,16 @@ function VideoDetailPage({ isFavourite }) {
   };
 
   return (
-    <section ref={sectionRef}>
-      <section className="grid grid-cols-7">
+    <>
+      <div className="grid grid-cols-7">
         <VideoDetail video={videoCurrent} isLogged={isLogged} />
         <ListVideoCard
           onSelectedVideo={onSelectedVideo}
           videos={isFavourite ? favourites : videos}
           relatedCard={videoCurrent}
         />
-      </section>
-    </section>
+      </div>
+    </>
   );
 }
 

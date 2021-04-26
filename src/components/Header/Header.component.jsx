@@ -5,7 +5,7 @@ import SearchBox from '../SearchBox/index';
 import User from '../User/index';
 import { useVideosContext } from '../../context/context';
 
-const Header = ({ placeholder, toggleDrawer }) => {
+const Header = ({ placeholder, toggleDrawer, openModal, isOpened, closeModal }) => {
   const { state } = useVideosContext();
   const { theme } = state;
   return (
@@ -24,7 +24,7 @@ const Header = ({ placeholder, toggleDrawer }) => {
         <Checkboxtoggle mode={theme} />
       </div>
       <div className="flex-initial text-right px-4 m-2 hidden md:block">
-        <User />
+        <User openModal={openModal} closeModal={closeModal} isOpened={isOpened} />
       </div>
     </nav>
   );

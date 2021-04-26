@@ -24,6 +24,7 @@ module.exports = {
   variants: {
     extend: {
       textOpacity: ['dark'],
+      display: ['group-hover'],
     },
   },
   plugins: [require('@tailwindcss/aspect-ratio')],
