@@ -1,6 +1,6 @@
 export default async function addFavourites(videos) {
   // console.log(videos, 'Antes de la promesa');
-  const favourites = JSON.parse(window.localStorage.getItem('videosFavourites'));
+  const favourites = JSON.parse(window.localStorage.getItem('videosFavourites')) || [];
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (videos) {

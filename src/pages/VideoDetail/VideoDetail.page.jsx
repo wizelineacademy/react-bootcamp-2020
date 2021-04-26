@@ -16,7 +16,7 @@ function VideoDetailPage({ isFavourite }) {
   const { state, dispatch } = useVideosContext();
   useVideoApi(state.searchQuery);
   const { videos, currentVideo } = state;
-  const favourites = JSON.parse(window.localStorage.getItem('videosFavourites'));
+  const favourites = JSON.parse(window.localStorage.getItem('videosFavourites')) || [];
   let videoCurrent = currentVideo;
   if (!currentVideo) {
     videoCurrent = JSON.parse(window.localStorage.getItem('currentVideo'));
