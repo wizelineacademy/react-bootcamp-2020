@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import useUser from '../../hooks/userUser';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const ProtectedRoute = ({ children, component: Component, ...rest }) => {
-  const { isLogged } = useUser();
-  return <Route {...rest} render={() => (isLogged ? children : <Redirect to="/" />)} />;
+  const { isAuthenticated } = useAuth0();
+  return (
+    <Route {...rest} render={() => (isAuthenticated ? children : <Redirect to="/" />)} />
+  );
 };
 
 export default ProtectedRoute;

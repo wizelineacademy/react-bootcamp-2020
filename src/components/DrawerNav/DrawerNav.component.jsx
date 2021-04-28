@@ -1,11 +1,10 @@
 import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import Drawer from 'react-modern-drawer';
-// import { useHistory } from 'react-router';
-import useUser from '../../hooks/userUser';
 
 const DrawerNav = ({ isOpen, toggleDrawer, home, favourite }) => {
-  const { isLogged } = useUser();
+  const { isAuthenticated } = useAuth0();
 
   return (
     <Drawer open={isOpen} onClose={toggleDrawer} direction="left">
@@ -15,7 +14,7 @@ const DrawerNav = ({ isOpen, toggleDrawer, home, favourite }) => {
             Home
           </button>
         </div>
-        {isLogged && (
+        {isAuthenticated && (
           <div className="pt-0 pl-2">
             <button type="button" onClick={favourite}>
               Favourites

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import { useHistory } from 'react-router';
 // import Drawer from 'react-modern-drawer';
 
@@ -7,15 +6,11 @@ import VideoProvider from '../../context/context';
 import UserProvider from '../../context/userContext';
 
 import AuthProvider from '../../providers/Auth';
-import HomePage from '../../pages/Home';
-import VideoDetailPage from '../../pages/VideoDetail/index';
-import NotFound from '../../pages/NotFound';
-import FavouritesPage from '../../pages/Favourites';
 import Layout from '../Layout';
 // import useUser from '../../hooks/userUser';
 import DrawerNav from '../DrawerNav/index';
-import ProtectedRoute from '../ProtectedRoutes/index';
 import Header from '../Header/index';
+import RenderCurrentRoute from './RenderCurrentRoute.component';
 
 import 'react-modern-drawer/dist/index.css';
 
@@ -62,39 +57,7 @@ function App() {
             closeModal={closeModal}
           />
           <Layout>
-            <Switch>
-              <Route
-                path="/video"
-                render={({ match }) => {
-                  return (
-                    <>
-                      <Route exact path={`${match.url}/`}>
-                        <HomePage toggleDrawer={toggleDrawer} isOpen={isOpen} />
-                      </Route>
-                      <Route path={`${match.url}/:id`}>
-                        <VideoDetailPage toggleDrawer={toggleDrawer} isOpen={isOpen} />
-                      </Route>
-                    </>
-                  );
-                }}
-              />
-              <Route exact path="/">
-                <HomePage toggleDrawer={toggleDrawer} isOpen={isOpen} />
-              </Route>
-              <ProtectedRoute exact path="/favourites/">
-                <FavouritesPage toggleDrawer={toggleDrawer} isOpen={isOpen} />
-              </ProtectedRoute>
-              <ProtectedRoute exact path="/favourites/video/:id">
-                <VideoDetailPage
-                  toggleDrawer={toggleDrawer}
-                  isOpen={isOpen}
-                  isFavourite="true"
-                />
-              </ProtectedRoute>
-              <Route path="*">
-                <NotFound toggleDrawer={toggleDrawer} isOpen={isOpen} />
-              </Route>
-            </Switch>
+            <RenderCurrentRoute isOpen={isOpen} toggleDrawer={toggleDrawer} />
           </Layout>
         </AuthProvider>
       </UserProvider>

@@ -31,16 +31,14 @@ function VideoDetailPage({ isFavourite }) {
   };
 
   return (
-    <>
-      <div className="grid grid-cols-7">
-        <VideoDetail video={videoCurrent} isLogged={isLogged} />
-        <ListVideoCard
-          onSelectedVideo={onSelectedVideo}
-          videos={isFavourite ? favourites : videos}
-          relatedCard={videoCurrent}
-        />
-      </div>
-    </>
+    <div className="grid grid-cols-7">
+      <VideoDetail video={videoCurrent} isLogged={isLogged} />
+      <ListVideoCard
+        onSelectedVideo={onSelectedVideo}
+        videos={isFavourite ? favourites : videos}
+        relatedCard={videoCurrent}
+      />
+    </div>
   );
 }
 

@@ -1,7 +1,9 @@
 import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import AddToFavorites from '../AddToFavorites/index';
 
-const VideoDetail = ({ video, isLogged }) => {
+const VideoDetail = ({ video }) => {
+  const { isAuthenticated } = useAuth0();
   if (!video) {
     return <div>Loading...</div>;
   }
@@ -27,7 +29,7 @@ const VideoDetail = ({ video, isLogged }) => {
           </h4>
         </div>
         <div className="md:mt-2 sm:px-8 sm:mx-auto">
-          {isLogged && <AddToFavorites video={video} />}
+          {isAuthenticated && <AddToFavorites video={video} />}
         </div>
       </div>
       <div className="ml-2 mt-2 mr-2 md:m-4 text-sm dark:text-white text-justify font-hairline text-gray-500">
