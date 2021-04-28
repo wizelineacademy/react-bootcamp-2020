@@ -1,57 +1,67 @@
-import React, { useLayoutEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
+// import Drawer from 'react-modern-drawer';
+
+import VideoProvider from '../../context/context';
+import UserProvider from '../../context/userContext';
 
 import AuthProvider from '../../providers/Auth';
-import HomePage from '../../pages/Home';
-import LoginPage from '../../pages/Login';
-import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
-import Private from '../Private';
-import Fortune from '../Fortune';
 import Layout from '../Layout';
-import { random } from '../../utils/fns';
+// import useUser from '../../hooks/userUser';
+import DrawerNav from '../DrawerNav/index';
+import Header from '../Header/index';
+import RenderCurrentRoute from './RenderCurrentRoute.component';
+
+import 'react-modern-drawer/dist/index.css';
 
 function App() {
-  useLayoutEffect(() => {
-    const { body } = document;
+  const history = useHistory();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpened, setOpened] = useState(false);
 
-    function rotateBackground() {
-      const xPercent = random(100);
-      const yPercent = random(100);
-      body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
-    }
+  const openModal = () => setOpened(!isOpened);
 
-    const intervalId = setInterval(rotateBackground, 3000);
-    body.addEventListener('click', rotateBackground);
+  const closeModal = () => setOpened(!isOpened);
+  // const { isLogged } = useUser();
 
-    return () => {
-      clearInterval(intervalId);
-      body.removeEventListener('click', rotateBackground);
-    };
-  }, []);
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  const homePage = () => {
+    setIsOpen((prevState) => !prevState);
+    history.push('/');
+  };
+
+  const favouritePage = () => {
+    setIsOpen((prevState) => !prevState);
+    history.push('/favourites');
+  };
 
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <Fortune />
-        </Layout>
-      </AuthProvider>
-    </BrowserRouter>
+    <VideoProvider>
+      <UserProvider>
+        <AuthProvider>
+          <DrawerNav
+            isOpen={isOpen}
+            toggleDrawer={toggleDrawer}
+            home={homePage}
+            favourite={favouritePage}
+          />
+          <Header
+            toggleDrawer={toggleDrawer}
+            openModal={openModal}
+            isOpen={isOpen}
+            placeholder="Search..."
+            isOpened={isOpened}
+            closeModal={closeModal}
+          />
+          <Layout>
+            <RenderCurrentRoute isOpen={isOpen} toggleDrawer={toggleDrawer} />
+          </Layout>
+        </AuthProvider>
+      </UserProvider>
+    </VideoProvider>
   );
 }
 

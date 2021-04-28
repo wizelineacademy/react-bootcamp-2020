@@ -1,39 +1,18 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+import ListVideoCard from '../../components/ListVideoCard/index';
+
+import useVideoApi from '../../hooks/youtube.hook';
+
+import { useVideosContext } from '../../context/context';
 
 function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+  const { state } = useVideosContext();
+  useVideoApi(state.searchQuery);
+  const { videos } = state;
+  if (videos.lenght <= 0) return <div>Loading...</div>;
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
-
-  return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
-  );
+  return <ListVideoCard videos={videos} />;
 }
 
 export default HomePage;
