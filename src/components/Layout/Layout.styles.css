@@ -1,9 +1,16 @@
+.page {
+  display: flex;
+  flex-direction: row;
+}
+
 .container {
+  padding: 0;
   width: 100vw;
+  max-width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  overflow-x: hidden;
+
   align-items: center;
-  margin-top: -3rem;
 }
